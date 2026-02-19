@@ -52,7 +52,6 @@ C:\Dev\
 │
 └── Projects\
     └── VIM.MT.310\                 ← cloned git repository (this project)
-        ├── GodotSharp\             ← extracted from the zip (see below)
         ├── src\
         ├── scene\
         ├── data\
@@ -61,26 +60,17 @@ C:\Dev\
         └── README.md
 ```
 
-### Extracting GodotSharp into the project
-
-The `.NET` Godot zip (`Godot_v4.6.1-stable_mono_win64.zip`) contains a `GodotSharp/` folder with the managed C# assemblies that the engine needs at runtime.
-
-1. Extract the zip file somewhere temporary.
-2. Copy **only** the `GodotSharp/` folder into the **root of the cloned repository** (next to this README).
-
-```
-VIM.MT.310\
-└── GodotSharp\       ← copy this folder here
-    ├── Api\
-    ├── Tools\
-    └── ...
-```
-
-> The Godot executable itself (`.exe`) should stay in its own folder (e.g. `C:\Dev\Godot\`) and **not** be placed inside the repository.
-
----
-
 ## Setting Up the Repository
+
+### Setup git lfs first
+
+Git LFS should be installed by default on the Windows version of Git installer. Check that it is intialized **before** cloning the repository.
+
+```
+git lfs install
+```
+
+LFS means Large File Storage and it reduces the size of .git folder, which can otherwise balloon due to audio, video and other large files.
 
 ### Clone the repository
 
@@ -156,8 +146,5 @@ VIM.MT.310/
 ├── data/       # JSON and other data definition files
 ├── audio/      # Music and sound effect files
 ├── asset/      # Textures, sprites, models, fonts, etc.
-├── GodotSharp/ # Managed assemblies (extracted from Godot zip – not committed)
 └── README.md
 ```
-
-> `GodotSharp/` is already listed in `.gitignore` and will not be tracked by Git.
