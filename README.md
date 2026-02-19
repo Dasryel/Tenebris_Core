@@ -46,9 +46,10 @@ Keep the Godot executable **outside** of the project code folder to avoid accide
 
 ```
 C:\Dev\
-├── Godot\                                          ← Godot executables live here
-│   ├── Godot_v4.6.1-stable_mono_win64.exe
-│   └── Godot_v4.6.1-stable_mono_win64_console.exe
+├── Godot\
+│   └── Godot 4.6\                  ← Godot executables live here
+│       ├── Godot_v4.6.1-stable_mono_win64.exe
+│       └── Godot_v4.6.1-stable_mono_win64_console.exe
 │
 └── Projects\
     └── VIM.MT.310\                 ← cloned git repository (this project)

@@ -1,0 +1,12 @@
+{
+    "editor.formatOnSave": true,
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp",
+        "editor.autoClosingBrackets": "always",
+        "editor.autoClosingQuotes": "always"
+    },
+    "[json]": {
+        "editor.formatOnSave": false,
+    },
+    "editor.semanticHighlighting.enabled": false
+}
