@@ -5,15 +5,20 @@ namespace GameProject
 {
     public partial class Main : Node2D
     {
-        // Called when the node enters the scene tree for the first time.
+        private MapManager _mapManager;
+        private SignalBus _signalBus;
+
+        // Initialize program
         public override void _Ready()
         {
+            this._signalBus = SignalBus.Instance;
+            AddChild(this._signalBus);
+
+            this._mapManager = MapManager.Instance;
+            AddChild(this._mapManager);
+
             GD.Print("Main initialized");
         }
 
-        // Called every frame. 'delta' is the elapsed time since the previous frame.
-        public override void _Process(double delta)
-        {
-        }
     }
 }
