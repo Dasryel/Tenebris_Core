@@ -11,6 +11,7 @@ TUNI 2026 Game Project course group work.
 3. [Setting Up the Repository](#setting-up-the-repository)
 4. [Basic Git Usage](#basic-git-usage)
 5. [Project Folder Structure](#project-folder-structure)
+6. [Git commit-prefixes](#git-commit-prefixes)
 
 ---
 
@@ -149,3 +150,30 @@ VIM.MT.310/
 ├── asset/      # Textures, sprites, models, fonts, etc.
 └── README.md
 ```
+
+---
+
+## Git commit prefixes
+
+Standardizing git commit prefixes makes the Git history scannable, allows for automated changelog generation, and helps teammates (or "future you") understand the intent of a change before even reading the code.
+
+Prefix git commit messages with tags:
+
+```
+anim	New animations or changes to the AnimationPlayer/Tree.
+asset	Importing or updating models, textures, sprites, or other assets.
+audio	Adding or tweaking sound effects and music.
+chore   Updating build tasks, package manager configs, etc.
+doc     Documentation only changes.
+feat    A new feature for the user (e.g., feat: add double jump mechanic).
+fix     A bug fix (e.g., fix: player stuck in walls when dashing).
+level	Changes to scene files, map layouts, or environmental lighting.
+perf    A code change that improves performance.
+refact  A code change that neither fixes a bug nor adds a feature.
+style   Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc).
+test    Adding missing tests or correcting existing tests.
+tweak	Adjusting "feel" or variables (e.g., tweak: increase gravity by 10%).
+ui	    Menu layouts, HUD updates, or font changes.
+vfx	    Particle systems, shaders, or screen-space effects.
+```
+
