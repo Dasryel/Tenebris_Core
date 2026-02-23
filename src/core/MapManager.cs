@@ -33,5 +33,14 @@ namespace GameProject
 
             return true;
         }
+
+        public static string GetCurrentMapName()
+        {
+            if (_currentMapInstance != null)
+            {
+                return _currentMapInstance.Name;
+            }
+            return "";
+        }
     }
 }

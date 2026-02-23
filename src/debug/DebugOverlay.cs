@@ -33,6 +33,19 @@ namespace GameProject
         }
 
 
+        public override void _Process(double delta)
+        {
+#if DEBUG
+            if (!Visible) return;
+            FPSLabel.Text = $"FPS: {Engine.GetFramesPerSecond()}";
+            PositionLabel.Text = $"Pos: TODO";
+            VelocityLabel.Text = $"Vel: TODO";
+            MapLabel.Text = $"Room: {MapManager.GetCurrentMapName()}.tscn";
+            PlayerStateLabel.Text = $"State: TODO";
+#endif
+        }
+
+
         public void SetupDebugCamera(Vector2 initialPosition)
         {
             this._debugCamera = new()
@@ -47,7 +60,7 @@ namespace GameProject
 
         public override void _ExitTree()
         {
-            _debugCamera?.QueueFree();
+            _debugCamera?.Free();
             _debugCamera = null;
         }
 

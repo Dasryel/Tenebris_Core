@@ -45,7 +45,7 @@ namespace GameProject
 
         public override void _ExitTree()
         {
-            this._debugOverlay?.QueueFree();
+            this._debugOverlay?.Free();
             this._debugOverlay = null;
         }
     }
