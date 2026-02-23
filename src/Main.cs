@@ -23,6 +23,7 @@ namespace GameProject
 
             GD.Print("[Main] Initialized");
 
+            // TODO figure out a better way to store map names. dict, enum, godot export, ?
             _mapManager.LoadMap("scene/map/debug.tscn");
         }
 

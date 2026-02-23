@@ -63,16 +63,5 @@ namespace GameProject
             _debugCamera?.Free();
             _debugCamera = null;
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 }

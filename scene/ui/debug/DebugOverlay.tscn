@@ -105,4 +105,4 @@ text = "Event log"
 vertical_alignment = 2
 
 [node name="HitBoxLayer" type="Node2D" parent="." unique_id=1827129911]
-metadata/note = "Used to display object hitbxoes"
+metadata/note = "Used to display object hitboxes"
