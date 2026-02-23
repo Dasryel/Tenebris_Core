@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bfyirnsmbqp40"]
+
+[node name="DebugUiLayer" type="Control" unique_id=836619848]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Items" type="VBoxContainer" parent="." unique_id=24223360]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+
+[node name="DebugToolbar" type="PanelContainer" parent="Items" unique_id=1103013563]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Items/DebugToolbar" unique_id=690601323]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MapLabel" type="Label" parent="Items/DebugToolbar/HBoxContainer" unique_id=902048475]
+layout_mode = 2
+text = "Map:"
+
+[node name="MapItemList" type="ItemList" parent="Items/DebugToolbar/HBoxContainer" unique_id=1066817396]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ResetMapButton" type="Button" parent="Items/DebugToolbar/HBoxContainer" unique_id=1776582831]
+layout_mode = 2
+text = "Reset Map"
+
+[node name="SpawnAtPointButton" type="Button" parent="Items/DebugToolbar/HBoxContainer" unique_id=1211549804]
+layout_mode = 2
+text = "Spawn At"
+
+[node name="FreezeAIButton" type="Button" parent="Items/DebugToolbar/HBoxContainer" unique_id=1016935270]
+layout_mode = 2
+text = "Freeze AI"
+
+[node name="GodModeButton" type="Button" parent="Items/DebugToolbar/HBoxContainer" unique_id=1276840287]
+layout_mode = 2
+text = "God Mode"
+
+[node name="TimeScaleLabel" type="Label" parent="Items/DebugToolbar/HBoxContainer" unique_id=1150510606]
+layout_mode = 2
+text = "TimeScale"
+
+[node name="TimeScaleSlider" type="HSlider" parent="Items/DebugToolbar/HBoxContainer" unique_id=1554478300]
+layout_mode = 2
+
+[node name="StatsPanel" type="PanelContainer" parent="Items" unique_id=219223821]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Items/StatsPanel" unique_id=497358320]
+layout_mode = 2
