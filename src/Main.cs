@@ -5,15 +5,15 @@ namespace GameProject
 {
     public partial class Main : Node2D
     {
-        private DebugOverlay _debugOverlay;
+        private DebugService _debugService;
         private MapManager _mapManager;
         private SignalBus _signalBus;
 
         // Initialize program
         public override void _Ready()
         {
-            this._debugOverlay = DebugOverlay.Instance;
-            AddChild(this._debugOverlay);
+            this._debugService = DebugService.Instance;
+            AddChild(this._debugService);
 
             this._mapManager = MapManager.Instance;
             AddChild(this._mapManager);
@@ -23,7 +23,7 @@ namespace GameProject
 
             GD.Print("[Main] Initialized");
 
-            _mapManager.LoadMap("scene/map/world/debug.tscn");
+            _mapManager.LoadMap("scene/map/debug.tscn");
         }
 
 
@@ -32,8 +32,8 @@ namespace GameProject
         */
         public override void _ExitTree()
         {
-            this._debugOverlay?.Free();
-            this._debugOverlay = null;
+            this._debugService?.Free();
+            this._debugService = null;
 
             this._mapManager?.Free();
             this._mapManager = null;
