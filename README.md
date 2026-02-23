@@ -161,7 +161,7 @@ Prefix git commit messages with tags:
 
 ```
 anim	New animations or changes to the AnimationPlayer/Tree.
-asset	Importing or updating 32 models, textures, or sprites.
+asset	Importing or updating models, textures, sprites, or other assets.
 audio	Adding or tweaking sound effects and music.
 chore   Updating build tasks, package manager configs, etc.
 doc     Documentation only changes.
