@@ -2,7 +2,7 @@ using Godot;
 
 namespace GameProject
 {
-    public partial class DebugOverlay : Control
+    public partial class DebugOverlay : CanvasLayer
     {
         public static DebugOverlay Instance => _instance;
 

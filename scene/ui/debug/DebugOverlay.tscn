@@ -2,18 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5sq1jq7b83io" path="res://src/debug/DebugOverlay.cs" id="1_4ufwu"]
 
-[node name="DebugOverlay" type="Control" unique_id=836619848 node_paths=PackedStringArray("MapOptionButton", "ResetMapButton", "SpawnAtPointButton", "FreezeAIButton", "GodModeButton", "TimeScaleSlider", "FPSLabel", "PositionLabel", "VelocityLabel", "MapLabel", "PlayerStateLabel")]
-z_index = 99
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -2.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="DebugOverlay" type="CanvasLayer" unique_id=1954941839 node_paths=PackedStringArray("MapOptionButton", "ResetMapButton", "SpawnAtPointButton", "FreezeAIButton", "GodModeButton", "TimeScaleSlider", "FPSLabel", "PositionLabel", "VelocityLabel", "MapLabel", "PlayerStateLabel")]
 script = ExtResource("1_4ufwu")
 MapOptionButton = NodePath("DebugToolbar/HBoxContainer/MapOptionButton")
 ResetMapButton = NodePath("DebugToolbar/HBoxContainer/ResetMapButton")
@@ -28,7 +17,6 @@ MapLabel = NodePath("StatsPanel/VBoxContainer/MapLabel")
 PlayerStateLabel = NodePath("StatsPanel/VBoxContainer/PlayerStateLabel")
 
 [node name="DebugToolbar" type="PanelContainer" parent="." unique_id=1103013563]
-layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 50.0
 grow_horizontal = 2
@@ -74,7 +62,6 @@ size_flags_horizontal = 8
 max_value = 3.0
 
 [node name="StatsPanel" type="PanelContainer" parent="." unique_id=219223821]
-layout_mode = 1
 offset_top = 55.0
 offset_right = 230.0
 offset_bottom = 331.0
@@ -105,7 +92,6 @@ text = "Player state"
 
 [node name="EventLogPanel" type="PanelContainer" parent="." unique_id=97882218]
 custom_minimum_size = Vector2(600, 200)
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
