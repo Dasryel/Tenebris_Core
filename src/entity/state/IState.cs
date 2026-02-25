@@ -3,8 +3,9 @@ namespace GameProject
 {
     public interface IState
     {
-        public abstract void Enter(Entity entity);
-        public abstract void Exit(Entity entity);
-        public abstract void Update(Entity entity, double delta);
+        // Public and abstract by default in C#
+        void Enter(Entity entity);
+        void Exit(Entity entity);
+        void Update(Entity entity, double delta);
     }
 }
