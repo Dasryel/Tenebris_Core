@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cpfhqniwm0dvv"]
+
+[ext_resource type="Script" uid="uid://cosn6okpsnw58" path="res://src/ui/marker2d_tool.gd" id="1_7rrkl"]
+
+[node name="SpawnData" type="Marker2D" unique_id=1935440349]
+gizmo_extents = 50.0
+script = ExtResource("1_7rrkl")

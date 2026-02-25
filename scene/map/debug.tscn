@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://3ru1ejl48xwl"]
 
 [ext_resource type="Texture2D" uid="uid://cib441goaojnk" path="res://asset/tileset/BasicGreen.png" id="1_v04hb"]
+[ext_resource type="PackedScene" uid="uid://cpfhqniwm0dvv" path="res://scene/marker/SpawnData.tscn" id="2_jjdtj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3qvk"]
 texture = ExtResource("1_v04hb")
@@ -58,5 +59,9 @@ tile_set = SubResource("TileSet_h8dog")
 [node name="Background" type="TileMapLayer" parent="." unique_id=1791880563]
 
 [node name="Spawns" type="Node2D" parent="." unique_id=1587228739]
+
+[node name="SpawnData" parent="Spawns" unique_id=1935440349 instance=ExtResource("2_jjdtj")]
+position = Vector2(247, 436)
+label_text = "Player spawn"
 
 [node name="Pickups" type="Node2D" parent="." unique_id=328509755]
