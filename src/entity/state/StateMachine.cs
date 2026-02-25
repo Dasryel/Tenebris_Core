@@ -1,13 +1,9 @@
 namespace GameProject
 {
-    public class StateMachine
+    public class StateMachine(IState defaultState)
     {
-        private IState _currentState;
+        private IState _currentState = defaultState;
 
-        public StateMachine(IState defaultState)
-        {
-            _currentState = defaultState;
-        }
 
         public void ChangeState(IState newState, Entity entity)
         {
