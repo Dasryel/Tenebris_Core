@@ -3,10 +3,9 @@ using Godot;
 
 namespace GameProject
 {
-    [Tool]
     public partial class SpawnPoint : Marker2D
     {
-        [Export] public SpawnData Data { get; private set; }
+        [Export] public SpawnData Data { get; set; }
 
         public Node2D Spawn()
         {
@@ -20,42 +19,51 @@ namespace GameProject
             };
         }
 
+
         private Node2D SpawnItem(ItemSpawnData i)
         {
             throw new NotImplementedException();
         }
+
 
         private Node2D SpawnEnemy(EnemySpawnData e)
         {
             throw new NotImplementedException();
         }
 
+
         private Node2D SpawnCheckpoint(CheckpointSpawnData c)
         {
             throw new NotImplementedException();
         }
+
 
         private Node2D SpawnPlayer(PlayerSpawnData p)
         {
             throw new NotImplementedException();
         }
 
+
         public bool IsPlayerSpawn()
         {
             throw new NotImplementedException();
         }
+
 
         public bool IsEnemySpawn()
         {
             throw new NotImplementedException();
         }
 
+
         public string GetSpawnId()
         {
             return this.Data.SpawnId;
         }
 
+
         // private void UpdateEditorVisual();
+
 
         public override void _Ready()
         {

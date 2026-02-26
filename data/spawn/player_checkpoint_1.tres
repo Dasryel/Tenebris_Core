@@ -1,3 +1,8 @@
-PlayerSpawnData
-IsInitial=false
-SpawnId="cp_1" 
+[gd_resource type="Resource" script_class="CheckpointSpawnData" format=3 uid="uid://x3ke3x2h0akr"]
+
+[ext_resource type="Script" uid="uid://7q4cpdqrtxk4" path="res://src/entity/spawn/CheckpointSpawnData.cs" id="1_0mugv"]
+
+[resource]
+script = ExtResource("1_0mugv")
+CheckpointId = "cp_1"
+metadata/_custom_type_script = "uid://7q4cpdqrtxk4"

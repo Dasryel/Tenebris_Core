@@ -3,9 +3,9 @@ using Godot;
 namespace GameProject
 {
     [GlobalClass]
-    public abstract partial class SpawnData : Resource
+    public partial class SpawnData : Resource
     {
-        [Export] public string SpawnId { get; private set; }
-        [Export] public bool IsInitial { get; private set; }
+        [Export] public string SpawnId { get; set; }
+        [Export] public bool IsInitial { get; set; }
     }
 }
