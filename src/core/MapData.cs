@@ -66,6 +66,10 @@ namespace GameProject
                     GD.PrintErr($"Marker2D '{spawn.Name}' has no data assigned!");
                     continue;
                 }
+
+                // Inject the Marker2D's position to SpawnData
+                data.GlobalPosition = spawn.GlobalPosition;
+
                 switch (data)
                 {
                     case PlayerSpawnData p: PlayerSpawns.Add(p); break;

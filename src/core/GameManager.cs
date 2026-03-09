@@ -5,13 +5,23 @@ namespace GameProject
 {
     public partial class GameManager : Node
     {
-        private Player _currentPlayer;
+        private static readonly GameManager _instance = new();
+        public static GameManager Instance => _instance;
+        // private static new readonly string Name = "GameManager";
+
+        private static Player _currentPlayer;
+
+        public override void _Ready()
+        {
+            SignalBus.Instance.PlayerCreated += OnPlayerCreated;
+        }
 
 
-        public void NewPlayer(Vector2 position)
+        private void OnPlayerCreated(Player newPlayer)
         {
             _currentPlayer?.QueueFree();
-            _currentPlayer = new() { Position = position };
+            _currentPlayer = newPlayer;
+            AddChild(_currentPlayer);
         }
     }
 }
