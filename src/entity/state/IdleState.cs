@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace GameProject
 {
@@ -13,11 +12,11 @@ namespace GameProject
 
         public void Update(Entity entity, double _delta)
         {
-            Vector2 direction = Input.GetVector("left", "right", "up", "down");
+            Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 
             if (direction != Vector2.Zero)
             {
-                entity.StateMachine.ChangeState(new MoveState(), entity);
+                entity.StateMachine.ChangeState(StateCache.Get<MoveState>(), entity);
             }
         }
 

@@ -4,6 +4,8 @@ namespace GameProject
     {
         private IState _currentState = defaultState;
 
+        /// <summary>The currently active state (read-only).</summary>
+        public IState CurrentState => _currentState;
 
         public void ChangeState(IState newState, Entity entity)
         {
@@ -11,7 +13,6 @@ namespace GameProject
             _currentState = newState;
             _currentState.Enter(entity);
         }
-
 
         public void Update(Entity entity, double delta)
         {
