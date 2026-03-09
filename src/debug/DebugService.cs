@@ -4,22 +4,13 @@ namespace GameProject
 {
     public partial class DebugService : Node2D
     {
-        public static DebugService Instance { get; private set; }
+        private static readonly DebugService _instance = new();
+        public static DebugService Instance => _instance;
+
         private static new readonly string Name = "DebugService";
 
         private DebugOverlay _debugOverlay;
         private bool _isEnabled = false;
-
-        public override void _EnterTree()
-        {
-            if (Instance != null && Instance != this)
-            {
-                GD.PrintErr("Duplicate DebugService detected! Self-destructing.");
-                QueueFree();
-                return;
-            }
-            Instance = this;
-        }
 
         public override void _Input(InputEvent @event)
         {
@@ -55,15 +46,11 @@ namespace GameProject
 
         public override void _ExitTree()
         {
-            if (Instance == this)
+            if (GodotObject.IsInstanceValid(_debugOverlay))
             {
-                Instance = null;
+                _debugOverlay.QueueFree();
             }
-            /*             if (GodotObject.IsInstanceValid(this._debugOverlay))
-                        {
-                            this._debugOverlay.QueueFree();
-                        }
-                        this._debugOverlay = null; */
+            _debugOverlay = null;
         }
     }
 }

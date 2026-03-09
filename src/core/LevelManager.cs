@@ -31,8 +31,9 @@ namespace GameProject
             }
         }
 
-        private static void SpawnPlayer(PlayerSpawnData data)
+        private void SpawnPlayer(PlayerSpawnData data)
         {
+            GD.Print($"[{Name}] Trying to spawn player");
             string scenePath = "res://scene/entity/player/player.tscn";
 
             var playerScene = GD.Load<PackedScene>(scenePath);
@@ -47,7 +48,6 @@ namespace GameProject
                 GD.PrintErr($"[{Name}] playerInstance instantiation failed");
             }
 
-            _activeMap.AddChild(playerInstance);
             playerInstance.GlobalPosition = data.GlobalPosition;
 
             SignalBus.Instance.EmitSignal(

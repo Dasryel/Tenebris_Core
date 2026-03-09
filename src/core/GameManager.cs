@@ -7,7 +7,7 @@ namespace GameProject
     {
         private static readonly GameManager _instance = new();
         public static GameManager Instance => _instance;
-        // private static new readonly string Name = "GameManager";
+        private static new readonly string Name = "GameManager";
 
         private static Player _currentPlayer;
 
@@ -22,6 +22,7 @@ namespace GameProject
             _currentPlayer?.QueueFree();
             _currentPlayer = newPlayer;
             AddChild(_currentPlayer);
+            GD.Print($"[{Name}] Added new Player");
         }
     }
 }

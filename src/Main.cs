@@ -14,16 +14,16 @@ namespace GameProject
         // Initialize program
         public override void _Ready()
         {
-            this._debugService = new DebugService();
+            this._debugService = DebugService.Instance;
             AddChild(this._debugService);
 
-            this._signalBus = new SignalBus();
+            this._signalBus = SignalBus.Instance;
             AddChild(this._signalBus);
 
-            this._gameManager = new GameManager();
+            this._gameManager = GameManager.Instance;
             AddChild(this._gameManager);
 
-            this._mapManager = new MapManager();
+            this._mapManager = MapManager.Instance;
             AddChild(this._mapManager);
 
             this._levelManager = LevelManager.Instance;
@@ -47,6 +47,7 @@ namespace GameProject
             this._gameManager?.Free();
             this._gameManager = null;
 
+            this._debugService?.Free();
             this._debugService = null;
 
             this._mapManager?.Free();

@@ -31,10 +31,10 @@ namespace GameProject
 
             AddChild(_activeMap);
 
-            /*          SignalBus.Instance.EmitSignal(
-                         SignalBus.SignalName.MapLoaded,
-                         _activeMap
-                         ); */
+            SignalBus.Instance.EmitSignal(
+                 SignalBus.SignalName.MapLoaded,
+                 _activeMap
+                 );
 
             GD.Print($"[MapManager] Loaded map: {scenePath}");
 
