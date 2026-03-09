@@ -58,7 +58,7 @@ namespace GameProject
 
             DrawString(
                 ThemeDB.FallbackFont,
-                new Vector2(0, 0),
+                new Vector2(-60, -20),
                 this._className,
                 HorizontalAlignment.Center,
                 -1,
@@ -66,7 +66,7 @@ namespace GameProject
                 Colors.Yellow
             );
 
-            DrawCircle(Vector2.Zero, 20f, Colors.Cyan);
+            DrawCircle(Vector2.Zero, 20f, Colors.Cyan, filled: false);
         }
     }
 }
