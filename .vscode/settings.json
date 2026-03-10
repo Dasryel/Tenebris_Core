@@ -8,5 +8,6 @@
     "[json]": {
         "editor.formatOnSave": false,
     },
-    "editor.semanticHighlighting.enabled": false
+    "editor.semanticHighlighting.enabled": false,
+    "sarif-viewer.connectToGithubCodeScanning": "off"
 }

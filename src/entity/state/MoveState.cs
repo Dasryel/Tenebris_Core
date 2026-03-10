@@ -12,7 +12,12 @@ namespace GameProject
 
         public void Update(Entity entity, double delta)
         {
-            Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
+            Vector2 direction = Input.GetVector(
+                GameInput.MoveLeft,
+                GameInput.MoveRight,
+                GameInput.MoveUp,
+                GameInput.MoveDown
+                );
 
             if (direction == Vector2.Zero)
             {

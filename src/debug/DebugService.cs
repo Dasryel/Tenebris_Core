@@ -4,9 +4,11 @@ namespace GameProject
 {
     public partial class DebugService : Node2D
     {
+        private static readonly DebugService _instance = new();
         public static DebugService Instance => _instance;
 
-        private static readonly DebugService _instance = new();
+        private static new readonly string Name = "DebugService";
+
         private DebugOverlay _debugOverlay;
         private bool _isEnabled = false;
 
@@ -22,8 +24,7 @@ namespace GameProject
 
         public override void _Ready()
         {
-            this.Name = "DebugService";
-            GD.Print("[DebugService] created");
+            GD.Print($"[{Name}] created");
         }
 
 
@@ -45,8 +46,11 @@ namespace GameProject
 
         public override void _ExitTree()
         {
-            this._debugOverlay?.Free();
-            this._debugOverlay = null;
+            if (GodotObject.IsInstanceValid(_debugOverlay))
+            {
+                _debugOverlay.QueueFree();
+            }
+            _debugOverlay = null;
         }
     }
 }

@@ -7,13 +7,14 @@ namespace GameProject
     {
         private static readonly MapManager _instance = new();
         public static MapManager Instance => _instance;
+        private static new readonly string Name = "MapManager";
+        // private static MapData mapData;
 
-        private static Node _currentMapInstance;
+        private static MapData _activeMap;
 
         public override void _Ready()
         {
-            this.Name = "MapManager";
-            GD.Print("[MapManager] instance created");
+            GD.Print($"[{Name}] instance created");
         }
 
 
@@ -21,14 +22,24 @@ namespace GameProject
         {
             if (!FileAccess.FileExists(scenePath))
             {
-                GD.PrintErr($"[MapManager] Map path not found: {scenePath}");
+                GD.PrintErr($"[{Name}] Map path not found: {scenePath}");
                 return false;
             }
 
-            PackedScene mapScene = ResourceLoader.Load<PackedScene>(scenePath);
-            _currentMapInstance = mapScene.Instantiate();
+            // Unload previous map
+            _activeMap?.QueueFree();
 
-            AddChild(_currentMapInstance);
+            // Load new map
+            PackedScene mapScene = ResourceLoader.Load<PackedScene>(scenePath);
+            _activeMap = mapScene.Instantiate<MapData>();
+
+            AddChild(_activeMap);
+
+            SignalBus.Instance.EmitSignal(
+                 SignalBus.SignalName.MapLoaded,
+                 _activeMap
+                 );
+
             GD.Print($"[MapManager] Loaded map: {scenePath}");
 
             return true;
@@ -36,9 +47,9 @@ namespace GameProject
 
         public static string GetCurrentMapName()
         {
-            if (_currentMapInstance != null)
+            if (_activeMap != null)
             {
-                return _currentMapInstance.Name;
+                return _activeMap.Name;
             }
             return "";
         }
