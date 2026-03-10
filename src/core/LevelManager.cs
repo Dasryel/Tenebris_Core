@@ -10,10 +10,11 @@ namespace GameProject
         public static LevelManager Instance => _instance;
 
         private static MapData _activeMap;
-        private static new readonly string Name = "LevelManager";
+        private static readonly string stringName = "LevelManager";
 
         public override void _Ready()
         {
+            Name = stringName;
             SignalBus.Instance.MapLoaded += OnMapLoaded;
         }
 
@@ -32,19 +33,19 @@ namespace GameProject
 
         private static void SpawnPlayer(PlayerSpawnData data)
         {
-            GD.Print($"[{Name}] Trying to spawn player");
+            GD.Print($"[{stringName}] Trying to spawn player");
             string scenePath = "res://scene/entity/player/player.tscn";
 
             var playerScene = GD.Load<PackedScene>(scenePath);
             if (playerScene == null)
             {
-                GD.PrintErr($"[{Name}] playerScene file was not found at path: {scenePath}");
+                GD.PrintErr($"[{stringName}] playerScene file was not found at path: {scenePath}");
             }
 
             var playerInstance = playerScene.Instantiate<Player>();
             if (playerInstance == null)
             {
-                GD.PrintErr($"[{Name}] playerInstance instantiation failed");
+                GD.PrintErr($"[{stringName}] playerInstance instantiation failed");
             }
 
             playerInstance.GlobalPosition = data.GlobalSpawnPosition;

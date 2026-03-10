@@ -12,11 +12,12 @@ namespace GameProject
 
         private static readonly SignalBus _instance = new();
         public static SignalBus Instance => _instance;
-        // private static new readonly string Name = "SignalBus";
+        private static readonly string stringName = "SignalBus";
 
 
         public override void _Ready()
         {
+            Name = stringName;
             return;
         }
 
