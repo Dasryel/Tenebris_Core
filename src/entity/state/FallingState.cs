@@ -16,7 +16,9 @@ namespace GameProject
             float fDelta = (float)delta;
 
             // Apply gravity
-            entity.Velocity += entity.GetGravity() * fDelta;
+            Vector2 velocity = entity.Velocity;
+            velocity.Y += entity.Gravity * fDelta;
+            entity.Velocity = velocity;
 
             // Limited horizontal air control
             Vector2 direction = Input.GetVector(

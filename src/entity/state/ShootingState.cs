@@ -11,7 +11,7 @@ namespace GameProject
 
         public override void Update(Entity entity, double _delta)
         {
-            if (!Input.IsActionPressed("fire"))
+            if (!Input.IsActionPressed(GameInput.Fire))
             {
                 GoToCombat<CombatIdleState>(entity);
                 return;

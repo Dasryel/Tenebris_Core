@@ -18,7 +18,6 @@ namespace GameProject
 
         public void Update(Entity entity, double delta)
         {
-            //GD.Print($"State: {_currentState}");
             _currentState?.Update(entity, delta);
         }
     }

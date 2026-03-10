@@ -25,8 +25,9 @@ namespace GameProject
         {
             if (!_stateMachines.TryGetValue(layer, out var sm))
             {
-                GD.PrintErr($"State machine layer '{layer}' not found. " +
+                GD.PushError($"State machine layer '{layer}' not found. " +
                     $"Available layers: {string.Join(", ", _stateMachines.Keys)}");
+                return null!;
             }
             return sm;
         }
@@ -36,7 +37,7 @@ namespace GameProject
         {
             if (_stateMachines.ContainsKey(layer))
             {
-                GD.PrintErr($"State machine layer '{layer}' is already registered.");
+                GD.PushError($"State machine layer '{layer}' is already registered.");
             }
 
             var sm = new StateMachine(defaultState);
