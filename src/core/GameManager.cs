@@ -7,12 +7,13 @@ namespace GameProject
     {
         private static readonly GameManager _instance = new();
         public static GameManager Instance => _instance;
-        private static new readonly string Name = "GameManager";
+        private static readonly string stringName = "GameManager";
 
         private static Player _currentPlayer;
 
         public override void _Ready()
         {
+            Name = stringName;
             SignalBus.Instance.PlayerCreated += OnPlayerCreated;
         }
 

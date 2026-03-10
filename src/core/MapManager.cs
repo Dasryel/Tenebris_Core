@@ -7,14 +7,15 @@ namespace GameProject
     {
         private static readonly MapManager _instance = new();
         public static MapManager Instance => _instance;
-        private static new readonly string Name = "MapManager";
+        private static readonly string stringName = "MapManager";
         // private static MapData mapData;
 
         private static MapData _activeMap;
 
         public override void _Ready()
         {
-            GD.Print($"[{Name}] instance created");
+            Name = stringName;
+            GD.Print($"[{stringName}] instance created");
         }
 
 
@@ -22,7 +23,7 @@ namespace GameProject
         {
             if (!FileAccess.FileExists(scenePath))
             {
-                GD.PrintErr($"[{Name}] Map path not found: {scenePath}");
+                GD.PrintErr($"[{stringName}] Map path not found: {scenePath}");
                 return false;
             }
 
@@ -40,7 +41,7 @@ namespace GameProject
                  _activeMap
                  );
 
-            GD.Print($"[MapManager] Loaded map: {scenePath}");
+            GD.Print($"[{stringName}] Loaded map: {scenePath}");
 
             return true;
         }

@@ -1,21 +1,24 @@
+using Godot;
+
 namespace GameProject
 {
-    public class StateMachine(IState defaultState)
+    public partial class StateMachine(BaseState defaultState)
     {
-        private IState _currentState = defaultState;
+        //The currently active state (read-only)
+        public BaseState CurrentState => _currentState;
 
+        private BaseState _currentState = defaultState;
 
-        public void ChangeState(IState newState, Entity entity)
+        public void ChangeState(BaseState newState, Entity entity)
         {
-            _currentState.Exit(entity);
+            _currentState?.Exit(entity);
             _currentState = newState;
-            _currentState.Enter(entity);
+            _currentState?.Enter(entity);
         }
-
 
         public void Update(Entity entity, double delta)
         {
-            _currentState.Update(entity, delta);
+            _currentState?.Update(entity, delta);
         }
     }
 }

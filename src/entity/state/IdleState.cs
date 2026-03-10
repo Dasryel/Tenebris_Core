@@ -1,18 +1,29 @@
 using Godot;
-using System;
 
 namespace GameProject
 {
-    public partial class IdleState : IState
+    public partial class IdleState : BaseState
     {
-        public void Enter(Entity entity)
+        public override void Enter(Entity entity)
         {
+            if (!entity.IsOnFloor())
+            {
+                GoToLoco<FallingState>(entity);
+                return;
+            }
+
             // TODO change animation to idle
         }
 
 
-        public void Update(Entity entity, double _delta)
+        public override void Update(Entity entity, double _delta)
         {
+            if (Input.IsActionJustPressed(GameInput.Jump))
+            {
+                GoToLoco<JumpState>(entity);
+                return;
+            }
+
             Vector2 direction = Input.GetVector(
                 GameInput.MoveLeft,
                 GameInput.MoveRight,
@@ -22,12 +33,13 @@ namespace GameProject
 
             if (direction != Vector2.Zero)
             {
-                entity.StateMachine.ChangeState(new MoveState(), entity);
+                GoToLoco<MoveState>(entity);
+                return;
             }
         }
 
 
-        public void Exit(Entity entity)
+        public override void Exit(Entity entity)
         {
 
         }

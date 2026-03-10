@@ -1,38 +1,40 @@
 using Godot;
-using System;
 
 namespace GameProject
 {
-    public partial class MoveState : IState
+    public partial class MoveState : BaseState
     {
-        public void Enter(Entity entity)
+        public override void Enter(Entity entity)
         {
             // TODO change animation to moving
         }
 
 
-        public void Update(Entity entity, double delta)
+        public override void Update(Entity entity, double delta)
         {
-            Vector2 direction = Input.GetVector(
-                GameInput.MoveLeft,
-                GameInput.MoveRight,
-                GameInput.MoveUp,
-                GameInput.MoveDown
-                );
-
-            if (direction == Vector2.Zero)
+            if (Input.IsActionJustPressed(GameInput.Jump))
             {
-                entity.StateMachine.ChangeState(new IdleState(), entity);
+                GoToLoco<JumpState>(entity);
                 return;
             }
 
+            float hDir = Input.GetAxis(GameInput.MoveLeft, GameInput.MoveRight);
 
-            entity.Velocity = direction.Normalized() * entity.SPEED;
+            if (Mathf.IsZeroApprox(hDir))
+            {
+                GoToLoco<IdleState>(entity);
+                return;
+            }
+
+            Vector2 velocity = entity.Velocity;
+            velocity.X = hDir * entity.Speed;
+
+            entity.Velocity = velocity;
             entity.MoveAndSlide();
         }
 
 
-        public void Exit(Entity entity)
+        public override void Exit(Entity entity)
         {
 
         }

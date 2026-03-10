@@ -7,7 +7,7 @@ namespace GameProject
         private static readonly DebugService _instance = new();
         public static DebugService Instance => _instance;
 
-        private static new readonly string Name = "DebugService";
+        private static readonly string stringName = "DebugService";
 
         private DebugOverlay _debugOverlay;
         private bool _isEnabled = false;
@@ -24,7 +24,8 @@ namespace GameProject
 
         public override void _Ready()
         {
-            GD.Print($"[{Name}] created");
+            Name = stringName;
+            GD.Print($"[{stringName}] created");
         }
 
 
@@ -46,7 +47,7 @@ namespace GameProject
 
         public override void _ExitTree()
         {
-            if (GodotObject.IsInstanceValid(_debugOverlay))
+            if (IsInstanceValid(_debugOverlay))
             {
                 _debugOverlay.QueueFree();
             }
