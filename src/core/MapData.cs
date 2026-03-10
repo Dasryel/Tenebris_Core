@@ -58,7 +58,7 @@ namespace GameProject
 
         private void SortSpawnPoints()
         {
-            foreach (var spawn in _spawns)
+            foreach (SpawnPoint spawn in _spawns)
             {
                 var data = spawn.Data;
                 if (data == null)
@@ -68,7 +68,7 @@ namespace GameProject
                 }
 
                 // Inject the Marker2D's position to SpawnData
-                data.GlobalPosition = spawn.GlobalPosition;
+                data.GlobalSpawnPosition = spawn.GlobalPosition;
 
                 switch (data)
                 {
@@ -77,7 +77,7 @@ namespace GameProject
                     case EnemySpawnData e: EnemySpawns.Add(e); break;
                     case ItemSpawnData i: ItemSpawns.Add(i); break;
                     default:
-                        GD.PrintErr($"Unknown SpawnData type: {spawn.GetType()} id={spawn.GetSpawnId()}");
+                        GD.PrintErr($"Unknown SpawnData type: {data.GetType()} id={spawn.GetSpawnId()}");
                         break;
                 }
             }

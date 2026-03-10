@@ -14,6 +14,11 @@ namespace GameProject
 
         public string GetSpawnId()
         {
+            if (this.Data.SpawnId == null)
+            {
+                GD.PrintErr($"[SpawnPoint]: SpawnId was null for {this.Data}");
+                return "";
+            }
             return this.Data.SpawnId;
         }
     }

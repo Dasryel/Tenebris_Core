@@ -17,38 +17,37 @@ namespace GameProject
             SignalBus.Instance.MapLoaded += OnMapLoaded;
         }
 
+        public override void _ExitTree()
+        {
+            SignalBus.Instance.MapLoaded -= OnMapLoaded;
+        }
+
         private void OnMapLoaded(MapData map)
         {
             _activeMap = map;
-            PlayerSpawnData playerSpawn = map.PlayerSpawns.First();
-            if (playerSpawn != null)
-            {
-                SpawnPlayer(playerSpawn);
-            }
-            else
-            {
-                GD.PrintErr($"[{Name}] No player spawns defined on map");
-            }
+            PlayerSpawnData playerSpawn = _activeMap.GetDefaultPlayerSpawn();
+            SpawnPlayer(playerSpawn);
+
         }
 
-        private void SpawnPlayer(PlayerSpawnData data)
+        private static void SpawnPlayer(PlayerSpawnData data)
         {
             GD.Print($"[{Name}] Trying to spawn player");
             string scenePath = "res://scene/entity/player/player.tscn";
 
             var playerScene = GD.Load<PackedScene>(scenePath);
-            var playerInstance = playerScene.Instantiate<Player>();
-
             if (playerScene == null)
             {
-                GD.PrintErr($"[{Name}] playerScene is was at {scenePath}");
+                GD.PrintErr($"[{Name}] playerScene file was not found at path: {scenePath}");
             }
+
+            var playerInstance = playerScene.Instantiate<Player>();
             if (playerInstance == null)
             {
                 GD.PrintErr($"[{Name}] playerInstance instantiation failed");
             }
 
-            playerInstance.GlobalPosition = data.GlobalPosition;
+            playerInstance.GlobalPosition = data.GlobalSpawnPosition;
 
             SignalBus.Instance.EmitSignal(
                 SignalBus.SignalName.PlayerCreated,

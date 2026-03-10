@@ -26,6 +26,10 @@ namespace GameProject
                 return false;
             }
 
+            // Unload previous map
+            _activeMap?.QueueFree();
+
+            // Load new map
             PackedScene mapScene = ResourceLoader.Load<PackedScene>(scenePath);
             _activeMap = mapScene.Instantiate<MapData>();
 
