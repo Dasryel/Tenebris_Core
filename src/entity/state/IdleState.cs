@@ -2,14 +2,13 @@ using Godot;
 
 namespace GameProject
 {
-    public partial class IdleState : IState
+    public partial class IdleState : BaseState
     {
-        public void Enter(Entity entity)
+        public override void Enter(Entity entity)
         {
             if (!entity.IsOnFloor())
             {
-                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
-                loco.ChangeState(StateCache.Get<FallingState>(), entity);
+                GoToLoco<FallingState>(entity);
                 return;
             }
 
@@ -17,12 +16,11 @@ namespace GameProject
         }
 
 
-        public void Update(Entity entity, double _delta)
+        public override void Update(Entity entity, double _delta)
         {
             if (Input.IsActionJustPressed(GameInput.Jump))
             {
-                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
-                loco.ChangeState(StateCache.Get<JumpState>(), entity);
+                GoToLoco<JumpState>(entity);
                 return;
             }
 
@@ -35,14 +33,13 @@ namespace GameProject
 
             if (direction != Vector2.Zero)
             {
-                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
-                loco.ChangeState(StateCache.Get<MoveState>(), entity);
+                GoToLoco<MoveState>(entity);
                 return;
             }
         }
 
 
-        public void Exit(Entity entity)
+        public override void Exit(Entity entity)
         {
 
         }

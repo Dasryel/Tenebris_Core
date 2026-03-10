@@ -2,23 +2,22 @@ using Godot;
 
 namespace GameProject
 {
-    public class CombatIdleState : IState
+    public class CombatIdleState : BaseState
     {
-        public void Enter(Entity entity)
+        public override void Enter(Entity entity)
         {
             // TODO transition animation to weapon-lowered / unarmed idle
         }
 
-        public void Update(Entity entity, double _delta)
+        public override void Update(Entity entity, double _delta)
         {
             if (Input.IsActionPressed("fire"))
             {
-                entity.GetStateMachine(Entity.CombatLayer)
-                      .ChangeState(StateCache.Get<ShootingState>(), entity);
+                GoToCombat<ShootingState>(entity);
                 return;
             }
         }
 
-        public void Exit(Entity entity) { }
+        public override void Exit(Entity entity) { }
     }
 }

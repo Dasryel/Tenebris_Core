@@ -10,9 +10,9 @@ namespace GameProject
     */
     public static class StateCache
     {
-        private static readonly Dictionary<Type, IState> _cache = [];
+        private static readonly Dictionary<Type, BaseState> _cache = [];
 
-        public static T Get<T>() where T : IState, new()
+        public static T Get<T>() where T : BaseState, new()
         {
             var type = typeof(T);
             if (!_cache.TryGetValue(type, out var state))

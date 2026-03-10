@@ -2,16 +2,16 @@ using Godot;
 
 namespace GameProject
 {
-    public partial class FallingState : IState
+    public partial class FallingState : BaseState
     {
         private const float AirControlMultiplier = 0.2f;
 
-        public void Enter(Entity entity)
+        public override void Enter(Entity entity)
         {
             // TODO: trigger falling animation
         }
 
-        public void Update(Entity entity, double delta)
+        public override void Update(Entity entity, double delta)
         {
             float fDelta = (float)delta;
 
@@ -37,13 +37,12 @@ namespace GameProject
 
             if (entity.IsOnFloor())
             {
-                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
-                loco.ChangeState(StateCache.Get<IdleState>(), entity);
+                GoToLoco<IdleState>(entity);
                 return;
             }
         }
 
-        public void Exit(Entity entity)
+        public override void Exit(Entity entity)
         {
         }
     }

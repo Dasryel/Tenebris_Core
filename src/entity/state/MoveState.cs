@@ -2,20 +2,19 @@ using Godot;
 
 namespace GameProject
 {
-    public partial class MoveState : IState
+    public partial class MoveState : BaseState
     {
-        public void Enter(Entity entity)
+        public override void Enter(Entity entity)
         {
             // TODO change animation to moving
         }
 
 
-        public void Update(Entity entity, double delta)
+        public override void Update(Entity entity, double delta)
         {
             if (Input.IsActionJustPressed(GameInput.Jump))
             {
-                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
-                loco.ChangeState(StateCache.Get<JumpState>(), entity);
+                GoToLoco<JumpState>(entity);
                 return;
             }
 
@@ -23,8 +22,7 @@ namespace GameProject
 
             if (Mathf.IsZeroApprox(hDir))
             {
-                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
-                loco.ChangeState(StateCache.Get<IdleState>(), entity);
+                GoToLoco<IdleState>(entity);
                 return;
             }
 
@@ -36,7 +34,7 @@ namespace GameProject
         }
 
 
-        public void Exit(Entity entity)
+        public override void Exit(Entity entity)
         {
 
         }

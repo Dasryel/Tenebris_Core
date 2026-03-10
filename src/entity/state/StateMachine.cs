@@ -2,14 +2,14 @@ using Godot;
 
 namespace GameProject
 {
-    public partial class StateMachine(IState defaultState)
+    public partial class StateMachine(BaseState defaultState)
     {
         //The currently active state (read-only)
-        public IState CurrentState => _currentState;
+        public BaseState CurrentState => _currentState;
 
-        private IState _currentState = defaultState;
+        private BaseState _currentState = defaultState;
 
-        public void ChangeState(IState newState, Entity entity)
+        public void ChangeState(BaseState newState, Entity entity)
         {
             _currentState?.Exit(entity);
             _currentState = newState;

@@ -32,7 +32,7 @@ namespace GameProject
         }
 
 
-        protected StateMachine AddStateMachine(string layer, IState defaultState)
+        protected StateMachine AddStateMachine(string layer, BaseState defaultState)
         {
             if (_stateMachines.ContainsKey(layer))
             {
