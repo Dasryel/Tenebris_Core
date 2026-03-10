@@ -1,6 +1,11 @@
 [gd_scene format=4 uid="uid://3ru1ejl48xwl"]
 
+[ext_resource type="Script" uid="uid://cww13fbq0tqs1" path="res://src/core/MapData.cs" id="1_i8fq4"]
 [ext_resource type="Texture2D" uid="uid://cib441goaojnk" path="res://asset/tileset/BasicGreen.png" id="1_v04hb"]
+[ext_resource type="PackedScene" uid="uid://cpfhqniwm0dvv" path="res://scene/marker/SpawnPoint.tscn" id="2_jjdtj"]
+[ext_resource type="Resource" uid="uid://cxihumbyw8v26" path="res://data/spawn/player_initial_spawn.tres" id="3_mca5n"]
+[ext_resource type="Resource" uid="uid://x3ke3x2h0akr" path="res://data/spawn/player_checkpoint_1.tres" id="4_dgjap"]
+[ext_resource type="Script" uid="uid://dh3lq2repqmgi" path="res://src/entity/spawn/ItemSpawnData.cs" id="5_73idq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3qvk"]
 texture = ExtResource("1_v04hb")
@@ -48,7 +53,12 @@ texture = ExtResource("1_v04hb")
 [sub_resource type="TileSet" id="TileSet_h8dog"]
 sources/0 = SubResource("TileSetAtlasSource_b3qvk")
 
-[node name="Debug" type="Node2D" unique_id=222957185]
+[sub_resource type="Resource" id="Resource_i8fq4"]
+script = ExtResource("5_73idq")
+metadata/_custom_type_script = "uid://dh3lq2repqmgi"
+
+[node name="MapData" type="Node2D" unique_id=222957185]
+script = ExtResource("1_i8fq4")
 
 [node name="Tiles" type="TileMapLayer" parent="." unique_id=517372586]
 position = Vector2(1, 1)
@@ -58,5 +68,21 @@ tile_set = SubResource("TileSet_h8dog")
 [node name="Background" type="TileMapLayer" parent="." unique_id=1791880563]
 
 [node name="Spawns" type="Node2D" parent="." unique_id=1587228739]
+
+[node name="SpawnPoint" parent="Spawns" unique_id=1935440349 instance=ExtResource("2_jjdtj")]
+position = Vector2(251, 391)
+Data = ExtResource("3_mca5n")
+
+[node name="SpawnPoint2" parent="Spawns" unique_id=537339774 instance=ExtResource("2_jjdtj")]
+position = Vector2(717, 411)
+Data = ExtResource("4_dgjap")
+
+[node name="SpawnPoint3" parent="Spawns" unique_id=977232235 instance=ExtResource("2_jjdtj")]
+position = Vector2(541, 324)
+Data = ExtResource("4_dgjap")
+
+[node name="SpawnPoint4" parent="Spawns" unique_id=68714723 instance=ExtResource("2_jjdtj")]
+position = Vector2(361, 872)
+Data = SubResource("Resource_i8fq4")
 
 [node name="Pickups" type="Node2D" parent="." unique_id=328509755]
