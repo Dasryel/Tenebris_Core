@@ -1,0 +1,153 @@
+// https://github.com/Andreas-Dorfer/functional-extensions/blob/master/src/AD.FunctionalExtensions/Option.cs
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+
+namespace Cleaner.src.util
+{
+    public readonly struct Option<TValue> : IEquatable<Option<TValue>>, IStructuralEquatable, IComparable<Option<TValue>>, IComparable, IStructuralComparable
+        where TValue : notnull
+    {
+        public static Option<TValue> None => default;
+
+        public static Option<TValue> Some(TValue value) => new(value);
+
+
+        readonly bool isSome;
+        readonly TValue value;
+
+        Option(TValue value)
+        {
+            this.value = value;
+            this.isSome = value is { };
+        }
+
+
+        public bool IsSome([MaybeNullWhen(false)] out TValue value)
+        {
+            value = this.value;
+            return this.isSome;
+        }
+
+        public override bool Equals(object? obj) =>
+            obj is Option<TValue> other && Equals(other);
+
+        public bool Equals(Option<TValue> other) =>
+            Equals(other, EqualityComparer<TValue>.Default);
+
+        bool IStructuralEquatable.Equals(object? other, IEqualityComparer comparer) =>
+            other is Option<TValue> otherOption && Equals(otherOption, (x, y) => comparer.Equals(x, y));
+
+        public bool Equals(Option<TValue> other, IEqualityComparer<TValue> comparer)
+        {
+            if (comparer is null) throw new ArgumentNullException(nameof(comparer));
+
+            return Equals(other, comparer.Equals);
+        }
+
+
+        bool Equals(Option<TValue> other, Func<TValue, TValue, bool> equals) =>
+            AreBothNone(other) ||
+            AreBothSome(other) && equals(this.value, other.value);
+
+        bool AreBothNone(Option<TValue> other) =>
+            !(this.isSome || other.isSome);
+
+        bool AreBothSome(Option<TValue> other) =>
+            this.isSome && other.isSome;
+
+
+        public override int GetHashCode() =>
+            GetHashCode(EqualityComparer<TValue>.Default);
+
+        int IStructuralEquatable.GetHashCode(IEqualityComparer comparer) =>
+            GetHashCode(obj => comparer.GetHashCode(obj));
+
+        public int GetHashCode(IEqualityComparer<TValue> comparer)
+        {
+            if (comparer is null) throw new ArgumentNullException(nameof(comparer));
+
+            return GetHashCode(comparer.GetHashCode);
+        }
+
+        int GetHashCode(Func<TValue, int> getHashCode) =>
+            this.isSome ? getHashCode(this.value) : int.MinValue;
+
+
+        int IComparable.CompareTo(object? obj)
+        {
+            if (obj is not Option<TValue> other) throw new ArgumentException(nameof(obj));
+
+            return CompareTo(other);
+        }
+
+        public int CompareTo(Option<TValue> other) =>
+            CompareTo(other, Comparer<TValue>.Default);
+
+        int IStructuralComparable.CompareTo(object? other, IComparer comparer)
+        {
+            if (other is not Option<TValue> otherOption) throw new ArgumentException(nameof(other));
+
+            return CompareTo(otherOption, (x, y) => comparer.Compare(x, y));
+        }
+
+        public int CompareTo(Option<TValue> other, IComparer<TValue> comparer)
+        {
+            if (comparer is null) throw new ArgumentNullException(nameof(comparer));
+
+            return CompareTo(other, comparer.Compare);
+        }
+
+        int CompareTo(Option<TValue> other, Func<TValue, TValue, int> compare)
+        {
+            if (!this.isSome)
+            {
+                return other.isSome ? -1 : 0;
+            }
+            return !other.isSome ? 1 : compare(this.value, other.value);
+        }
+
+
+        public static bool operator ==(Option<TValue> a, Option<TValue> b) =>
+            a.Equals(b);
+
+        public static bool operator !=(Option<TValue> a, Option<TValue> b) =>
+            !(a == b);
+
+        public static bool operator <(Option<TValue> a, Option<TValue> b) =>
+            a.CompareTo(b) < 0;
+
+        public static bool operator >(Option<TValue> a, Option<TValue> b) =>
+            a.CompareTo(b) > 0;
+
+        public static bool operator <=(Option<TValue> a, Option<TValue> b) =>
+            a.CompareTo(b) <= 0;
+
+        public static bool operator >=(Option<TValue> a, Option<TValue> b) =>
+            a.CompareTo(b) >= 0;
+
+        public override string ToString() => this.isSome ? $"Some({this.value})" : "None";
+    }
+
+
+    public static class Option
+    {
+        public static Option<TValue> None<TValue>() where TValue : notnull =>
+            Option<TValue>.None;
+
+        public static Option<TValue> Some<TValue>(TValue value) where TValue : notnull =>
+            Option<TValue>.Some(value);
+
+        public static Option<TValue> Create<TValue>(TValue? value) where TValue : class =>
+            value is { } some ? Some(some) : None<TValue>();
+
+        public static Option<TValue> Create<TValue>(TValue? value) where TValue : struct =>
+            value.HasValue ? Some(value.Value) : None<TValue>();
+    }
+}
+
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
