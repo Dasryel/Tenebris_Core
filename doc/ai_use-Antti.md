@@ -8,7 +8,8 @@ Tampere university
 
 ## Purpose of AI use:
 - Save effort / Github Copilot agent / generate basic folder project structure and readme with usage instructions
-
+- 2nd pair of "eyes" / Github Copilot / Review PR's since there are no other C# programmers on team
+- Understand FSM better / Claude Sonnet 4.6 | Explain FSM better for holding Entity's state, it was introduced at principles of programming languages but we did not try implementing it.
 
 ## A brief description of how generative AI supported my work, with encountered limitations:
 
