@@ -21,7 +21,8 @@ namespace GameProject
 
             if (direction != Vector2.Zero)
             {
-                entity.StateMachine.ChangeState(StateCache.Get<MoveState>(), entity);
+                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
+                loco.ChangeState(StateCache.Get<MoveState>(), entity);
             }
         }
 

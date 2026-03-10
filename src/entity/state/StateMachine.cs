@@ -1,11 +1,13 @@
+using Godot;
+
 namespace GameProject
 {
-    public class StateMachine(IState defaultState)
+    public partial class StateMachine(IState defaultState)
     {
-        private IState _currentState = defaultState;
-
-        /// <summary>The currently active state (read-only).</summary>
+        //The currently active state (read-only)
         public IState CurrentState => _currentState;
+
+        private IState _currentState = defaultState;
 
         public void ChangeState(IState newState, Entity entity)
         {
