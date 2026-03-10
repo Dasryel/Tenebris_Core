@@ -11,3 +11,11 @@ Instructions for Copilot when performing a code review:
 ## 3. Code Review Protocol
 - Critique PRs based on architectural integrity first.
 - Ask: "Is this logic placed in the correct layer?" and "Can this be simplified by using existing patterns?"
+
+Instructions for Copilot when writing code:
+
+## 1. Avoid comments unless absolutely neccessary
+- Do not write C# (CSharp) doc comments `///`
+- Do not write method comments
+- Consider writing a regular /* comment */ for a class ONLY if it is really neccessary
+- Avoid using // comments in general unless they describe some really obscure mechanic, which is not readily apparent from code.
