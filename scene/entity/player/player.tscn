@@ -448,10 +448,11 @@ height = 54.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjaqi"]
 height = 44.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1531560579]
+[node name="Player" type="CharacterBody2D" unique_id=1531560579 node_paths=PackedStringArray("StateLabel")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_m1lad")
+StateLabel = NodePath("StateLabel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=305806465]
 position = Vector2(-2.1175824e-22, 7.0000005)
@@ -486,6 +487,12 @@ collision_mask = 2
 visible = false
 position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_hjaqi")
+
+[node name="StateLabel" type="Label" parent="." unique_id=1524093252]
+offset_left = -21.0
+offset_top = -55.0
+offset_right = 19.0
+offset_bottom = -32.0
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="area_entered" from="SwordHitbox" to="." method="_on_sword_hitbox_area_entered"]

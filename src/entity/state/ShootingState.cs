@@ -2,11 +2,6 @@ using Godot;
 
 namespace GameProject
 {
-    /// <summary>
-    /// Upper-body shooting state for the combat layer.
-    /// Triggers the shoot animation / projectile spawn while the fire button is held,
-    /// and returns to <see cref="CombatIdleState"/> when it is released.
-    /// </summary>
     public class ShootingState : IState
     {
         public void Enter(Entity entity)
@@ -20,6 +15,7 @@ namespace GameProject
             {
                 entity.GetStateMachine(Entity.CombatLayer)
                       .ChangeState(StateCache.Get<CombatIdleState>(), entity);
+                return;
             }
         }
 

@@ -47,7 +47,7 @@ namespace GameProject
 
         public override void _ExitTree()
         {
-            if (GodotObject.IsInstanceValid(_debugOverlay))
+            if (IsInstanceValid(_debugOverlay))
             {
                 _debugOverlay.QueueFree();
             }

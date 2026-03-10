@@ -11,14 +11,15 @@ namespace GameProject
 
         public void ChangeState(IState newState, Entity entity)
         {
-            _currentState.Exit(entity);
+            _currentState?.Exit(entity);
             _currentState = newState;
-            _currentState.Enter(entity);
+            _currentState?.Enter(entity);
         }
 
         public void Update(Entity entity, double delta)
         {
-            _currentState.Update(entity, delta);
+            //GD.Print($"State: {_currentState}");
+            _currentState?.Update(entity, delta);
         }
     }
 }

@@ -12,22 +12,26 @@ namespace GameProject
 
         public void Update(Entity entity, double delta)
         {
-            Vector2 direction = Input.GetVector(
-                GameInput.MoveLeft,
-                GameInput.MoveRight,
-                GameInput.MoveUp,
-                GameInput.MoveDown
-                );
+            if (Input.IsActionJustPressed(GameInput.Jump))
+            {
+                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
+                loco.ChangeState(StateCache.Get<JumpState>(), entity);
+                return;
+            }
 
-            if (direction == Vector2.Zero)
+            float hDir = Input.GetAxis(GameInput.MoveLeft, GameInput.MoveRight);
+
+            if (Mathf.IsZeroApprox(hDir))
             {
                 var loco = entity.GetStateMachine(Entity.LocomotionLayer);
                 loco.ChangeState(StateCache.Get<IdleState>(), entity);
                 return;
             }
 
+            Vector2 velocity = entity.Velocity;
+            velocity.X = hDir * entity.Speed;
 
-            entity.Velocity = direction.Normalized() * entity.SPEED;
+            entity.Velocity = velocity;
             entity.MoveAndSlide();
         }
 

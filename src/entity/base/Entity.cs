@@ -8,14 +8,16 @@ namespace GameProject
     {
         public const string LocomotionLayer = "Locomotion";
         public const string CombatLayer = "Combat";
-        public readonly float SPEED = 300.0f;
+        public readonly float Speed = 300.0f;
+        public readonly float JumpVelocity = -420.0f;
+        public readonly float Gravity = 1200f;
         public AnimationPlayer AnimationPlayer { get; private set; }
 
         private readonly Dictionary<string, StateMachine> _stateMachines = [];
 
         public override void _Ready()
         {
-            AddStateMachine(LocomotionLayer, StateCache.Get<IdleState>());
+            AddStateMachine(LocomotionLayer, StateCache.Get<FallingState>());
         }
 
 

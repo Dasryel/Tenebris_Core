@@ -6,12 +6,26 @@ namespace GameProject
     {
         public void Enter(Entity entity)
         {
+            if (!entity.IsOnFloor())
+            {
+                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
+                loco.ChangeState(StateCache.Get<FallingState>(), entity);
+                return;
+            }
+
             // TODO change animation to idle
         }
 
 
         public void Update(Entity entity, double _delta)
         {
+            if (Input.IsActionJustPressed(GameInput.Jump))
+            {
+                var loco = entity.GetStateMachine(Entity.LocomotionLayer);
+                loco.ChangeState(StateCache.Get<JumpState>(), entity);
+                return;
+            }
+
             Vector2 direction = Input.GetVector(
                 GameInput.MoveLeft,
                 GameInput.MoveRight,
@@ -23,6 +37,7 @@ namespace GameProject
             {
                 var loco = entity.GetStateMachine(Entity.LocomotionLayer);
                 loco.ChangeState(StateCache.Get<MoveState>(), entity);
+                return;
             }
         }
 
