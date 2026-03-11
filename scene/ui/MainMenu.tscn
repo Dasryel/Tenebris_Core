@@ -1,0 +1,211 @@
+[gd_scene format=3 uid="uid://qim5su5xohvx"]
+
+[ext_resource type="Script" uid="uid://6cxv4afsw6w8" path="res://src/ui/MainMenu.cs" id="1_irx8h"]
+[ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/font/scifibit.ttf" id="2_r27y4"]
+[ext_resource type="Texture2D" uid="uid://di67ku6b50we5" path="res://asset/ui/on.png" id="3_e73yv"]
+[ext_resource type="Texture2D" uid="uid://bxaanmm8nut7r" path="res://asset/ui/off.png" id="4_fvwo7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4svf"]
+bg_color = Color(0.22536919, 0.6105468, 0.99999994, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 5
+shadow_offset = Vector2(0, 2.265)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3er1b"]
+bg_color = Color(0.22352941, 0.10980392, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 5
+shadow_offset = Vector2(0, 2.265)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hxu56"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0iwki"]
+color = Color(0, 0, 0.9372549, 1)
+thickness = 6
+
+[node name="MainMenu" type="Control" unique_id=1086381032 node_paths=PackedStringArray("_menuButtonsVBoxContainer", "_optionsPanel", "_startButton", "_optionsButton", "_quitButton", "_backButton", "_fullscreenCheckButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_irx8h")
+_menuButtonsVBoxContainer = NodePath("MenuButtonsVBoxContainer")
+_optionsPanel = NodePath("OptionsPanel")
+_startButton = NodePath("MenuButtonsVBoxContainer/StartButton")
+_optionsButton = NodePath("MenuButtonsVBoxContainer/OptionsButton")
+_quitButton = NodePath("MenuButtonsVBoxContainer/QuitButton")
+_backButton = NodePath("OptionsPanel/BackButton")
+_fullscreenCheckButton = NodePath("OptionsPanel/OptionVBoxContainer/FullscreenCheckButton")
+
+[node name="BackgroundPanel" type="Panel" parent="." unique_id=1615834624]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameLabel" type="Label" parent="." unique_id=536594564]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = -288.5
+offset_right = 285.0
+offset_bottom = -222.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("2_r27y4")
+theme_override_font_sizes/font_size = 65
+text = "Tenebris Core"
+
+[node name="MenuButtonsVBoxContainer" type="VBoxContainer" parent="." unique_id=2062646013]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.625
+offset_top = -106.0
+offset_right = 173.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="StartButton" type="Button" parent="MenuButtonsVBoxContainer" unique_id=783879015]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9654575, 0.9544205, 0.98708004, 1)
+theme_override_fonts/font = ExtResource("2_r27y4")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3er1b")
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="MenuButtonsVBoxContainer" unique_id=1589294657]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9654575, 0.9544205, 0.98708004, 1)
+theme_override_fonts/font = ExtResource("2_r27y4")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3er1b")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="MenuButtonsVBoxContainer" unique_id=656603786]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9654575, 0.9544205, 0.98708004, 1)
+theme_override_fonts/font = ExtResource("2_r27y4")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3er1b")
+text = "Quit"
+
+[node name="OptionsPanel" type="Panel" parent="." unique_id=1681142039]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -176.0
+offset_right = 263.5
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="OptionsPanel" unique_id=599200954]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 3.5
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_r27y4")
+theme_override_font_sizes/font_size = 32
+text = "Options"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="OptionsPanel" unique_id=395649560]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 290.0
+offset_right = 380.0
+offset_bottom = 389.0
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9654575, 0.9544205, 0.98708004, 1)
+theme_override_fonts/font = ExtResource("2_r27y4")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3er1b")
+text = "Back"
+
+[node name="OptionVBoxContainer" type="VBoxContainer" parent="OptionsPanel" unique_id=1664381399]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.5
+offset_top = -108.5
+offset_right = 181.5
+offset_bottom = 108.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 13
+
+[node name="AudioLabel" type="Label" parent="OptionsPanel/OptionVBoxContainer" unique_id=1316914997]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_r27y4")
+theme_override_font_sizes/font_size = 22
+text = "Music volume"
+
+[node name="AudioHBoxContainer" type="HBoxContainer" parent="OptionsPanel/OptionVBoxContainer" unique_id=1735103425]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="AudioHSlider" type="HSlider" parent="OptionsPanel/OptionVBoxContainer/AudioHBoxContainer" unique_id=1547257643]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxLine_hxu56")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_0iwki")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_0iwki")
+value = 50.0
+tick_count = 1
+
+[node name="FullscreenCheckButton" type="CheckButton" parent="OptionsPanel/OptionVBoxContainer" unique_id=1025746632]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_r27y4")
+theme_override_font_sizes/font_size = 22
+theme_override_icons/checked = ExtResource("3_e73yv")
+theme_override_icons/unchecked = ExtResource("4_fvwo7")
+text = "Fullscreen"
+
+[connection signal="pressed" from="OptionsPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="OptionsPanel/OptionVBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_box_toggled"]
