@@ -17,3 +17,5 @@ mono_crash.*.json
 
 # GodotSharp managed assemblies (extracted from Godot zip, not committed)
 GodotSharp/
+
+.VSCodeCounter

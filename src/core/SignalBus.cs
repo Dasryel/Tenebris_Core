@@ -9,6 +9,7 @@ namespace GameProject
         // [MapManager]
         [Signal] public delegate void MapLoadedEventHandler(MapData loadedMapInstance);
         [Signal] public delegate void PlayerCreatedEventHandler(Player newPlayer);
+        [Signal] public delegate void NewGameEventHandler();
 
         private static readonly SignalBus _instance = new();
         public static SignalBus Instance => _instance;

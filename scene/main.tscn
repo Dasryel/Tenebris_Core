@@ -2,5 +2,11 @@
 
 [ext_resource type="Script" uid="uid://rfq80cjqk7qf" path="res://src/Main.cs" id="rfq80cjqk7qf"]
 
-[node name="Main" type="Node2D" unique_id=577465329]
+[node name="Main" type="Control" unique_id=849391901]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("rfq80cjqk7qf")
