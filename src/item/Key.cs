@@ -7,6 +7,13 @@ namespace GameProject
     {
         [Export] private string _keyName = "GoldKey";
 
+        public override void _Process(double delta)
+        {
+            // Make the key hover up and down slightly
+            float hover = (float)Mathf.Sin(Time.GetTicksMsec() / 200.0f) * 0.2f;
+            Position += new Vector2(0, hover);
+        }
+
         public override void _Ready()
         {
             GD.Print("key ready");

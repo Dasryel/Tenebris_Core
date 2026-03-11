@@ -2,6 +2,7 @@ using Godot;
 
 namespace GameProject
 {
+    // FIXME does not properly transition to fallingstate when on air
     public partial class MoveState : BaseState
     {
         public override void Enter(Entity entity)
