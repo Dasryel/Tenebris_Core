@@ -31,8 +31,6 @@ namespace GameProject
             this._levelManager = LevelManager.Instance;
             AddChild(this._levelManager);
 
-            SignalBus.Instance.NewGame += NewGame;
-
             LoadNewScene("res://scene/ui/MainMenu.tscn");
             GD.Print("[Main] Initialized");
 
@@ -46,9 +44,6 @@ namespace GameProject
         */
         public override void _ExitTree()
         {
-            this._signalBus?.Free();
-            this._signalBus = null;
-
             this._gameManager?.Free();
             this._gameManager = null;
 
@@ -67,6 +62,9 @@ namespace GameProject
             }
             this._currentScene = null;
 
+            this._signalBus?.Free();
+            this._signalBus = null;
+
             PrintOrphanNodes();
         }
 
@@ -82,7 +80,7 @@ namespace GameProject
 
             if (_currentScene is MainMenu menu)
             {
-                GD.Print("settin up main menu");
+                GD.Print("[Main] Setting up main menu");
                 menu.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
                 menu.Position = Vector2.Zero;
                 SignalBus.Instance.NewGame += NewGame;

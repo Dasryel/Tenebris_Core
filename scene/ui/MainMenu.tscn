@@ -206,6 +206,3 @@ theme_override_font_sizes/font_size = 22
 theme_override_icons/checked = ExtResource("3_e73yv")
 theme_override_icons/unchecked = ExtResource("4_fvwo7")
 text = "Fullscreen"
-
-[connection signal="pressed" from="OptionsPanel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="toggled" from="OptionsPanel/OptionVBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_box_toggled"]
