@@ -15,7 +15,7 @@ namespace GameProject
         [Export] private GameManager _gameManager;
         [Export] private InventoryManager _inventoryManager;
 
-        [Export] private Node _currentScene;
+        private Node _currentScene;
         [Export] private Control _activeUI;
 
         // Initialize program

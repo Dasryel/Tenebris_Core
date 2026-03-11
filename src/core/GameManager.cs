@@ -28,7 +28,6 @@ namespace GameProject
         public override void _ExitTree()
         {
             base._ExitTree();
-            _currentPlayer?.Free();
             _currentPlayer = null;
         }
 

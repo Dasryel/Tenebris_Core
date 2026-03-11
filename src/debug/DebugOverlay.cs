@@ -48,7 +48,7 @@ namespace GameProject
             FPSLabel.Text = $"FPS: {Engine.GetFramesPerSecond()}";
             PositionLabel.Text = $"Pos: TODO";
             VelocityLabel.Text = $"Vel: TODO";
-            MapLabel.Text = ""; // $"Room: {MapManager.GetCurrentMapName()}.tscn";
+            MapLabel.Text = $"Room: {MapManager.Instance.GetCurrentMapName()}.tscn";
             PlayerStateLabel.Text = $"State: TODO";
 #endif
         }
