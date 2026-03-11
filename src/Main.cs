@@ -5,13 +5,18 @@ namespace GameProject
 {
     public partial class Main : Control
     {
+        [Export] private CanvasLayer _uiLayer;
+        [Export] private PackedScene _playerUIScene;
+
         private DebugService _debugService;
         private MapManager _mapManager;
         private SignalBus _signalBus;
         private LevelManager _levelManager;
         private GameManager _gameManager;
+        private InventoryManager _inventoryManager;
 
         private Node _currentScene;
+        private Control _activeUI;
 
         // Initialize program
         public override void _Ready()
@@ -30,6 +35,9 @@ namespace GameProject
 
             this._levelManager = LevelManager.Instance;
             AddChild(this._levelManager);
+
+            this._inventoryManager = InventoryManager.Instance;
+            AddChild(this._inventoryManager);
 
             LoadNewScene("res://scene/ui/MainMenu.tscn");
             GD.Print("[Main] Initialized");
@@ -62,6 +70,12 @@ namespace GameProject
             }
             this._currentScene = null;
 
+            this._uiLayer?.Free();
+            this._uiLayer = null;
+
+            this._inventoryManager?.Free();
+            this._inventoryManager = null;
+
             this._signalBus?.Free();
             this._signalBus = null;
 
@@ -92,7 +106,22 @@ namespace GameProject
         {
             GD.Print("[Main] Starting new game");
             _currentScene?.QueueFree();
-            _mapManager.LoadMap("res://scene/map/debug.tscn");
+            _mapManager.LoadMap("res://scene/map/mvp.tscn");
+            LoadPlayerUI();
+        }
+
+
+        private void LoadPlayerUI()
+        {
+            if (IsInstanceValid(_activeUI))
+            {
+                _activeUI.QueueFree();
+                _activeUI = null;
+            }
+
+            _activeUI = _playerUIScene.Instantiate<Control>();
+            _uiLayer.AddChild(_activeUI);
+            GD.Print("[Main] Player UI Loaded");
         }
     }
 }
