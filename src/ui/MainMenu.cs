@@ -31,7 +31,7 @@ namespace GameProject
         private void OnStartPressed()
         {
             GD.Print("Start Game Logic Here");
-            // GetTree().ChangeSceneToFile("res://Game.tscn");
+            SignalBus.Instance.EmitSignal(SignalBus.SignalName.NewGame);
         }
 
         private void ToggleOptions(bool showOptions)

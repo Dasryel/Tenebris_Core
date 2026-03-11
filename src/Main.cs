@@ -3,13 +3,15 @@ using System;
 
 namespace GameProject
 {
-    public partial class Main : Node2D
+    public partial class Main : Control
     {
         private DebugService _debugService;
         private MapManager _mapManager;
         private SignalBus _signalBus;
         private LevelManager _levelManager;
         private GameManager _gameManager;
+
+        private Node _currentScene;
 
         // Initialize program
         public override void _Ready()
@@ -29,13 +31,13 @@ namespace GameProject
             this._levelManager = LevelManager.Instance;
             AddChild(this._levelManager);
 
+            SignalBus.Instance.NewGame += NewGame;
 
-
-
+            LoadNewScene("res://scene/ui/MainMenu.tscn");
             GD.Print("[Main] Initialized");
 
             // TODO figure out a better way to store map names. dict, enum, godot export, ?
-            _mapManager.LoadMap("scene/map/debug.tscn");
+
         }
 
 
@@ -44,6 +46,9 @@ namespace GameProject
         */
         public override void _ExitTree()
         {
+            this._signalBus?.Free();
+            this._signalBus = null;
+
             this._gameManager?.Free();
             this._gameManager = null;
 
@@ -56,10 +61,40 @@ namespace GameProject
             this._levelManager?.Free();
             this._levelManager = null;
 
-            this._signalBus?.Free();
-            this._signalBus = null;
+            if (IsInstanceValid(_currentScene))
+            {
+                this._currentScene?.Free();
+            }
+            this._currentScene = null;
 
             PrintOrphanNodes();
+        }
+
+
+        public void LoadNewScene(string scenePath)
+        {
+            _currentScene?.QueueFree();
+
+            PackedScene sceneFile = GD.Load<PackedScene>(scenePath);
+            _currentScene = sceneFile.Instantiate();
+
+            AddChild(_currentScene);
+
+            if (_currentScene is MainMenu menu)
+            {
+                GD.Print("settin up main menu");
+                menu.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+                menu.Position = Vector2.Zero;
+                SignalBus.Instance.NewGame += NewGame;
+            }
+        }
+
+
+        private void NewGame()
+        {
+            GD.Print("[Main] Starting new game");
+            _currentScene?.QueueFree();
+            _mapManager.LoadMap("res://scene/map/debug.tscn");
         }
     }
 }
