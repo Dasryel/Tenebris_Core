@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://cat1tpwmwawn7"]
 
 [ext_resource type="PackedScene" uid="uid://dlncojhai5ccq" path="res://scene/ui/PlayerUi.tscn" id="2_v0l8b"]
+[ext_resource type="Script" uid="uid://8nxdencl6lq7" path="res://src/debug/DebugService.cs" id="3_4j5ol"]
+[ext_resource type="Script" uid="uid://b5g0mg2yla2x1" path="res://src/core/MapManager.cs" id="4_p1hux"]
+[ext_resource type="Script" uid="uid://qm55jjj0wp7m" path="res://src/core/SignalBus.cs" id="5_of57s"]
+[ext_resource type="Script" uid="uid://dpui1lyers4s3" path="res://src/core/LevelManager.cs" id="6_b5f6u"]
+[ext_resource type="Script" uid="uid://uos3p8lr3glp" path="res://src/core/GameManager.cs" id="7_of57s"]
+[ext_resource type="Script" uid="uid://cgxwj6ah586nv" path="res://src/core/InventoryManager.cs" id="8_b5f6u"]
 [ext_resource type="Script" uid="uid://rfq80cjqk7qf" path="res://src/Main.cs" id="rfq80cjqk7qf"]
 
-[node name="Main" type="Control" unique_id=849391901 node_paths=PackedStringArray("_uiLayer")]
+[node name="Main" type="Control" unique_id=849391901 node_paths=PackedStringArray("_uiLayer", "_debugService", "_mapManager", "_signalBus", "_levelManager", "_gameManager", "_inventoryManager", "_currentScene")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,5 +19,32 @@ grow_vertical = 2
 script = ExtResource("rfq80cjqk7qf")
 _uiLayer = NodePath("UI")
 _playerUIScene = ExtResource("2_v0l8b")
+_debugService = NodePath("DebugService")
+_mapManager = NodePath("MapManager")
+_signalBus = NodePath("SignalBus")
+_levelManager = NodePath("LevelManager")
+_gameManager = NodePath("GameManager")
+_inventoryManager = NodePath("InventoryManager")
+_currentScene = NodePath("CurrentScene")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=436585403]
+
+[node name="DebugService" type="Node2D" parent="." unique_id=1527368518]
+script = ExtResource("3_4j5ol")
+
+[node name="MapManager" type="Node2D" parent="." unique_id=50147834]
+script = ExtResource("4_p1hux")
+
+[node name="SignalBus" type="Node2D" parent="." unique_id=524507359]
+script = ExtResource("5_of57s")
+
+[node name="LevelManager" type="Node" parent="." unique_id=1975241081]
+script = ExtResource("6_b5f6u")
+
+[node name="GameManager" type="Node" parent="." unique_id=1917421232]
+script = ExtResource("7_of57s")
+
+[node name="InventoryManager" type="Node" parent="." unique_id=1096763170]
+script = ExtResource("8_b5f6u")
+
+[node name="CurrentScene" type="Node" parent="." unique_id=1082011608]

@@ -5,15 +5,23 @@ namespace GameProject
 {
     public partial class MapManager : Node2D
     {
-        private static readonly MapManager _instance = new();
-        public static MapManager Instance => _instance;
+        public static MapManager Instance { get; private set; }
         private static readonly string stringName = "MapManager";
         // private static MapData mapData;
 
-        private static MapData _activeMap;
+        private MapData _activeMap;
+
+        public override void _Notification(int what)
+        {
+            if (what == NotificationPredelete)
+            {
+                GD.Print($"[{stringName}] is being deleted");
+            }
+        }
 
         public override void _Ready()
         {
+            Instance = this;
             Name = stringName;
             GD.Print($"[{stringName}] instance created");
         }
@@ -46,13 +54,19 @@ namespace GameProject
             return true;
         }
 
-        public static string GetCurrentMapName()
+        public string GetCurrentMapName()
         {
-            if (_activeMap != null)
+            if (this._activeMap != null)
             {
-                return _activeMap.Name;
+                return this._activeMap.Name;
             }
             return "";
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (Instance == this) Instance = null;
+            base.Dispose(disposing);
         }
     }
 }

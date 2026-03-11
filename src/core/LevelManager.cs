@@ -6,14 +6,22 @@ namespace GameProject
 {
     public partial class LevelManager : Node
     {
-        private static readonly LevelManager _instance = new();
-        public static LevelManager Instance => _instance;
+        public static LevelManager Instance { get; private set; }
 
         private static MapData _activeMap;
         private static readonly string stringName = "LevelManager";
 
+        public override void _Notification(int what)
+        {
+            if (what == NotificationPredelete)
+            {
+                GD.Print($"[{stringName}] is being deleted");
+            }
+        }
+
         public override void _Ready()
         {
+            Instance = this;
             Name = stringName;
             SignalBus.Instance.MapLoaded += OnMapLoaded;
         }
@@ -54,6 +62,12 @@ namespace GameProject
                 SignalBus.SignalName.PlayerCreated,
                 playerInstance
                 );
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (Instance == this) Instance = null;
+            base.Dispose(disposing);
         }
     }
 }
