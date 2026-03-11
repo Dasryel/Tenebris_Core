@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dayi3dpbv577g" path="res://src/entity/player/Player.cs" id="1_m1lad"]
 [ext_resource type="Texture2D" uid="uid://hgrul55fr6x0" path="res://asset/sprite/player/adventurer-v1.5-Sheet.png" id="1_pv27p"]
+[ext_resource type="Texture2D" uid="uid://bicnq4mckxlv1" path="res://asset/sprite/player/player.png" id="2_n0siw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 8.016877
+radius = 6.329114
 height = 22.784811
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vs06"]
@@ -442,13 +443,13 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvtld"]
-radius = 19.0
+radius = 15.0
 height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjaqi"]
 height = 44.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1531560579 node_paths=PackedStringArray("StateLabel")]
+[node name="Player" type="CharacterBody2D" unique_id=1531560579 node_paths=PackedStringArray("StateLabel") groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_m1lad")
@@ -459,7 +460,13 @@ position = Vector2(-2.1175824e-22, 7.0000005)
 scale = Vector2(2.37, 2.37)
 shape = SubResource("CapsuleShape2D_onrkg")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=748257427]
+position = Vector2(3.7500007, 3.7500007)
+scale = Vector2(0.37812504, 0.37812504)
+texture = ExtResource("2_n0siw")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2143864177]
+visible = false
 texture_filter = 1
 position = Vector2(0, -4.7683716e-07)
 scale = Vector2(1.86, 1.9594594)
