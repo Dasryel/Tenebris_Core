@@ -4,8 +4,7 @@ namespace GameProject
 {
     public partial class DebugService : Node2D
     {
-        private static readonly DebugService _instance = new();
-        public static DebugService Instance => _instance;
+        public static DebugService Instance { get; private set; }
 
         private static readonly string stringName = "DebugService";
 
@@ -22,8 +21,18 @@ namespace GameProject
         }
 
 
+        public override void _Notification(int what)
+        {
+            if (what == NotificationPredelete)
+            {
+                GD.Print($"[{stringName}] is being deleted");
+            }
+        }
+
+
         public override void _Ready()
         {
+            Instance = this;
             Name = stringName;
             GD.Print($"[{stringName}] created");
         }
@@ -52,6 +61,12 @@ namespace GameProject
                 _debugOverlay.QueueFree();
             }
             _debugOverlay = null;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (Instance == this) Instance = null;
+            base.Dispose(disposing);
         }
     }
 }

@@ -8,37 +8,19 @@ namespace GameProject
         [Export] private CanvasLayer _uiLayer;
         [Export] private PackedScene _playerUIScene;
 
-        private DebugService _debugService;
-        private MapManager _mapManager;
-        private SignalBus _signalBus;
-        private LevelManager _levelManager;
-        private GameManager _gameManager;
-        private InventoryManager _inventoryManager;
+        [Export] private DebugService _debugService;
+        [Export] private MapManager _mapManager;
+        [Export] private SignalBus _signalBus;
+        [Export] private LevelManager _levelManager;
+        [Export] private GameManager _gameManager;
+        [Export] private InventoryManager _inventoryManager;
 
         private Node _currentScene;
-        private Control _activeUI;
+        [Export] private Control _activeUI;
 
         // Initialize program
         public override void _Ready()
         {
-            this._debugService = DebugService.Instance;
-            AddChild(this._debugService);
-
-            this._signalBus = SignalBus.Instance;
-            AddChild(this._signalBus);
-
-            this._gameManager = GameManager.Instance;
-            AddChild(this._gameManager);
-
-            this._mapManager = MapManager.Instance;
-            AddChild(this._mapManager);
-
-            this._levelManager = LevelManager.Instance;
-            AddChild(this._levelManager);
-
-            this._inventoryManager = InventoryManager.Instance;
-            AddChild(this._inventoryManager);
-
             LoadNewScene("res://scene/ui/MainMenu.tscn");
             GD.Print("[Main] Initialized");
 
@@ -52,34 +34,17 @@ namespace GameProject
         */
         public override void _ExitTree()
         {
-            this._gameManager?.Free();
-            this._gameManager = null;
+            GD.Print("[Main] closing the game");
 
-            this._debugService?.Free();
-            this._debugService = null;
+            //PrintOrphanNodes();
+        }
 
-            this._mapManager?.Free();
-            this._mapManager = null;
-
-            this._levelManager?.Free();
-            this._levelManager = null;
-
-            if (IsInstanceValid(_currentScene))
+        public override void _Notification(int what)
+        {
+            if (what == NotificationPredelete)
             {
-                this._currentScene?.Free();
+                GD.Print($"[Main] is being deleted");
             }
-            this._currentScene = null;
-
-            this._uiLayer?.Free();
-            this._uiLayer = null;
-
-            this._inventoryManager?.Free();
-            this._inventoryManager = null;
-
-            this._signalBus?.Free();
-            this._signalBus = null;
-
-            PrintOrphanNodes();
         }
 
 
@@ -104,6 +69,7 @@ namespace GameProject
 
         private void NewGame()
         {
+            SignalBus.Instance.NewGame -= NewGame;
             GD.Print("[Main] Starting new game");
             _currentScene?.QueueFree();
             _mapManager.LoadMap("res://scene/map/mvp.tscn");
