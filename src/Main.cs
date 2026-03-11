@@ -13,6 +13,7 @@ namespace GameProject
         private SignalBus _signalBus;
         private LevelManager _levelManager;
         private GameManager _gameManager;
+        private InventoryManager _inventoryManager;
 
         private Node _currentScene;
         private Control _activeUI;
@@ -34,6 +35,9 @@ namespace GameProject
 
             this._levelManager = LevelManager.Instance;
             AddChild(this._levelManager);
+
+            this._inventoryManager = InventoryManager.Instance;
+            AddChild(this._inventoryManager);
 
             LoadNewScene("res://scene/ui/MainMenu.tscn");
             GD.Print("[Main] Initialized");
@@ -68,6 +72,9 @@ namespace GameProject
 
             this._uiLayer?.Free();
             this._uiLayer = null;
+
+            this._inventoryManager?.Free();
+            this._inventoryManager = null;
 
             this._signalBus?.Free();
             this._signalBus = null;
@@ -106,6 +113,12 @@ namespace GameProject
 
         private void LoadPlayerUI()
         {
+            if (IsInstanceValid(_activeUI))
+            {
+                _activeUI.QueueFree();
+                _activeUI = null;
+            }
+
             _activeUI = _playerUIScene.Instantiate<Control>();
             _uiLayer.AddChild(_activeUI);
             GD.Print("[Main] Player UI Loaded");

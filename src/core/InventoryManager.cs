@@ -6,10 +6,15 @@ namespace GameProject
 {
     public partial class InventoryManager : Node
     {
-        private List<string> _keys = new();
+        public static InventoryManager Instance => _instance;
+
+        private static readonly InventoryManager _instance = new();
+        private static readonly string stringName = "InventoryManager";
+        private readonly List<string> _keys = [];
 
         public override void _Ready()
         {
+            Name = stringName;
             SignalBus.Instance.KeyCollected += AddKey;
         }
 
