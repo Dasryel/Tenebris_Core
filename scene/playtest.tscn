@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://dya8qodf7mp52"]
 
 [ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="1_4qj3g"]
-[ext_resource type="Texture2D" uid="uid://n3vquuwfurhj" path="res://asset/sprites/32x32.png" id="2_v3rcy"]
-[ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/key.tscn" id="3_jmhvh"]
-[ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/player_ui.tscn" id="4_8g7fy"]
+[ext_resource type="Texture2D" uid="uid://n3vquuwfurhj" path="res://asset/tileset/32x32.png" id="2_v3rcy"]
+[ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="3_jmhvh"]
+[ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="4_8g7fy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]
 texture = ExtResource("2_v3rcy")
@@ -229,6 +229,43 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jmhvh")
 
+[sub_resource type="Animation" id="Animation_8g7fy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(274, 86)]
+}
+
+[sub_resource type="Animation" id="Animation_jw0mr"]
+resource_name = "new_animation"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(274, 86), Vector2(480, 86)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ew1rl"]
+_data = {
+&"RESET": SubResource("Animation_8g7fy"),
+&"new_animation": SubResource("Animation_jw0mr")
+}
+
 [node name="Playtest" type="Node2D" unique_id=2093421483]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
@@ -242,12 +279,23 @@ tile_map_data = PackedByteArray("AAD9/wYAAAAKAAIAAAD+/wYAAAAKAAIAAAD//wYAAAAKAAI
 tile_set = SubResource("TileSet_8g7fy")
 rendering_quadrant_size = 32
 
-[node name="Layer1" type="TileMapLayer" parent="." unique_id=111718352]
+[node name="Tile" type="TileMapLayer" parent="." unique_id=111718352]
 use_parent_material = true
 position = Vector2(274, 86)
 tile_map_data = PackedByteArray("AAD9/wYAAAADAAEAAAD+/wYAAAAEAAEAAAD//wYAAAAEAAEAAAAAAAYAAAAEAAEAAAABAAYAAAAEAAEAAAACAAYAAAAEAAEAAAADAAYAAAAEAAEAAAAEAAYAAAAEAAEAAAAFAAYAAAAEAAEAAAAGAAYAAAAEAAEAAAAHAAYAAAAEAAEAAAAIAAYAAAAEAAEAAAAJAAYAAAAEAAEAAAAKAAYAAAAEAAEAAAALAAYAAAAEAAEAAAAMAAYAAAAEAAEAAAANAAYAAAAEAAEAAAAOAAYAAAAEAAEAAAAPAAYAAAAEAAEAAAAQAAYAAAAEAAEAAAARAAYAAAAEAAEAAAASAAYAAAAFAAEAAAAPAAMAAAADAAEAAAAQAAMAAAAEAAEAAAARAAMAAAAFAAEAAAAMAAQAAAADAAEAAAANAAQAAAAEAAEAAAAOAAQAAAAFAAEAAAA=")
 tile_set = SubResource("TileSet_8g7fy")
 rendering_quadrant_size = 32
+
+[node name="Platform1" type="TileMapLayer" parent="." unique_id=938010844]
+use_parent_material = true
+position = Vector2(274, 86)
+tile_map_data = PackedByteArray("AAAVAAUAAAABAAgAAAAWAAUAAAADAAgAAAAXAAUAAAADAAgAAAAYAAUAAAABAAgAABAVAAQAAAABAAcAAAAYAAQAAAABAAcAABA=")
+tile_set = SubResource("TileSet_8g7fy")
+rendering_quadrant_size = 32
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform1" unique_id=2084490422]
+libraries/ = SubResource("AnimationLibrary_ew1rl")
+autoplay = &"new_animation"
 
 [node name="Key" parent="." unique_id=1990007751 instance=ExtResource("3_jmhvh")]
 position = Vector2(801, 130)
@@ -255,3 +303,5 @@ scale = Vector2(2, 2)
 
 [node name="Player" parent="." unique_id=1782142987 instance=ExtResource("1_4qj3g")]
 position = Vector2(488, 72)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1380065488]

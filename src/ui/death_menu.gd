@@ -1,0 +1,22 @@
+extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	visible = false
+	GameState.player_died.connect(show_death_menu)
+	
+func show_death_menu():
+	print("death menu")
+	visible = true
+	get_tree().paused = true
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scene/ui/main_menu.tscn")
