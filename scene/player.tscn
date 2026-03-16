@@ -1,18 +1,138 @@
 [gd_scene format=3 uid="uid://d2k1dl6nsykj3"]
 
-[ext_resource type="Script" uid="uid://cv1etr30blrkj" path="res://src/player.gd" id="1_hjaqi"]
-[ext_resource type="Texture2D" uid="uid://bcmjgrfrnjf26" path="res://asset/sprite/player/player.png" id="1_xo3ru"]
+[ext_resource type="Script" uid="uid://cv1etr30blrkj" path="res://src/entity/player/player.gd" id="1_hjaqi"]
+[ext_resource type="Texture2D" uid="uid://bnb2tl5pmmou3" path="res://asset/sprite/player/main_character.png" id="2_ct4mp"]
+[ext_resource type="Script" uid="uid://dond5xhb46tss" path="res://src/ui/thought_bubble.gd" id="3_fvtld"]
+[ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="4_ct4mp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct4mp"]
+atlas = ExtResource("2_ct4mp")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
+atlas = ExtResource("2_ct4mp")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh5ij"]
+atlas = ExtResource("2_ct4mp")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp4bs"]
+atlas = ExtResource("2_ct4mp")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2vtq"]
+atlas = ExtResource("2_ct4mp")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fvbb"]
+atlas = ExtResource("2_ct4mp")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml7e8"]
+atlas = ExtResource("2_ct4mp")
+region = Rect2(800, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
+atlas = ExtResource("2_ct4mp")
+region = Rect2(960, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk1vr"]
+atlas = ExtResource("2_ct4mp")
+region = Rect2(1120, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34jf3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct4mp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4jxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh5ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp4bs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2vtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fvbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml7e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihjo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk1vr")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjaqi"]
 radius = 27.0
 height = 124.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvtld"]
+bg_color = Color(0.99, 0.99, 0.99, 0.6313726)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 15
+
 [node name="Player" type="CharacterBody2D" unique_id=1782142987]
 script = ExtResource("1_hjaqi")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=781939792]
-texture = ExtResource("1_xo3ru")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1476585686]
+position = Vector2(-13, 13)
+scale = Vector2(0.69, 0.69)
+sprite_frames = SubResource("SpriteFrames_34jf3")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.030610194
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220763521]
-position = Vector2(-6, 4)
+position = Vector2(-13, 11)
+scale = Vector2(0.69, 0.69)
 shape = SubResource("CapsuleShape2D_hjaqi")
+
+[node name="ThoughtBubble" type="Control" parent="." unique_id=1253909825]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_fvtld")
+
+[node name="Panel" type="Panel" parent="ThoughtBubble" unique_id=228608794]
+layout_mode = 0
+offset_left = 43.0
+offset_top = -135.0
+offset_right = 345.0
+offset_bottom = -50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fvtld")
+
+[node name="Label" type="Label" parent="ThoughtBubble/Panel" unique_id=62861165]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 297.0
+offset_bottom = 85.0
+theme_override_fonts/font = ExtResource("4_ct4mp")
+theme_override_font_sizes/font_size = 16
+text = "The door is locked I should be looking for a key..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
