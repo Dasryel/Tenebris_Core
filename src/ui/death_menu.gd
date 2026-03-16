@@ -13,8 +13,9 @@ func show_death_menu():
 
 
 func _on_restart_button_pressed() -> void:
+	GameState.reset()
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scene/rooms/zone1/room1.tscn")
 
 
 func _on_main_menu_button_pressed() -> void:

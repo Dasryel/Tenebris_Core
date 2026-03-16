@@ -8,6 +8,10 @@ func _ready() -> void:
 	GameState.key_pickedup.connect(show_key)
 	GameState.hp_changed.connect(update_hp)
 	
+	update_hp(GameState.current_hp, GameState.max_hp)
+	if GameState.hasKey:
+		$KeyIcon.visible = true
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -29,3 +33,7 @@ func update_hp(current_hp: int, max_hp: int) -> void:
 			hearts[i].texture = preload("res://asset/sprite/player/hp.png")
 		else:
 			hearts[i].texture = preload("res://asset/sprite/player/hp_empty.png")
+
+
+func _on_lava_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.

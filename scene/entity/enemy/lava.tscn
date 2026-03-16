@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://emvxcybenuud"]
+
+[ext_resource type="Texture2D" uid="uid://cfjxaa1s6b3cc" path="res://asset/sprite/enemy/lava.png" id="1_2mgwf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le3yq"]
+atlas = ExtResource("1_2mgwf")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgsdw"]
+atlas = ExtResource("1_2mgwf")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b1se"]
+atlas = ExtResource("1_2mgwf")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq240"]
+atlas = ExtResource("1_2mgwf")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh8jl"]
+atlas = ExtResource("1_2mgwf")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mmjy"]
+atlas = ExtResource("1_2mgwf")
+region = Rect2(800, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8w56"]
+atlas = ExtResource("1_2mgwf")
+region = Rect2(960, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5yhf"]
+atlas = ExtResource("1_2mgwf")
+region = Rect2(1120, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rtekh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le3yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgsdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b1se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq240")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh8jl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mmjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8w56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5yhf")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iaqwj"]
+radius = 49.0
+height = 100.0
+
+[node name="Lava" type="CharacterBody2D" unique_id=1994014500]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=74969900]
+sprite_frames = SubResource("SpriteFrames_rtekh")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.39947456
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1558120490]
+position = Vector2(-2, 32)
+shape = SubResource("CapsuleShape2D_iaqwj")
+disabled = true
