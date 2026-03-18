@@ -93,8 +93,9 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 15
 
-[node name="Player" type="CharacterBody2D" unique_id=1782142987]
+[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("state_label")]
 script = ExtResource("1_hjaqi")
+state_label = NodePath("StateLabel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1476585686]
 position = Vector2(-13, 13)
@@ -136,3 +137,9 @@ text = "The door is locked I should be looking for a key..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="StateLabel" type="Label" parent="." unique_id=1799626327]
+offset_left = -58.0
+offset_top = 70.0
+offset_right = 30.0
+offset_bottom = 93.0

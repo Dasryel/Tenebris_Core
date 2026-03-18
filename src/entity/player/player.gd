@@ -1,5 +1,6 @@
 extends Entity
 
+@export var state_label: Label
 var nearDoor = false
 
 func _ready() -> void:
@@ -8,24 +9,53 @@ func _ready() -> void:
 		GameState.spawn_position = Vector2.ZERO
 	GameState.key_pickedup.connect(key_obtained)
 
-func _physics_process(_delta: float) -> void:
-	pass
+	# Calls the _ready function of the parent 'Entity' class
+	super()
 
-func junkbox() -> void:
-	if Input.is_action_just_pressed("heal"):
+	# Add the upper-body combat layer alongside the inherited locomotion layer.
+	# We assume 'CombatLayer', 'StateCache', and 'CombatIdleState' are 
+	# accessible (e.g., as constants, members, or Autoloads).
+	# TODO impl combat layer
+	# add_state_machine(CombatLayer, StateCache.get_state(CombatIdleState))
+	
+
+func _process(delta: float) -> void:
+	super(delta)
+
+	var sm = get_state_machine(LOCOMOTION_LAYER)
+	if not sm:
+		return
+
+	var current_state = sm.current_state
+	if not current_state:
+		state_label.text = "State: Initializing..."
+		return
+
+	# In GDScript, get_class() returns the name if a 'class_name' is defined
+	state_label.text = "State: %s" % current_state.get_script().get_global_name()
+# end _process
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("heal"):
 		heal()
-
-	if Input.is_action_just_pressed("damage"):
+	
+	if event.is_action_pressed("damage"):
 		take_damage()
 
-	if Input.is_action_just_pressed("open_door"):
-		if GameState.hasKey and nearDoor:
-			print("JEPPPII")
-			GameState.hasKey = false
+	if event.is_action_pressed("open_door"):
+		_handle_door_interaction()
+# end _unhandled_input
+
+
+func _handle_door_interaction():
+	if nearDoor:
+		if GameState.has_key:
+			GameState.has_key = false
 			get_tree().change_scene_to_file("res://scene/ui/end_screen.tscn")
 		else:
-			print("dont even try!")
-			
+			print("You need a key!")
+# end _handle_door_interaction	
 	
 
 func key_obtained() -> void:
