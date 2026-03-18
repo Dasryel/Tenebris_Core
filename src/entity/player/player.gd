@@ -6,13 +6,17 @@ extends Entity
 @export var thought_bubble: Label
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-var last_direction: Vector2 = Vector2.RIGHT
+var last_direction: Vector2 = Vector2.LEFT
 
 # A ridiculous hack to make gdscript PARSE THIS FILE
 const CombatIdle = preload("res://src/entity/state/combat_idle_state.gd")
 
 func play_anim(anim: String):
-	sprite.flip_h = last_direction.x < 0
+	# sheet is wrong way
+	if anim == "idle":
+		sprite.flip_h = last_direction.x < 0
+	else:
+		sprite.flip_h = last_direction.x > 0
 	sprite.play(anim)
 
 func _ready() -> void:
