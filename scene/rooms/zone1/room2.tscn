@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://ct6gdo5mip1xb"]
 
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_mqbte"]
-[ext_resource type="Texture2D" uid="uid://n3vquuwfurhj" path="res://asset/tileset/32x32.png" id="2_kust7"]
+[ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_kust7"]
 [ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="3_6oxmt"]
 [ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="4_2t372"]
-[ext_resource type="Texture2D" uid="uid://cwch7jw5gh5d0" path="res://asset/sprite/env/portal.png" id="4_kust7"]
+[ext_resource type="Texture2D" uid="uid://b62wepuad17jb" path="res://asset/sprite/env/portal.png" id="4_kust7"]
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_6oxmt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]

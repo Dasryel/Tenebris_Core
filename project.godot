@@ -13,7 +13,7 @@ config_version=5
 config/name="VIM.MT.310"
 run/main_scene="uid://qim5su5xohvx"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+; config/icon="res://icon.svg"
 
 [autoload]
 
