@@ -1,8 +1,10 @@
 extends Area2D
 
 @export var door_id: String
+@export var target_door_id: String
 @export var target_scene: String
 @export var spawn_on_arrival: Vector2
+@export var zone_name: String = ""
 
 var near_player: bool = false
 var player_ref: Node = null
@@ -14,9 +16,12 @@ func _process(delta: float) -> void:
 	if near_player and Input.is_action_just_pressed("use"):
 		if GameState.doors[door_id]:
 			GameState.spawn_position = spawn_on_arrival
+			GameState.zone_text = zone_name
 			get_tree().change_scene_to_file(target_scene)
 		elif GameState.hasKey:
 			GameState.doors[door_id] = true
+			if target_door_id != "":
+				GameState.doors[target_door_id] = true
 			update_visuals()
 			GameState.hasKey = false
 			GameState.door_unlocked.emit()

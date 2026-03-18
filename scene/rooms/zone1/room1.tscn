@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_ppl8m"]
 [ext_resource type="Texture2D" uid="uid://n3vquuwfurhj" path="res://asset/tileset/32x32.png" id="2_yptcl"]
+[ext_resource type="Script" uid="uid://x5w4gwnl7gdn" path="res://src/zone/door.gd" id="3_k4wow"]
 [ext_resource type="Texture2D" uid="uid://cwch7jw5gh5d0" path="res://asset/sprite/env/portal.png" id="4_ppl8m"]
 [ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="4_wr7vb"]
 
@@ -260,14 +261,19 @@ tile_map_data = PackedByteArray("AADs/w0AAAAEAAEAAADt/w0AAAAEAAEAAADu/w0AAAAEAAE
 tile_set = SubResource("TileSet_8g7fy")
 rendering_quadrant_size = 32
 
-[node name="Door" type="Area2D" parent="." unique_id=634133330]
+[node name="DoorToZone2" type="Area2D" parent="." unique_id=634133330]
 position = Vector2(195, 469)
+script = ExtResource("3_k4wow")
+door_id = "door1"
+target_door_id = "door2"
+target_scene = "res://scene/rooms/zone2/room1.tscn"
+zone_name = "Second Zone"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=1239607000]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToZone2" unique_id=1239607000]
 position = Vector2(14, 2)
 shape = SubResource("CapsuleShape2D_ppl8m")
 
-[node name="ColorRect" type="ColorRect" parent="Door" unique_id=1817294121]
+[node name="ColorRect" type="ColorRect" parent="DoorToZone2" unique_id=1817294121]
 offset_left = -25.0
 offset_top = -34.0
 offset_right = 52.0
@@ -292,6 +298,6 @@ position = Vector2(-270, 449)
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1380065488]
 visible = false
 
-[connection signal="body_entered" from="Door" to="Player" method="_on_door_body_entered"]
-[connection signal="body_exited" from="Door" to="Player" method="_on_door_body_exited"]
+[connection signal="body_entered" from="DoorToZone2" to="DoorToZone2" method="_on_body_entered"]
+[connection signal="body_exited" from="DoorToZone2" to="DoorToZone2" method="_on_body_exited"]
 [connection signal="body_entered" from="Room1ToRoom2" to="Player" method="_on_room_1_to_room_2_body_entered"]

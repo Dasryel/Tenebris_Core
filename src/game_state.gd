@@ -9,6 +9,7 @@ var spawn_position: Vector2 = Vector2.ZERO
 var hasKey: bool = false
 var max_hp: int = 3
 var current_hp: int = 3
+var zone_text: String = ""
 
 var doors: Dictionary = {
 	"door1": false,

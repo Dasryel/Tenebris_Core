@@ -274,8 +274,8 @@ tile_set = SubResource("TileSet_8g7fy")
 rendering_quadrant_size = 32
 
 [node name="Key" parent="." unique_id=1990007751 instance=ExtResource("3_il1xb")]
-position = Vector2(1286, 120)
-scale = Vector2(2, 2)
+position = Vector2(1286, 72)
+key_id = "key1"
 
 [node name="Room3ToRoom2" type="Area2D" parent="." unique_id=1001054503]
 

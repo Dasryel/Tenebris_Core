@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_mqbte"]
 [ext_resource type="Texture2D" uid="uid://n3vquuwfurhj" path="res://asset/tileset/32x32.png" id="2_kust7"]
-[ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="3_6oxmt"]
 [ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="4_2t372"]
 [ext_resource type="Texture2D" uid="uid://cwch7jw5gh5d0" path="res://asset/sprite/env/portal.png" id="4_kust7"]
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_6oxmt"]
@@ -353,11 +352,6 @@ position = Vector2(254, 197)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1380065488]
 visible = false
-
-[node name="Key" parent="." unique_id=1990007751 instance=ExtResource("3_6oxmt")]
-visible = false
-position = Vector2(916, -78)
-scale = Vector2(2, 2)
 
 [node name="Lava" parent="." unique_id=1994014500 instance=ExtResource("6_6oxmt")]
 position = Vector2(833, 247)
