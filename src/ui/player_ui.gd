@@ -7,6 +7,7 @@ extends Control
 func _ready() -> void:
 	GameState.key_pickedup.connect(show_key)
 	GameState.hp_changed.connect(update_hp)
+	GameState.door_unlocked.connect(hide_key)
 	
 	update_hp(GameState.current_hp, GameState.max_hp)
 	if GameState.hasKey:

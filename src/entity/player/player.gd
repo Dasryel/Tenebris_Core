@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-var nearDoor = false
 
 func _ready() -> void:
 	if GameState.spawn_position != Vector2.ZERO:
@@ -32,17 +31,7 @@ func _physics_process(delta: float) -> void:
 		heal()
 
 	if Input.is_action_just_pressed("damage"):
-		take_damage()
-
-	if Input.is_action_just_pressed("open_door"):
-		if GameState.hasKey and nearDoor:
-			print("JEPPPII")
-			GameState.hasKey = false
-			get_tree().change_scene_to_file("res://scene/ui/end_screen.tscn")
-		else:
-			print("dont even try!")
-			
-			
+		take_damage()		
 func update_animation(direction: float) -> void:
 	var sprite = $AnimatedSprite2D
 
@@ -89,26 +78,6 @@ func _on_room_3_to_room_2_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		GameState.spawn_position = Vector2(1129, 187)
 		get_tree().change_scene_to_file("res://scene/rooms/zone1/room2.tscn")
-
-
-func _on_door_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		nearDoor = true
-		print("nearDoor: ", nearDoor)
-		if GameState.hasKey == false:
-			$ThoughtBubble.show_message("Door is locked I should be looking for a key...")
-		else:
-			$"../Door/ColorRect".color = Color.GREEN
-			$ThoughtBubble.show_message("Press E to enter")
-
-
-func _on_door_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		nearDoor = false
-		print("nearDoor: ", nearDoor)
-		$"../Door/ColorRect".color = Color.RED
-		
-
 
 func _on_lava_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
