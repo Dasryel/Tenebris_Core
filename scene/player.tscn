@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d2k1dl6nsykj3"]
 
 [ext_resource type="Script" uid="uid://cv1etr30blrkj" path="res://src/entity/player/player.gd" id="1_hjaqi"]
-[ext_resource type="Texture2D" uid="uid://bnb2tl5pmmou3" path="res://asset/sprite/player/main_character.png" id="2_ct4mp"]
+[ext_resource type="Texture2D" uid="uid://c7tgugu74gi7p" path="res://asset/sprite/player/main_character.png" id="2_ct4mp"]
 [ext_resource type="Script" uid="uid://dond5xhb46tss" path="res://src/ui/thought_bubble.gd" id="3_fvtld"]
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="4_ct4mp"]
 
@@ -82,8 +82,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjaqi"]
-radius = 27.0
-height = 124.0
+radius = 46.376812
+height = 150.72464
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvtld"]
 bg_color = Color(0.99, 0.99, 0.99, 0.6313726)
@@ -105,7 +105,7 @@ autoplay = "idle"
 frame_progress = 0.030610194
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220763521]
-position = Vector2(-13, 11)
+position = Vector2(-15, 16)
 scale = Vector2(0.69, 0.69)
 shape = SubResource("CapsuleShape2D_hjaqi")
 

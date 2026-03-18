@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bh63ymqtxib1i"]
 
-[ext_resource type="Texture2D" uid="uid://ddikj8j0l6yje" path="res://asset/sprite/item/key.png" id="1_hpojl"]
+[ext_resource type="Texture2D" uid="uid://usyrsnyawk0q" path="res://asset/sprite/item/key.png" id="1_hpojl"]
 [ext_resource type="Script" uid="uid://c1plvn7a3anby" path="res://src/ui/player_ui.gd" id="1_lpg6e"]
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="3_6n5fa"]
-[ext_resource type="Texture2D" uid="uid://tx4s4xiljatp" path="res://asset/sprite/player/hp.png" id="4_u2m4h"]
+[ext_resource type="Texture2D" uid="uid://dicvenlxm7asa" path="res://asset/sprite/player/hp.png" id="4_u2m4h"]
 [ext_resource type="PackedScene" uid="uid://dcyjh6itrnvd8" path="res://scene/ui/death_menu.tscn" id="5_rsqfm"]
 
 [node name="PlayerUi" type="Control" unique_id=1277935282]
@@ -70,4 +70,5 @@ expand_mode = 2
 stretch_mode = 3
 
 [node name="DeathMenu" parent="." unique_id=93567257 instance=ExtResource("5_rsqfm")]
+visible = false
 layout_mode = 1
