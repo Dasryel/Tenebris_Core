@@ -6,7 +6,8 @@ func enter(entity: Entity) -> void:
 	if not entity.is_on_floor():
 		_go_to_loco(entity, FallingState)
 		return
-	# TODO: change animation to idle
+
+	entity.play_anim("idle")
 
 
 func update(entity: Entity, _delta: float) -> void:

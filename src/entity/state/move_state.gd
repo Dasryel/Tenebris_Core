@@ -4,7 +4,7 @@ extends BaseState
 
 
 func enter(entity: Entity) -> void:
-	entity.sprite.play("run")
+	entity.play_anim("run")
 
 
 func update(entity: Entity, delta: float) -> void:
@@ -15,11 +15,13 @@ func update(entity: Entity, delta: float) -> void:
 	if Input.is_action_just_pressed(GameInput.JUMP):
 		_go_to_loco(entity, JumpState)
 		return
-		
+
 	var h_dir := Input.get_axis(GameInput.MOVE_LEFT, GameInput.MOVE_RIGHT)
 	if h_dir > 0:
+		entity.last_direction = Vector2.LEFT
 		entity.sprite.flip_h = false
 	elif h_dir < 0:
+		entity.last_direction = Vector2.RIGHT
 		entity.sprite.flip_h = true
 
 	if is_zero_approx(h_dir):
@@ -35,4 +37,4 @@ func update(entity: Entity, delta: float) -> void:
 
 
 func exit(entity: Entity) -> void:
-	entity.sprite.play("idle")
+	entity.play_anim("idle")

@@ -13,7 +13,6 @@ config_version=5
 config/name="VIM.MT.310"
 run/main_scene="uid://qim5su5xohvx"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
@@ -29,6 +28,10 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="VIM.MT.310"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/codeandweb.texturepacker/plugin.cfg")
 
 [input]
 

@@ -1,9 +1,19 @@
 class_name Player
 extends Entity
 
-@export var state_label: Label
+@export var loco_state_label: Label
+@export var combat_state_label: Label
 @export var thought_bubble: Label
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+var last_direction: Vector2 = Vector2.RIGHT
+
+# A ridiculous hack to make gdscript PARSE THIS FILE
+const CombatIdle = preload("res://src/entity/state/combat_idle_state.gd")
+
+func play_anim(anim: String):
+	sprite.flip_h = last_direction.x < 0
+	sprite.play(anim)
 
 func _ready() -> void:
 	if GameState.spawn_position != Vector2.ZERO:
@@ -19,7 +29,9 @@ func _ready() -> void:
 	# We assume 'CombatLayer', 'StateCache', and 'CombatIdleState' are
 	# accessible (e.g., as constants, members, or Autoloads).
 	# TODO impl combat layer
-	# add_state_machine(CombatLayer, StateCache.get_state(CombatIdleState))
+	_add_state_machine(COMBAT_LAYER, StateCache.get_state(CombatIdleState))
+
+	$AnimatedSprite2D.animation_finished.connect(_on_player_sprite_finished)
 
 
 func _process(delta: float) -> void:
@@ -31,12 +43,25 @@ func _process(delta: float) -> void:
 
 	var current_state = sm.current_state
 	if not current_state:
-		state_label.text = "State: Initializing..."
+		loco_state_label.text = "State: Initializing..."
 		return
 
-	state_label.text = "State: %s" % current_state.get_script().get_global_name()
+	loco_state_label.text = "State: %s" % current_state.get_script().get_global_name()
+
+	sm = get_state_machine(COMBAT_LAYER)
+	if not sm:
+		return
+
+	current_state = sm.current_state
+	if not current_state:
+		combat_state_label.text = "State: Initializing..."
+		return
+
+	combat_state_label.text = "State: %s" % current_state.get_script().get_global_name()
 # end _process
 
+func _on_player_sprite_finished() -> void:
+	SignalBus.player_sprite_anim_finished.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("heal"):

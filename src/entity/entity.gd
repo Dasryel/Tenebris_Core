@@ -4,17 +4,16 @@ class_name Entity
 extends CharacterBody2D
 
 const LOCOMOTION_LAYER: StringName = &"Locomotion"
-const COMBAT_LAYER: StringName     = &"Combat"
+const COMBAT_LAYER: StringName = &"Combat"
 
-@export var speed: float          = 300.0
-@export var jump_velocity: float  = -420.0
-@export var gravity: float        = 1200.0
+@export var speed: float = 300.0
+@export var jump_velocity: float = -420.0
+@export var gravity: float = 1200.0
 
 ## Wire this up in the inspector or fetch it in _ready() of a subclass.
 @export var animation_player: AnimationPlayer
 
 var _state_machines: Dictionary[StringName, StateMachine] = {}
-
 
 func _ready() -> void:
 	_add_state_machine(LOCOMOTION_LAYER, StateCache.get_state(FallingState))
@@ -43,4 +42,4 @@ func _add_state_machine(layer: StringName, default_state: BaseState) -> StateMac
 
 func _process(delta: float) -> void:
 	for sm in _state_machines.values():
-		sm.update(self, delta)
+		sm.update(self , delta)

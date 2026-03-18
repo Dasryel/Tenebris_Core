@@ -2,13 +2,14 @@ extends Control
 
 var current_timer: SceneTreeTimer
 @export var bubble_timer: float = 3.0
+@export var thought_bubble_text: Label
 
 func _ready():
 	visible = false
 	SignalBus.thought_bubble.connect(show_message)
 
 func show_message(text: String) -> void:
-	$Panel/Label.text = text
+	thought_bubble_text.text = text
 	visible = true
 
 	# FIX: Cancel previous 'hide' logic if a new message comes in
