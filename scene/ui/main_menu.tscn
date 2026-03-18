@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="1_3er1b"]
 [ext_resource type="Script" uid="uid://bd6vyrvitmklc" path="res://src/ui/main_menu.gd" id="1_hxu56"]
 [ext_resource type="Texture2D" uid="uid://cjevmmo5ktbbd" path="res://asset/UI/on.png" id="3_0iwki"]
-[ext_resource type="Texture2D" uid="uid://bxaanmm8nut7r" path="res://asset/UI/off.png" id="4_sepwh"]
+[ext_resource type="Texture2D" uid="uid://cjevmmo5ktbbd" path="res://asset/UI/on.png" id="4_sepwh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4svf"]
 bg_color = Color(0.22536919, 0.6105468, 0.99999994, 1)
