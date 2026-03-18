@@ -78,7 +78,7 @@ func _on_room_1_to_room_2_body_entered(body: Node2D) -> void:
 
 func _on_room_2_to_room_1_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		GameState.spawn_position = Vector2(922, 196)
+		GameState.spawn_position = Vector2(796, 451)
 		get_tree().change_scene_to_file("res://scene/rooms/zone1/room1.tscn")
 
 func _on_room_2_to_room_3_body_entered(body: Node2D) -> void:
