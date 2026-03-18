@@ -3,27 +3,36 @@ class_name MoveState
 extends BaseState
 
 
-func enter(_entity: Entity) -> void:
-	# TODO: change animation to moving
-	pass
+func enter(entity: Entity) -> void:
+	entity.sprite.play("run")
 
 
-func update(entity: Entity, _delta: float) -> void:
+func update(entity: Entity, delta: float) -> void:
+	if not entity.is_on_floor():
+		_go_to_loco(entity, FallingState)
+		return
+
 	if Input.is_action_just_pressed(GameInput.JUMP):
 		_go_to_loco(entity, JumpState)
 		return
-
+		
 	var h_dir := Input.get_axis(GameInput.MOVE_LEFT, GameInput.MOVE_RIGHT)
+	if h_dir > 0:
+		entity.sprite.flip_h = false
+	elif h_dir < 0:
+		entity.sprite.flip_h = true
 
 	if is_zero_approx(h_dir):
 		_go_to_loco(entity, IdleState)
 		return
 
 	var velocity := entity.velocity
+
+	velocity.y += entity.gravity * delta
 	velocity.x = h_dir * entity.speed
 	entity.velocity = velocity
 	entity.move_and_slide()
 
 
-func exit(_entity: Entity) -> void:
-	pass
+func exit(entity: Entity) -> void:
+	entity.sprite.play("idle")

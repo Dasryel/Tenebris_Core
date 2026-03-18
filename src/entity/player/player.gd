@@ -1,7 +1,9 @@
+class_name Player
 extends Entity
 
 @export var state_label: Label
-var nearDoor = false
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+var near_door = false
 
 func _ready() -> void:
 	if GameState.spawn_position != Vector2.ZERO:
@@ -17,7 +19,7 @@ func _ready() -> void:
 	# accessible (e.g., as constants, members, or Autoloads).
 	# TODO impl combat layer
 	# add_state_machine(CombatLayer, StateCache.get_state(CombatIdleState))
-	
+
 
 func _process(delta: float) -> void:
 	super(delta)
@@ -31,7 +33,6 @@ func _process(delta: float) -> void:
 		state_label.text = "State: Initializing..."
 		return
 
-	# In GDScript, get_class() returns the name if a 'class_name' is defined
 	state_label.text = "State: %s" % current_state.get_script().get_global_name()
 # end _process
 
@@ -49,7 +50,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _handle_door_interaction():
-	if nearDoor:
+	if near_door:
 		if GameState.has_key:
 			GameState.has_key = false
 			get_tree().change_scene_to_file("res://scene/ui/end_screen.tscn")
@@ -59,8 +60,8 @@ func _handle_door_interaction():
 	
 
 func key_obtained() -> void:
-	GameState.hasKey = true
-	print("player has key: ", GameState.hasKey)
+	GameState.has_key = true
+	print("player has key: ", GameState.has_key)
 
 func take_damage() -> void:
 	GameState.current_hp -= 1
@@ -96,24 +97,6 @@ func _on_room_3_to_room_2_body_entered(body: Node2D) -> void:
 		GameState.spawn_position = Vector2(1129, 187)
 		get_tree().change_scene_to_file("res://scene/rooms/zone1/room2.tscn")
 
-
-func _on_door_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		nearDoor = true
-		print("nearDoor: ", nearDoor)
-		if GameState.hasKey == false:
-			$ThoughtBubble.show_message("Door is locked I should be looking for a key...")
-		else:
-			$"../Door/ColorRect".color = Color.GREEN
-			$ThoughtBubble.show_message("Press E to enter")
-
-
-func _on_door_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		nearDoor = false
-		print("nearDoor: ", nearDoor)
-		$"../Door/ColorRect".color = Color.RED
-		
 
 
 func _on_lava_body_entered(body: Node2D) -> void:

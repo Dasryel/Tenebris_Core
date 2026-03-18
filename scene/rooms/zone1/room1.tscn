@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_yptcl"]
 [ext_resource type="Texture2D" uid="uid://b62wepuad17jb" path="res://asset/sprite/env/portal.png" id="4_ppl8m"]
 [ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="4_wr7vb"]
+[ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="5_k4wow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]
 texture = ExtResource("2_yptcl")
@@ -105,10 +106,6 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jmhvh")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppl8m"]
-radius = 56.0
-height = 112.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ekgd2"]
 radius = 28.0
 height = 116.0
@@ -133,20 +130,6 @@ tile_map_data = PackedByteArray("AAD9/wYAAAAEAAEAAAD+/wYAAAAEAAEAAAD//wYAAAAEAAE
 tile_set = SubResource("TileSet_8g7fy")
 rendering_quadrant_size = 32
 
-[node name="Door" type="Area2D" parent="." unique_id=634133330]
-position = Vector2(583, 214)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=1239607000]
-position = Vector2(14, 2)
-shape = SubResource("CapsuleShape2D_ppl8m")
-
-[node name="ColorRect" type="ColorRect" parent="Door" unique_id=1817294121]
-offset_left = -25.0
-offset_top = -34.0
-offset_right = 52.0
-offset_bottom = 51.0
-color = Color(1, 0, 0, 1)
-
 [node name="Room1ToRoom2" type="Area2D" parent="." unique_id=1205590922]
 
 [node name="Sprite2D" type="Sprite2D" parent="Room1ToRoom2" unique_id=172801861]
@@ -163,6 +146,7 @@ position = Vector2(236, 191)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1380065488]
 
-[connection signal="body_entered" from="Door" to="Player" method="_on_door_body_entered"]
-[connection signal="body_exited" from="Door" to="Player" method="_on_door_body_exited"]
+[node name="Door" parent="." unique_id=1954722909 instance=ExtResource("5_k4wow")]
+position = Vector2(558, 215)
+
 [connection signal="body_entered" from="Room1ToRoom2" to="Player" method="_on_room_1_to_room_2_body_entered"]
