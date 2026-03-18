@@ -93,9 +93,10 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 15
 
-[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("state_label")]
+[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("state_label", "thought_bubble")]
 script = ExtResource("1_hjaqi")
 state_label = NodePath("StateLabel")
+thought_bubble = NodePath("ThoughtBubble/Panel/Label")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1476585686]
 z_index = 1
@@ -104,7 +105,6 @@ scale = Vector2(0.69, 0.69)
 sprite_frames = SubResource("SpriteFrames_34jf3")
 animation = &"run"
 autoplay = "idle"
-frame_progress = 0.030610194
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220763521]
 position = Vector2(-15, 16)
