@@ -22,7 +22,7 @@ func play_anim(anim: String):
 func _ready() -> void:
 	# Calls the _ready function of the parent 'Entity' class
 	super ()
-	
+
 	# stats
 	speed = 300.0
 	jump_velocity = -420.0
@@ -83,7 +83,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func update_animation(direction: float) -> void:
-	var sprite = $AnimatedSprite2D
+	sprite = $AnimatedSprite2D
 
 	if direction != 0:
 		sprite.play("run")
