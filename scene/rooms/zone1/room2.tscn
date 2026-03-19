@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_mqbte"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_kust7"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_qtme0"]
+[ext_resource type="Script" uid="uid://bak7n5yhyw2t" path="res://src/zone/lava.gd" id="5_sixoa"]
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_6oxmt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sixoa"]
@@ -179,14 +180,14 @@ position = Vector2(518, 247)
 scale = Vector2(0.4, 0.4)
 
 [node name="lava" type="Area2D" parent="." unique_id=928239099]
+script = ExtResource("5_sixoa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lava" unique_id=53587852]
 position = Vector2(659.5, 267)
 shape = SubResource("RectangleShape2D_mqbte")
 
-[node name="Timer" type="Timer" parent="lava" unique_id=1997717738]
+[node name="Timer" type="Timer" parent="lava" unique_id=1660382957]
 wait_time = 2.0
-autostart = true
 
 [node name="Teleporter" parent="." unique_id=1408589343 instance=ExtResource("5_qtme0")]
 position = Vector2(159, 213)
@@ -203,3 +204,7 @@ entry_point_id = "PlayerSpawnLeft"
 
 [node name="PlayerSpawnRight" type="Marker2D" parent="Teleporter2" unique_id=1521422092]
 position = Vector2(-78, 0)
+
+[connection signal="body_entered" from="lava" to="lava" method="_on_body_entered"]
+[connection signal="body_exited" from="lava" to="lava" method="_on_body_exited"]
+[connection signal="timeout" from="lava/Timer" to="lava" method="_on_timer_timeout"]

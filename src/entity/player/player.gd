@@ -29,7 +29,7 @@ func _ready() -> void:
     gravity = 1200.0
 
     GameState.key_pickedup.connect(key_obtained)
-    GameState.has_key = true
+    # GameState.has_key = true
 
     if GameState.spawn_position != Vector2.ZERO:
         global_position = GameState.spawn_position
@@ -113,16 +113,6 @@ func heal() -> void:
     GameState.current_hp += 1
     GameState.current_hp = clamp(GameState.current_hp, 0, GameState.max_hp)
     GameState.hp_changed.emit(GameState.current_hp, GameState.max_hp)
-
-func _on_lava_body_entered(body: Node2D) -> void:
-    if body.name == "Player":
-        take_damage()
-
-func _on_lava_body_exited(body: Node2D) -> void:
-    if body.name == "Player":
-        pass
-        #$"../lava/Timer".stop()
-
 
 func _on_timer_timeout() -> void:
     pass
