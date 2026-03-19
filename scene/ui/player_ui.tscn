@@ -72,3 +72,18 @@ stretch_mode = 3
 [node name="DeathMenu" parent="." unique_id=93567257 instance=ExtResource("5_rsqfm")]
 visible = false
 layout_mode = 1
+
+[node name="ZoneLabel" type="Label" parent="." unique_id=1227285980]
+visible = false
+layout_mode = 0
+offset_left = 557.0
+offset_top = 332.0
+offset_right = 722.0
+offset_bottom = 388.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0.9215822, 0.040316243, 0.2202732, 1)
+theme_override_fonts/font = ExtResource("3_6n5fa")
+theme_override_font_sizes/font_size = 55
+text = "ZONE"

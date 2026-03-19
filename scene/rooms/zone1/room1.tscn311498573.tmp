@@ -152,6 +152,6 @@ position = Vector2(-270, 449)
 visible = false
 
 [node name="Door" parent="." unique_id=1954722909 instance=ExtResource("5_k4wow")]
-position = Vector2(234, 444)
+position = Vector2(558, 215)
 
 [connection signal="body_entered" from="Room1ToRoom2" to="Player" method="_on_room_1_to_room_2_body_entered"]

@@ -1,9 +1,13 @@
 class_name Player
 extends Entity
 
+# debug labels
 @export var loco_state_label: Label
 @export var combat_state_label: Label
+
+# visible player tooltip/info bubble
 @export var thought_bubble: Label
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var last_direction: Vector2 = Vector2.LEFT
@@ -18,6 +22,11 @@ func play_anim(anim: String):
 func _ready() -> void:
 	# Calls the _ready function of the parent 'Entity' class
 	super ()
+	
+	# stats
+	speed = 300.0
+	jump_velocity = -420.0
+	gravity = 1200.0
 
 	GameState.key_pickedup.connect(key_obtained)
 
@@ -73,6 +82,16 @@ func _unhandled_input(event: InputEvent) -> void:
 # end _unhandled_input
 
 
+func update_animation(direction: float) -> void:
+	var sprite = $AnimatedSprite2D
+
+	if direction != 0:
+		sprite.play("run")
+		sprite.flip_h = direction < 0
+	else:
+		sprite.play("idle")
+
+
 func key_obtained() -> void:
 	GameState.has_key = true
 	print("player has key: ", GameState.has_key)
@@ -102,7 +121,7 @@ func _on_room_1_to_room_2_body_entered(body: Node2D) -> void:
 
 func _on_room_2_to_room_1_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		GameState.spawn_position = Vector2(922, 196)
+		GameState.spawn_position = Vector2(796, 451)
 		get_tree().change_scene_to_file("res://scene/rooms/zone1/room1.tscn")
 
 func _on_room_2_to_room_3_body_entered(body: Node2D) -> void:
@@ -128,3 +147,14 @@ func _on_lava_body_exited(body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	pass
 	#take_damage()
+
+
+func _on_zone_1_room_1_to_room_2_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		get_tree().change_scene_to_file("res://scene/rooms/zone2/room2.tscn")
+
+
+func _on_zone_2_room_2_to_room_1_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		GameState.spawn_position = Vector2(920, 208)
+		get_tree().change_scene_to_file("res://scene/rooms/zone2/room1.tscn")

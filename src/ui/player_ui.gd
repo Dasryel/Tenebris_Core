@@ -7,10 +7,32 @@ extends Control
 func _ready() -> void:
 	GameState.key_pickedup.connect(show_key)
 	GameState.hp_changed.connect(update_hp)
+	GameState.door_unlocked.connect(hide_key)
 	
 	update_hp(GameState.current_hp, GameState.max_hp)
 	if GameState.has_key:
 		$KeyIcon.visible = true
+		
+	if GameState.zone_text!= "":
+		show_zone_text(GameState.zone_text)
+		GameState.zone_text = ""
+		
+func show_zone_text(text: String) -> void:
+	$ZoneLabel.text = text
+	$ZoneLabel.modulate.a = 0.0
+	$ZoneLabel.visible = true
+	
+	var tween = create_tween()
+	tween.tween_property($ZoneLabel, "modulate:a", 1.0, 0.8)
+	await tween.finished
+	
+	await get_tree().create_timer(1.5).timeout
+	
+	tween = create_tween()
+	tween.tween_property($ZoneLabel, "modulate:a", 0.0, 0.8)
+	await tween.finished
+	
+	$ZoneLabel.visible = false
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
