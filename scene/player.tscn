@@ -123,7 +123,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 8.0
+"speed": 4.0
 }, {
 "frames": [],
 "loop": true,
