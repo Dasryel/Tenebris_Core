@@ -29,13 +29,14 @@ func reset() -> void:
 	hasKey = false
 	current_hp = max_hp
 	spawn_position = Vector2.ZERO
+	zone_text = ""
 	doors = {
 		"door1": false,
 		"door2": false,
 		"door3": false,
 		"door4": false,
 	}
-	keys =  {
+	keys = {
 		"key1": false,
 		"key2": false,
 		"key3": false,

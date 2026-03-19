@@ -8,10 +8,14 @@ signal show_key
 func _ready() -> void:
 	if key_id == "":
 		print("WARNING: set key_id in Inspector!")
+		queue_free()
 		return
+
 	if not GameState.keys.has(key_id):
 		print("WARNING: key_id '", key_id, "' not found in GameState.keys, update the singleton")
+		queue_free()
 		return
+
 	if GameState.keys[key_id]:
 		print("Key already picked up")
 		queue_free()
@@ -23,9 +27,16 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
+		# Guard against invalid key_id in case _ready() returned early
+ 		if key_id == "":
+ 			print("WARNING: key pickup with invalid empty key_id")
+ 			return
+
+ 		if not GameState.keys.has(key_id):
+ 			print("WARNING: key pickup with unknown key_id '", key_id, "'")
+ 			return
+
 		print("key picked up!")
 		GameState.keys[key_id] = true
 		GameState.key_pickedup.emit()
 		queue_free()
-
-	
