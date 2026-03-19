@@ -11,10 +11,18 @@ var player_ref: Node = null
 
 func _ready() -> void:
 	update_visuals()
+	
+	if door_id == "":
+		push_error("[Door] Node has an empty door_id; this will cause GameState.doors lookups to fail.")
+		return
+	if not GameState.doors.has(door_id):
+		GameState.doors[door_id] = false
+	if target_door_id != "" and not GameState.doors.has(target_door_id):
+		GameState.doors[target_door_id] = false
 
 func _process(delta: float) -> void:
 	if near_player and Input.is_action_just_pressed("use"):
-		if GameState.doors[door_id]:
+		if GameState.doors.get(door_id, false):
 			GameState.spawn_position = spawn_on_arrival
 			GameState.zone_text = zone_name
 			get_tree().change_scene_to_file(target_scene)
@@ -30,16 +38,17 @@ func _process(delta: float) -> void:
 			print("door is locked, need a key")
 
 func update_visuals() -> void:
-	$ColorRect.color = Color.GREEN if GameState.doors[door_id] else Color.RED
+	$ColorRect.color = Color.GREEN if GameState.doors.get(door_id, false) else Color.RED
+
 	if player_ref:
 		player_ref.get_node("ThoughtBubble").show_message("Press E to enter")
-	
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		print("enter")
 		near_player = true
 		player_ref = body
-		if GameState.doors[door_id]:
+		if GameState.doors.get(door_id, false):
 			body.get_node("ThoughtBubble").show_message("Press E to enter")
 		elif GameState.hasKey:
 			body.get_node("ThoughtBubble").show_message("Press E to unlock")
