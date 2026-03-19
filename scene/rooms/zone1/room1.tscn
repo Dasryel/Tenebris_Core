@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b62wepuad17jb" path="res://asset/sprite/env/portal.png" id="4_ppl8m"]
 [ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="4_wr7vb"]
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="5_k4wow"]
+[ext_resource type="PackedScene" uid="uid://6aix8efynile" path="res://scene/rooms/zone2/room1.tscn" id="6_urwxp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]
 texture = ExtResource("2_yptcl")
@@ -153,5 +154,6 @@ visible = false
 
 [node name="Door" parent="." unique_id=1954722909 instance=ExtResource("5_k4wow")]
 position = Vector2(234, 444)
+target_scene = ExtResource("6_urwxp")
 
 [connection signal="body_entered" from="Room1ToRoom2" to="Player" method="_on_room_1_to_room_2_body_entered"]
