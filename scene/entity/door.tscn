@@ -1,24 +1,22 @@
 [gd_scene format=3 uid="uid://dcon3d1q1xlhy"]
 
-[ext_resource type="Script" uid="uid://djkos64n4jm76" path="res://src/entity/door.gd" id="1_7ncik"]
+[ext_resource type="Script" path="res://src/zone/door.gd" id="1_7ncik"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppl8m"]
 radius = 56.0
 height = 112.0
 
-[node name="Door" type="Area2D" unique_id=1954722909 node_paths=PackedStringArray("visual")]
+[node name="Door" type="Area2D" unique_id=1954722909]
 script = ExtResource("1_7ncik")
-visual = NodePath("DoorVisual")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2099895435]
-position = Vector2(14, 2)
 shape = SubResource("CapsuleShape2D_ppl8m")
 
 [node name="DoorVisual" type="ColorRect" parent="." unique_id=119244308]
-offset_left = -25.0
-offset_top = -34.0
-offset_right = 52.0
-offset_bottom = 51.0
+offset_left = -39.0
+offset_top = -43.0
+offset_right = 38.0
+offset_bottom = 42.0
 color = Color(1, 0, 0, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

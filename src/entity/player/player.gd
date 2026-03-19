@@ -114,27 +114,6 @@ func heal() -> void:
     GameState.current_hp = clamp(GameState.current_hp, 0, GameState.max_hp)
     GameState.hp_changed.emit(GameState.current_hp, GameState.max_hp)
 
-
-func _on_room_1_to_room_2_body_entered(body: Node2D) -> void:
-    if body.name == "Player":
-        get_tree().change_scene_to_file("res://scene/rooms/zone1/room2.tscn")
-
-
-func _on_room_2_to_room_1_body_entered(body: Node2D) -> void:
-    if body.name == "Player":
-        GameState.spawn_position = Vector2(796, 451)
-        get_tree().change_scene_to_file("res://scene/rooms/zone1/room1.tscn")
-
-func _on_room_2_to_room_3_body_entered(body: Node2D) -> void:
-    if body.name == "Player":
-        get_tree().change_scene_to_file("res://scene/rooms/zone1/room3.tscn")
-
-func _on_room_3_to_room_2_body_entered(body: Node2D) -> void:
-    if body.name == "Player":
-        GameState.spawn_position = Vector2(1129, 187)
-        get_tree().change_scene_to_file("res://scene/rooms/zone1/room2.tscn")
-
-
 func _on_lava_body_entered(body: Node2D) -> void:
     if body.name == "Player":
         take_damage()
@@ -148,14 +127,3 @@ func _on_lava_body_exited(body: Node2D) -> void:
 func _on_timer_timeout() -> void:
     pass
     #take_damage()
-
-
-func _on_zone_1_room_1_to_room_2_body_entered(body: Node2D) -> void:
-    if body.name == "Player":
-        get_tree().change_scene_to_file("res://scene/rooms/zone2/room2.tscn")
-
-
-func _on_zone_2_room_2_to_room_1_body_entered(body: Node2D) -> void:
-    if body.name == "Player":
-        GameState.spawn_position = Vector2(920, 208)
-        get_tree().change_scene_to_file("res://scene/rooms/zone2/room1.tscn")

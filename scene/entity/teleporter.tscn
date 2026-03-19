@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c6cwrhrtxjukl"]
+
+[ext_resource type="Texture2D" uid="uid://b62wepuad17jb" path="res://asset/sprite/env/portal.png" id="1_t66oo"]
+[ext_resource type="Script" uid="uid://beppg34bxvt0x" path="res://src/entity/teleporter.gd" id="1_tmnbc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ekgd2"]
+radius = 28.0
+height = 116.0
+
+[node name="Teleporter" type="Area2D" unique_id=1408589343]
+script = ExtResource("1_tmnbc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1488493717]
+scale = Vector2(1.3437499, 1.4479165)
+texture = ExtResource("1_t66oo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1559031914]
+shape = SubResource("CapsuleShape2D_ekgd2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

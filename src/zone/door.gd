@@ -1,64 +1,76 @@
+# door.gd
 extends Area2D
+class_name Door
 
+@export_group("Navigation")
+
+## The scene this door leads to
+@export var target_scene: PackedScene
+
+## The name of the Marker2D in the target scene where the player will appear
+@export var entry_point_id: String = "Default"
+
+@export_group("State")
+## Unique ID to remember if THIS specific door was unlocked
 @export var door_id: String
-@export var target_door_id: String
-@export var target_scene: String
-@export var spawn_on_arrival: Vector2
-@export var zone_name: String = ""
+@export var is_locked: bool = true
+@export var needs_key: bool = true
 
-var near_player: bool = false
-var player_ref: Node = null
+@export_group("Visuals")
+@export var open_color: Color = Color.GREEN
+@export var locked_color: Color = Color.RED
+@onready var visual: ColorRect = $DoorVisual
+
+var is_player_near: bool = false
 
 func _ready() -> void:
+	# If we previously unlocked this door, update the state
+	if GameState.is_door_unlocked(door_id):
+		is_locked = false
+
 	update_visuals()
 
-	if door_id == "":
-		push_error("[Door] Node has an empty door_id; this will cause GameState.doors lookups to fail.")
-		return
-	if not GameState.doors.has(door_id):
-		GameState.doors[door_id] = false
-	if target_door_id != "" and not GameState.doors.has(target_door_id):
-		GameState.doors[target_door_id] = false
+func _unhandled_input(event: InputEvent) -> void:
+	if is_player_near and event.is_action_pressed("use"):
+		_try_interact()
 
-func _process(delta: float) -> void:
-	if near_player and Input.is_action_just_pressed("use"):
-		if GameState.doors.get(door_id, false):
-			GameState.spawn_position = spawn_on_arrival
-			GameState.zone_text = zone_name
-			get_tree().change_scene_to_file(target_scene)
+func _try_interact() -> void:
+	if is_locked:
+		if GameState.has_key:
+			_unlock()
+		else:
+			SignalBus.display_message.emit("It's locked. I need a key.")
+	else:
+		_teleport()
 
-		elif GameState.hasKey:
-			GameState.doors[door_id] = true
+func _unlock() -> void:
+	is_locked = false
 
-			if target_door_id != "":
-				GameState.doors[target_door_id] = true
+	GameState.unlock_door(door_id)
+	GameState.has_key = false # Consume key
 
-			update_visuals()
+	update_visuals()
 
-			GameState.hasKey = false
-			GameState.door_unlocked.emit()
+	SignalBus.display_message.emit("Unlocked!")
+	SignalBus.door_unlocked.emit(door_id)
+
+func _teleport() -> void:
+	if target_scene:
+		GameState.target_entry_point = entry_point_id
+		get_tree().change_scene_to_packed(target_scene)
 
 func update_visuals() -> void:
-	$ColorRect.color = Color.GREEN if GameState.doors.get(door_id, false) else Color.RED
-
-	if player_ref:
-		player_ref.get_node("ThoughtBubble").show_message("Press E to enter")
+	if visual:
+		visual.color = open_color if not is_locked else locked_color
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		near_player = true
-		player_ref = body
+	# Assumes your player has 'class_name Player'
+	if body is Player:
+		is_player_near = true
 
-		if GameState.doors.get(door_id, false):
-			body.get_node("ThoughtBubble").show_message("Press E to enter")
-		elif GameState.hasKey:
-			body.get_node("ThoughtBubble").show_message("Press E to unlock")
-		else:
-			body.get_node("ThoughtBubble").show_message("This door is locked...")
+		if not GameState.has_key:
+			SignalBus.thought_bubble.emit("Door is locked. I should be looking for a key...")
+			return
 
-func _on_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		near_player = false
-		player_ref = null
-
-		body.get_node("ThoughtBubble").hide_message()
+		var msg = "Press E to enter" if not is_locked else "Press E to enter"
+		SignalBus.thought_bubble.emit(msg)
