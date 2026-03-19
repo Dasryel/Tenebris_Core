@@ -43,3 +43,24 @@ func _add_state_machine(layer: StringName, default_state: BaseState) -> StateMac
 func _process(delta: float) -> void:
 	for sm in _state_machines.values():
 		sm.update(self , delta)
+
+
+func is_in_combat() -> bool:
+	var sm = get_state_machine(COMBAT_LAYER)
+	var current_state = sm.current_state
+
+	if current_state is CombatSlashingState:
+		return true
+
+	return false
+
+func is_loco_idling() -> bool:
+	var sm = get_state_machine(LOCOMOTION_LAYER)
+	var current_state = sm.current_state
+
+	if current_state is IdleState:
+		return true
+
+	return false
+
+# end is_in_combat

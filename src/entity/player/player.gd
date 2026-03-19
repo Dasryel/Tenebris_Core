@@ -12,30 +12,27 @@ var last_direction: Vector2 = Vector2.LEFT
 const CombatIdle = preload("res://src/entity/state/combat_idle_state.gd")
 
 func play_anim(anim: String):
-	# sheet is wrong way
-	if anim == "idle":
-		sprite.flip_h = last_direction.x < 0
-	else:
-		sprite.flip_h = last_direction.x > 0
+	sprite.flip_h = last_direction.x > 0
 	sprite.play(anim)
 
 func _ready() -> void:
+	# Calls the _ready function of the parent 'Entity' class
+	super ()
+
+	GameState.key_pickedup.connect(key_obtained)
+
 	if GameState.spawn_position != Vector2.ZERO:
 		global_position = GameState.spawn_position
 		GameState.spawn_position = Vector2.ZERO
-	GameState.key_pickedup.connect(key_obtained)
-	# GameState.has_key = true
 
-	# Calls the _ready function of the parent 'Entity' class
-	super ()
 
 	# Add the upper-body combat layer alongside the inherited locomotion layer.
 	# We assume 'CombatLayer', 'StateCache', and 'CombatIdleState' are
 	# accessible (e.g., as constants, members, or Autoloads).
-	# TODO impl combat layer
 	_add_state_machine(COMBAT_LAYER, StateCache.get_state(CombatIdleState))
 
 	$AnimatedSprite2D.animation_finished.connect(_on_player_sprite_finished)
+# end ready _ready
 
 
 func _process(delta: float) -> void:

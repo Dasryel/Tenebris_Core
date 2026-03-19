@@ -12,8 +12,12 @@ func enter(entity: Entity) -> void:
 	SignalBus.player_sprite_anim_finished.connect(_on_anim_finished.bind(entity))
 
 
-func update(_entity: Entity, _delta: float) -> void:
-	pass
+func update(entity: Entity, _delta: float) -> void:
+	# Cancel attack on movement
+	if not entity.is_loco_idling():
+		_go_to_combat(entity, CombatIdleState)
+		return
+
 
 func exit(_entity: Entity) -> void:
 	if SignalBus.player_sprite_anim_finished.is_connected(_on_anim_finished):

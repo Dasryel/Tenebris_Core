@@ -8,6 +8,10 @@ func enter(entity: Entity) -> void:
 
 
 func update(entity: Entity, delta: float) -> void:
+	if entity.is_in_combat():
+		print("move: cant move while attacking")
+		return
+
 	if not entity.is_on_floor():
 		_go_to_loco(entity, FallingState)
 		return
