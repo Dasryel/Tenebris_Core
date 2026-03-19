@@ -47,29 +47,21 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
     super (delta)
+    _update_state_label(LOCOMOTION_LAYER, loco_state_label)
+    _update_state_label(COMBAT_LAYER, combat_state_label)
+# end _process
 
-    var sm = get_state_machine(LOCOMOTION_LAYER)
+func _update_state_label(layer_name: StringName, label: Label) -> void:
+    var sm = get_state_machine(layer_name)
     if not sm:
         return
 
     var current_state = sm.current_state
     if not current_state:
-        loco_state_label.text = "State: Initializing..."
+        label.text = "State: Initializing..."
         return
 
-    loco_state_label.text = "State: %s" % current_state.get_script().get_global_name()
-
-    sm = get_state_machine(COMBAT_LAYER)
-    if not sm:
-        return
-
-    current_state = sm.current_state
-    if not current_state:
-        combat_state_label.text = "State: Initializing..."
-        return
-
-    combat_state_label.text = "State: %s" % current_state.get_script().get_global_name()
-# end _process
+    label.text = "State: %s" % current_state.get_script().get_global_name()
 
 func _on_player_sprite_finished() -> void:
     SignalBus.player_sprite_anim_finished.emit()
@@ -97,23 +89,19 @@ func key_obtained() -> void:
     GameState.has_key = true
     print("player has key: ", GameState.has_key)
 
-
-func take_damage() -> void:
-    GameState.current_hp -= 1
+func update_hp(amount: int) -> void:
+    GameState.current_hp += amount
     GameState.current_hp = clamp(GameState.current_hp, 0, GameState.max_hp)
     GameState.hp_changed.emit(GameState.current_hp, GameState.max_hp)
+
     if GameState.current_hp <= 0:
         GameState.player_died.emit()
+    elif amount > 0 and GameState.current_hp == GameState.max_hp:
+        print("Back to full health!")
+
+func take_damage() -> void:
+    update_hp(-1)
 
 
 func heal() -> void:
-    if GameState.current_hp >= GameState.max_hp:
-        print("full hp!")
-        return
-    GameState.current_hp += 1
-    GameState.current_hp = clamp(GameState.current_hp, 0, GameState.max_hp)
-    GameState.hp_changed.emit(GameState.current_hp, GameState.max_hp)
-
-func _on_timer_timeout() -> void:
-    pass
-    #take_damage()
+    update_hp(1)
