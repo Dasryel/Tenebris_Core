@@ -1,11 +1,10 @@
 [gd_scene format=4 uid="uid://cj6p1dt6sh3j1"]
 
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_ppl8m"]
+[ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_urwxp"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_yptcl"]
-[ext_resource type="Texture2D" uid="uid://b62wepuad17jb" path="res://asset/sprite/env/portal.png" id="4_ppl8m"]
-[ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="4_wr7vb"]
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="5_k4wow"]
-[ext_resource type="PackedScene" uid="uid://6aix8efynile" path="res://scene/rooms/zone2/room1.tscn" id="6_urwxp"]
+[ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_8dx0c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]
 texture = ExtResource("2_yptcl")
@@ -40,8 +39,6 @@ texture_region_size = Vector2i(32, 32)
 1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.935339, -16, -16, -5.9900074, -16, -6.0915318, 16, -16, 16)
 2:7/0 = 0
 2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.935339, -16, -16, -5.9900074, -16, -6.0915318, 16, -16, 16)
-3:7/0 = 0
-4:7/0 = 0
 4:8/0 = 0
 4:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.935339, -16, -16, 16, -16, 16, -5.935339)
 3:8/0 = 0
@@ -77,7 +74,6 @@ texture_region_size = Vector2i(32, 32)
 10:4/0 = 0
 1:12/0 = 0
 2:13/0 = 0
-3:13/0 = 0
 3:14/0 = 0
 2:14/0 = 0
 1:14/0 = 0
@@ -107,11 +103,8 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jmhvh")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ekgd2"]
-radius = 28.0
-height = 116.0
-
 [node name="room1" type="Node2D" unique_id=2093421483]
+script = ExtResource("1_urwxp")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=920318189]
 position = Vector2(240, 193)
@@ -134,26 +127,20 @@ tile_map_data = PackedByteArray("AADs/w0AAAAEAAEAAADt/w0AAAAEAAEAAADu/w0AAAAEAAE
 tile_set = SubResource("TileSet_8g7fy")
 rendering_quadrant_size = 32
 
-[node name="Room1ToRoom2" type="Area2D" parent="." unique_id=1205590922]
-position = Vector2(-130, 254)
-
-[node name="Sprite2D" type="Sprite2D" parent="Room1ToRoom2" unique_id=172801861]
-position = Vector2(988, 213.99998)
-scale = Vector2(1.3437499, 1.4479165)
-texture = ExtResource("4_ppl8m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room1ToRoom2" unique_id=852041058]
-position = Vector2(989, 212)
-shape = SubResource("CapsuleShape2D_ekgd2")
-
-[node name="Player" parent="." unique_id=1782142987 instance=ExtResource("4_wr7vb")]
-position = Vector2(-270, 449)
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1380065488]
-visible = false
-
 [node name="Door" parent="." unique_id=1954722909 instance=ExtResource("5_k4wow")]
 position = Vector2(234, 444)
-target_scene = ExtResource("6_urwxp")
+target_scene = "uid://6aix8efynile"
+entry_point_id = "Zone2Door"
 
-[connection signal="body_entered" from="Room1ToRoom2" to="Player" method="_on_room_1_to_room_2_body_entered"]
+[node name="Zone1Door" type="Marker2D" parent="Door" unique_id=1204163109]
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1462730406]
+position = Vector2(-230, 455)
+
+[node name="Teleporter" parent="." unique_id=1408589343 instance=ExtResource("6_8dx0c")]
+position = Vector2(866, 470)
+target_scene = "uid://ct6gdo5mip1xb"
+entry_point_id = "PlayerSpawnLeft"
+
+[node name="PlayerSpawnRight" type="Marker2D" parent="Teleporter" unique_id=455455864]
+position = Vector2(-81, -10)

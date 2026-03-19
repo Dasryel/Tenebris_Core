@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://cnuyyroscjqax"]
 
+[ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_57wwm"]
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_hpsup"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_0hadl"]
 [ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="3_il1xb"]
-[ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="4_3tqd1"]
-[ext_resource type="Texture2D" uid="uid://b62wepuad17jb" path="res://asset/sprite/env/portal.png" id="5_0hadl"]
+[ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_kn5en"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]
 texture = ExtResource("2_0hadl")
@@ -103,11 +103,8 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jmhvh")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hpsup"]
-radius = 30.0
-height = 116.0
-
 [node name="room3" type="Node2D" unique_id=2093421483]
+script = ExtResource("1_57wwm")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1807190626]
 position = Vector2(786, -49)
@@ -134,22 +131,10 @@ rendering_quadrant_size = 32
 position = Vector2(1286, 72)
 key_id = "key1"
 
-[node name="Room3ToRoom2" type="Area2D" parent="." unique_id=1001054503]
+[node name="Teleporter" parent="." unique_id=1408589343 instance=ExtResource("5_kn5en")]
+position = Vector2(158, 214)
+target_scene = "uid://ct6gdo5mip1xb"
+entry_point_id = "PlayerSpawnRight"
 
-[node name="Sprite2D" type="Sprite2D" parent="Room3ToRoom2" unique_id=667174403]
-position = Vector2(157.00002, 212)
-rotation = 3.1415927
-scale = Vector2(1.5840324, 1.5176588)
-texture = ExtResource("5_0hadl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room3ToRoom2" unique_id=543438666]
-position = Vector2(158, 216)
-shape = SubResource("CapsuleShape2D_hpsup")
-
-[node name="Player" parent="." unique_id=1782142987 instance=ExtResource("4_3tqd1")]
-position = Vector2(255, 197)
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1380065488]
-visible = false
-
-[connection signal="body_entered" from="Room3ToRoom2" to="Player" method="_on_room_3_to_room_2_body_entered"]
+[node name="PlayerSpawnLeft" type="Marker2D" parent="Teleporter" unique_id=1418885464]
+position = Vector2(85, 0)

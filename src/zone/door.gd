@@ -5,7 +5,7 @@ class_name Door
 @export_group("Navigation")
 
 ## The scene this door leads to
-@export var target_scene: PackedScene
+@export_file("*.tscn") var target_scene: String
 
 ## The name of the Marker2D in the target scene where the player will appear
 @export var entry_point_id: String = "Default"
@@ -39,7 +39,7 @@ func _try_interact() -> void:
 		if GameState.has_key:
 			_unlock()
 		else:
-			SignalBus.display_message.emit("It's locked. I need a key.")
+			SignalBus.thought_bubble.emit("It's locked. I need a key.")
 	else:
 		_teleport()
 
@@ -51,13 +51,13 @@ func _unlock() -> void:
 
 	update_visuals()
 
-	SignalBus.display_message.emit("Unlocked!")
+	SignalBus.thought_bubble.emit("Unlocked!")
 	SignalBus.door_unlocked.emit(door_id)
 
 func _teleport() -> void:
-	if target_scene:
-		GameState.target_entry_point = entry_point_id
-		get_tree().change_scene_to_packed(target_scene)
+	GameState.target_entry_point = entry_point_id
+	set_deferred("monitoring", false)
+	get_tree().call_deferred("change_scene_to_file", target_scene)
 
 func update_visuals() -> void:
 	if visual:

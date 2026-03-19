@@ -29,7 +29,7 @@ func _ready() -> void:
     gravity = 1200.0
 
     GameState.key_pickedup.connect(key_obtained)
-    # GameState.has_key = true
+    GameState.has_key = true
 
     if GameState.spawn_position != Vector2.ZERO:
         global_position = GameState.spawn_position

@@ -1,158 +1,15 @@
 [gd_scene format=4 uid="uid://6aix8efynile"]
 
+[ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_2u3i0"]
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_itcho"]
-[ext_resource type="Texture2D" uid="uid://n3vquuwfurhj" path="res://asset/tileset/32x32.png" id="2_2u3i0"]
-[ext_resource type="Script" uid="uid://x5w4gwnl7gdn" path="res://src/zone/door.gd" id="3_wt2bw"]
-[ext_resource type="Texture2D" uid="uid://cwch7jw5gh5d0" path="res://asset/sprite/env/portal.png" id="4_djhxx"]
-[ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="5_sqhqf"]
+[ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_2u3i0"]
+[ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="6_2u3i0"]
 [ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="6_fghkr"]
+[ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_itcho"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]
 texture = ExtResource("2_2u3i0")
 texture_region_size = Vector2i(32, 32)
-18:4/0 = 0
-19:4/0 = 0
-20:4/0 = 0
-21:4/0 = 0
-22:4/0 = 0
-23:4/0 = 0
-24:4/0 = 0
-25:4/0 = 0
-26:4/0 = 0
-27:4/0 = 0
-18:5/0 = 0
-19:5/0 = 0
-20:5/0 = 0
-21:5/0 = 0
-22:5/0 = 0
-23:5/0 = 0
-24:5/0 = 0
-25:5/0 = 0
-26:5/0 = 0
-27:5/0 = 0
-18:6/0 = 0
-20:6/0 = 0
-21:6/0 = 0
-22:6/0 = 0
-23:6/0 = 0
-24:6/0 = 0
-25:6/0 = 0
-26:6/0 = 0
-27:6/0 = 0
-20:7/0 = 0
-21:7/0 = 0
-22:7/0 = 0
-23:7/0 = 0
-24:7/0 = 0
-25:7/0 = 0
-26:7/0 = 0
-27:7/0 = 0
-20:8/0 = 0
-21:8/0 = 0
-20:9/0 = 0
-21:9/0 = 0
-18:12/0 = 0
-19:12/0 = 0
-18:13/0 = 0
-19:13/0 = 0
-18:14/0 = 0
-2:16/0 = 0
-3:16/0 = 0
-4:16/0 = 0
-5:16/0 = 0
-6:16/0 = 0
-7:16/0 = 0
-8:16/0 = 0
-9:16/0 = 0
-14:16/0 = 0
-15:16/0 = 0
-16:16/0 = 0
-17:16/0 = 0
-18:16/0 = 0
-19:16/0 = 0
-22:16/0 = 0
-23:16/0 = 0
-14:17/0 = 0
-15:17/0 = 0
-16:17/0 = 0
-17:17/0 = 0
-18:17/0 = 0
-19:17/0 = 0
-22:17/0 = 0
-23:17/0 = 0
-8:18/0 = 0
-9:18/0 = 0
-14:18/0 = 0
-15:18/0 = 0
-8:19/0 = 0
-9:19/0 = 0
-14:19/0 = 0
-15:19/0 = 0
-20:19/0 = 0
-21:19/0 = 0
-22:19/0 = 0
-23:19/0 = 0
-26:19/0 = 0
-27:19/0 = 0
-28:19/0 = 0
-29:19/0 = 0
-8:20/0 = 0
-9:20/0 = 0
-12:20/0 = 0
-13:20/0 = 0
-14:20/0 = 0
-15:20/0 = 0
-16:20/0 = 0
-17:20/0 = 0
-20:20/0 = 0
-21:20/0 = 0
-22:20/0 = 0
-23:20/0 = 0
-26:20/0 = 0
-27:20/0 = 0
-28:20/0 = 0
-29:20/0 = 0
-8:21/0 = 0
-9:21/0 = 0
-12:21/0 = 0
-13:21/0 = 0
-14:21/0 = 0
-15:21/0 = 0
-16:21/0 = 0
-17:21/0 = 0
-20:21/0 = 0
-21:21/0 = 0
-22:21/0 = 0
-23:21/0 = 0
-26:21/0 = 0
-27:21/0 = 0
-28:21/0 = 0
-29:21/0 = 0
-8:22/0 = 0
-9:22/0 = 0
-8:23/0 = 0
-9:23/0 = 0
-2:24/0 = 0
-2:25/0 = 0
-3:25/0 = 0
-2:26/0 = 0
-3:26/0 = 0
-4:26/0 = 0
-2:27/0 = 0
-3:27/0 = 0
-4:27/0 = 0
-5:27/0 = 0
-2:28/0 = 0
-3:28/0 = 0
-4:28/0 = 0
-5:28/0 = 0
-6:28/0 = 0
-2:29/0 = 0
-3:29/0 = 0
-4:29/0 = 0
-5:29/0 = 0
-6:29/0 = 0
-7:29/0 = 0
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 3:1/0 = 0
@@ -183,8 +40,6 @@ texture_region_size = Vector2i(32, 32)
 1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.935339, -16, -16, -5.9900074, -16, -6.0915318, 16, -16, 16)
 2:7/0 = 0
 2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.935339, -16, -16, -5.9900074, -16, -6.0915318, 16, -16, 16)
-3:7/0 = 0
-4:7/0 = 0
 4:8/0 = 0
 4:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.935339, -16, -16, 16, -16, 16, -5.935339)
 3:8/0 = 0
@@ -220,7 +75,6 @@ texture_region_size = Vector2i(32, 32)
 10:4/0 = 0
 1:12/0 = 0
 2:13/0 = 0
-3:13/0 = 0
 3:14/0 = 0
 2:14/0 = 0
 1:14/0 = 0
@@ -231,15 +85,8 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jmhvh")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppl8m"]
-radius = 56.0
-height = 112.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ekgd2"]
-radius = 28.0
-height = 116.0
-
 [node name="room1" type="Node2D" unique_id=2093421483]
+script = ExtResource("1_2u3i0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1380065488]
 position = Vector2(368, -48)
@@ -262,44 +109,22 @@ tile_map_data = PackedByteArray("AAD9/wYAAAAEAAEAAAD+/wYAAAAEAAEAAAD//wYAAAAEAAE
 tile_set = SubResource("TileSet_8g7fy")
 rendering_quadrant_size = 32
 
-[node name="DoorToZone1" type="Area2D" parent="." unique_id=634133330]
-position = Vector2(-184, 216)
-script = ExtResource("3_wt2bw")
-door_id = "door2"
-target_door_id = "door1"
-target_scene = "res://scene/rooms/zone1/room1.tscn"
-spawn_on_arrival = Vector2(336, 456)
-zone_name = "First Zone"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorToZone1" unique_id=1239607000]
-position = Vector2(14, 2)
-shape = SubResource("CapsuleShape2D_ppl8m")
-
-[node name="ColorRect" type="ColorRect" parent="DoorToZone1" unique_id=1817294121]
-offset_left = -25.0
-offset_top = -34.0
-offset_right = 52.0
-offset_bottom = 51.0
-color = Color(1, 0, 0, 1)
-
-[node name="Zone1Room1ToRoom2" type="Area2D" parent="." unique_id=1205590922]
-
-[node name="Sprite2D" type="Sprite2D" parent="Zone1Room1ToRoom2" unique_id=172801861]
-position = Vector2(988, 213.99998)
-scale = Vector2(1.3437499, 1.4479165)
-texture = ExtResource("4_djhxx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone1Room1ToRoom2" unique_id=852041058]
-position = Vector2(989, 212)
-shape = SubResource("CapsuleShape2D_ekgd2")
-
-[node name="Player" parent="." unique_id=1782142987 instance=ExtResource("5_sqhqf")]
-position = Vector2(-48, 208)
-
 [node name="Key" parent="." unique_id=1990007751 instance=ExtResource("6_fghkr")]
 position = Vector2(168, 184)
 key_id = "key2"
 
-[connection signal="body_entered" from="DoorToZone1" to="DoorToZone1" method="_on_body_entered"]
-[connection signal="body_exited" from="DoorToZone1" to="DoorToZone1" method="_on_body_exited"]
-[connection signal="body_entered" from="Zone1Room1ToRoom2" to="Player" method="_on_zone_1_room_1_to_room_2_body_entered"]
+[node name="Teleporter" parent="." unique_id=1408589343 instance=ExtResource("6_itcho")]
+position = Vector2(993, 213)
+target_scene = "uid://bpg0iubrtytb6"
+entry_point_id = "PlayerSpawnLeft"
+
+[node name="PlayerSpawnRight" type="Marker2D" parent="Teleporter" unique_id=1921063226]
+position = Vector2(-79, 0)
+
+[node name="Zone2Door" type="Marker2D" parent="." unique_id=706296271]
+position = Vector2(-172, 221)
+
+[node name="Door" parent="." unique_id=1954722909 instance=ExtResource("6_2u3i0")]
+position = Vector2(-172, 223)
+target_scene = "uid://cj6p1dt6sh3j1"
+entry_point_id = "Zone1Door"

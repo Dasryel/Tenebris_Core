@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://ct6gdo5mip1xb"]
 
+[ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_8yn2c"]
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_mqbte"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_kust7"]
-[ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="4_2t372"]
-[ext_resource type="Texture2D" uid="uid://b62wepuad17jb" path="res://asset/sprite/env/portal.png" id="4_kust7"]
+[ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_qtme0"]
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_6oxmt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sixoa"]
@@ -39,8 +39,6 @@ texture_region_size = Vector2i(32, 32)
 1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.935339, -16, -16, -5.9900074, -16, -6.0915318, 16, -16, 16)
 2:7/0 = 0
 2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.935339, -16, -16, -5.9900074, -16, -6.0915318, 16, -16, 16)
-3:7/0 = 0
-4:7/0 = 0
 4:8/0 = 0
 4:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.935339, -16, -16, 16, -16, 16, -5.935339)
 3:8/0 = 0
@@ -76,7 +74,6 @@ texture_region_size = Vector2i(32, 32)
 10:4/0 = 0
 1:12/0 = 0
 2:13/0 = 0
-3:13/0 = 0
 3:14/0 = 0
 2:14/0 = 0
 1:14/0 = 0
@@ -135,18 +132,11 @@ _data = {
 &"new_animation": SubResource("Animation_kust7")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lvpjo"]
-radius = 33.0
-height = 110.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mqbte"]
-radius = 26.0
-height = 110.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqbte"]
 size = Vector2(439, 18)
 
 [node name="room2" type="Node2D" unique_id=2093421483]
+script = ExtResource("1_8yn2c")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1163786355]
 position = Vector2(782, -51)
@@ -180,36 +170,6 @@ rendering_quadrant_size = 32
 libraries/ = SubResource("AnimationLibrary_6oxmt")
 autoplay = &"new_animation"
 
-[node name="Room2ToRoom1" type="Area2D" parent="." unique_id=1675198936]
-
-[node name="Sprite2D" type="Sprite2D" parent="Room2ToRoom1" unique_id=706389482]
-position = Vector2(163.00002, 212)
-rotation = 3.1415927
-scale = Vector2(1.5840324, 1.5176588)
-texture = ExtResource("4_kust7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2ToRoom1" unique_id=81410233]
-position = Vector2(162, 214)
-shape = SubResource("CapsuleShape2D_lvpjo")
-
-[node name="Room2ToRoom3" type="Area2D" parent="." unique_id=1712046044]
-position = Vector2(410, 2)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Room2ToRoom3" unique_id=355804427]
-position = Vector2(989, 218)
-scale = Vector2(1.3437499, 1.4479165)
-texture = ExtResource("4_kust7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2ToRoom3" unique_id=993903706]
-position = Vector2(990, 216)
-shape = SubResource("CapsuleShape2D_mqbte")
-
-[node name="Player" parent="." unique_id=1782142987 instance=ExtResource("4_2t372")]
-position = Vector2(254, 197)
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1380065488]
-visible = false
-
 [node name="Lava" parent="." unique_id=1994014500 instance=ExtResource("6_6oxmt")]
 position = Vector2(833, 247)
 scale = Vector2(0.4, 0.4)
@@ -228,8 +188,18 @@ shape = SubResource("RectangleShape2D_mqbte")
 wait_time = 2.0
 autostart = true
 
-[connection signal="body_entered" from="Room2ToRoom1" to="Player" method="_on_room_2_to_room_1_body_entered"]
-[connection signal="body_entered" from="Room2ToRoom3" to="Player" method="_on_room_2_to_room_3_body_entered"]
-[connection signal="body_entered" from="lava" to="Player" method="_on_lava_body_entered"]
-[connection signal="body_exited" from="lava" to="Player" method="_on_lava_body_exited"]
-[connection signal="timeout" from="lava/Timer" to="Player" method="_on_timer_timeout"]
+[node name="Teleporter" parent="." unique_id=1408589343 instance=ExtResource("5_qtme0")]
+position = Vector2(159, 213)
+target_scene = "uid://cj6p1dt6sh3j1"
+entry_point_id = "PlayerSpawnRight"
+
+[node name="PlayerSpawnLeft" type="Marker2D" parent="Teleporter" unique_id=1694399190]
+position = Vector2(68, 4)
+
+[node name="Teleporter2" parent="." unique_id=2022557818 instance=ExtResource("5_qtme0")]
+position = Vector2(1410, 213)
+target_scene = "uid://cnuyyroscjqax"
+entry_point_id = "PlayerSpawnLeft"
+
+[node name="PlayerSpawnRight" type="Marker2D" parent="Teleporter2" unique_id=1521422092]
+position = Vector2(-78, 0)
