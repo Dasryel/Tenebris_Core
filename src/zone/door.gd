@@ -69,7 +69,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		is_player_near = true
 
-		var msg = "Press E to enter" if not is_locked else "Press E to enter"
+		var msg = "Press E to enter" if not is_locked else "Press E to unlock"
 		SignalBus.thought_bubble_show.emit(msg)
 
 func _on_body_exited(body: Node2D) -> void:
