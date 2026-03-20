@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cj6p1dt6sh3j1"]
 
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_ppl8m"]
-[ext_resource type="Script" path="res://src/zone/base_room.gd" id="1_urwxp"]
+[ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_urwxp"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_yptcl"]
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="5_k4wow"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_8dx0c"]
@@ -130,7 +130,8 @@ rendering_quadrant_size = 32
 [node name="Door" parent="." unique_id=1954722909 instance=ExtResource("5_k4wow")]
 position = Vector2(234, 444)
 target_scene = "uid://6aix8efynile"
-entry_point_id = "Zone2Door"
+zone_name = "Second Zone"
+target_door_id = "Door"
 
 [node name="Zone1Door" type="Marker2D" parent="Door" unique_id=1204163109]
 

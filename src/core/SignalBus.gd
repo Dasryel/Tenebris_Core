@@ -1,7 +1,10 @@
 extends Node
 
 @warning_ignore("unused_signal")
-signal thought_bubble(text: String)
+signal thought_bubble_show(text: String)
+
+@warning_ignore("unused_signal")
+signal thought_bubble_hide()
 
 @warning_ignore("unused_signal")
 signal player_sprite_anim_finished()

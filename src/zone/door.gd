@@ -3,12 +3,11 @@ extends Area2D
 class_name Door
 
 @export_group("Navigation")
-
 ## The scene this door leads to
 @export_file("*.tscn") var target_scene: String
+@export var zone_name: String = ""
 
-## The name of the Marker2D in the target scene where the player will appear
-@export var entry_point_id: String = "Default"
+@export var target_door_id: String = "Default"
 
 @export_group("State")
 ## Unique ID to remember if THIS specific door was unlocked
@@ -22,6 +21,10 @@ class_name Door
 @onready var visual: ColorRect = $DoorVisual
 
 var is_player_near: bool = false
+
+func update_visuals() -> void:
+	if visual:
+		visual.color = open_color if not is_locked else locked_color
 
 func _ready() -> void:
 	# If we previously unlocked this door, update the state
@@ -39,7 +42,7 @@ func _try_interact() -> void:
 		if GameState.has_key:
 			_unlock()
 		else:
-			SignalBus.thought_bubble.emit("It's locked. I need a key.")
+			SignalBus.thought_bubble_show.emit("This door is locked...")
 	else:
 		_teleport()
 
@@ -51,26 +54,24 @@ func _unlock() -> void:
 
 	update_visuals()
 
-	SignalBus.thought_bubble.emit("Unlocked!")
+	SignalBus.thought_bubble_show.emit("Unlocked!")
 	SignalBus.door_unlocked.emit(door_id)
 
 func _teleport() -> void:
-	GameState.target_entry_point = entry_point_id
+	GameState.target_entry_point = target_door_id
+	GameState.zone_text = zone_name
 	set_deferred("monitoring", false)
 	get_tree().call_deferred("change_scene_to_file", target_scene)
 
-func update_visuals() -> void:
-	if visual:
-		visual.color = open_color if not is_locked else locked_color
 
 func _on_body_entered(body: Node2D) -> void:
 	# Assumes your player has 'class_name Player'
 	if body is Player:
 		is_player_near = true
 
-		if not GameState.has_key:
-			SignalBus.thought_bubble.emit("Door is locked. I should be looking for a key...")
-			return
-
 		var msg = "Press E to enter" if not is_locked else "Press E to enter"
-		SignalBus.thought_bubble.emit(msg)
+		SignalBus.thought_bubble_show.emit(msg)
+
+func _on_body_exited(body: Node2D) -> void:
+	if body is Player:
+		SignalBus.thought_bubble_hide.emit()

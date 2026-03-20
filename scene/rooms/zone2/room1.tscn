@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://6aix8efynile"]
 
-[ext_resource type="Script" path="res://src/zone/base_room.gd" id="1_2u3i0"]
+[ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_2u3i0"]
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_itcho"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_2u3i0"]
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="6_2u3i0"]
@@ -123,4 +123,5 @@ position = Vector2(-172, 221)
 [node name="Door" parent="." unique_id=1954722909 instance=ExtResource("6_2u3i0")]
 position = Vector2(-172, 223)
 target_scene = "uid://cj6p1dt6sh3j1"
-entry_point_id = "Zone1Door"
+zone_name = "First Zone"
+target_door_id = "Door"
