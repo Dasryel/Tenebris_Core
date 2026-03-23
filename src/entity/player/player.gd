@@ -23,11 +23,6 @@ func _ready() -> void:
     # Calls the _ready function of the parent 'Entity' class
     super ()
 
-    # stats
-    speed = 300.0
-    jump_velocity = -420.0
-    gravity = 1200.0
-
     GameState.key_pickedup.connect(key_obtained)
     # GameState.has_key = true
 

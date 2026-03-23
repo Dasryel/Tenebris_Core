@@ -27,7 +27,7 @@ func update_visuals() -> void:
 		visual.color = open_color if not is_locked else locked_color
 
 func _ready() -> void:
-	# If we previously unlocked this door, update the state
+	# If we previously unlocked this door from the other end
 	if GameState.is_door_unlocked(door_id):
 		is_locked = false
 
@@ -65,7 +65,6 @@ func _teleport() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	# Assumes your player has 'class_name Player'
 	if body is Player:
 		is_player_near = true
 

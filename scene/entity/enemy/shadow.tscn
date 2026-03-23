@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://5345vfwp0bka"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bae6v"]
+
+[node name="Shadow" type="Area2D" unique_id=205654238]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1959473466]
+shape = SubResource("CapsuleShape2D_bae6v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=93121721]

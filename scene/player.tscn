@@ -237,6 +237,9 @@ script = ExtResource("1_hjaqi")
 loco_state_label = NodePath("LocoStateLabel")
 combat_state_label = NodePath("CombatStateLabel")
 thought_bubble = NodePath("ThoughtBubble/Label")
+speed = 400.0
+jump_velocity = -600.0
+gravity = 1400.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1052000125]
 position = Vector2(0, -50.000008)
@@ -271,7 +274,6 @@ offset_bottom = -106.66666
 scale = Vector2(2, 2)
 theme_override_styles/panel = SubResource("StyleBoxFlat_fvtld")
 script = ExtResource("3_fvtld")
-bubble_timer = 2.0
 thought_bubble_text = NodePath("Label")
 
 [node name="Label" type="Label" parent="ThoughtBubble" unique_id=62861165]
