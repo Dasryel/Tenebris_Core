@@ -244,7 +244,7 @@ height = 86.531815
 radius = 44.3898
 height = 100.55156
 
-[node name="Shadow" type="CharacterBody2D" unique_id=1692544944 node_paths=PackedStringArray("state_label", "rotator", "ray_front", "ray_left", "ray_right", "attack_hitbox")]
+[node name="Shadow" type="CharacterBody2D" unique_id=1692544944 node_paths=PackedStringArray("state_label", "rotator", "ray_front", "ray_left", "ray_right", "attack_hitbox", "attack_hitbox_collision")]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_tavkd")
@@ -254,6 +254,7 @@ ray_front = NodePath("Rotator/RayFront")
 ray_left = NodePath("Rotator/RayLeft")
 ray_right = NodePath("Rotator/RayRight")
 attack_hitbox = NodePath("AttackHitbox")
+attack_hitbox_collision = NodePath("AttackHitbox/CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1959473466]
 shape = SubResource("CapsuleShape2D_wg68a")
@@ -298,3 +299,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=399001480]
 shape = SubResource("CapsuleShape2D_a4c51")
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]

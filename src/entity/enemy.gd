@@ -25,6 +25,7 @@ var recovery_timer: float = 0.0
 @export var ray_left: RayCast2D
 @export var ray_right: RayCast2D
 
+@export_group("Attack Hitbox")
 @export var attack_hitbox: Area2D
 @export var attack_hitbox_offset: float = 80.0
 @export var attack_hitbox_collision: CollisionShape2D
@@ -34,6 +35,7 @@ const ATTACK_DATA: Dictionary = {
 		"active_frames": [6],
 		"damage": 1,
 		"knockback_force": 200.0,
+		"target_group": "player_hurtbox",
 	},
 }
 
@@ -63,7 +65,7 @@ func take_damage(amount: int, knockback_dir: Vector2) -> void:
 	hit_points -= amount
 
 	if hit_points <= 0:
-		print("dies")
+		print("enemy dies")
 		_on_entity_death()
 		return
 
@@ -72,14 +74,3 @@ func take_damage(amount: int, knockback_dir: Vector2) -> void:
 	velocity = Vector2(dir_x * 50.0, -100.0)
 
 	sm.notify(self , StateEvent.ENEMY_DAMAGED)
-
-func _on_attack_hitbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("player_hurtbox"):
-		var victim = area.get_parent()
-		if victim.has_method("take_damage"):
-			var knockback_dir = get_knockback_direction(
-				self.global_position,
-				victim.global_position
-				)
-
-			victim.take_damage(1, knockback_dir)

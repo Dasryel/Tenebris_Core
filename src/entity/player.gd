@@ -26,11 +26,13 @@ const ATTACK_DATA: Dictionary = {
 		"active_frames": [4],
 		"damage": 1,
 		"knockback_force": 200.0,
+		"target_group": "enemy_hurtbox",
 	},
 	"slash2": {
 		"active_frames": [1],
 		"damage": 2,
 		"knockback_force": 350.0,
+		"target_group": "enemy_hurtbox",
 	},
 }
 
@@ -120,26 +122,16 @@ func key_obtained() -> void:
 	print("player has key: ", GameState.has_key)
 
 
-func _on_animated_sprite_2d_frame_changed() -> void:
-	var anim = sprite.animation
-	var frame = sprite.frame
-	var is_active_frame = false
+func take_damage(amount: int, knockback_dir: Vector2) -> void:
+	hit_points -= amount
 
-	if anim == "slash1":
-		is_active_frame = (frame == 4)
-	elif anim == "slash2":
-		is_active_frame = (frame == 1)
+	SignalBus.player_hp_changed.emit(hit_points)
 
-	attack_hitbox_collision.set_deferred("disabled", !is_active_frame)
+	if hit_points <= 0:
+		print("player dies")
+		_on_entity_death()
+		return
 
-
-func _on_attack_hitbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy_hurtbox"):
-		var victim = area.get_parent()
-		if victim.has_method("take_damage"):
-			var knockback_dir = get_knockback_direction(
-				self.global_position,
-				victim.global_position
-				)
-
-			victim.take_damage(1, knockback_dir)
+	# Set knockback — RecoveryState will drain this
+	var dir_x = sign(global_position.x - knockback_dir.x)
+	velocity = Vector2(dir_x * 50.0, -100.0)

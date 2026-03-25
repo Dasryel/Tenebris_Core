@@ -88,9 +88,27 @@ func _on_animated_sprite_2d_frame_changed() -> void:
     var active_frames: Array = data.get("active_frames", [])
     var is_active_frame = sprite.frame in active_frames
     var coll = get_attack_hitbox_collision()
+
     coll.set_deferred("disabled", !is_active_frame)
 
 
 # Override this in subclasses to emit different signals
 func _on_damage_taken(_current_hp: int) -> void:
     pass
+
+
+func _on_attack_hitbox_area_entered(area: Area2D) -> void:
+    # defines dmg, attack, target group etc based on sprite anim name
+    var data: Dictionary = get_attack_data().get(sprite.animation, {})
+
+    var target_group: String = data.get("target_group", "enemy_hurtbox")
+    if not area.is_in_group(target_group):
+        return
+
+    var victim = area.get_parent()
+    if not victim.has_method("take_damage"):
+        return
+
+    var damage: int = data.get("damage", 1)
+    var knockback_dir = get_knockback_direction(self.global_position, victim.global_position)
+    victim.take_damage(damage, knockback_dir * knockback_force)
