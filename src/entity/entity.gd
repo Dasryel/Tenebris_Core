@@ -25,41 +25,41 @@ var _state_machines: Dictionary[StringName, StateMachine] = {}
 
 ## Returns the [StateMachine] registered under [param layer].
 func get_state_machine(layer: StringName) -> StateMachine:
-    if not _state_machines.has(layer):
-        push_error(
+	if not _state_machines.has(layer):
+		push_error(
             "State machine layer '%s' not found. Available layers: %s"
-            % [layer, str(_state_machines.keys())]
-        )
-        return null
-    return _state_machines[layer]
+			% [layer, str(_state_machines.keys())]
+		)
+		return null
+	return _state_machines[layer]
 
 
 ## Registers a new state-machine layer with the given default state.
 func _add_state_machine(layer: StringName, default_state: BaseState) -> StateMachine:
-    if _state_machines.has(layer):
-        push_error("State machine layer '%s' is already registered." % layer)
+	if _state_machines.has(layer):
+		push_error("State machine layer '%s' is already registered." % layer)
 
-    var sm := StateMachine.new(default_state)
-    _state_machines[layer] = sm
-    return sm
+	var sm := StateMachine.new(default_state)
+	_state_machines[layer] = sm
+	return sm
 
 
 func _process(delta: float) -> void:
-    for sm in _state_machines.values():
-        sm.update(self , delta)
+	for sm in _state_machines.values():
+		sm.update(self , delta)
 
 func die():
-    GameState.player_died.emit()
+	GameState.player_died.emit()
 
 func reset_jump_count() -> void:
-    is_recovery_jump = false
-    jump_count = 0
+	is_recovery_jump = false
+	jump_count = 0
 # end is_in_combat
 
 
 func heal(amount: int) -> void:
-    if hit_points < max_hit_points:
-        if hit_points + amount >= max_hit_points:
-            hit_points = max_hit_points
-        else:
-            hit_points += amount
+	if hit_points < max_hit_points:
+		if hit_points + amount >= max_hit_points:
+			hit_points = max_hit_points
+		else:
+			hit_points += amount

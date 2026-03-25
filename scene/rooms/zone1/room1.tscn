@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_yptcl"]
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="5_k4wow"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_8dx0c"]
+[ext_resource type="PackedScene" uid="uid://x643sqeumy44" path="res://scene/item/doublejump_pickup.tscn" id="6_urwxp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]
 texture = ExtResource("2_yptcl")
@@ -141,3 +142,6 @@ target_scene = "uid://ct6gdo5mip1xb"
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1429242992]
 position = Vector2(-256, 448)
+
+[node name="DoublejumpPickup" parent="." unique_id=1907636125 instance=ExtResource("6_urwxp")]
+position = Vector2(536, 416)

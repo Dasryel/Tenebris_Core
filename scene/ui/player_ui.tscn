@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://usyrsnyawk0q" path="res://asset/sprite/item/key.png" id="1_hpojl"]
 [ext_resource type="Script" uid="uid://c1plvn7a3anby" path="res://src/ui/player_ui.gd" id="1_lpg6e"]
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="3_6n5fa"]
+[ext_resource type="Texture2D" uid="uid://kjrf4jo6by8d" path="res://asset/sprite/item/dj_pickup.png" id="3_wbjh4"]
 [ext_resource type="Texture2D" uid="uid://dicvenlxm7asa" path="res://asset/sprite/player/hp.png" id="4_u2m4h"]
 [ext_resource type="PackedScene" uid="uid://dcyjh6itrnvd8" path="res://scene/ui/death_menu.tscn" id="5_rsqfm"]
 
@@ -17,12 +18,26 @@ script = ExtResource("1_lpg6e")
 
 [node name="KeyIcon" type="TextureRect" parent="." unique_id=1784554145]
 visible = false
-layout_mode = 1
-offset_right = 56.0
-offset_bottom = 49.0
+layout_mode = 0
+offset_left = 15.0
+offset_top = 6.0
+offset_right = 89.0
+offset_bottom = 73.0
+size_flags_horizontal = 3
 texture = ExtResource("1_hpojl")
+expand_mode = 2
 
-[node name="KeyLabel" type="Label" parent="." unique_id=89551727]
+[node name="DjIcon" type="TextureRect" parent="." unique_id=73565375]
+visible = false
+layout_mode = 0
+offset_left = 98.0
+offset_top = 11.0
+offset_right = 157.0
+offset_bottom = 70.0
+texture = ExtResource("3_wbjh4")
+expand_mode = 2
+
+[node name="TextLabel" type="Label" parent="." unique_id=89551727]
 visible = false
 layout_mode = 1
 anchors_preset = 8

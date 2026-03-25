@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bpg0iubrtytb6"]
 
-[ext_resource type="Script" path="res://src/zone/base_room.gd" id="1_8ikxe"]
+[ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_8ikxe"]
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_ev0n7"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_8ikxe"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_ev0n7"]

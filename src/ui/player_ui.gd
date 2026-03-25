@@ -6,11 +6,15 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameState.key_pickedup.connect(show_key)
+	GameState.dj_pickedup.connect(show_dj)
 	GameState.door_unlocked.connect(hide_key)
 	SignalBus.player_hp_changed.connect(_on_player_hp_changed)
 
 	if GameState.has_key:
 		$KeyIcon.visible = true
+		
+	if GameState.has_dj:
+		$DjIcon.visible = true
 
 	if GameState.zone_text != "":
 		show_zone_text(GameState.zone_text)
@@ -40,12 +44,25 @@ func _process(_delta: float) -> void:
 
 func show_key():
 	$KeyIcon.visible = true
-	$KeyLabel.visible = true
-	await get_tree().create_timer(2.0).timeout
-	$KeyLabel.visible = false
+	show_text("You picked up key!")
 
 func hide_key():
 	$KeyIcon.visible = false
+	
+func show_dj():
+	$DjIcon.visible = true
+	show_text("You can now double jump!")
+	GameState.has_dj = true
+
+func hide_dj():
+	$DjIcon.visible = false
+	
+func show_text(text: String):
+	$TextLabel.visible = true
+	$TextLabel.text = text
+	await get_tree().create_timer(2.0).timeout
+	$TextLabel.visible = false
+
 
 func _on_player_hp_changed(current_hp: int) -> void:
 	for i in range(hearts.size()):
