@@ -1,5 +1,5 @@
 class_name PlayerFallingState
-extends BaseState
+extends PlayerBaseState
 
 const AIR_CONTROL_MULTIPLIER: float = 0.2
 

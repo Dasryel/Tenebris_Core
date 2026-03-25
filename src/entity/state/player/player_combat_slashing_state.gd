@@ -1,5 +1,5 @@
 class_name PlayerCombatSlashingState
-extends BaseState
+extends PlayerBaseState
 
 
 func _on_anim_finished(entity: Entity) -> void:

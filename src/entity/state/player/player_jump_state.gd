@@ -1,5 +1,5 @@
 class_name PlayerJumpState
-extends BaseState
+extends PlayerBaseState
 
 
 func enter(entity: Entity) -> void:

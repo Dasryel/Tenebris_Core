@@ -11,3 +11,6 @@ signal player_sprite_anim_finished()
 
 @warning_ignore("unused_signal")
 signal door_unlocked(door_id: String)
+
+@warning_ignore("unused_signal")
+signal player_hp_changed(new_hit_points: int)

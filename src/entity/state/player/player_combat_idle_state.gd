@@ -1,5 +1,5 @@
 class_name PlayerCombatIdleState
-extends BaseState
+extends PlayerBaseState
 
 # A ridiculous hack to make gdscript PARSE THIS FILE
 const CombatSlashing = preload("res://src/entity/state/player/player_combat_slashing_state.gd")

@@ -3,14 +3,17 @@
 class_name Entity
 extends CharacterBody2D
 
-const LOCOMOTION_LAYER: StringName = &"Locomotion"
-const COMBAT_LAYER: StringName = &"Combat"
-
+@export_group("Movement")
 @export var speed: float = 300.0
 @export var jump_velocity: float = -420.0
 @export var recovery_jump_velocity: float = -250.0
 @export var gravity: float = 1200.0
+@export var knockback_force: float = -600
+
+@export_group("Stats")
 @export var max_jumps: int = 2
+@export var hit_points: int = 3
+@export var max_hit_points: int = 3
 
 ## Wire this up in the inspector or fetch it in _ready() of a subclass.
 @export var animation_player: AnimationPlayer
@@ -45,27 +48,18 @@ func _process(delta: float) -> void:
     for sm in _state_machines.values():
         sm.update(self , delta)
 
-
-func is_in_combat() -> bool:
-    var sm = get_state_machine(COMBAT_LAYER)
-    var current_state = sm.current_state
-
-    if current_state is PlayerCombatSlashingState:
-        return true
-
-    return false
-
-func is_loco_idling() -> bool:
-    var sm = get_state_machine(LOCOMOTION_LAYER)
-    var current_state = sm.current_state
-
-    if current_state is PlayerIdleState:
-        return true
-
-    return false
+func die():
+    GameState.player_died.emit()
 
 func reset_jump_count() -> void:
     is_recovery_jump = false
     jump_count = 0
-
 # end is_in_combat
+
+
+func heal(amount: int) -> void:
+    if hit_points < max_hit_points:
+        if hit_points + amount >= max_hit_points:
+            hit_points = max_hit_points
+        else:
+            hit_points += amount
