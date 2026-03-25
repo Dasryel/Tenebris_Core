@@ -5,6 +5,9 @@ extends Entity
 @export var loco_state_label: Label
 @export var combat_state_label: Label
 
+@export var attack_hitbox: Area2D
+@export var attack_hitbox_offset: float = 80.0
+
 # visible player tooltip/info bubble
 @export var thought_bubble: Label
 
@@ -27,12 +30,11 @@ func _ready() -> void:
         global_position = GameState.spawn_position
         GameState.spawn_position = Vector2.ZERO
 
-    _add_state_machine(LOCOMOTION_LAYER, StateCache.get_state(PlayerFallingState))
-
     # Add the upper-body combat layer alongside the inherited locomotion layer.
     # We assume 'CombatLayer', 'StateCache', and 'CombatIdleState' are
     # accessible (e.g., as constants, members, or Autoloads).
     _add_state_machine(COMBAT_LAYER, StateCache.get_state(PlayerCombatIdleState))
+    _add_state_machine(LOCOMOTION_LAYER, StateCache.get_state(PlayerFallingState))
 
     $AnimatedSprite2D.animation_finished.connect(_on_player_sprite_finished)
 # end _ready
@@ -84,16 +86,6 @@ func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("damage"):
         take_damage(1, Vector2(0, 0))
 # end _unhandled_input
-
-
-func update_animation(direction: float) -> void:
-    sprite = $AnimatedSprite2D
-
-    if direction != 0:
-        sprite.play("run")
-        sprite.flip_h = direction < 0
-    else:
-        sprite.play("idle")
 
 
 func key_obtained() -> void:

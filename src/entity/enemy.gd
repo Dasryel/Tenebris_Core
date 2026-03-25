@@ -28,6 +28,9 @@ var is_flashing := false
 @export var ray_left: RayCast2D
 @export var ray_right: RayCast2D
 
+@export var attack_hitbox: Area2D
+@export var attack_hitbox_offset: float = 80.0
+
 func _init():
 	hit_points = 2
 
