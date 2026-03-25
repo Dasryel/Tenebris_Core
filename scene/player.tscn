@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d2k1dl6nsykj3"]
 
-[ext_resource type="Script" uid="uid://cv1etr30blrkj" path="res://src/entity/player/player.gd" id="1_hjaqi"]
+[ext_resource type="Script" uid="uid://c6s6r6btrxo0x" path="res://src/entity/player.gd" id="1_hp4bs"]
 [ext_resource type="Texture2D" uid="uid://hq2kiryt7uxf" path="res://asset/sprite/player/L_idle-Sheet.png" id="2_hp4bs"]
 [ext_resource type="Script" uid="uid://dond5xhb46tss" path="res://src/ui/thought_bubble.gd" id="3_fvtld"]
 [ext_resource type="Texture2D" uid="uid://dajdq2wy53mqj" path="res://asset/sprite/player/R_running-sword-v2-Sheet.png" id="3_g2vtq"]
@@ -233,7 +233,7 @@ corner_detail = 15
 [node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "combat_state_label", "thought_bubble")]
 z_index = 1
 scale = Vector2(0.6, 0.6)
-script = ExtResource("1_hjaqi")
+script = ExtResource("1_hp4bs")
 loco_state_label = NodePath("LocoStateLabel")
 combat_state_label = NodePath("CombatStateLabel")
 thought_bubble = NodePath("ThoughtBubble/Label")

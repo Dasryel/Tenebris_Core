@@ -1,5 +1,4 @@
-## FIXME: Does not properly transition to FallingState when in the air.
-class_name MoveState
+class_name PlayerMoveState
 extends BaseState
 
 
@@ -13,11 +12,11 @@ func update(entity: Entity, delta: float) -> void:
 		return
 
 	if not entity.is_on_floor():
-		_go_to_loco(entity, FallingState)
+		_go_to_loco(entity, PlayerFallingState)
 		return
 
 	if Input.is_action_just_pressed(GameInput.JUMP):
-		_go_to_loco(entity, JumpState)
+		_go_to_loco(entity, PlayerJumpState)
 		return
 
 	var h_dir := Input.get_axis(GameInput.MOVE_LEFT, GameInput.MOVE_RIGHT)
@@ -29,7 +28,7 @@ func update(entity: Entity, delta: float) -> void:
 		entity.sprite.flip_h = true
 
 	if is_zero_approx(h_dir):
-		_go_to_loco(entity, IdleState)
+		_go_to_loco(entity, PlayerIdleState)
 		return
 
 	var velocity := entity.velocity

@@ -19,9 +19,6 @@ var is_recovery_jump: bool = false
 var jump_count: int = 0
 var _state_machines: Dictionary[StringName, StateMachine] = {}
 
-func _ready() -> void:
-    _add_state_machine(LOCOMOTION_LAYER, StateCache.get_state(FallingState))
-
 
 ## Returns the [StateMachine] registered under [param layer].
 func get_state_machine(layer: StringName) -> StateMachine:
@@ -53,7 +50,7 @@ func is_in_combat() -> bool:
     var sm = get_state_machine(COMBAT_LAYER)
     var current_state = sm.current_state
 
-    if current_state is CombatSlashingState:
+    if current_state is PlayerCombatSlashingState:
         return true
 
     return false
@@ -62,7 +59,7 @@ func is_loco_idling() -> bool:
     var sm = get_state_machine(LOCOMOTION_LAYER)
     var current_state = sm.current_state
 
-    if current_state is IdleState:
+    if current_state is PlayerIdleState:
         return true
 
     return false

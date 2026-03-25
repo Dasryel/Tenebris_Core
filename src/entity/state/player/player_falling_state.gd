@@ -1,4 +1,4 @@
-class_name FallingState
+class_name PlayerFallingState
 extends BaseState
 
 const AIR_CONTROL_MULTIPLIER: float = 0.2
@@ -38,7 +38,7 @@ func update(entity: Entity, delta: float) -> void:
 
     if entity.is_on_floor():
         entity.reset_jump_count()
-        _go_to_loco(entity, IdleState)
+        _go_to_loco(entity, PlayerIdleState)
         return
 
 
@@ -49,4 +49,4 @@ func _perform_recovery_jump(entity: Entity) -> void:
     entity.is_recovery_jump = true
     entity.jump_count += 1
     entity.velocity.y = entity.recovery_jump_velocity
-    _go_to_loco(entity, JumpState)
+    _go_to_loco(entity, PlayerJumpState)

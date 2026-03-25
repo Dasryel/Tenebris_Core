@@ -31,7 +31,7 @@ project/assembly_name="VIM.MT.310"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/codeandweb.texturepacker/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

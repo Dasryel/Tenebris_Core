@@ -1,9 +1,9 @@
-class_name CombatSlashingState
+class_name PlayerCombatSlashingState
 extends BaseState
 
 
 func _on_anim_finished(entity: Entity) -> void:
-	_go_to_combat(entity, CombatIdleState)
+	_go_to_combat(entity, PlayerCombatIdleState)
 
 func enter(entity: Entity) -> void:
 	entity.play_anim("slash1")
@@ -15,7 +15,7 @@ func enter(entity: Entity) -> void:
 func update(entity: Entity, _delta: float) -> void:
 	# Cancel attack on movement
 	if not entity.is_loco_idling():
-		_go_to_combat(entity, CombatIdleState)
+		_go_to_combat(entity, PlayerCombatIdleState)
 		return
 
 

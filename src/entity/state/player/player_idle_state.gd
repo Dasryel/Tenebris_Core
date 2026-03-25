@@ -1,10 +1,10 @@
-class_name IdleState
+class_name PlayerIdleState
 extends BaseState
 
 
 func enter(entity: Entity) -> void:
 	if not entity.is_on_floor():
-		_go_to_loco(entity, FallingState)
+		_go_to_loco(entity, PlayerFallingState)
 		return
 
 	entity.play_anim("idle")
@@ -12,7 +12,7 @@ func enter(entity: Entity) -> void:
 
 func update(entity: Entity, _delta: float) -> void:
 	if Input.is_action_just_pressed(GameInput.JUMP):
-		_go_to_loco(entity, JumpState)
+		_go_to_loco(entity, PlayerJumpState)
 		return
 
 	var direction := Input.get_vector(
@@ -23,7 +23,7 @@ func update(entity: Entity, _delta: float) -> void:
 	)
 
 	if direction != Vector2.ZERO:
-		_go_to_loco(entity, MoveState)
+		_go_to_loco(entity, PlayerMoveState)
 		return
 
 

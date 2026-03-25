@@ -1,4 +1,4 @@
-class_name JumpState
+class_name PlayerJumpState
 extends BaseState
 
 
@@ -25,13 +25,13 @@ func update(entity: Entity, delta: float) -> void:
 
     # Apex reached → hand off to FallingState
     if entity.velocity.y > 0.0:
-        _go_to_loco(entity, FallingState)
+        _go_to_loco(entity, PlayerFallingState)
         return
 
     # Safety: landed during ascent (e.g. hit ceiling then immediately floor)
     if entity.is_on_floor():
         entity.reset_jump_count()
-        _go_to_loco(entity, IdleState)
+        _go_to_loco(entity, PlayerIdleState)
         return
 
 
