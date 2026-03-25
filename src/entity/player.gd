@@ -8,9 +8,6 @@ extends Entity
 # visible player tooltip/info bubble
 @export var thought_bubble: Label
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-
-var last_direction: Vector2 = Vector2.LEFT
 
 const LOCOMOTION_LAYER: StringName = &"Locomotion"
 const COMBAT_LAYER: StringName = &"Combat"
@@ -18,11 +15,11 @@ const COMBAT_LAYER: StringName = &"Combat"
 # A ridiculous hack to make gdscript PARSE THIS FILE
 const CombatIdle = preload("res://src/entity/state/player/player_combat_idle_state.gd")
 
-func play_anim(anim: String):
-    sprite.flip_h = last_direction.x > 0
-    sprite.play(anim)
+static var instance: Player
 
 func _ready() -> void:
+    instance = self
+    last_direction = Vector2.LEFT
     GameState.key_pickedup.connect(key_obtained)
     # GameState.has_key = true
 
@@ -38,7 +35,7 @@ func _ready() -> void:
     _add_state_machine(COMBAT_LAYER, StateCache.get_state(PlayerCombatIdleState))
 
     $AnimatedSprite2D.animation_finished.connect(_on_player_sprite_finished)
-# end ready _ready
+# end _ready
 
 
 func is_in_combat() -> bool:

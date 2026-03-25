@@ -16,8 +16,9 @@ extends CharacterBody2D
 @export var max_hit_points: int = 3
 
 ## Wire this up in the inspector or fetch it in _ready() of a subclass.
-@export var animation_player: AnimationPlayer
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+var last_direction: Vector2 = Vector2.LEFT
 var is_recovery_jump: bool = false
 var jump_count: int = 0
 var _state_machines: Dictionary[StringName, StateMachine] = {}
@@ -56,6 +57,9 @@ func reset_jump_count() -> void:
     jump_count = 0
 # end is_in_combat
 
+func play_anim(anim: String):
+    sprite.flip_h = last_direction.x > 0
+    sprite.play(anim)
 
 func heal(amount: int) -> void:
     if hit_points < max_hit_points:

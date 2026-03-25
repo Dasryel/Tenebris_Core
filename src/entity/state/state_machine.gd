@@ -26,6 +26,6 @@ func update(entity: Entity, delta: float) -> void:
     if current_state:
         current_state.update(entity, delta)
 
-func notify(entity: Entity, event: StateEvent) -> void:
+func notify(entity: Entity, event: int) -> void:
     if current_state:
         current_state.on_notify(entity, event)

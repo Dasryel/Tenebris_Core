@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://5345vfwp0bka"]
 
 [ext_resource type="Texture2D" uid="uid://loipbl5rlh20" path="res://asset/sprite/enemy/shadow_ATTACK-Sheet.png" id="1_i5xn8"]
+[ext_resource type="Script" uid="uid://dye4swv0eb8q6" path="res://src/entity/enemy.gd" id="1_tavkd"]
 [ext_resource type="Texture2D" uid="uid://dg04fwyg24gbn" path="res://asset/sprite/enemy/shadow_HURT-Sheet.png" id="2_tavkd"]
 [ext_resource type="Texture2D" uid="uid://b85c032iq4p0t" path="res://asset/sprite/enemy/shadow_IDLE-Sheet.png" id="3_a4c51"]
 [ext_resource type="Texture2D" uid="uid://c83bedvcstd56" path="res://asset/sprite/enemy/shadow_WALK-Sheet.png" id="4_u08j2"]
@@ -235,7 +236,9 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Shadow" type="Area2D" unique_id=205654238]
+[node name="Shadow" type="CharacterBody2D" unique_id=1692544944]
+scale = Vector2(3, 3)
+script = ExtResource("1_tavkd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1959473466]
 position = Vector2(0.15665436, -4.0017576)
@@ -248,3 +251,5 @@ sprite_frames = SubResource("SpriteFrames_oyyiu")
 animation = &"hurt"
 frame = 5
 frame_progress = 1.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=373231580]

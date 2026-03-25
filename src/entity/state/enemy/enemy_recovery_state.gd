@@ -6,15 +6,10 @@ const FLASH_INTERVAL := 0.08 # seconds between visibility toggles
 const ATTACK_RANGE := 60.0
 const DETECTION_RANGE := 200.0
 
-var _recovery_timer := 0.0
-var _flash_timer := 0.0
-var _is_flashing := false
-
-
-func enter(entity: Entity, is_hurt: bool = false) -> void:
-    _recovery_timer = RECOVERY_DURATION
-    _flash_timer = 0.0
-    _is_flashing = is_hurt # only flash if this is a hurt-recovery
+func enter(entity: Enemy, is_hurt: bool = false) -> void:
+    entity.recovery_timer = RECOVERY_DURATION
+    entity.flash_timer = 0.0
+    entity.is_flashing = is_hurt # only flash if this is a hurt-recovery
 
     # "hurt" anim if hit, otherwise just idle while recovering post-attack
     if is_hurt:
@@ -26,14 +21,14 @@ func enter(entity: Entity, is_hurt: bool = false) -> void:
     # We just let move_and_slide() drain it naturally here
 
 
-func update(entity: Entity, delta: float) -> void:
-    _recovery_timer -= delta
+func update(entity: Enemy, delta: float) -> void:
+    entity.recovery_timer -= delta
 
     # --- Sprite flash ---
-    if _is_flashing:
-        _flash_timer -= delta
-        if _flash_timer <= 0.0:
-            _flash_timer = FLASH_INTERVAL
+    if entity.is_flashing:
+        entity.flash_timer -= delta
+        if entity.flash_timer <= 0.0:
+            entity.flash_timer = FLASH_INTERVAL
             entity.sprite.visible = not entity.sprite.visible
 
     # --- Drain knockback velocity (friction) ---
@@ -42,16 +37,16 @@ func update(entity: Entity, delta: float) -> void:
     entity.move_and_slide()
 
     # --- Transition out ---
-    if _recovery_timer <= 0.0:
+    if entity.recovery_timer <= 0.0:
         entity.sprite.visible = true # ensure visible when done
 
         if _player_in_range(entity, ATTACK_RANGE):
-            _go_to(entity, EnemyAttackState)
+            _go_to_enemy(entity, EnemyAttackState)
         elif _player_in_range(entity, DETECTION_RANGE):
-            _go_to(entity, EnemyPursuitState)
+            _go_to_enemy(entity, EnemyPursuitState)
         else:
-            _go_to(entity, EnemyIdleState)
+            _go_to_enemy(entity, EnemyIdleState)
 
 
-func exit(entity: Entity) -> void:
+func exit(entity: Enemy) -> void:
     entity.sprite.visible = true # safety reset
