@@ -2,25 +2,31 @@ class_name Enemy
 extends Entity
 
 @export var state_label: Label
-@export var nav_agent: NavigationAgent2D
 
 # TODO These should be defined in a resource, or as export vars
 # So they could be customized earlier
-const ATTACK_RANGE := 60.0 # How long before enemy can attack again after recovery
+const ATTACK_RANGE := 100.0 # How long before enemy can attack again after recovery
 const ABANDON_RANGE := 600.0
 const DETECTION_RANGE := 400.0
-const PURSUIT_SPEED := 80.0
+const PURSUIT_SPEED := 160.0
 const RECOVERY_DURATION := 0.6 # seconds before enemy acts again
 const FLASH_INTERVAL := 0.08 # seconds between visibility toggles
 const IDLE_WAIT_MIN := 1.0
 const IDLE_WAIT_MAX := 3.0
 
 const ENEMY_LAYER: StringName = &"Enemy"
+
 var was_knocked_back: bool = false
 var idle_timer: float = 0.0
 var recovery_timer := 0.0
 var flash_timer := 0.0
 var is_flashing := false
+
+@export_group("Navigation Rays")
+@export var rotator: Node2D
+@export var ray_front: RayCast2D
+@export var ray_left: RayCast2D
+@export var ray_right: RayCast2D
 
 func _init():
 	hit_points = 2

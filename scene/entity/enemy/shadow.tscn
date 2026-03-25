@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c83bedvcstd56" path="res://asset/sprite/enemy/shadow_WALK-Sheet.png" id="4_u08j2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wg68a"]
-radius = 21.981598
-height = 64.16901
+radius = 44.24994
+height = 100.55156
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16fs6"]
 atlas = ExtResource("1_i5xn8")
@@ -236,27 +236,37 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Shadow" type="CharacterBody2D" unique_id=1692544944 node_paths=PackedStringArray("state_label", "nav_agent")]
+[node name="Shadow" type="CharacterBody2D" unique_id=1692544944 node_paths=PackedStringArray("state_label", "rotator", "ray_front", "ray_left", "ray_right")]
 script = ExtResource("1_tavkd")
 state_label = NodePath("StateLabel")
-nav_agent = NodePath("NavigationAgent2D")
+rotator = NodePath("Rotator")
+ray_front = NodePath("Rotator/RayFront")
+ray_left = NodePath("Rotator/RayLeft")
+ray_right = NodePath("Rotator/RayRight")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1959473466]
 shape = SubResource("CapsuleShape2D_wg68a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=93121721]
-position = Vector2(0, -17)
-scale = Vector2(4.3495936, 4.349594)
+position = Vector2(0, -29.779999)
+scale = Vector2(7.2387123, 7.2387133)
 sprite_frames = SubResource("SpriteFrames_oyyiu")
-animation = &"hurt"
-frame = 5
-frame_progress = 1.0
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=373231580]
+animation = &"idle"
 
 [node name="StateLabel" type="Label" parent="." unique_id=1546211880]
-offset_left = -45.067993
-offset_top = 33.350597
-offset_right = 43.932007
-offset_bottom = 56.350597
+offset_left = -44.867706
+offset_top = 54.78079
+offset_right = 44.132294
+offset_bottom = 77.78079
 text = "Initializing.."
+
+[node name="Rotator" type="Node2D" parent="." unique_id=1170234051]
+
+[node name="RayFront" type="RayCast2D" parent="Rotator" unique_id=1709963130]
+target_position = Vector2(70, 0)
+
+[node name="RayLeft" type="RayCast2D" parent="Rotator" unique_id=698328768]
+target_position = Vector2(50, 50)
+
+[node name="RayRight" type="RayCast2D" parent="Rotator" unique_id=2087311346]
+target_position = Vector2(50, -50)

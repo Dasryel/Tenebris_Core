@@ -1,17 +1,9 @@
 class_name EnemyPursuitState
 extends EnemyBaseState
 
-# --- Pathfinding ---
-# For a flying enemy, NavigationAgent2D gives you free obstacle avoidance.
-# Add a NavigationAgent2D child to your Enemy scene named "NavigationAgent2D".
-# Make sure your TileMap has a NavigationRegion or navigation polygons baked.
-
 func enter(entity: Entity) -> void:
 	entity.state_label.text = "EnemyPursuitState"
 	entity.play_anim("run")
-	# Grab the agent once — entity must have this child node
-	entity.nav_agent.max_speed = entity.PURSUIT_SPEED
-
 
 func update(entity: Entity, _delta: float) -> void:
 	var player = _get_player()
@@ -31,18 +23,36 @@ func update(entity: Entity, _delta: float) -> void:
 		_go_to_enemy(entity, EnemyIdleState)
 		return
 
-	# --- Navigation ---
-	# Update destination every frame (or throttle with a timer for perf)
-	entity.nav_agent.target_position = player.global_position
-
-	var next_pos = entity.nav_agent.get_next_path_position()
-	var direction = (next_pos - entity.global_position).normalized()
-
 	_face_target(entity, player)
 
 	# Flying = ignore gravity, direct velocity toward path point
-	entity.velocity = direction * entity.PURSUIT_SPEED
+	entity.velocity = _new_heading(player, entity) * entity.PURSUIT_SPEED
 	entity.move_and_slide()
+# END update
+
+func _new_heading(player: Entity, entity: Entity) -> Vector2:
+	entity.rotator.look_at(player.global_position)
+	# Calculate direct direction to player
+	var direction = entity.global_position.direction_to(player.global_position)
+
+	if entity.ray_front.is_colliding():
+		if not entity.ray_left.is_colliding():
+			# Rotate the current direction vector 45 degrees left
+			direction = direction.rotated(deg_to_rad(-45))
+		elif not entity.ray_right.is_colliding():
+			# Rotate the current direction vector 45 degrees right
+			direction = direction.rotated(deg_to_rad(45))
+
+	# Basic obstacle avoidance using RayCast2D nodes on the entity
+	# Assumes entity has RayCast2D children named ray_left and ray_right
+	if entity.ray_front.is_colliding():
+		if not entity.ray_left.is_colliding():
+			direction += entity.transform.x.orthogonal()
+		elif not entity.ray_right.is_colliding():
+			direction -= entity.transform.x.orthogonal()
+
+	return direction
+# END _new_heading
 
 
 func exit(_entity: Entity) -> void:
