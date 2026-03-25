@@ -1,6 +1,20 @@
 class_name Enemy
 extends Entity
 
+@export var state_label: Label
+@export var nav_agent: NavigationAgent2D
+
+# TODO These should be defined in a resource, or as export vars
+# So they could be customized earlier
+const ATTACK_RANGE := 60.0 # How long before enemy can attack again after recovery
+const ABANDON_RANGE := 600.0
+const DETECTION_RANGE := 400.0
+const PURSUIT_SPEED := 80.0
+const RECOVERY_DURATION := 0.6 # seconds before enemy acts again
+const FLASH_INTERVAL := 0.08 # seconds between visibility toggles
+const IDLE_WAIT_MIN := 1.0
+const IDLE_WAIT_MAX := 3.0
+
 const ENEMY_LAYER: StringName = &"Enemy"
 var was_knocked_back: bool = false
 var idle_timer: float = 0.0
@@ -15,6 +29,10 @@ func _ready() -> void:
 	print("enemy initialized")
 	last_direction = Vector2.RIGHT
 	_add_state_machine(ENEMY_LAYER, StateCache.get_state(EnemyIdleState))
+
+	var sm = get_state_machine(ENEMY_LAYER)
+	var current_state = sm.current_state
+	current_state.enter(self )
 
 func take_damage(amount: int, knockback_dir: Vector2) -> void:
 	var sm = get_state_machine(ENEMY_LAYER)

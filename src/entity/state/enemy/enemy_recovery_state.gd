@@ -1,13 +1,10 @@
 class_name EnemyRecoveryState
 extends EnemyBaseState
 
-const RECOVERY_DURATION := 0.6 # seconds before enemy acts again
-const FLASH_INTERVAL := 0.08 # seconds between visibility toggles
-const ATTACK_RANGE := 60.0
-const DETECTION_RANGE := 200.0
 
 func enter(entity: Enemy, is_hurt: bool = false) -> void:
-    entity.recovery_timer = RECOVERY_DURATION
+    entity.state_label.text = "EnemyRecoveryState"
+    entity.recovery_timer = entity.RECOVERY_DURATION
     entity.flash_timer = 0.0
     entity.is_flashing = is_hurt # only flash if this is a hurt-recovery
 
@@ -28,7 +25,7 @@ func update(entity: Enemy, delta: float) -> void:
     if entity.is_flashing:
         entity.flash_timer -= delta
         if entity.flash_timer <= 0.0:
-            entity.flash_timer = FLASH_INTERVAL
+            entity.flash_timer = entity.FLASH_INTERVAL
             entity.sprite.visible = not entity.sprite.visible
 
     # --- Drain knockback velocity (friction) ---
@@ -40,9 +37,9 @@ func update(entity: Enemy, delta: float) -> void:
     if entity.recovery_timer <= 0.0:
         entity.sprite.visible = true # ensure visible when done
 
-        if _player_in_range(entity, ATTACK_RANGE):
+        if _player_in_range(entity, entity.ATTACK_RANGE):
             _go_to_enemy(entity, EnemyAttackState)
-        elif _player_in_range(entity, DETECTION_RANGE):
+        elif _player_in_range(entity, entity.DETECTION_RANGE):
             _go_to_enemy(entity, EnemyPursuitState)
         else:
             _go_to_enemy(entity, EnemyIdleState)

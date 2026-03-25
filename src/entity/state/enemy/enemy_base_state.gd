@@ -1,10 +1,13 @@
 class_name EnemyBaseState
 extends BaseState
 
+func _get_player() -> Player:
+    return Player.instance
+
 func _player_in_range(entity: Enemy, rrange: float) -> bool:
-    if Player.instance:
+    if _get_player():
         return entity.global_position.distance_to(
-            Player.instance.global_position
+            _get_player().global_position
             ) <= rrange
 
     return false
