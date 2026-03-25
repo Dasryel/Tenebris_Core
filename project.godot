@@ -33,6 +33,11 @@ project/assembly_name="VIM.MT.310"
 
 enabled=PackedStringArray()
 
+[global_group]
+
+enemy_hurtbox=""
+player_hurtbox=""
+
 [input]
 
 move_left={

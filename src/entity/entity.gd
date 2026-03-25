@@ -49,8 +49,8 @@ func _process(delta: float) -> void:
     for sm in _state_machines.values():
         sm.update(self , delta)
 
-func die():
-    GameState.player_died.emit()
+func _on_entity_death():
+    self.queue_free()
 
 
 func heal(amount: int) -> void:
@@ -60,6 +60,11 @@ func heal(amount: int) -> void:
         else:
             hit_points += amount
 
+func get_attack_data() -> Dictionary:
+    return {}
+
+func get_attack_hitbox_collision() -> CollisionShape2D:
+    return null
 
 func play_anim(anim: String):
     sprite.flip_h = last_direction.x > 0
@@ -69,4 +74,23 @@ func play_anim(anim: String):
 func reset_jump_count() -> void:
     is_recovery_jump = false
     jump_count = 0
-# end is_in_combat
+# end reset_jump_count
+
+func get_knockback_direction(attacker_pos: Vector2, victim_pos: Vector2) -> Vector2:
+    var direction := victim_pos - attacker_pos
+    return direction.normalized()
+
+func take_damage(_amount: int, _knockback_dir: Vector2) -> void:
+    pass
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+    var data: Dictionary = get_attack_data().get(sprite.animation, {})
+    var active_frames: Array = data.get("active_frames", [])
+    var is_active_frame = sprite.frame in active_frames
+    var coll = get_attack_hitbox_collision()
+    coll.set_deferred("disabled", !is_active_frame)
+
+
+# Override this in subclasses to emit different signals
+func _on_damage_taken(_current_hp: int) -> void:
+    pass

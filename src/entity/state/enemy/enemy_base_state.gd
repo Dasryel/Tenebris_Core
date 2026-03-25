@@ -23,8 +23,11 @@ func _face_target(entity: Enemy, target: Node2D) -> void:
 		entity.attack_hitbox.position.x = - entity.attack_hitbox_offset
 		entity.last_direction = Vector2.RIGHT
 
-func on_notify(_entity: Enemy, _event: int) -> void:
-	pass
+func on_notify(entity: Enemy, event: int) -> void:
+	# print(entity, event)
+	if event == StateEvent.ENEMY_DAMAGED:
+		_go_to_enemy(entity, EnemyRecoveryState)
+
 
 ## Shorthand: transition on the [b]Locomotion[/b] layer.
 func _go_to_enemy(entity: Enemy, state_type: GDScript) -> void:

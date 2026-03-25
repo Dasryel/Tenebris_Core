@@ -9,13 +9,17 @@ func enter(entity: Entity) -> void:
 	#if player:
 	#	_face_target(entity, player)
 
+	var tree = entity.get_tree()
+	await tree.create_timer(0.75).timeout
+	if entity == null:
+		return
 	entity.play_anim("attack")
 
 	# Listen for animation finish — connect once, auto-disconnect
-	entity.sprite.animation_finished.connect(
-		_on_animation_finished.bind(entity),
-		CONNECT_ONE_SHOT
-	)
+	var callable = _on_animation_finished.bind(entity)
+
+	if not entity.sprite.animation_finished.is_connected(callable):
+		entity.sprite.animation_finished.connect(callable, CONNECT_ONE_SHOT)
 
 
 func update(_entity: Entity, _delta: float) -> void:
@@ -25,7 +29,9 @@ func update(_entity: Entity, _delta: float) -> void:
 
 
 func _on_animation_finished(entity: Entity) -> void:
-	_go_to_enemy(entity, EnemyRecoveryState)
+	var tree = entity.get_tree()
+	# await tree.create_timer(0.2).timeout
+	_go_to_enemy(entity, EnemyIdleState)
 
 
 # Safety: disconnect if state was interrupted (e.g. took damage)

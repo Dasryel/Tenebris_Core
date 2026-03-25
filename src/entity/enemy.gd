@@ -16,11 +16,8 @@ const IDLE_WAIT_MAX := 3.0
 
 const ENEMY_LAYER: StringName = &"Enemy"
 
-var was_knocked_back: bool = false
 var idle_timer: float = 0.0
-var recovery_timer := 0.0
-var flash_timer := 0.0
-var is_flashing := false
+var recovery_timer: float = 0.0
 
 @export_group("Navigation Rays")
 @export var rotator: Node2D
@@ -30,6 +27,16 @@ var is_flashing := false
 
 @export var attack_hitbox: Area2D
 @export var attack_hitbox_offset: float = 80.0
+@export var attack_hitbox_collision: CollisionShape2D
+
+const ATTACK_DATA: Dictionary = {
+	"attack": {
+		"active_frames": [6],
+		"damage": 1,
+		"knockback_force": 200.0,
+	},
+}
+
 
 func _init():
 	hit_points = 2
@@ -42,18 +49,37 @@ func _ready() -> void:
 	var current_state = sm.current_state
 	current_state.enter(self )
 
+func get_attack_data() -> Dictionary:
+	return ATTACK_DATA
+
+func get_attack_hitbox_collision() -> CollisionShape2D:
+	return attack_hitbox_collision
+
 func take_damage(amount: int, knockback_dir: Vector2) -> void:
 	var sm = get_state_machine(ENEMY_LAYER)
 	if sm.current_state is EnemyRecoveryState:
 		return # already in recovery, ignore hit (or handle i-frames)
 
 	hit_points -= amount
+
 	if hit_points <= 0:
-		die()
+		print("dies")
+		_on_entity_death()
 		return
 
 	# Set knockback — RecoveryState will drain this
-	velocity = knockback_dir * knockback_force
-	# Flag so RecoveryState knows to flash
-	was_knocked_back = true
+	var dir_x = sign(global_position.x - knockback_dir.x)
+	velocity = Vector2(dir_x * 50.0, -100.0)
+
 	sm.notify(self , StateEvent.ENEMY_DAMAGED)
+
+func _on_attack_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player_hurtbox"):
+		var victim = area.get_parent()
+		if victim.has_method("take_damage"):
+			var knockback_dir = get_knockback_direction(
+				self.global_position,
+				victim.global_position
+				)
+
+			victim.take_damage(1, knockback_dir)

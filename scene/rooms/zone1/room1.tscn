@@ -145,3 +145,5 @@ position = Vector2(-256, 448)
 
 [node name="Shadow" parent="." unique_id=205654238 instance=ExtResource("6_urwxp")]
 position = Vector2(594, 379)
+hit_points = 2
+max_hit_points = 2

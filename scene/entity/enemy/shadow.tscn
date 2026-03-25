@@ -285,15 +285,16 @@ target_position = Vector2(50, 50)
 target_position = Vector2(50, -50)
 
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=871088893]
-collision_layer = 8
-collision_mask = 64
+collision_layer = 64
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=609357065]
 shape = SubResource("CapsuleShape2D_tavkd")
+disabled = true
 
-[node name="HurtBox" type="Area2D" parent="." unique_id=1491235904]
+[node name="HurtBox" type="Area2D" parent="." unique_id=1491235904 groups=["enemy_hurtbox"]]
 collision_layer = 16
-collision_mask = 32
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=399001480]
 shape = SubResource("CapsuleShape2D_a4c51")
