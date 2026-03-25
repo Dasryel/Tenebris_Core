@@ -13,11 +13,12 @@ func _player_in_range(entity: Enemy, rrange: float) -> bool:
     return false
 
 func _face_target(entity: Enemy, target: Node2D) -> void:
-    if target.global_position.x < entity.global_position.x:
-        entity.sprite.flip_h = true
+    # print("posa: ", target.global_position.x, ", posb: ", entity.global_position.x)
+    if target.global_position.x > entity.global_position.x:
+        entity.sprite.flip_h = false
         entity.last_direction = Vector2.LEFT
     else:
-        entity.sprite.flip_h = false
+        entity.sprite.flip_h = true
         entity.last_direction = Vector2.RIGHT
 
 func on_notify(_entity: Enemy, _event: int) -> void:

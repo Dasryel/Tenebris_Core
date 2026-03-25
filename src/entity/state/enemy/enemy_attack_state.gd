@@ -5,10 +5,9 @@ func enter(entity: Entity) -> void:
 	entity.state_label.text = "EnemyAttackState"
 	entity.velocity = Vector2.ZERO
 
-	var player = _get_player()
-
-	if player:
-		_face_target(entity, player)
+	#var player = _get_player()
+	#if player:
+	#	_face_target(entity, player)
 
 	entity.play_anim("attack")
 

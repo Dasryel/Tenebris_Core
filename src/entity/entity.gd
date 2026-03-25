@@ -52,14 +52,6 @@ func _process(delta: float) -> void:
 func die():
     GameState.player_died.emit()
 
-func reset_jump_count() -> void:
-    is_recovery_jump = false
-    jump_count = 0
-# end is_in_combat
-
-func play_anim(anim: String):
-    sprite.flip_h = last_direction.x > 0
-    sprite.play(anim)
 
 func heal(amount: int) -> void:
     if hit_points < max_hit_points:
@@ -67,3 +59,14 @@ func heal(amount: int) -> void:
             hit_points = max_hit_points
         else:
             hit_points += amount
+
+
+func play_anim(anim: String):
+    sprite.flip_h = last_direction.x > 0
+    sprite.play(anim)
+
+
+func reset_jump_count() -> void:
+    is_recovery_jump = false
+    jump_count = 0
+# end is_in_combat

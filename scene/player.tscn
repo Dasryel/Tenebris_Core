@@ -230,9 +230,15 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 15
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp4bs"]
+radius = 28.333332
+height = 120.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "combat_state_label", "thought_bubble")]
 z_index = 1
 scale = Vector2(0.6, 0.6)
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_hp4bs")
 loco_state_label = NodePath("LocoStateLabel")
 combat_state_label = NodePath("CombatStateLabel")
@@ -245,7 +251,9 @@ gravity = 1400.0
 position = Vector2(0, -50.000008)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_fvtld")
-animation = &"idle"
+animation = &"slash1"
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220763521]
 position = Vector2(0, -14)
@@ -288,3 +296,9 @@ text = "The door is locked I should be looking for a key..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=357771251]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=701389040]
+position = Vector2(0, -13.333336)
+shape = SubResource("CapsuleShape2D_hp4bs")

@@ -32,7 +32,6 @@ func _init():
 	hit_points = 2
 
 func _ready() -> void:
-	print("enemy initialized")
 	last_direction = Vector2.RIGHT
 	_add_state_machine(ENEMY_LAYER, StateCache.get_state(EnemyIdleState))
 

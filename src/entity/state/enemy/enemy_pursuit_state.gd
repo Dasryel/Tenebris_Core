@@ -14,6 +14,8 @@ func update(entity: Entity, _delta: float) -> void:
 
 	var dist := entity.global_position.distance_to(player.global_position)
 
+	_face_target(entity, player)
+
 	# --- Transition checks ---
 	if dist <= entity.ATTACK_RANGE:
 		_go_to_enemy(entity, EnemyAttackState)
@@ -22,8 +24,6 @@ func update(entity: Entity, _delta: float) -> void:
 	if dist >= entity.ABANDON_RANGE:
 		_go_to_enemy(entity, EnemyIdleState)
 		return
-
-	_face_target(entity, player)
 
 	# Flying = ignore gravity, direct velocity toward path point
 	entity.velocity = _new_heading(player, entity) * entity.PURSUIT_SPEED
@@ -34,6 +34,8 @@ func _new_heading(player: Entity, entity: Entity) -> Vector2:
 	entity.rotator.look_at(player.global_position)
 	# Calculate direct direction to player
 	var direction = entity.global_position.direction_to(player.global_position)
+	# could rotate the whole guy here
+	# entity.rotation = direction.angle()
 
 	if entity.ray_front.is_colliding():
 		if not entity.ray_left.is_colliding():

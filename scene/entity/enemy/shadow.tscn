@@ -236,7 +236,17 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tavkd"]
+radius = 24.762146
+height = 86.531815
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4c51"]
+radius = 44.3898
+height = 100.55156
+
 [node name="Shadow" type="CharacterBody2D" unique_id=1692544944 node_paths=PackedStringArray("state_label", "rotator", "ray_front", "ray_left", "ray_right")]
+collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_tavkd")
 state_label = NodePath("StateLabel")
 rotator = NodePath("Rotator")
@@ -251,7 +261,9 @@ shape = SubResource("CapsuleShape2D_wg68a")
 position = Vector2(0, -29.779999)
 scale = Vector2(7.2387123, 7.2387133)
 sprite_frames = SubResource("SpriteFrames_oyyiu")
-animation = &"idle"
+animation = &"attack"
+frame = 8
+frame_progress = 1.0
 
 [node name="StateLabel" type="Label" parent="." unique_id=1546211880]
 offset_left = -44.867706
@@ -270,3 +282,17 @@ target_position = Vector2(50, 50)
 
 [node name="RayRight" type="RayCast2D" parent="Rotator" unique_id=2087311346]
 target_position = Vector2(50, -50)
+
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=871088893]
+collision_layer = 8
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=609357065]
+shape = SubResource("CapsuleShape2D_tavkd")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1491235904]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=399001480]
+shape = SubResource("CapsuleShape2D_a4c51")
