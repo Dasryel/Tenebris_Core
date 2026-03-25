@@ -230,12 +230,24 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 15
 
-[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "combat_state_label", "thought_bubble")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp4bs"]
+radius = 28.333332
+height = 120.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2vtq"]
+radius = 46.666664
+height = 150.00002
+
+[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "combat_state_label", "attack_hitbox", "attack_hitbox_collision", "thought_bubble")]
 z_index = 1
 scale = Vector2(0.6, 0.6)
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_hp4bs")
 loco_state_label = NodePath("LocoStateLabel")
 combat_state_label = NodePath("CombatStateLabel")
+attack_hitbox = NodePath("AttackHitbox")
+attack_hitbox_collision = NodePath("AttackHitbox/CollisionShape2D")
 thought_bubble = NodePath("ThoughtBubble/Label")
 speed = 400.0
 jump_velocity = -600.0
@@ -245,7 +257,7 @@ gravity = 1400.0
 position = Vector2(0, -50.000008)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_fvtld")
-animation = &"idle"
+animation = &"slash2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220763521]
 position = Vector2(0, -14)
@@ -288,3 +300,23 @@ text = "The door is locked I should be looking for a key..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=357771251]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=701389040]
+position = Vector2(0, -13.333336)
+shape = SubResource("CapsuleShape2D_hp4bs")
+disabled = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=2026385319 groups=["player_hurtbox"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1750646949]
+position = Vector2(0, -15.000004)
+shape = SubResource("CapsuleShape2D_g2vtq")
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]

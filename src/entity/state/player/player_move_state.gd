@@ -6,7 +6,7 @@ func enter(entity: Entity) -> void:
 	entity.play_anim("run")
 
 
-func update(entity: Entity, delta: float) -> void:
+func update(entity: Player, delta: float) -> void:
 	if entity.is_in_combat():
 		print("move: cant move while attacking")
 		return
@@ -20,12 +20,7 @@ func update(entity: Entity, delta: float) -> void:
 		return
 
 	var h_dir := Input.get_axis(GameInput.MOVE_LEFT, GameInput.MOVE_RIGHT)
-	if h_dir > 0:
-		entity.last_direction = Vector2.LEFT
-		entity.sprite.flip_h = false
-	elif h_dir < 0:
-		entity.last_direction = Vector2.RIGHT
-		entity.sprite.flip_h = true
+	_update_orientation(entity, h_dir)
 
 	if is_zero_approx(h_dir):
 		_go_to_loco(entity, PlayerIdleState)
@@ -41,3 +36,13 @@ func update(entity: Entity, delta: float) -> void:
 
 func exit(entity: Entity) -> void:
 	entity.play_anim("idle")
+
+func _update_orientation(entity: Player, h_dir: float) -> void:
+	if h_dir > 0:
+		entity.last_direction = Vector2.LEFT
+		entity.attack_hitbox.position.x = entity.attack_hitbox_offset
+		entity.sprite.flip_h = false
+	elif h_dir < 0:
+		entity.last_direction = Vector2.RIGHT
+		entity.attack_hitbox.position.x = - entity.attack_hitbox_offset
+		entity.sprite.flip_h = true

@@ -1,8 +1,8 @@
 class_name StateEvent
-enum {
-    PLAYER_DAMAGED,
-    PLAYER_SPOTTED,
-    PLAYER_LOST,
-    ENEMY_DAMAGED,
-    ATTACK_FINISHED,
-}
+extends Node
+
+const PLAYER_DAMAGED: int = 0;
+const PLAYER_SPOTTED: int = 1;
+const PLAYER_LOST: int = 2;
+const ENEMY_DAMAGED: int = 3;
+const ATTACK_FINISHED: int = 4;

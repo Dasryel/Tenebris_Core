@@ -1,55 +1,61 @@
 class_name EnemyPursuitState
 extends EnemyBaseState
 
-const ATTACK_RANGE := 60.0
-const ABANDON_RANGE := 350.0
-const PURSUIT_SPEED := 80.0
-
-# --- Pathfinding ---
-# For a flying enemy, NavigationAgent2D gives you free obstacle avoidance.
-# Add a NavigationAgent2D child to your Enemy scene named "NavigationAgent2D".
-# Make sure your TileMap has a NavigationRegion or navigation polygons baked.
-
-var _nav_agent: NavigationAgent2D
-
-
 func enter(entity: Entity) -> void:
-    entity.play_anim("run")
-    # Grab the agent once — entity must have this child node
-    _nav_agent = entity.get_node("NavigationAgent2D")
-    _nav_agent.max_speed = PURSUIT_SPEED
+	entity.state_label.text = "EnemyPursuitState"
+	entity.play_anim("run")
 
+func update(entity: Entity, _delta: float) -> void:
+	var player = _get_player()
 
-func update(entity: Entity, delta: float) -> void:
-    var player := _get_player(entity)
-    if not player:
-        _go_to(entity, EnemyIdleState)
-        return
+	if not player:
+		_go_to_enemy(entity, EnemyIdleState)
+		return
 
-    var dist := entity.global_position.distance_to(player.global_position)
+	var dist := entity.global_position.distance_to(player.global_position)
 
-    # --- Transition checks ---
-    if dist <= ATTACK_RANGE:
-        _go_to(entity, EnemyAttackState)
-        return
+	_face_target(entity, player)
 
-    if dist >= ABANDON_RANGE:
-        _go_to(entity, EnemyIdleState)
-        return
+	# --- Transition checks ---
+	if dist <= entity.ATTACK_RANGE:
+		_go_to_enemy(entity, EnemyAttackState)
+		return
 
-    # --- Navigation ---
-    # Update destination every frame (or throttle with a timer for perf)
-    _nav_agent.target_position = player.global_position
+	if dist >= entity.ABANDON_RANGE:
+		_go_to_enemy(entity, EnemyIdleState)
+		return
 
-    var next_pos := _nav_agent.get_next_path_position()
-    var direction := (next_pos - entity.global_position).normalized()
+	# Flying = ignore gravity, direct velocity toward path point
+	entity.velocity = _new_heading(player, entity) * entity.PURSUIT_SPEED
+	entity.move_and_slide()
+# END update
 
-    _face_target(entity, player)
+func _new_heading(player: Entity, entity: Entity) -> Vector2:
+	entity.rotator.look_at(player.global_position)
+	# Calculate direct direction to player
+	var direction = entity.global_position.direction_to(player.global_position)
+	# could rotate the whole guy here
+	# entity.rotation = direction.angle()
 
-    # Flying = ignore gravity, direct velocity toward path point
-    entity.velocity = direction * PURSUIT_SPEED
-    entity.move_and_slide()
+	if entity.ray_front.is_colliding():
+		if not entity.ray_left.is_colliding():
+			# Rotate the current direction vector 45 degrees left
+			direction = direction.rotated(deg_to_rad(-45))
+		elif not entity.ray_right.is_colliding():
+			# Rotate the current direction vector 45 degrees right
+			direction = direction.rotated(deg_to_rad(45))
+
+	# Basic obstacle avoidance using RayCast2D nodes on the entity
+	# Assumes entity has RayCast2D children named ray_left and ray_right
+	if entity.ray_front.is_colliding():
+		if not entity.ray_left.is_colliding():
+			direction += entity.transform.x.orthogonal()
+		elif not entity.ray_right.is_colliding():
+			direction -= entity.transform.x.orthogonal()
+
+	return direction
+# END _new_heading
 
 
 func exit(_entity: Entity) -> void:
-    pass
+	pass
