@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="5_k4wow"]
 [ext_resource type="Texture2D" uid="uid://df5eyxtbgcgcd" path="res://asset/tileset/tileset.png" id="5_tfi25"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_8dx0c"]
-[ext_resource type="PackedScene" uid="uid://x643sqeumy44" path="res://scene/item/doublejump_pickup.tscn" id="6_urwxp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]
 texture = ExtResource("2_yptcl")
@@ -108,7 +107,7 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jmhvh")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tfi25"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sdbf"]
 texture = ExtResource("4_8dx0c")
 1:1/0 = 0
 2:1/0 = 0
@@ -173,7 +172,7 @@ texture = ExtResource("4_8dx0c")
 1:12/0 = 0
 3:12/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sdbf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_10e0j"]
 texture = ExtResource("5_tfi25")
 2:1/0 = 0
 3:1/0 = 0
@@ -314,10 +313,10 @@ texture = ExtResource("5_tfi25")
 
 [sub_resource type="TileSet" id="TileSet_2sdbf"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_tfi25")
-sources/1 = SubResource("TileSetAtlasSource_2sdbf")
+sources/0 = SubResource("TileSetAtlasSource_2sdbf")
+sources/1 = SubResource("TileSetAtlasSource_10e0j")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_10e0j"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gsdm0"]
 texture = ExtResource("4_8dx0c")
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -440,7 +439,7 @@ texture = ExtResource("4_8dx0c")
 3:12/0 = 0
 3:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gsdm0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_apf85"]
 texture = ExtResource("5_tfi25")
 2:1/0 = 0
 3:1/0 = 0
@@ -665,8 +664,8 @@ texture = ExtResource("5_tfi25")
 
 [sub_resource type="TileSet" id="TileSet_apf85"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_10e0j")
-sources/1 = SubResource("TileSetAtlasSource_gsdm0")
+sources/0 = SubResource("TileSetAtlasSource_gsdm0")
+sources/1 = SubResource("TileSetAtlasSource_apf85")
 
 [node name="room1" type="Node2D" unique_id=2093421483]
 script = ExtResource("1_urwxp")
@@ -728,8 +727,5 @@ target_scene = "uid://ct6gdo5mip1xb"
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1429242992]
 position = Vector2(-256, 448)
-
-[node name="DoublejumpPickup" parent="." unique_id=1907636125 instance=ExtResource("6_urwxp")]
-position = Vector2(506, 393)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1919393156]
