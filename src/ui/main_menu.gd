@@ -5,30 +5,31 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	main_menu_buttons.visible = true
-	options_panel.visible = false
+    main_menu_buttons.visible = true
+    options_panel.visible = false
 
 
 func _on_start_button_pressed() -> void:
-	GameState.reset()
-	get_tree().change_scene_to_file("res://scene/rooms/zone1/room1.tscn")
+    GameState.reset()
+    MusicManager.play_game_music()
+    get_tree().change_scene_to_file("res://scene/rooms/zone1/room1.tscn")
 
 
 func _on_options_button_pressed() -> void:
-	main_menu_buttons.visible = false
-	options_panel.visible = true
+    main_menu_buttons.visible = false
+    options_panel.visible = true
 
 
 func _on_quit_button_pressed() -> void:
-	get_tree().quit()
+    get_tree().quit()
 
 
 func _on_back_button_pressed() -> void:
-	_ready()
+    _ready()
 
 
 func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
-	if toggled_on == true:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+    if toggled_on == true:
+        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+    else:
+        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
