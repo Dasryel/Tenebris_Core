@@ -39,6 +39,7 @@ const ATTACK_DATA: Dictionary = {
 func _ready() -> void:
     instance = self
     last_direction = Vector2.LEFT
+
     GameState.key_pickedup.connect(key_obtained)
     SignalBus.extra_jump_pickup.connect(_on_extra_jump_pickup)
     if GameState.has_dj: max_jumps = 2
