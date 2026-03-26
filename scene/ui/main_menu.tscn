@@ -2,7 +2,6 @@
 
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="1_3er1b"]
 [ext_resource type="Script" uid="uid://bd6vyrvitmklc" path="res://src/ui/main_menu.gd" id="1_hxu56"]
-[ext_resource type="AudioStream" uid="uid://bdp5yp57r64f7" path="res://asset/audio/menu_music.ogg" id="2_8wb42"]
 [ext_resource type="Texture2D" uid="uid://di67ku6b50we5" path="res://asset/UI/on.png" id="4_sepwh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4svf"]
@@ -39,10 +38,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hxu56")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2071251366]
-stream = ExtResource("2_8wb42")
-autoplay = true
 
 [node name="OptionsPanel" type="Panel" parent="." unique_id=1681142039]
 layout_mode = 1

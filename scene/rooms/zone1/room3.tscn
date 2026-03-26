@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_hpsup"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_0hadl"]
 [ext_resource type="Texture2D" uid="uid://c7hpu6of78vfw" path="res://asset/tileset/tileset-2.png" id="2_e2tiw"]
-[ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="3_il1xb"]
 [ext_resource type="Texture2D" uid="uid://df5eyxtbgcgcd" path="res://asset/tileset/tileset.png" id="3_nj6av"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_kn5en"]
 [ext_resource type="PackedScene" uid="uid://x643sqeumy44" path="res://scene/item/doublejump_pickup.tscn" id="8_fbwbh"]
@@ -702,12 +701,8 @@ position = Vector2(274, 86)
 tile_set = SubResource("TileSet_8g7fy")
 rendering_quadrant_size = 32
 
-[node name="Key" parent="." unique_id=1990007751 instance=ExtResource("3_il1xb")]
-position = Vector2(836, -65)
-key_id = "key1"
-
 [node name="Teleporter2to3" parent="." unique_id=1408589343 instance=ExtResource("5_kn5en")]
-position = Vector2(237, 198)
+position = Vector2(219, 193)
 rotation = 3.1415927
 target_scene = "uid://ct6gdo5mip1xb"
 

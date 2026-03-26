@@ -14,10 +14,10 @@ script = ExtResource("1_7ncik")
 shape = SubResource("CapsuleShape2D_ppl8m")
 
 [node name="DoorVisual" type="ColorRect" parent="." unique_id=119244308]
-offset_left = -39.0
-offset_top = -43.0
-offset_right = 38.0
-offset_bottom = 42.0
+offset_left = -8.0
+offset_top = -77.0
+offset_right = 5.0
+offset_bottom = -64.0
 color = Color(1, 0, 0, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
