@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="6_2u3i0"]
 [ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="6_fghkr"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_itcho"]
+[ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="7_2u3i0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmhvh"]
 texture = ExtResource("2_2u3i0")
@@ -125,3 +126,9 @@ position = Vector2(-172, 223)
 target_scene = "uid://cj6p1dt6sh3j1"
 zone_name = "First Zone"
 target_door_id = "Door"
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1430516091]
+position = Vector2(-177.98984, 224.44049)
+
+[node name="Shadow" parent="." unique_id=1692544944 instance=ExtResource("7_2u3i0")]
+position = Vector2(308, 217)
