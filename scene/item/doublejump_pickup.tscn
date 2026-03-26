@@ -7,6 +7,7 @@
 radius = 20.0
 
 [node name="DoublejumpPickup" type="Area2D" unique_id=1907636125]
+collision_mask = 2
 script = ExtResource("1_axcnj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1725096644]

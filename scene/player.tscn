@@ -238,7 +238,7 @@ height = 120.0
 radius = 46.666664
 height = 150.00002
 
-[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "combat_state_label", "attack_hitbox", "attack_hitbox_collision", "thought_bubble")]
+[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "combat_state_label", "attack_hitbox", "attack_hitbox_collision", "thought_bubble", "sprite") groups=["player"]]
 z_index = 1
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
@@ -249,6 +249,7 @@ combat_state_label = NodePath("CombatStateLabel")
 attack_hitbox = NodePath("AttackHitbox")
 attack_hitbox_collision = NodePath("AttackHitbox/CollisionShape2D")
 thought_bubble = NodePath("ThoughtBubble/Label")
+sprite = NodePath("AnimatedSprite2D")
 speed = 400.0
 jump_velocity = -600.0
 gravity = 1400.0
@@ -264,6 +265,7 @@ position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_hjaqi")
 
 [node name="LocoStateLabel" type="Label" parent="." unique_id=1799626327]
+visible = false
 offset_left = -86.66666
 offset_top = 71.666664
 offset_right = 1.3333435
@@ -271,6 +273,7 @@ offset_bottom = 94.666664
 scale = Vector2(2, 2)
 
 [node name="CombatStateLabel" type="Label" parent="." unique_id=401920883]
+visible = false
 offset_left = -86.66666
 offset_top = 116.66665
 offset_right = 1.3333435

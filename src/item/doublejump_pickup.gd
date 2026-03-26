@@ -8,14 +8,8 @@ func _ready() -> void:
 		print("pick up removed")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
+	if body.is_in_group("player"):
 		GameState.dj_pickedup.emit()
-		entity.max_jumps = 2
-		print(entity.max_jumps)
+		SignalBus.extra_jump_pickup.emit()
 		queue_free()

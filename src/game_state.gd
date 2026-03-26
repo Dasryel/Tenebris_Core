@@ -6,6 +6,7 @@ signal key_pickedup
 signal player_died
 @warning_ignore("unused_signal")
 signal door_unlocked
+@warning_ignore("unused_signal")
 signal dj_pickedup
 
 var spawn_position: Vector2 = Vector2.ZERO

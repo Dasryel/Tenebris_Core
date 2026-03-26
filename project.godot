@@ -18,7 +18,6 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 GameState="*uid://dugxflidcxwqk"
 SignalBus="*uid://brj7dd634kcq0"
-entity="*uid://nfdrpy1yfvn7"
 
 [display]
 
@@ -38,6 +37,7 @@ enabled=PackedStringArray()
 
 enemy_hurtbox=""
 player_hurtbox=""
+player=""
 
 [input]
 

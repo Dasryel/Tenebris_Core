@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://k0fsiyodxcoj"]
 
 [ext_resource type="Script" uid="uid://cfjbevimp1xpq" path="res://src/item/key.gd" id="1_0p3an"]
-[ext_resource type="Texture2D" uid="uid://ddikj8j0l6yje" path="res://asset/sprite/item/key.png" id="1_6s3tr"]
+[ext_resource type="Texture2D" uid="uid://usyrsnyawk0q" path="res://asset/sprite/item/key.png" id="1_6s3tr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s3tr"]
 size = Vector2(27, 9)
 
 [node name="Key" type="Area2D" unique_id=1990007751]
 scale = Vector2(2, 2)
+collision_mask = 2
 script = ExtResource("1_0p3an")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=379892091]
