@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_8yn2c"]
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="1_mqbte"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_kust7"]
+[ext_resource type="AudioStream" uid="uid://bpqi0rrdwho8g" path="res://asset/audio/level_music.ogg" id="2_qtme0"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_qtme0"]
 [ext_resource type="Script" uid="uid://bak7n5yhyw2t" path="res://src/zone/lava.gd" id="5_sixoa"]
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_6oxmt"]
@@ -139,6 +140,10 @@ size = Vector2(439, 18)
 [node name="room2" type="Node2D" unique_id=2093421483]
 script = ExtResource("1_8yn2c")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1650007688]
+stream = ExtResource("2_qtme0")
+autoplay = true
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1163786355]
 position = Vector2(782, -51)
 
@@ -194,6 +199,7 @@ wait_time = 2.0
 
 [node name="Teleporter1to2" parent="." unique_id=1408589343 instance=ExtResource("5_qtme0")]
 position = Vector2(160, 220)
+rotation = -3.1415927
 target_scene = "uid://cj6p1dt6sh3j1"
 
 [node name="Teleporter2to3" parent="." unique_id=2022557818 instance=ExtResource("5_qtme0")]
