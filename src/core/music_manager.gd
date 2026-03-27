@@ -11,14 +11,14 @@ func _ready():
     if menu_music:
         music_player.stream = menu_music
         music_player.play()
-        music_player.volume_linear = 0.0
+        music_player.volume_linear = 0.05
 
 func play_new_track(stream: AudioStream):
     music_player.stream = stream
     music_player.play()
-    music_player.volume_linear = 0.0
+    music_player.volume_linear = 0.05
 
 func play_game_music():
     music_player.stream = game_music
     music_player.play()
-    music_player.volume_linear = 0.0
+    music_player.volume_linear = 0.05

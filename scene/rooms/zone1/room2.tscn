@@ -227,9 +227,6 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfy25"]
-size = Vector2(96, 20)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqbte"]
 size = Vector2(451, 128)
 
@@ -290,13 +287,6 @@ loop = false
 
 [node name="MovingPlatform" parent="Path2D/PathFollow2D" unique_id=691758240 instance=ExtResource("7_rxtk2")]
 position = Vector2(40, -8)
-
-[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D" unique_id=651174715]
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D" unique_id=853963883]
-position = Vector2(39.557068, -8)
-shape = SubResource("RectangleShape2D_qfy25")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1163786355]
 position = Vector2(814, 19)

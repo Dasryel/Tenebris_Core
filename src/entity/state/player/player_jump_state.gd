@@ -3,8 +3,7 @@ extends PlayerBaseState
 
 
 func enter(entity: Entity) -> void:
-    if not entity.is_recovery_jump:
-        _perform_jump(entity)
+    _perform_jump(entity)
 
 
 func update(entity: Entity, delta: float) -> void:
@@ -23,11 +22,6 @@ func update(entity: Entity, delta: float) -> void:
         if entity.jump_count < entity.max_jumps:
             _perform_jump(entity)
 
-    # Apex reached → hand off to FallingState
-    if entity.velocity.y > 0.0:
-        _go_to_loco(entity, PlayerFallingState)
-        return
-
     # Safety: landed during ascent (e.g. hit ceiling then immediately floor)
     if entity.is_on_floor():
         entity.reset_jump_count()
@@ -39,7 +33,6 @@ func exit(_entity: Entity) -> void:
     pass
 
 func _perform_jump(entity: Entity) -> void:
-    entity.is_recovery_jump = false
     entity.velocity.y = entity.jump_velocity
     entity.jump_count += 1
 
