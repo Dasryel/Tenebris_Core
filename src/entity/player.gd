@@ -82,7 +82,8 @@ func is_loco_idling() -> bool:
     return false
 
 func _process(delta: float) -> void:
-    super (delta)
+    for sm in _state_machines.values():
+        sm.update(self , delta)
     _update_state_label(LOCOMOTION_LAYER, loco_state_label)
     _update_state_label(COMBAT_LAYER, combat_state_label)
 # end _process

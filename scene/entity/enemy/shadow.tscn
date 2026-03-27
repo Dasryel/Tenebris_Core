@@ -10,6 +10,9 @@
 radius = 44.24994
 height = 100.55156
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tavkd"]
+light_mode = 1
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_16fs6"]
 atlas = ExtResource("1_i5xn8")
 region = Rect2(0, 0, 28, 22)
@@ -245,6 +248,7 @@ radius = 44.3898
 height = 100.55156
 
 [node name="Shadow" type="CharacterBody2D" unique_id=1692544944 node_paths=PackedStringArray("state_label", "rotator", "ray_front", "ray_left", "ray_right", "attack_hitbox", "attack_hitbox_collision", "sprite")]
+light_mask = 2
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_tavkd")
@@ -261,6 +265,7 @@ sprite = NodePath("AnimatedSprite2D")
 shape = SubResource("CapsuleShape2D_wg68a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=93121721]
+material = SubResource("CanvasItemMaterial_tavkd")
 position = Vector2(0, -29.779999)
 scale = Vector2(7.2387123, 7.2387133)
 sprite_frames = SubResource("SpriteFrames_oyyiu")
@@ -288,6 +293,7 @@ target_position = Vector2(50, 50)
 target_position = Vector2(50, -50)
 
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=871088893]
+show_behind_parent = true
 collision_layer = 64
 collision_mask = 8
 
@@ -296,6 +302,7 @@ shape = SubResource("CapsuleShape2D_tavkd")
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1491235904 groups=["enemy_hurtbox"]]
+show_behind_parent = true
 collision_layer = 16
 collision_mask = 0
 

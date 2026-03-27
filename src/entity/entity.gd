@@ -12,12 +12,14 @@ extends CharacterBody2D
 @export var gravity: float = 1200.0
 @export var knockback_force: float = -600
 @export var air_acceleration: float = 600.0
+var opposing_jump_drag: float = 0.4
 
 @export_group("Stats")
 @export var max_jumps: int = 1
 @export var hit_points: int = 3
 @export var max_hit_points: int = 3
 
+var jump_start_dir
 var last_direction: Vector2 = Vector2.LEFT
 var is_recovery_jump: bool = false
 var jump_count: int = 0
@@ -42,15 +44,6 @@ func _add_state_machine(layer: StringName, default_state: BaseState) -> StateMac
     var sm := StateMachine.new(default_state)
     _state_machines[layer] = sm
     return sm
-
-
-func _process(delta: float) -> void:
-    for sm in _state_machines.values():
-        sm.update(self , delta)
-
-func _on_entity_death():
-    self.queue_free()
-
 
 func heal(amount: int) -> void:
     if hit_points < max_hit_points:
@@ -94,6 +87,9 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 # Override this in subclasses to emit different signals
 func _on_damage_taken(_current_hp: int) -> void:
     pass
+
+func _on_entity_death():
+    self.queue_free()
 
 
 func _on_attack_hitbox_area_entered(area: Area2D) -> void:

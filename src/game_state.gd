@@ -9,6 +9,10 @@ signal door_unlocked
 @warning_ignore("unused_signal")
 signal dj_pickedup
 
+func _unhandled_input(event: InputEvent) -> void:
+    if event.is_action_pressed("escape"):
+        get_tree().quit()
+
 var spawn_position: Vector2 = Vector2.ZERO
 var has_key: bool = false
 var has_dj: bool = false
@@ -25,40 +29,40 @@ var current_player_room: String = "undefined"
 var player_is_dead: bool = false
 
 var doors: Dictionary = {
-	"door1": false,
-	"door2": false,
-	"door3": false,
-	"door4": false,
+    "door1": false,
+    "door2": false,
+    "door3": false,
+    "door4": false,
 }
 
 var keys: Dictionary = {
-	"key1": false,
-	"key2": false,
-	"key3": false,
+    "key1": false,
+    "key2": false,
+    "key3": false,
 }
 
 func is_door_unlocked(id: String) -> bool:
-	return id in unlocked_doors
+    return id in unlocked_doors
 
 func unlock_door(id: String) -> void:
-	if not is_door_unlocked(id):
-		unlocked_doors.append(id)
+    if not is_door_unlocked(id):
+        unlocked_doors.append(id)
 
 
 func reset() -> void:
-	has_key = false
-	has_dj = false
-	spawn_position = Vector2.ZERO
-	player_current_hp = player_max_hp
-	zone_text = ""
-	doors = {
-		"door1": false,
-		"door2": false,
-		"door3": false,
-		"door4": false,
-	}
-	keys = {
-		"key1": false,
-		"key2": false,
-		"key3": false,
-	}
+    has_key = false
+    has_dj = false
+    spawn_position = Vector2.ZERO
+    player_current_hp = player_max_hp
+    zone_text = ""
+    doors = {
+        "door1": false,
+        "door2": false,
+        "door3": false,
+        "door4": false,
+    }
+    keys = {
+        "key1": false,
+        "key2": false,
+        "key3": false,
+    }
