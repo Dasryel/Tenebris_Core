@@ -2,17 +2,22 @@ class_name PlayerJumpState
 extends PlayerBaseState
 
 
-func enter(entity: Entity) -> void:
+func enter(entity: Player) -> void:
     _perform_jump(entity)
 
 
-func update(entity: Entity, delta: float) -> void:
+func update(entity: Player, delta: float) -> void:
     var velocity := entity.velocity
     velocity.y += entity.gravity * delta
 
-    # Full horizontal control during the jump's ascent
+    # Tacky horizontal control during the jump's ascent
     var h_dir := Input.get_axis(GameInput.MOVE_LEFT, GameInput.MOVE_RIGHT)
-    velocity.x = h_dir * entity.speed
+    var target_velocity_x = h_dir * entity.speed
+
+    velocity.x = move_toward(
+        velocity.x,
+        target_velocity_x,
+        entity.air_acceleration * delta)
 
     entity.velocity = velocity
     entity.move_and_slide()
@@ -29,10 +34,10 @@ func update(entity: Entity, delta: float) -> void:
         return
 
 
-func exit(_entity: Entity) -> void:
+func exit(_entity: Player) -> void:
     pass
 
-func _perform_jump(entity: Entity) -> void:
+func _perform_jump(entity: Player) -> void:
     entity.velocity.y = entity.jump_velocity
     entity.jump_count += 1
 

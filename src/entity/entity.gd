@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var recovery_jump_velocity: float = -250.0
 @export var gravity: float = 1200.0
 @export var knockback_force: float = -600
+@export var air_acceleration: float = 600.0
 
 @export_group("Stats")
 @export var max_jumps: int = 1
