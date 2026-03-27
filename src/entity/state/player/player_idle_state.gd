@@ -26,6 +26,5 @@ func update(entity: Entity, _delta: float) -> void:
 		_go_to_loco(entity, PlayerMoveState)
 		return
 
-
 func exit(_entity: Entity) -> void:
 	pass
