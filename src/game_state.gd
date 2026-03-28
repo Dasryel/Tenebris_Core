@@ -45,6 +45,10 @@ var keys: Dictionary = {
     "key3": false,
 }
 
+# sets game bg to black instead of gray
+func _ready() -> void:
+    RenderingServer.set_default_clear_color(Color(0, 0, 0))
+
 func is_door_unlocked(id: String) -> bool:
     return id in unlocked_doors
 

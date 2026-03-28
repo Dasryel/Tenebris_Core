@@ -28,7 +28,7 @@ func _ready() -> void:
         printerr("[BaseRoom] player marker not found")
 
 func setup_debug_player(p):
-    p.scale = Vector2(0.25, 0.25)
+    p.scale = Vector2(0.2, 0.2)
     p.speed /= 2
     p.jump_velocity /= 2
     p.gravity /= 2
@@ -36,3 +36,6 @@ func setup_debug_player(p):
     p.knockback_force /= 2
     p.air_acceleration /= 2
     p.opposing_jump_drag /= 2
+
+    var camera = PlayerCamera.new(p)
+    p.add_child(camera)
