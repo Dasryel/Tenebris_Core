@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://w285k1670ynb"]
+
+[ext_resource type="Script" uid="uid://bjjpqeq2j8ia5" path="res://src/item/health.gd" id="1_624nm"]
+[ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="1_huxu7"]
+[ext_resource type="Texture2D" uid="uid://dicvenlxm7asa" path="res://asset/sprite/player/hp.png" id="1_lp01f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lp01f"]
+radius = 22.022715
+
+[node name="Health" type="Area2D" unique_id=1327337286]
+collision_mask = 3
+script = ExtResource("1_624nm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1192087480]
+position = Vector2(69, 1)
+texture = ExtResource("1_lp01f")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=271978946]
+light_mask = 3
+scale = Vector2(0.19666667, 0.19666667)
+texture = ExtResource("1_huxu7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1698416882]
+shape = SubResource("CircleShape2D_lp01f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

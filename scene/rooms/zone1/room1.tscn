@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_8dx0c"]
 [ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="9_2sdbf"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="10_10e0j"]
+[ext_resource type="PackedScene" uid="uid://w285k1670ynb" path="res://scene/item/health.tscn" id="10_gsdm0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sdbf"]
 texture = ExtResource("4_8dx0c")
@@ -637,3 +638,6 @@ texture = ExtResource("10_10e0j")
 
 [node name="Shadow" parent="." unique_id=1692544944 instance=ExtResource("9_2sdbf")]
 position = Vector2(736, 255)
+
+[node name="Health" parent="." unique_id=1327337286 instance=ExtResource("10_gsdm0")]
+position = Vector2(-157, 443)
