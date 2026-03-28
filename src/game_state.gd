@@ -13,6 +13,10 @@ func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("escape"):
         get_tree().quit()
 
+    if event.is_action_pressed("debug_map"):
+        get_tree().change_scene_to_file("res://scene/rooms/zone3/room1.tscn")
+
+
 var spawn_position: Vector2 = Vector2.ZERO
 var has_key: bool = false
 var has_dj: bool = false

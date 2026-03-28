@@ -20,6 +20,19 @@ func _ready() -> void:
     # 3. Snap to that marker
     var m = find_child(target)
     if m:
+        # hack for debug map
+        if GameState.current_player_zone == "zone3" and GameState.current_player_room == "room1.tscn":
+            setup_debug_player(p)
         p.global_position = m.global_position
     else:
         printerr("[BaseRoom] player marker not found")
+
+func setup_debug_player(p):
+    p.scale = Vector2(0.25, 0.25)
+    p.speed /= 2
+    p.jump_velocity /= 2
+    p.gravity /= 2
+    p.recovery_jump_velocity /= 2
+    p.knockback_force /= 2
+    p.air_acceleration /= 2
+    p.opposing_jump_drag /= 2
