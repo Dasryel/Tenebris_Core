@@ -1,0 +1,78 @@
+[gd_scene format=4 uid="uid://b87stycq5hvim"]
+
+[ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_e6dbp"]
+[ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="6_qvsyg"]
+[ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="7_fm7pv"]
+[ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="8_8k1eu"]
+[ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="9_dxfi6"]
+[ext_resource type="PackedScene" uid="uid://w285k1670ynb" path="res://scene/item/health.tscn" id="10_e4alb"]
+
+[node name="room1" type="Node2D" unique_id=2093421483]
+script = ExtResource("1_e6dbp")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=920318189]
+position = Vector2(240, 193)
+
+[node name="Door" parent="." unique_id=1954722909 instance=ExtResource("6_qvsyg")]
+position = Vector2(-239, 277)
+target_scene = "uid://6aix8efynile"
+zone_name = "Second Zone"
+target_door_id = "Door"
+
+[node name="Zone1Door" type="Marker2D" parent="Door" unique_id=1204163109]
+
+[node name="Lights" type="Node2D" parent="." unique_id=1102104822]
+visible = false
+scale = Vector2(4, 4)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Lights" unique_id=111934586]
+color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights" unique_id=2060628323]
+position = Vector2(-59.5, 70.5)
+scale = Vector2(0.42916664, 0.42916664)
+texture = ExtResource("8_8k1eu")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lights" unique_id=213850214]
+position = Vector2(178.75, 53.75)
+scale = Vector2(0.42916664, 0.42916664)
+energy = 2.0
+texture = ExtResource("8_8k1eu")
+
+[node name="Enemies" type="Node2D" parent="." unique_id=867647312]
+visible = false
+
+[node name="Shadow" parent="Enemies" unique_id=1692544944 instance=ExtResource("9_dxfi6")]
+position = Vector2(736, 255)
+
+[node name="Pickups" type="Node2D" parent="." unique_id=722228007]
+visible = false
+
+[node name="Health" parent="Pickups" unique_id=1327337286 instance=ExtResource("10_e4alb")]
+position = Vector2(-157, 443)
+
+[node name="Spawns" type="Node2D" parent="." unique_id=270186153]
+visible = false
+
+[node name="PlayerSpawn" type="Marker2D" parent="Spawns" unique_id=1429242992]
+position = Vector2(-237, 270)
+
+[node name="Teleporters" type="Node2D" parent="." unique_id=525648834]
+visible = false
+
+[node name="Teleporter1to2" parent="Teleporters" unique_id=1408589343 instance=ExtResource("7_fm7pv")]
+position = Vector2(843, 457)
+target_scene = "uid://ct6gdo5mip1xb"
+
+[node name="Tiles" type="Node2D" parent="." unique_id=1388953683]
+visible = false
+
+[node name="TileMapLayer_No_Collision" type="TileMapLayer" parent="Tiles" unique_id=978279668]
+position = Vector2(-15, -2)
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAD7/wIAAAAJAAcAAAD7/wMAAAAJAAgAAAD7/wQAAAAJAAkAAAD8/wIAAAAKAAcAAAD8/wMAAAAKAAgAAAD8/wQAAAAKAAkAAAD9/wIAAAALAAcAAAD9/wMAAAALAAgAAAD9/wQAAAALAAkAAAA=")
+
+[node name="Tile_Collision" type="TileMapLayer" parent="Tiles" unique_id=1491550642]
+light_mask = 3
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAD5/wgAAQABAAQAAAD5/wkAAQABAAUAAAD6/wgAAQACAAQAAAD6/wkAAQACAAUAAAD7/wgAAQADAAQAAAD7/wkAAQADAAUAAAD8/wgAAQAEAAQAAAD8/wkAAQAEAAUAAAD9/wgAAQABAAQAAAD9/wkAAQABAAUAAAD+/wgAAQACAAQAAAD+/wkAAQACAAUAAAD//wgAAQADAAQAAAD//wkAAQADAAUAAAAAAAgAAQAEAAQAAAAAAAkAAQAEAAUAAAABAAgAAQABAAQAAAABAAkAAQABAAUAAAACAAgAAQACAAQAAAACAAkAAQACAAUAAAADAAgAAQADAAQAAAADAAkAAQADAAUAAAAEAAgAAQAEAAQAAAAEAAkAAQAEAAUAAAAFAAgAAQABAAQAAAAFAAkAAQABAAUAAAAGAAgAAQACAAQAAAAGAAkAAQACAAUAAAAHAAgAAQADAAQAAAAHAAkAAQADAAUAAAAIAAgAAQAEAAQAAAAIAAkAAQAEAAUAAAAJAAgAAQABAAQAAAAJAAkAAQABAAUAAAAKAAgAAQACAAQAAAAKAAkAAQACAAUAAAALAAgAAQADAAQAAAALAAkAAQADAAUAAAAMAAgAAQAEAAQAAAAMAAkAAQAEAAUAAAANAAgAAQABAAQAAAANAAkAAQABAAUAAAD4//3/AQAMAAQAAAD5//3/AQANAAQAAAD6//3/AQAOAAQAAAD7//3/AQAPAAQAAAD8//3/AQAQAAQAAAD9//3/AQARAAQAAAD+//3/AQASAAQAAAD///3/AQAPAAQAAAAAAP3/AQAQAAQAAAABAP3/AQARAAQAAAACAP3/AQASAAQAAAADAP3/AQAPAAQAAAAEAP3/AQAQAAQAAAAFAP3/AQARAAQAAAAGAP3/AQASAAQAAAAHAP3/AQAPAAQAAAAIAP3/AQAQAAQAAAAJAP3/AQARAAQAAAAKAP3/AQAPAAQAAAALAP3/AQARAAQAAAD5//7/AQANAAUAAAD5////AQANAAYAAAD5/wAAAQANAAcAAAD5/wEAAQANAAgAAAD5/wIAAQANAAkAAAD5/wMAAQANAAoAAAD6//7/AQAOAAUAAAD6////AQAOAAYAAAD6/wAAAQAOAAcAAAD6/wEAAQAOAAgAAAD6/wIAAQAOAAkAAAD6/wMAAQAOAAoAAAD5/wQAAQANAAgAAAD5/wUAAQANAAkAAAD5/wYAAQANAAoAAAD6/wQAAQAOAAgAAAD6/wUAAQAOAAkAAAD6/wYAAQAOAAoAAAD5/wcAAQANAAcAAAD6/wcAAQAOAAcAAAANAP3/AQATAAQAAAANAP7/AQATAAUAAAANAP//AQATAAYAAAANAAAAAQATAAcAAAANAAEAAQATAAgAAAANAAIAAQATAAkAAAANAAMAAQATAAoAAAAOAP3/AQAUAAQAAAAOAP7/AQAUAAUAAAAOAP//AQAUAAYAAAAOAAAAAQAUAAcAAAAOAAEAAQAUAAgAAAAOAAIAAQAUAAkAAAAOAAMAAQAUAAoAAAAMAP3/AQASAAQAAAANAAQAAQATAAgAAAAOAAQAAQAUAAgAAAANAAUAAQATAAUAAAANAAYAAQATAAYAAAAOAAUAAQAUAAUAAAAOAAYAAQAUAAYAAAANAAcAAQATAAcAAAAOAAcAAQAUAAcAAAAKAAUAAQAQAAIAAAALAAUAAQARAAIAAAAMAAUAAQASAAIAAAD7/wUAAQAQAAIAAAD8/wUAAQARAAIAAAD9/wUAAQASAAIAAAACAAIAAAABAAgAAAADAAIAAAABAAgAAAAEAAIAAAABAAgAAAA=")

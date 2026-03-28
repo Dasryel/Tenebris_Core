@@ -593,7 +593,6 @@ position = Vector2(240, 193)
 [node name="TileMapLayer_No_Collision" type="TileMapLayer" parent="Tiles" unique_id=978279668]
 position = Vector2(-15, -2)
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAD7/wIAAAAJAAcAAAD7/wMAAAAJAAgAAAD7/wQAAAAJAAkAAAD8/wIAAAAKAAcAAAD8/wMAAAAKAAgAAAD8/wQAAAAKAAkAAAD9/wIAAAALAAcAAAD9/wMAAAALAAgAAAD9/wQAAAALAAkAAAA=")
 tile_set = SubResource("TileSet_2sdbf")
 
 [node name="Tile_Collision" type="TileMapLayer" parent="Tiles" unique_id=1491550642]
@@ -603,7 +602,8 @@ tile_map_data = PackedByteArray("AAD5/wgAAQABAAQAAAD5/wkAAQABAAUAAAD6/wgAAQACAAQ
 tile_set = SubResource("TileSet_apf85")
 
 [node name="Door" parent="." unique_id=1954722909 instance=ExtResource("5_k4wow")]
-position = Vector2(-239, 277)
+position = Vector2(-239, 234)
+scale = Vector2(4, 4)
 target_scene = "uid://6aix8efynile"
 zone_name = "Second Zone"
 target_door_id = "Door"
