@@ -232,8 +232,18 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqbte"]
 size = Vector2(451, 128)
 
-[node name="room2" type="Node2D" unique_id=2093421483]
+[node name="room2" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_8yn2c")
+camera_bounds = NodePath("CameraBounds")
+
+[node name="CameraBounds" type="Node2D" parent="." unique_id=1729749514]
+position = Vector2(315, 127)
+
+[node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=1768781849]
+position = Vector2(-135, -528)
+
+[node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=544731431]
+position = Vector2(1160, 247)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1031914611]
 
@@ -292,9 +302,6 @@ loop = false
 
 [node name="MovingPlatform" parent="Path2D/PathFollow2D" unique_id=691758240 instance=ExtResource("7_rxtk2")]
 position = Vector2(40, -8)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1163786355]
-position = Vector2(814, 19)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
 

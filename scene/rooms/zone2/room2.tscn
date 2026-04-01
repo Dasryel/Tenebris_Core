@@ -84,11 +84,18 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jmhvh")
 
-[node name="room2" type="Node2D" unique_id=2093421483]
+[node name="room2" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_8ikxe")
+camera_bounds = NodePath("CameraBounds")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1380065488]
-position = Vector2(640, 360)
+[node name="CameraBounds" type="Node2D" parent="." unique_id=224210240]
+position = Vector2(315, 127)
+
+[node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=687456087]
+position = Vector2(-301, -136)
+
+[node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=739443452]
+position = Vector2(957, 584)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
 

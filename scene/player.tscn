@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="4_ct4mp"]
 [ext_resource type="Texture2D" uid="uid://cn47jcyco8e8x" path="res://asset/sprite/player/R_slash_2-Sheet.png" id="5_ml7e8"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="8_g2vtq"]
+[ext_resource type="Script" uid="uid://b1xp238weqvyl" path="res://src/ui/player_camera.gd" id="9_2fvbb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g2vtq"]
 light_mode = 1
@@ -338,6 +339,9 @@ range_layer_min = -5
 range_layer_max = 5
 range_item_cull_mask = 3
 texture = ExtResource("8_g2vtq")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=295790852]
+script = ExtResource("9_2fvbb")
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]

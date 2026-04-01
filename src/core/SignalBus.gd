@@ -17,3 +17,6 @@ signal player_hp_changed(new_hit_points: int)
 
 @warning_ignore("unused_signal")
 signal extra_jump_pickup()
+
+@warning_ignore("unused_signal")
+signal camera_bounds_changed(top_left: Vector2, bottom_right: Vector2)

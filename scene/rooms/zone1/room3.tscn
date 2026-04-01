@@ -570,11 +570,18 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_u8557")
 sources/1 = SubResource("TileSetAtlasSource_3n3r2")
 
-[node name="room3" type="Node2D" unique_id=2093421483]
+[node name="room3" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_57wwm")
+camera_bounds = NodePath("CameraBounds")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1807190626]
-position = Vector2(786, -49)
+[node name="CameraBounds" type="Node2D" parent="." unique_id=387258893]
+position = Vector2(315, 127)
+
+[node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=990798316]
+position = Vector2(-140, -503)
+
+[node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=953141304]
+position = Vector2(1150, 210)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=301617238]
 

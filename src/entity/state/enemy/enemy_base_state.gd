@@ -25,8 +25,9 @@ func _face_target(entity: Enemy, target: Node2D) -> void:
 
 func on_notify(entity: Enemy, event: int) -> void:
 	# print(entity, event)
-	if event == StateEvent.ENEMY_DAMAGED:
-		_go_to_enemy(entity, EnemyRecoveryState)
+    # slight hack especially if we need a different if for each type
+	if event == StateEvent.ENEMY_DAMAGED and entity is ShadowEnemy:
+		_go_to_enemy(entity, ShadowRecoveryState)
 
 
 ## Shorthand: transition on the [b]Locomotion[/b] layer.

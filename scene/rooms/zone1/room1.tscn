@@ -571,8 +571,18 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_gsdm0")
 sources/1 = SubResource("TileSetAtlasSource_apf85")
 
-[node name="room1" type="Node2D" unique_id=2093421483]
+[node name="room1" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_urwxp")
+camera_bounds = NodePath("CameraBounds")
+
+[node name="CameraBounds" type="Node2D" parent="." unique_id=1050539392]
+position = Vector2(315, 127)
+
+[node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=1562064568]
+position = Vector2(-710, -284)
+
+[node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=1524301483]
+position = Vector2(550, 422)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=707091444]
 
@@ -580,9 +590,6 @@ script = ExtResource("1_urwxp")
 light_mask = 3
 position = Vector2(205, 171)
 texture = ExtResource("2_2sdbf")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=920318189]
-position = Vector2(240, 193)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
 

@@ -1,8 +1,10 @@
-class_name EnemyAttackState
+class_name ShadowAttackState
 extends EnemyBaseState
 
+# const BaseState = preload("res://src/entity/state/enemy/enemy_base_state.gd")
+
 func enter(entity: Entity) -> void:
-	entity.state_label.text = "EnemyAttackState"
+	entity.state_label.text = "ShadowAttackState"
 	entity.velocity = Vector2.ZERO
 
 	#var player = _get_player()
@@ -29,9 +31,9 @@ func update(_entity: Entity, _delta: float) -> void:
 
 
 func _on_animation_finished(entity: Entity) -> void:
-	var tree = entity.get_tree()
+	# var tree = entity.get_tree()
 	# await tree.create_timer(0.2).timeout
-	_go_to_enemy(entity, EnemyIdleState)
+	_go_to_enemy(entity, ShadowIdleState)
 
 
 # Safety: disconnect if state was interrupted (e.g. took damage)
