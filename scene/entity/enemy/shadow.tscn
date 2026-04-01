@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5345vfwp0bka"]
 
 [ext_resource type="Texture2D" uid="uid://loipbl5rlh20" path="res://asset/sprite/enemy/shadow_ATTACK-Sheet.png" id="1_i5xn8"]
-[ext_resource type="Script" uid="uid://dye4swv0eb8q6" path="res://src/entity/enemy.gd" id="1_tavkd"]
+[ext_resource type="Script" uid="uid://baosu7rs4xusn" path="res://src/entity/shadow_enemy.gd" id="1_tavkd"]
 [ext_resource type="Texture2D" uid="uid://dg04fwyg24gbn" path="res://asset/sprite/enemy/shadow_HURT-Sheet.png" id="2_tavkd"]
 [ext_resource type="Texture2D" uid="uid://b85c032iq4p0t" path="res://asset/sprite/enemy/shadow_IDLE-Sheet.png" id="3_a4c51"]
 [ext_resource type="Texture2D" uid="uid://c83bedvcstd56" path="res://asset/sprite/enemy/shadow_WALK-Sheet.png" id="4_u08j2"]
@@ -247,18 +247,18 @@ height = 86.531815
 radius = 44.3898
 height = 100.55156
 
-[node name="Shadow" type="CharacterBody2D" unique_id=1692544944 node_paths=PackedStringArray("state_label", "rotator", "ray_front", "ray_left", "ray_right", "attack_hitbox", "attack_hitbox_collision", "sprite")]
+[node name="Shadow" type="CharacterBody2D" unique_id=1692544944 node_paths=PackedStringArray("rotator", "ray_front", "ray_left", "ray_right", "attack_hitbox", "attack_hitbox_collision", "state_label", "sprite")]
 light_mask = 2
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_tavkd")
-state_label = NodePath("StateLabel")
 rotator = NodePath("Rotator")
 ray_front = NodePath("Rotator/RayFront")
 ray_left = NodePath("Rotator/RayLeft")
 ray_right = NodePath("Rotator/RayRight")
 attack_hitbox = NodePath("AttackHitbox")
 attack_hitbox_collision = NodePath("AttackHitbox/CollisionShape2D")
+state_label = NodePath("StateLabel")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1959473466]

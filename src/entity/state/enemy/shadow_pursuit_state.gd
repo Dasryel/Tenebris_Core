@@ -1,15 +1,15 @@
-class_name EnemyPursuitState
+class_name ShadowPursuitState
 extends EnemyBaseState
 
 func enter(entity: Entity) -> void:
-	entity.state_label.text = "EnemyPursuitState"
+	entity.state_label.text = "ShadowPursuitState"
 	entity.play_anim("run")
 
 func update(entity: Entity, _delta: float) -> void:
 	var player = _get_player()
 
 	if not player:
-		_go_to_enemy(entity, EnemyIdleState)
+		_go_to_enemy(entity, ShadowIdleState)
 		return
 
 	var dist := entity.global_position.distance_to(player.global_position)
@@ -18,11 +18,11 @@ func update(entity: Entity, _delta: float) -> void:
 
 	# --- Transition checks ---
 	if dist <= entity.ATTACK_RANGE:
-		_go_to_enemy(entity, EnemyAttackState)
+		_go_to_enemy(entity, ShadowAttackState)
 		return
 
 	if dist >= entity.ABANDON_RANGE:
-		_go_to_enemy(entity, EnemyIdleState)
+		_go_to_enemy(entity, ShadowIdleState)
 		return
 
 	# Flying = ignore gravity, direct velocity toward path point
