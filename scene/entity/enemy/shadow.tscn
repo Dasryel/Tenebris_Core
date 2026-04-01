@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://b85c032iq4p0t" path="res://asset/sprite/enemy/shadow_IDLE-Sheet.png" id="3_a4c51"]
 [ext_resource type="Texture2D" uid="uid://c83bedvcstd56" path="res://asset/sprite/enemy/shadow_WALK-Sheet.png" id="4_u08j2"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u08j2"]
+radius = 40.33423
+height = 80.66846
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wg68a"]
 radius = 44.24994
 height = 100.55156
@@ -257,6 +261,13 @@ attack_hitbox_collision = NodePath("AttackHitbox/CollisionShape2D")
 state_label = NodePath("StateLabel")
 sprite = NodePath("AnimatedSprite2D")
 
+[node name="PlayerDamageArea2D" type="Area2D" parent="." unique_id=1270332134]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDamageArea2D" unique_id=1879915959]
+position = Vector2(0, -34)
+shape = SubResource("CapsuleShape2D_u08j2")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1959473466]
 shape = SubResource("CapsuleShape2D_wg68a")
 
@@ -294,5 +305,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=399001480]
 shape = SubResource("CapsuleShape2D_a4c51")
 
+[connection signal="body_entered" from="PlayerDamageArea2D" to="." method="_on_player_damage_area_2d_body_entered"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]

@@ -104,3 +104,10 @@ func play_death_effect():
     ).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
     tween.chain().tween_callback(queue_free)
+
+
+func _on_player_damage_area_2d_body_entered(body: Node2D) -> void:
+    print("player on top")
+    if body.is_in_group("player"):
+        body.take_damage(1, Vector2(0, 0))
+        await self.get_tree().create_timer(0.75).timeout

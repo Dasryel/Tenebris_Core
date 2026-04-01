@@ -2,7 +2,7 @@ class_name ShadowIdleState
 extends EnemyBaseState
 
 # stupid hack
-const ShadowFallingState = preload("res://src/entity/state/enemy/shadow_falling_state.gd")
+# const ShadowFallingState = preload("res://src/entity/state/enemy/shadow_falling_state.gd")
 
 func enter(entity: Enemy) -> void:
 	if not entity.is_on_floor():
