@@ -11,52 +11,50 @@ var _original_y: float = 0.0
 
 
 func _ready() -> void:
-	_original_y = global_position.y
-	sprite.play("idle")
-	_jump_loop()
+    _original_y = global_position.y
+    sprite.play("idle")
+    _jump_loop()
 
 
 func _jump_loop() -> void:
-	while true:
-		await get_tree().create_timer(jump_interval).timeout
-		await _jump()
+    while true:
+        await get_tree().create_timer(jump_interval).timeout
+        _jump()
 
 
 func _jump() -> void:
-	if _is_jumping:
-		return
+    if _is_jumping:
+        return
 
-	_is_jumping = true
-	sprite.play("jump")
+    _is_jumping = true
+    sprite.play("jump")
 
-	# Go up
-	var tween := create_tween()
-	tween.tween_property(self , "global_position:y", _original_y - jump_height, jump_duration) \
-		.set_ease(Tween.EASE_OUT) \
-		.set_trans(Tween.TRANS_SINE)
-	await tween.finished
+    # Up & down
+    await _tween_lava_enemy(_original_y - jump_height, Tween.EASE_OUT)
+    await _tween_lava_enemy(_original_y, Tween.EASE_IN)
 
-	# Come down
-	tween = create_tween()
-	tween.tween_property(self , "global_position:y", _original_y, jump_duration) \
-		.set_ease(Tween.EASE_IN) \
-		.set_trans(Tween.TRANS_SINE)
-	await tween.finished
+    sprite.play("idle")
+    _is_jumping = false
 
-	sprite.play("idle")
-	_is_jumping = false
+
+func _tween_lava_enemy(height: float, eease: Tween.EaseType):
+    var tween = create_tween()
+    tween.tween_property(self , "global_position:y", height, jump_duration) \
+        .set_ease(eease) \
+        .set_trans(Tween.TRANS_SINE)
+    await tween.finished
 
 
 func _on_entity_death() -> void:
-	sprite.play("die")
-	set_process(false)
-	set_physics_process(false)
-	# Wait for the death animation to finish before removing
-	await sprite.animation_finished
-	queue_free()
+    sprite.play("die")
+    set_process(false)
+    set_physics_process(false)
+    # Wait for the death animation to finish before removing
+    await sprite.animation_finished
+    queue_free()
 
 
 func _on_player_damage_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		body.take_damage(1, Vector2(0, 0))
-		await get_tree().create_timer(0.75).timeout
+    if body.is_in_group("player"):
+        body.take_damage(1, Vector2(0, 0))
+        await get_tree().create_timer(0.75).timeout

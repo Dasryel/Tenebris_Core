@@ -5,7 +5,7 @@ extends Camera2D
 func _ready() -> void:
     SignalBus.camera_bounds_changed.connect(_on_camera_bounds_changed)
     # zoom = Vector2(3.5, 3.5)
-    offset.y = -25.0
+    # offset.y = -25.0
 
     limit_enabled = true
     limit_smoothed = true
