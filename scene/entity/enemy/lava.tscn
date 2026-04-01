@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://emvxcybenuud"]
 
-[ext_resource type="Texture2D" uid="uid://cfjxaa1s6b3cc" path="res://asset/sprite/enemy/lava.png" id="1_2mgwf"]
+[ext_resource type="Texture2D" uid="uid://dku8awgeee5dt" path="res://asset/sprite/enemy/lava.png" id="1_2mgwf"]
+[ext_resource type="Script" uid="uid://c3rnqy260m6rm" path="res://src/entity/lava_enemy.gd" id="1_le3yq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_le3yq"]
 atlas = ExtResource("1_2mgwf")
@@ -70,7 +71,12 @@ animations = [{
 radius = 49.0
 height = 100.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sgsdw"]
+radius = 55.731247
+height = 111.462494
+
 [node name="Lava" type="CharacterBody2D" unique_id=1994014500]
+script = ExtResource("1_le3yq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=74969900]
 sprite_frames = SubResource("SpriteFrames_rtekh")
@@ -82,3 +88,13 @@ frame_progress = 0.39947456
 position = Vector2(-2, 32)
 shape = SubResource("CapsuleShape2D_iaqwj")
 disabled = true
+
+[node name="PlayerDamageArea2D" type="Area2D" parent="." unique_id=811057284]
+position = Vector2(0, -43)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDamageArea2D" unique_id=8257440]
+position = Vector2(5, 68)
+shape = SubResource("CapsuleShape2D_sgsdw")
+
+[connection signal="body_entered" from="PlayerDamageArea2D" to="." method="_on_player_damage_area_2d_body_entered"]
