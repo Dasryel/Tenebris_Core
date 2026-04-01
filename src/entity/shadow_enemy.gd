@@ -16,12 +16,6 @@ var recovery_timer: float = 0.0
 @export var IDLE_WAIT_MIN := 1.0
 @export var IDLE_WAIT_MAX := 3.0
 
-@export_group("Navigation Rays")
-@export var rotator: Node2D
-@export var ray_front: RayCast2D
-@export var ray_left: RayCast2D
-@export var ray_right: RayCast2D
-
 @export_group("Attack Hitbox")
 @export var attack_hitbox: Area2D
 @export var attack_hitbox_offset: float = 80.0
