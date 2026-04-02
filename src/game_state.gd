@@ -8,7 +8,8 @@ signal player_died
 signal door_unlocked
 @warning_ignore("unused_signal")
 signal dj_pickedup
-signal game_paused
+@warning_ignore("unused_signal")
+signal game_paused()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
