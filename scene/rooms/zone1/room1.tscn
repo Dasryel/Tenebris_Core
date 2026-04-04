@@ -621,9 +621,6 @@ target_door_id = "Door"
 position = Vector2(843, 457)
 target_scene = "uid://ct6gdo5mip1xb"
 
-[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1429242992]
-position = Vector2(-237, 270)
-
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1919393156]
 
 [node name="Lights" type="Node2D" parent="." unique_id=1102104822]
