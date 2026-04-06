@@ -575,10 +575,10 @@ camera_bounds = NodePath("CameraBounds")
 position = Vector2(315, 127)
 
 [node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=1562064568]
-position = Vector2(-710, -284)
+position = Vector2(-849, -289)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=1524301483]
-position = Vector2(550, 422)
+position = Vector2(693, 497)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
 
@@ -617,11 +617,11 @@ texture = ExtResource("5_6qpwy")
 
 [node name="Teleporters" type="Node2D" parent="." unique_id=1133539820]
 
-[node name="to_main" parent="Teleporters" unique_id=1408589343 instance=ExtResource("6_t5pe7")]
+[node name="corridor_main" parent="Teleporters" unique_id=1408589343 instance=ExtResource("6_t5pe7")]
 position = Vector2(920, 453)
 target_scene = "uid://c5lxqd2bosh4g"
 
-[node name="to_spawn" parent="Teleporters" unique_id=621320404 instance=ExtResource("6_t5pe7")]
+[node name="corridor_spawn" parent="Teleporters" unique_id=621320404 instance=ExtResource("6_t5pe7")]
 position = Vector2(-484, 447)
 rotation = 3.1415927
 target_scene = "uid://bpgymvprtqna6"

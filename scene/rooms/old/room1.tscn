@@ -645,3 +645,6 @@ position = Vector2(736, 255)
 
 [node name="Health" parent="." unique_id=1327337286 instance=ExtResource("10_gsdm0")]
 position = Vector2(-157, 443)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1677569834]
+position = Vector2(-237, 270)

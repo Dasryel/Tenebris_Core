@@ -578,10 +578,10 @@ camera_bounds = NodePath("CameraBounds")
 position = Vector2(315, 127)
 
 [node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=990798316]
-position = Vector2(-140, -503)
+position = Vector2(-261, -514)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=953141304]
-position = Vector2(1150, 210)
+position = Vector2(1258, 248)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=301617238]
 
@@ -601,9 +601,11 @@ tile_set = SubResource("TileSet_4veoa")
 
 [node name="PlayerUi" parent="CanvasLayer" unique_id=1277935282 instance=ExtResource("4_2mm8u")]
 
-[node name="to_main" parent="." unique_id=1408589343 instance=ExtResource("5_ibkwp")]
+[node name="Teleporter" type="Node2D" parent="." unique_id=1739406836]
+
+[node name="main_key2" parent="Teleporter" unique_id=1408589343 instance=ExtResource("5_ibkwp")]
 position = Vector2(102, 255)
-rotation = 3.1415927
+rotation = -3.1415925
 target_scene = "uid://c5lxqd2bosh4g"
 
 [node name="Shadow" parent="." unique_id=1692544944 instance=ExtResource("6_c8vw2")]

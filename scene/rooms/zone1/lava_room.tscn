@@ -233,10 +233,10 @@ camera_bounds = NodePath("CameraBounds")
 position = Vector2(315, 127)
 
 [node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=1768781849]
-position = Vector2(-135, -528)
+position = Vector2(-264, -1319)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=544731431]
-position = Vector2(1160, 247)
+position = Vector2(4417, 273)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1031914611]
 
@@ -255,11 +255,11 @@ tile_set = ExtResource("4_aj0wp")
 
 [node name="Teleporters" type="Node2D" parent="." unique_id=967165362]
 
-[node name="to_main" parent="Teleporters" unique_id=2022557818 instance=ExtResource("5_t07s3")]
+[node name="lava_main" parent="Teleporters" unique_id=2022557818 instance=ExtResource("5_t07s3")]
 position = Vector2(3079, -264)
 target_scene = "uid://c5lxqd2bosh4g"
 
-[node name="to_doublejump" parent="Teleporters" unique_id=2022954805 instance=ExtResource("5_t07s3")]
+[node name="lava_doublejump" parent="Teleporters" unique_id=2022954805 instance=ExtResource("5_t07s3")]
 position = Vector2(102, -533)
 rotation = 3.1415925
 target_scene = "uid://eobv5pygfo8v"
