@@ -1,13 +1,11 @@
 extends Control
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
-	GameState.player_died.connect(show_death_menu)
+	GameState.game_paused.connect(show_pause_menu)
 
-func show_death_menu():
-	print("death menu")
+func show_pause_menu():
 	visible = true
 	get_tree().paused = true
 
@@ -27,3 +25,8 @@ func _on_main_menu_button_pressed() -> void:
 	GameState.reset()
 	GameState.has_dj = false
 	get_tree().change_scene_to_file("res://scene/ui/main_menu.tscn")
+
+
+func _on_resume_button_pressed() -> void:
+	visible = false
+	get_tree().paused = false

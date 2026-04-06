@@ -8,10 +8,12 @@ signal player_died
 signal door_unlocked
 @warning_ignore("unused_signal")
 signal dj_pickedup
+@warning_ignore("unused_signal")
+signal game_paused()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
-		get_tree().quit()
+		GameState.game_paused.emit()
 
 	if event.is_action_pressed("debug_map"):
 		get_tree().change_scene_to_file("res://scene/rooms/zone3/room1.tscn")
@@ -59,7 +61,7 @@ func unlock_door(id: String) -> void:
 
 func reset() -> void:
 	has_key = false
-	has_dj = false
+	#has_dj = false
 	spawn_position = Vector2.ZERO
 	player_current_hp = player_max_hp
 	zone_text = ""
