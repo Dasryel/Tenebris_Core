@@ -670,7 +670,6 @@ point_count = 4
 size = Vector2(1400.5, 128)
 
 [node name="main_hall" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
-position = Vector2(361, -144)
 script = ExtResource("1_xr2qj")
 camera_bounds = NodePath("CameraBounds")
 
@@ -681,13 +680,13 @@ position = Vector2(2369, -1077)
 position = Vector2(2253, -1080)
 
 [node name="CameraBounds" type="Node2D" parent="." unique_id=1729749514]
-position = Vector2(315, 127)
+position = Vector2(46, -2202)
 
 [node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=1768781849]
-position = Vector2(-135, -528)
+position = Vector2(-1, -13)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=544731431]
-position = Vector2(1160, 247)
+position = Vector2(3076, 2585)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1031914611]
 
@@ -715,21 +714,21 @@ tile_set = ExtResource("4_em1ej")
 
 [node name="Teleporters" type="Node2D" parent="." unique_id=967165362]
 
-[node name="to_corridor" parent="Teleporters" unique_id=1408589343 instance=ExtResource("5_q4jlt")]
-position = Vector2(150, 190)
+[node name="corridor_main" parent="Teleporters" unique_id=1408589343 instance=ExtResource("5_q4jlt")]
+position = Vector2(100, 253)
 rotation = 3.1415925
 target_scene = "uid://br4paskgcobl8"
 
-[node name="to_key1" parent="Teleporters" unique_id=2022557818 instance=ExtResource("5_q4jlt")]
-position = Vector2(3048, 257)
+[node name="main_key1" parent="Teleporters" unique_id=2022557818 instance=ExtResource("5_q4jlt")]
+position = Vector2(3083, 254)
 target_scene = "uid://cm8dao8tt88"
 
-[node name="to_key2" parent="Teleporters" unique_id=825399634 instance=ExtResource("5_q4jlt")]
-position = Vector2(3016, -1922)
+[node name="main_key2" parent="Teleporters" unique_id=825399634 instance=ExtResource("5_q4jlt")]
+position = Vector2(3073, -1610)
 target_scene = "uid://cmvcb343xlqr6"
 
-[node name="to_lava" parent="Teleporters" unique_id=2022954805 instance=ExtResource("5_q4jlt")]
-position = Vector2(147, -1164)
+[node name="lava_main" parent="Teleporters" unique_id=2022954805 instance=ExtResource("5_q4jlt")]
+position = Vector2(105, -1161)
 rotation = 3.1415925
 target_scene = "uid://vks0dehj2u1a"
 

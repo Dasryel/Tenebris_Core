@@ -2,6 +2,8 @@ extends Control
 
 @onready var main_menu_buttons: VBoxContainer = $MainMenuButtons
 @onready var options_panel: Panel = $OptionsPanel
+@export_file("*.tscn") var spawn_scene: String
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,7 +14,7 @@ func _ready() -> void:
 func _on_start_button_pressed() -> void:
 	GameState.reset()
 	MusicManager.play_game_music()
-	get_tree().change_scene_to_file("res://scene/rooms/zone1/room1.tscn")
+	get_tree().change_scene_to_file(spawn_scene)
 
 
 func _on_options_button_pressed() -> void:
