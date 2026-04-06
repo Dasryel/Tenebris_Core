@@ -30,12 +30,22 @@ func _ready() -> void:
 		p.global_position = m.global_position
 	else:
 		printerr("[BaseRoom] player marker not found")
+# END _ready
+
 
 func _setup_camera_bounds():
 	var top_left = camera_bounds.get_node("TopLeft")
 	var bottom_right = camera_bounds.get_node("BottomRight")
 
-	SignalBus.camera_bounds_changed.emit(top_left.global_position, bottom_right.global_position)
+	if top_left and bottom_right:
+		SignalBus.camera_bounds_changed.emit(
+			top_left.global_position,
+			bottom_right.global_position
+			)
+	else:
+		printerr("[BaseRoom] Could not find camera bounds")
+# END _setup_camera_bounds
+
 
 func _setup_debug_player(p):
 	p.scale = Vector2(0.2, 0.2)

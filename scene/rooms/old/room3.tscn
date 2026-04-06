@@ -601,6 +601,7 @@ tile_set = SubResource("TileSet_4veoa")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
 
 [node name="PlayerUi" parent="CanvasLayer" unique_id=1277935282 instance=ExtResource("1_hpsup")]
+visible = false
 
 [node name="Teleporter2to3" parent="." unique_id=1408589343 instance=ExtResource("5_kn5en")]
 position = Vector2(219, 193)
@@ -622,7 +623,7 @@ scale = Vector2(16, 16)
 color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="Lights" unique_id=52870573]
-position = Vector2(-31.562511, 28.562508)
+position = Vector2(-20.499996, 27.5625)
 scale = Vector2(0.21979165, 0.21979165)
 texture = ExtResource("9_iqutv")
 
