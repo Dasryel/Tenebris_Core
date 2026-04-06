@@ -556,6 +556,10 @@ tile_set = ExtResource("4_aj0wp")
 position = Vector2(3079, -264)
 target_scene = "uid://c5lxqd2bosh4g"
 
+[node name="lava_teleporter" parent="Teleporters" unique_id=1408589343 instance=ExtResource("5_t07s3")]
+position = Vector2(3075, -514)
+target_scene = "uid://de6lanvnc6fnd"
+
 [node name="lava_doublejump" parent="Teleporters" unique_id=2022954805 instance=ExtResource("5_t07s3")]
 position = Vector2(102, -533)
 rotation = 3.1415925

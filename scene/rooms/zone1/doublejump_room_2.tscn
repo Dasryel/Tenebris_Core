@@ -756,11 +756,11 @@ tile_set = SubResource("TileSet_apf85")
 [node name="Teleporters" type="Node2D" parent="." unique_id=1234443249]
 
 [node name="spawn_doublejump" parent="Teleporters" unique_id=1408589343 instance=ExtResource("5_m4yx1")]
-position = Vector2(969, 452)
+position = Vector2(969, 384)
 target_scene = "uid://bpgymvprtqna6"
 
 [node name="lava_doublejump" parent="Teleporters" unique_id=1480681057 instance=ExtResource("5_m4yx1")]
-position = Vector2(915, -1343)
+position = Vector2(928, -1667)
 target_scene = "uid://vks0dehj2u1a"
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1919393156]

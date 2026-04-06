@@ -619,7 +619,7 @@ texture = ExtResource("5_vr1hl")
 
 [node name="Teleporters" type="Node2D" parent="." unique_id=1133539820]
 
-[node name="to_spawn" parent="Teleporters" unique_id=621320404 instance=ExtResource("6_p074w")]
+[node name="lava_teleporter" parent="Teleporters" unique_id=621320404 instance=ExtResource("6_p074w")]
 position = Vector2(-423, 438)
 rotation = 3.1415927
 target_scene = "uid://vks0dehj2u1a"

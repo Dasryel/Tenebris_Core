@@ -618,10 +618,10 @@ texture = ExtResource("5_6qpwy")
 [node name="Teleporters" type="Node2D" parent="." unique_id=1133539820]
 
 [node name="corridor_main" parent="Teleporters" unique_id=1408589343 instance=ExtResource("6_t5pe7")]
-position = Vector2(920, 453)
+position = Vector2(963, 387)
 target_scene = "uid://c5lxqd2bosh4g"
 
 [node name="corridor_spawn" parent="Teleporters" unique_id=621320404 instance=ExtResource("6_t5pe7")]
-position = Vector2(-484, 447)
+position = Vector2(-485, 376)
 rotation = 3.1415927
 target_scene = "uid://bpgymvprtqna6"

@@ -613,7 +613,7 @@ tile_set = SubResource("TileSet_4veoa")
 [node name="Teleporter" type="Node2D" parent="." unique_id=2061072932]
 
 [node name="main_key1" parent="Teleporter" unique_id=1408589343 instance=ExtResource("5_b3ceg")]
-position = Vector2(87, 254)
+position = Vector2(94, 187)
 rotation = -3.1415925
 target_scene = "uid://c5lxqd2bosh4g"
 
