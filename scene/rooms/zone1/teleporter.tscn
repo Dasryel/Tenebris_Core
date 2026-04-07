@@ -622,7 +622,7 @@ target_scene = "uid://vks0dehj2u1a"
 [node name="Door" parent="." unique_id=1954722909 instance=ExtResource("7_uo4gg")]
 position = Vector2(799, 42)
 scale = Vector2(4, 4)
-target_scene = "uid://6aix8efynile"
+target_scene = "uid://guecbvu4mtfd"
 zone_name = "Second Zone"
 target_door_id = "Door"
 is_locked = false
