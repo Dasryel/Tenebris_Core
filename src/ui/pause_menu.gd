@@ -15,7 +15,9 @@ func _on_restart_button_pressed() -> void:
 	GameState.player_is_dead = true
 	get_tree().paused = false
 
-	var scene_path = "res://scene/rooms/{z}/{r}".format({"z": GameState.current_player_zone, "r": "room1.tscn"})
+	var scene_path = "res://scene/rooms/{z}/{r}".format({"z": GameState.current_player_zone, "r": "spawn_room.tscn"})
+
+	print(scene_path)
 
 	get_tree().change_scene_to_file(scene_path)
 

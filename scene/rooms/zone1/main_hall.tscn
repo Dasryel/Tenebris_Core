@@ -15,13 +15,11 @@
 [ext_resource type="Script" uid="uid://bbse6a07sb1os" path="res://src/entity/moving_platform2.gd" id="8_ptiao"]
 [ext_resource type="Texture2D" uid="uid://fu7xyne8cejp" path="res://asset/tileset/palm.png" id="9_eam5b"]
 [ext_resource type="PackedScene" uid="uid://ds3q0wsgjy3pw" path="res://scene/entity/moving_platform.tscn" id="9_nkm60"]
-[ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="10_eam5b"]
 [ext_resource type="Texture2D" uid="uid://c70stpgngykxq" path="res://asset/tileset/plant.png" id="10_hcqec"]
 [ext_resource type="Script" uid="uid://bak7n5yhyw2t" path="res://src/zone/lava.gd" id="11_hcqec"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="12_rvrlp"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="13_stikn"]
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="14_mg1m4"]
-[ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="22_nkm60"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfy25"]
 texture = ExtResource("2_vrebv")
@@ -774,14 +772,6 @@ loop = false
 position = Vector2(-160.0033, -32.018158)
 scale = Vector2(4, 4)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
-
-[node name="PlayerUi" parent="CanvasLayer" unique_id=1277935282 instance=ExtResource("10_eam5b")]
-offset_left = 1397.0
-offset_top = -156.0
-offset_right = 1397.0
-offset_bottom = -156.0
-
 [node name="Lava" type="Area2D" parent="." unique_id=928239099]
 collision_mask = 3
 script = ExtResource("11_hcqec")
@@ -830,9 +820,6 @@ zone_name = "Second Zone"
 target_door_id = "Door"
 
 [node name="Zone1Door" type="Marker2D" parent="Door" unique_id=1959760313]
-
-[node name="Player" parent="." unique_id=1782142987 instance=ExtResource("22_nkm60")]
-position = Vector2(832, -16)
 
 [connection signal="body_entered" from="Lava" to="Lava" method="_on_body_entered"]
 [connection signal="body_exited" from="Lava" to="Lava" method="_on_body_exited"]

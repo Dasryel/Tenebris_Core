@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://c3fo8uagrpl14"]
 
 [ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_fbdma"]
-[ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="2_jjfrt"]
 [ext_resource type="Texture2D" uid="uid://c7hpu6of78vfw" path="res://asset/tileset/tileset-2.png" id="3_xqr5v"]
 [ext_resource type="Texture2D" uid="uid://df5eyxtbgcgcd" path="res://asset/tileset/tileset.png" id="4_r2nmf"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_02eqy"]
@@ -605,10 +604,6 @@ position = Vector2(-710, -284)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=1524301483]
 position = Vector2(550, 422)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
-
-[node name="PlayerUi" parent="CanvasLayer" unique_id=1277935282 instance=ExtResource("2_jjfrt")]
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1388953683]
 

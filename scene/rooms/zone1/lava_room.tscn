@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_t07s3"]
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_go53t"]
 [ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="7_wudj2"]
-[ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="8_dgyj7"]
 [ext_resource type="Script" uid="uid://bak7n5yhyw2t" path="res://src/zone/lava.gd" id="9_jus1d"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="10_r7508"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="11_fshen"]
@@ -596,14 +595,6 @@ key_id = "key1"
 [node name="DoublejumpPickup" parent="Pickups" unique_id=1907636125 instance=ExtResource("15_t07s3")]
 visible = false
 position = Vector2(726, 99)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
-
-[node name="PlayerUi" parent="CanvasLayer" unique_id=1277935282 instance=ExtResource("8_dgyj7")]
-offset_left = -26.0
-offset_top = -7.0
-offset_right = -26.0
-offset_bottom = -7.0
 
 [node name="Lava" type="Area2D" parent="." unique_id=928239099]
 collision_mask = 3

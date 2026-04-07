@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://de6lanvnc6fnd"]
 
 [ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_fe6c8"]
-[ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="2_pph6a"]
 [ext_resource type="Texture2D" uid="uid://c7hpu6of78vfw" path="res://asset/tileset/tileset-2.png" id="3_jcdj8"]
 [ext_resource type="Texture2D" uid="uid://df5eyxtbgcgcd" path="res://asset/tileset/tileset.png" id="4_de2ao"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="5_vr1hl"]
@@ -582,10 +581,6 @@ position = Vector2(-828, -283)
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=1524301483]
 position = Vector2(690, 444)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
-
-[node name="PlayerUi" parent="CanvasLayer" unique_id=1277935282 instance=ExtResource("2_pph6a")]
-
 [node name="Tiles" type="Node2D" parent="." unique_id=1388953683]
 
 [node name="TileMapLayer_No_Collision" type="TileMapLayer" parent="Tiles" unique_id=978279668]
@@ -630,6 +625,8 @@ scale = Vector2(4, 4)
 target_scene = "uid://6aix8efynile"
 zone_name = "Second Zone"
 target_door_id = "Door"
+is_locked = false
+needs_key = false
 
 [node name="Zone1Door" type="Marker2D" parent="Door" unique_id=299151655]
 
