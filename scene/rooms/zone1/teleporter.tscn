@@ -577,10 +577,10 @@ camera_bounds = NodePath("CameraBounds")
 position = Vector2(315, 127)
 
 [node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=1562064568]
-position = Vector2(-710, -284)
+position = Vector2(-828, -283)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=1524301483]
-position = Vector2(550, 422)
+position = Vector2(690, 444)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
 

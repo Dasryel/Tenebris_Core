@@ -1,14 +1,15 @@
-[gd_scene format=4 uid="uid://ds3q0wsgjy3pw"]
+[gd_scene format=3 uid="uid://ds3q0wsgjy3pw"]
 
 [ext_resource type="TileSet" uid="uid://bj5b8cletcj1e" path="res://resource/tileset/tileset01.tres" id="1_7lqi2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fx7p"]
-size = Vector2(96, 16)
+size = Vector2(64, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lqi2"]
-size = Vector2(96, 20)
+size = Vector2(64, 20)
 
 [node name="MovingPlatform" type="Node2D" unique_id=517597286]
+position = Vector2(8, 0)
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=691758240]
 use_parent_material = true
@@ -16,15 +17,16 @@ collision_mask = 3
 sync_to_physics = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=462297684]
-position = Vector2(0, 8)
+position = Vector2(-16, 8)
 shape = SubResource("RectangleShape2D_6fx7p")
 
 [node name="Sprite2D" type="TileMapLayer" parent="AnimatableBody2D" unique_id=1839307213]
-tile_map_data = PackedByteArray("AAD9/wAAAQAEAAcAAAD+/wAAAQAGAAcAAAD//wAAAQAFAAcAAAAAAAAAAQAFAAcAAAABAAAAAQAGAAcAAAACAAAAAQAEAAcAAAA=")
+tile_map_data = PackedByteArray(0, 0, 253, 255, 0, 0, 0, 0, 11, 0, 5, 0, 0, 0, 254, 255, 0, 0, 0, 0, 11, 0, 5, 0, 0, 0, 255, 255, 0, 0, 0, 0, 11, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 5, 0, 0, 0)
 tile_set = ExtResource("1_7lqi2")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=101061318]
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1166471458]
+position = Vector2(-16, 0)
 shape = SubResource("RectangleShape2D_7lqi2")

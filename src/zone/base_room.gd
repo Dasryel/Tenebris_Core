@@ -3,8 +3,8 @@ extends Node2D
 @export var camera_bounds: Node2D
 
 func _ready() -> void:
-	var p = preload("res://scene/player.tscn").instantiate()
-	add_child(p)
+	var player = preload("res://scene/player.tscn").instantiate()
+	add_child(player)
 
 	_setup_camera_bounds()
 
@@ -22,12 +22,9 @@ func _ready() -> void:
 	var target = GameState.target_entry_point if GameState.target_entry_point != "" else "PlayerSpawn"
 
 	# 3. Snap to that marker
-	var m = find_child(target)
-	if m:
-		# hack for debug map
-		if GameState.current_player_zone == "zone3" and GameState.current_player_room == "room1.tscn":
-			_setup_debug_player(p)
-		p.global_position = m.global_position
+	var marker = find_child(target)
+	if marker:
+		player.global_position = marker.global_position
 	else:
 		printerr("[BaseRoom] player marker not found")
 # END _ready
@@ -45,14 +42,3 @@ func _setup_camera_bounds():
 	else:
 		printerr("[BaseRoom] Could not find camera bounds")
 # END _setup_camera_bounds
-
-
-func _setup_debug_player(p):
-	p.scale = Vector2(0.2, 0.2)
-	p.speed /= 2
-	p.jump_velocity /= 2
-	p.gravity /= 2
-	p.recovery_jump_velocity /= 2
-	p.knockback_force /= 2
-	p.air_acceleration /= 2
-	p.opposing_jump_drag /= 2
