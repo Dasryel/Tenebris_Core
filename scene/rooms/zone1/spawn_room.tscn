@@ -714,6 +714,8 @@ target_scene = "uid://br4paskgcobl8"
 position = Vector2(-425, 383)
 rotation = -3.1415925
 target_scene = "uid://eobv5pygfo8v"
+is_locked = true
+needs_key = true
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1429242992]
 position = Vector2(-237, 270)

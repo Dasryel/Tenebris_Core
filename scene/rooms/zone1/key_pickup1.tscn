@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="9_8mfl0"]
 [ext_resource type="Script" uid="uid://bbse6a07sb1os" path="res://src/entity/moving_platform2.gd" id="10_x2hlm"]
 [ext_resource type="PackedScene" uid="uid://cnhw6vvxapqk7" path="res://scene/entity/moving_platform_pillar.tscn" id="11_ihyuy"]
+[ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="11_x2hlm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqutv"]
 texture = ExtResource("2_s6yau")
@@ -676,3 +677,6 @@ loop = false
 position = Vector2(-275.89014, 110.336426)
 rotation = 1.5707964
 scale = Vector2(8, 8)
+
+[node name="Player" parent="." unique_id=1782142987 instance=ExtResource("11_x2hlm")]
+position = Vector2(288, 208)

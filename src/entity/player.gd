@@ -40,6 +40,7 @@ func _ready() -> void:
 	instance = self
 	last_direction = Vector2.LEFT
 	# GameState.has_dj = true
+	# GameState.has_key = true
 
 	GameState.key_pickedup.connect(key_obtained)
 	SignalBus.extra_jump_pickup.connect(_on_extra_jump_pickup)

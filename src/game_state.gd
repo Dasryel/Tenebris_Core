@@ -47,6 +47,9 @@ var keys: Dictionary = {
 	"key3": false,
 }
 
+# K: string name, V: bool unlocked false, locked true
+var teleporters: Dictionary = {}
+
 # sets game bg to black instead of gray
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color(0, 0, 0))
@@ -76,3 +79,4 @@ func reset() -> void:
 		"key2": false,
 		"key3": false,
 	}
+	teleporters = {}

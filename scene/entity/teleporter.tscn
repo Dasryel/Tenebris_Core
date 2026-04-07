@@ -11,6 +11,8 @@ height = 136.0
 [node name="Teleporter" type="Area2D" unique_id=1408589343]
 collision_mask = 2
 script = ExtResource("1_tmnbc")
+is_locked = false
+needs_key = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1488493717]
 scale = Vector2(1.3437499, 1.4479165)
@@ -29,3 +31,4 @@ energy = 3.0
 texture = ExtResource("3_n1k3v")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

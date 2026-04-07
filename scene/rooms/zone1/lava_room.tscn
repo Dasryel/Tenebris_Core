@@ -554,6 +554,8 @@ tile_set = ExtResource("4_aj0wp")
 [node name="lava_main" parent="Teleporters" unique_id=2022557818 instance=ExtResource("5_t07s3")]
 position = Vector2(3079, -264)
 target_scene = "uid://c5lxqd2bosh4g"
+is_locked = true
+needs_key = true
 
 [node name="lava_teleporter" parent="Teleporters" unique_id=1408589343 instance=ExtResource("5_t07s3")]
 position = Vector2(3075, -514)
