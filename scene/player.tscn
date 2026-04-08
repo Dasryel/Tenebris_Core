@@ -1960,7 +1960,7 @@ material = SubResource("CanvasItemMaterial_g2vtq")
 position = Vector2(0, -50.000008)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_fvtld")
-animation = &"slash2_norm_right"
+animation = &"die_norm_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220763521]
 visible = false
