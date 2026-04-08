@@ -779,8 +779,8 @@ energy = 2.0
 texture = ExtResource("6_ig33q")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Lights" unique_id=1478816570]
-position = Vector2(63.75001, -254.5)
-scale = Vector2(1.375, 1.8046875)
+position = Vector2(63.75001, -260)
+scale = Vector2(1.375, 1.8476561)
 texture = ExtResource("7_4eu8f")
 
 [node name="Pickups" type="Node2D" parent="." unique_id=1098822159]

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bhqks8i60s72w"]
 
-[ext_resource type="Texture2D" path="res://asset/logo/Sanda Logo wo BG.png" id="1_73w2o"]
+[ext_resource type="Texture2D" uid="uid://cv5l0m2mrqqb4" path="res://asset/logo/Sanda Logo wo BG.png" id="1_73w2o"]
 [ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="1_hy752"]
 [ext_resource type="Texture2D" uid="uid://bmy8y2ony2jkt" path="res://asset/tileset/32x32.png" id="2_1r25t"]
 
@@ -174,15 +174,6 @@ position = Vector2(647, 357)
 [node name="Player" parent="." unique_id=1782142987 instance=ExtResource("1_hy752")]
 position = Vector2(-37, 386)
 
-[node name="CameraBounds" type="Node2D" parent="." unique_id=1249983393]
-position = Vector2(315, 127)
-
-[node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=770611569]
-position = Vector2(-305, -128)
-
-[node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=30662216]
-position = Vector2(1018, 592)
-
 [node name="Background" type="ColorRect" parent="." unique_id=1684859207]
 layout_mode = 0
 offset_right = 1281.0
@@ -203,6 +194,7 @@ libraries/ = SubResource("AnimationLibrary_1r25t")
 autoplay = &"intro"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1251796282]
+visible = false
 layout_mode = 0
 offset_left = -448.0
 offset_top = 442.0
