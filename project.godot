@@ -153,6 +153,10 @@ mwheel_down={
 
 [layer_names]
 
+2d_render/layer_1="Renderer_world"
+2d_render/layer_2="Renderer_entity"
+2d_render/layer_3="Renderer_pickup"
+2d_render/layer_5="Render_exclude"
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player_Body"
 2d_physics/layer_3="Enemy_Body"

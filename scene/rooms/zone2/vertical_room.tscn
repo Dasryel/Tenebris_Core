@@ -770,7 +770,7 @@ position = Vector2(202, 160)
 [node name="Health" parent="Pickups" unique_id=1327337286 instance=ExtResource("14_nfhen")]
 position = Vector2(-414, -292)
 
-[node name="Teleporters" type="Node2D" parent="." unique_id=682719480]
+[node name="Teleporters" type="Node2D" parent="." unique_id=791060881]
 
 [node name="boots_vertical" parent="Teleporters" unique_id=1480681057 instance=ExtResource("5_02eqy")]
 position = Vector2(-434, 387)

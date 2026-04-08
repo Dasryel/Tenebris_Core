@@ -9,6 +9,8 @@ radius = 41.0
 height = 136.0
 
 [node name="Teleporter" type="Area2D" unique_id=1408589343]
+light_mask = 16
+visibility_layer = 16
 collision_mask = 2
 script = ExtResource("1_tmnbc")
 is_locked = false
@@ -24,7 +26,8 @@ position = Vector2(1, -3)
 shape = SubResource("CapsuleShape2D_ekgd2")
 
 [node name="PointLight2D4" type="PointLight2D" parent="." unique_id=1193956856]
-light_mask = 3
+light_mask = 16
+visibility_layer = 0
 position = Vector2(2.749996, -3.978516)
 scale = Vector2(0.33166668, 0.47983387)
 color = Color(0.2635372, 0.53437334, 1.0283732, 1)
