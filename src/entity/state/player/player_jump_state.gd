@@ -4,6 +4,7 @@ extends PlayerBaseState
 
 func enter(entity: Player) -> void:
 	entity.jump_start_dir = sign(entity.velocity.x)
+	entity.play_anim("jump")
 	_perform_jump(entity)
 
 func update(entity: Player, delta: float) -> void:
