@@ -36,11 +36,3 @@ func update(entity: Player, delta: float) -> void:
 
 func exit(entity: Entity) -> void:
 	entity.play_anim("idle")
-
-func _update_orientation(entity: Player, h_dir: float) -> void:
-	if h_dir > 0:
-		entity.last_direction = Vector2.RIGHT
-		entity.attack_hitbox.position.x = entity.attack_hitbox_offset
-	elif h_dir < 0:
-		entity.last_direction = Vector2.LEFT
-		entity.attack_hitbox.position.x = - entity.attack_hitbox_offset

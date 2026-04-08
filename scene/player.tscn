@@ -1379,7 +1379,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump_god_left",
-"speed": 12.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1417,7 +1417,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump_god_right",
-"speed": 12.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1455,7 +1455,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump_norm_left",
-"speed": 12.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1493,7 +1493,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump_norm_right",
-"speed": 12.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1960,7 +1960,7 @@ material = SubResource("CanvasItemMaterial_g2vtq")
 position = Vector2(0, -50.000008)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_fvtld")
-animation = &"die_norm_right"
+animation = &"jump_god_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220763521]
 visible = false
