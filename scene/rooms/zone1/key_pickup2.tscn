@@ -632,6 +632,7 @@ rotation = -3.1415925
 target_scene = "uid://c5lxqd2bosh4g"
 
 [node name="Tiles" type="Node2D" parent="." unique_id=301617238]
+z_index = -1
 
 [node name="TileMapLayer_No_Collision" type="TileMapLayer" parent="Tiles" unique_id=52648392]
 light_mask = 3

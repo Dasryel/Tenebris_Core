@@ -8,13 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_bwqi5"]
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_1pjpt"]
 [ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="7_o4sb4"]
-[ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="10_agm2r"]
 [ext_resource type="Script" uid="uid://bak7n5yhyw2t" path="res://src/zone/lava.gd" id="11_y8quq"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="12_2tn4q"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="13_8lb7o"]
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="14_4maks"]
 [ext_resource type="PackedScene" uid="uid://w285k1670ynb" path="res://scene/item/health.tscn" id="14_mw1n8"]
-[ext_resource type="PackedScene" uid="uid://d2k1dl6nsykj3" path="res://scene/player.tscn" id="15_6foc2"]
 [ext_resource type="PackedScene" uid="uid://x643sqeumy44" path="res://scene/item/doublejump_pickup.tscn" id="16_modyh"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_oytdb"]
@@ -531,7 +529,6 @@ pattern_2 = SubResource("TileMapPattern_mw1n8")
 size = Vector2(3635, 128)
 
 [node name="laval_hall" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
-position = Vector2(23, -70)
 script = ExtResource("1_6xsbk")
 camera_bounds = NodePath("CameraBounds")
 
@@ -539,10 +536,10 @@ camera_bounds = NodePath("CameraBounds")
 position = Vector2(315, 127)
 
 [node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=1768781849]
-position = Vector2(-135, -528)
+position = Vector2(-315, -1471)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=544731431]
-position = Vector2(1160, 247)
+position = Vector2(4485, 129)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1031914611]
 
@@ -562,13 +559,13 @@ tile_set = ExtResource("4_le7k7")
 
 [node name="Teleporters" type="Node2D" parent="." unique_id=967165362]
 
-[node name="to_vertical" parent="Teleporters" unique_id=2022557818 instance=ExtResource("5_bwqi5")]
-position = Vector2(4649, 71)
-target_scene = "uid://c3fo8uagrpl14"
+[node name="lava_vertical" parent="Teleporters" unique_id=2022557818 instance=ExtResource("5_bwqi5")]
+position = Vector2(4704, 64)
+target_scene = "uid://d0wqwp6yb4h70"
 
-[node name="to_darkroom" parent="Teleporters" unique_id=825399634 instance=ExtResource("5_bwqi5")]
-position = Vector2(179, -1018)
-target_scene = "uid://dhu35a7pylagf"
+[node name="lava_darkroom" parent="Teleporters" unique_id=825399634 instance=ExtResource("5_bwqi5")]
+position = Vector2(96, -1024)
+target_scene = "uid://tv6ms0nb12m8"
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1615932478]
 
@@ -610,13 +607,12 @@ position = Vector2(1868, -783)
 [node name="Health2" parent="Pickups" unique_id=1524197392 instance=ExtResource("14_mw1n8")]
 position = Vector2(1602, 60)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=352901538]
+[node name="DoublejumpPickup" parent="Pickups" unique_id=1907636125 instance=ExtResource("16_modyh")]
+position = Vector2(362, -417)
 
-[node name="PlayerUi" parent="CanvasLayer" unique_id=1277935282 instance=ExtResource("10_agm2r")]
-offset_left = -6.0
-offset_top = 2.0
-offset_right = -6.0
-offset_bottom = 2.0
+[node name="Key" parent="Pickups" unique_id=1990007751 instance=ExtResource("7_o4sb4")]
+position = Vector2(186, -1214)
+key_id = "key1"
 
 [node name="Lava" type="Area2D" parent="." unique_id=928239099]
 collision_mask = 3
@@ -676,16 +672,6 @@ target_door_id = "Door"
 
 [node name="Zone1Door" type="Marker2D" parent="Door" unique_id=1959760313]
 position = Vector2(-1.75, -0.75)
-
-[node name="Player" parent="." unique_id=1782142987 instance=ExtResource("15_6foc2")]
-position = Vector2(254, -429)
-
-[node name="DoublejumpPickup" parent="." unique_id=1907636125 instance=ExtResource("16_modyh")]
-position = Vector2(362, -417)
-
-[node name="Key" parent="." unique_id=1990007751 instance=ExtResource("7_o4sb4")]
-position = Vector2(186, -1214)
-key_id = "key1"
 
 [connection signal="body_entered" from="Lava" to="Lava" method="_on_body_entered"]
 [connection signal="body_exited" from="Lava" to="Lava" method="_on_body_exited"]
