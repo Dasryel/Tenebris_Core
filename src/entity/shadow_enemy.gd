@@ -46,6 +46,7 @@ func _on_entity_death():
 
     for sm in _state_machines.values():
         sm.terminate()
+
     sprite.play("die")
     await sprite.animation_finished
     self.queue_free()

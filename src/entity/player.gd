@@ -126,6 +126,12 @@ func _on_damage_taken(_current_hp: int) -> void:
 	SignalBus.emit_signal("player_hp_changed", hit_points)
 
 func _on_entity_death():
+	set_process(false)
+	for sm in _state_machines.values():
+		sm.terminate()
+
+	play_anim("die")
+	await sprite.animation_finished
 	GameState.player_died.emit()
 
 
@@ -146,6 +152,7 @@ func key_obtained() -> void:
 func take_damage(amount: int, knockback_dir: Vector2) -> void:
 	hit_points -= amount
 	play_anim("hurt")
+	await sprite.animation_finished
 
 	SignalBus.player_hp_changed.emit(hit_points)
 
