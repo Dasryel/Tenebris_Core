@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://nqtpn2lqe6ly"]
+
+[ext_resource type="Texture2D" uid="uid://b0jcj1l0vmhs" path="res://asset/sprite/env/BG moon phase 1.png" id="1_h2cvm"]
+[ext_resource type="Script" uid="uid://dgd318xrjipjv" path="res://src/entity/moon_portal.gd" id="1_urbi0"]
+[ext_resource type="Texture2D" uid="uid://dhegtdl6ckwh7" path="res://asset/sprite/env/BG moon phase 2.png" id="3_hs5ow"]
+[ext_resource type="Texture2D" uid="uid://b65wbhd5w2xb4" path="res://asset/sprite/env/BG moon phase 3.png" id="4_7mnfs"]
+[ext_resource type="Texture2D" uid="uid://cnyjdin8wnyf" path="res://asset/sprite/env/BG full moon.png" id="5_co5kn"]
+[ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="6_7mnfs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_urbi0"]
+radius = 32.0
+height = 64.0
+
+[node name="MoonPortal" type="Area2D" unique_id=1212824685]
+scale = Vector2(2.5, 2.5)
+collision_mask = 2
+script = ExtResource("1_urbi0")
+sprites = Array[Texture2D]([ExtResource("1_h2cvm"), ExtResource("3_hs5ow"), ExtResource("4_7mnfs"), ExtResource("5_co5kn")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1098888380]
+texture = ExtResource("1_h2cvm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=611598115]
+shape = SubResource("CapsuleShape2D_urbi0")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1513983224]
+color = Color(0.09676417, 0, 0.75547045, 1)
+energy = 0.36
+texture = ExtResource("6_7mnfs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

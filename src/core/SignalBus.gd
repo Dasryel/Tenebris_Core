@@ -6,6 +6,8 @@ signal thought_bubble_show(text: String)
 @warning_ignore("unused_signal")
 signal thought_bubble_hide()
 
+signal moon_phase_changed(phase)
+
 @warning_ignore("unused_signal")
 signal player_sprite_anim_finished()
 

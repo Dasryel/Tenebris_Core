@@ -39,7 +39,7 @@ func setup_debug_player(p):
 	p.air_acceleration /= 2
 	p.opposing_jump_drag /= 2
 
-	var camera = PlayerCamera.new(p)
+	var camera = PlayerCamera.new()
 	p.add_child(camera)
 	_setup_camera_bounds()
 

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cpcv1gx16edhe"]
+
+[ext_resource type="Script" uid="uid://dodgf837qadfa" path="res://src/item/moon_piece.gd" id="1_fbjhd"]
+[ext_resource type="Texture2D" uid="uid://cdu24852o2yf" path="res://asset/sprite/item/MOON 3.png" id="1_y48g4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jero7"]
+radius = 24.0
+
+[node name="MoonPiece" type="Area2D" unique_id=1977875406]
+collision_mask = 2
+script = ExtResource("1_fbjhd")
+id = "piece2"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=341211416]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_y48g4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2145895124]
+shape = SubResource("CircleShape2D_jero7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

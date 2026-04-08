@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bbse6a07sb1os" path="res://src/entity/moving_platform2.gd" id="8_qfy25"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="12_vbjfh"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="13_gex0d"]
+[ext_resource type="PackedScene" uid="uid://cpcv1gx16edhe" path="res://scene/item/moon_piece2.tscn" id="14_sjw6f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfy25"]
 texture = ExtResource("2_8whku")
@@ -243,7 +244,7 @@ position = Vector2(315, 127)
 position = Vector2(-135, -528)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=544731431]
-position = Vector2(1160, 247)
+position = Vector2(1157, 249)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1031914611]
 
@@ -349,6 +350,9 @@ color = Color(0.59884757, 0.36225113, 0, 1)
 energy = 3.34
 blend_mode = 2
 texture = ExtResource("13_gex0d")
+
+[node name="MoonPiece2" parent="." unique_id=1977875406 instance=ExtResource("14_sjw6f")]
+position = Vector2(1136, 272)
 
 [connection signal="body_entered" from="Lava" to="Lava" method="_on_body_entered"]
 [connection signal="body_exited" from="Lava" to="Lava" method="_on_body_exited"]
