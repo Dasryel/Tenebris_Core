@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c7hpu6of78vfw" path="res://asset/tileset/tileset-2.png" id="4_4mbp1"]
 [ext_resource type="Texture2D" uid="uid://df5eyxtbgcgcd" path="res://asset/tileset/tileset.png" id="5_5wy8t"]
 [ext_resource type="Texture2D" uid="uid://bx0jxuonl7cq5" path="res://asset/tileset/middle.png" id="5_qbfr7"]
+[ext_resource type="Texture2D" uid="uid://jktbv0khinin" path="res://asset/light/god_ray_pixels.png" id="6_iottn"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_leuse"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="7_eyen4"]
+[ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="7_qbfr7"]
 [ext_resource type="PackedScene" uid="uid://w285k1670ynb" path="res://scene/item/health.tscn" id="8_x4o23"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sdbf"]
@@ -688,7 +690,7 @@ position = Vector2(162, 96)
 position = Vector2(-764, -310)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=1524301483]
-position = Vector2(836, 467)
+position = Vector2(894, 544)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1388953683]
 
@@ -729,14 +731,90 @@ scale = Vector2(4, 4)
 position = Vector2(-150.5, -53)
 color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 
+[node name="GodRayLight" type="PointLight2D" parent="Lights" unique_id=2074493960]
+position = Vector2(68, 20.000002)
+scale = Vector2(0.5798292, 0.5798292)
+color = Color(0, 1, 0.83333325, 1)
+energy = 1.9
+texture = ExtResource("6_iottn")
+
 [node name="PointLight2D" type="PointLight2D" parent="Lights" unique_id=2060628323]
 position = Vector2(-95.75, 64.5)
 scale = Vector2(0.42916664, 0.42916664)
 texture = ExtResource("7_eyen4")
 
+[node name="PointLight2D2" type="PointLight2D" parent="Lights" unique_id=1306711960]
+position = Vector2(96, -44.000004)
+scale = Vector2(0.21875, 0.20541663)
+energy = 1.82
+texture = ExtResource("7_eyen4")
+
 [node name="PointLight2D3" type="PointLight2D" parent="Lights" unique_id=213850214]
-position = Vector2(207.25, 62.75)
-scale = Vector2(0.42916664, 0.42916664)
+position = Vector2(236, 96.00001)
+scale = Vector2(0.2666667, 0.21333332)
+color = Color(0.19759999, 0.35694665, 0.76, 1)
+energy = 1.24
+texture = ExtResource("7_eyen4")
+
+[node name="Pillar" type="Node2D" parent="Lights" unique_id=958814329]
+
+[node name="FloorLight2" type="PointLight2D" parent="Lights/Pillar" unique_id=1584705418]
+position = Vector2(64, 111.99999)
+scale = Vector2(0.25, 0.12499999)
+color = Color(0.44366783, 0.7908742, 0.86717904, 1)
+energy = 0.77
+texture = ExtResource("7_qbfr7")
+
+[node name="Floor" type="Node2D" parent="Lights" unique_id=1257935016]
+
+[node name="TileLight3" type="PointLight2D" parent="Lights/Floor" unique_id=668784922]
+position = Vector2(64, 139)
+scale = Vector2(0.26666668, 0.073333316)
+color = Color(0.645, 0.71849996, 0.75, 1)
+energy = 1.62
+texture = ExtResource("7_eyen4")
+
+[node name="TileLight4" type="PointLight2D" parent="Lights/Floor" unique_id=1234904410]
+position = Vector2(159.99998, 140)
+scale = Vector2(0.26666668, 0.073333316)
+color = Color(0.645, 0.71849996, 0.75, 1)
+energy = 1.25
+texture = ExtResource("7_eyen4")
+
+[node name="TileLight5" type="PointLight2D" parent="Lights/Floor" unique_id=92302478]
+position = Vector2(-32.000015, 140)
+scale = Vector2(0.26666668, 0.073333316)
+color = Color(0.645, 0.71849996, 0.75, 1)
+energy = 1.25
+texture = ExtResource("7_eyen4")
+
+[node name="TileLight6" type="PointLight2D" parent="Lights/Floor" unique_id=1529594363]
+position = Vector2(-128, 140)
+scale = Vector2(0.26666668, 0.073333316)
+color = Color(0.645, 0.71849996, 0.75, 1)
+energy = 0.75
+texture = ExtResource("7_eyen4")
+
+[node name="TileLight7" type="PointLight2D" parent="Lights/Floor" unique_id=793131361]
+position = Vector2(256, 140)
+scale = Vector2(0.26666668, 0.073333316)
+color = Color(0.645, 0.71849996, 0.75, 1)
+energy = 0.75
+texture = ExtResource("7_eyen4")
+
+[node name="Small" type="Node2D" parent="Lights" unique_id=667693920]
+
+[node name="TileLight8" type="PointLight2D" parent="Lights/Small" unique_id=1788297170]
+position = Vector2(-104.5, 119)
+scale = Vector2(0.026666664, 0.026666673)
+color = Color(1, 0.6392157, 0.105882354, 1)
+energy = 2.0
+texture = ExtResource("7_eyen4")
+
+[node name="TileLight9" type="PointLight2D" parent="Lights/Small" unique_id=1207126625]
+position = Vector2(232.5, 119)
+scale = Vector2(0.026666664, 0.026666673)
+color = Color(1, 0.6392157, 0.105882354, 1)
 energy = 2.0
 texture = ExtResource("7_eyen4")
 

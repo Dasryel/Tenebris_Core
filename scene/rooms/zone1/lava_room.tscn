@@ -657,6 +657,13 @@ color = Color(1, 0.6392157, 0.105882354, 1)
 energy = 2.0
 texture = ExtResource("10_r7508")
 
+[node name="TileLight13" type="PointLight2D" parent="Lights" unique_id=977793955]
+position = Vector2(15.187499, -21.0625)
+scale = Vector2(0.009394526, 0.00939454)
+color = Color(1, 0.6392157, 0.105882354, 1)
+energy = 2.0
+texture = ExtResource("10_r7508")
+
 [node name="TileLight4" type="PointLight2D" parent="Lights" unique_id=744665523]
 position = Vector2(8.562499, -20.9375)
 scale = Vector2(0.009394526, 0.00939454)
