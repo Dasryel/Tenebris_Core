@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://x643sqeumy44" path="res://scene/item/doublejump_pickup.tscn" id="8_fbwbh"]
 [ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="8_nj6av"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="9_iqutv"]
+[ext_resource type="PackedScene" uid="uid://cx35ggg35gn3y" path="res://scene/item/moon_piece3.tscn" id="10_iqutv"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="10_wyjcd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqutv"]
@@ -644,3 +645,6 @@ color = Color(0.23561451, 0.45357788, 0.56261843, 1)
 energy = 2.0
 blend_mode = 2
 texture = ExtResource("10_wyjcd")
+
+[node name="MoonPiece3" parent="." unique_id=1977875406 instance=ExtResource("10_iqutv")]
+position = Vector2(472, 192)

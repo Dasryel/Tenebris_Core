@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="9_2sdbf"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="10_10e0j"]
 [ext_resource type="PackedScene" uid="uid://w285k1670ynb" path="res://scene/item/health.tscn" id="10_gsdm0"]
+[ext_resource type="PackedScene" uid="uid://cc7w2cwg1k5kg" path="res://scene/item/moon_piece.tscn" id="11_gsdm0"]
+[ext_resource type="PackedScene" uid="uid://cpcv1gx16edhe" path="res://scene/item/moon_piece2.tscn" id="12_apf85"]
+[ext_resource type="PackedScene" uid="uid://cx35ggg35gn3y" path="res://scene/item/moon_piece3.tscn" id="13_v3p4j"]
+[ext_resource type="PackedScene" uid="uid://nqtpn2lqe6ly" path="res://scene/entity/moon_portal.tscn" id="14_lbbdt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sdbf"]
 texture = ExtResource("4_8dx0c")
@@ -645,6 +649,18 @@ position = Vector2(736, 255)
 
 [node name="Health" parent="." unique_id=1327337286 instance=ExtResource("10_gsdm0")]
 position = Vector2(-157, 443)
+
+[node name="MoonPiece" parent="." unique_id=1977875406 instance=ExtResource("11_gsdm0")]
+position = Vector2(-96, 440)
+
+[node name="MoonPiece2" parent="." unique_id=2048081208 instance=ExtResource("12_apf85")]
+position = Vector2(-40, 440)
+
+[node name="MoonPiece3" parent="." unique_id=516183764 instance=ExtResource("13_v3p4j")]
+position = Vector2(16, 440)
+
+[node name="MoonPortal" parent="." unique_id=1212824685 instance=ExtResource("14_lbbdt")]
+position = Vector2(360.00003, 424)
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1677569834]
 position = Vector2(-237, 270)

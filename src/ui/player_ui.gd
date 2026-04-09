@@ -9,6 +9,8 @@ func _ready() -> void:
 	GameState.dj_pickedup.connect(show_dj)
 	GameState.door_unlocked.connect(hide_key)
 	SignalBus.player_hp_changed.connect(_on_player_hp_changed)
+	GameState.moon_piece_collected.connect(show_moon_piece)
+	GameState.moon_piece_used.connect(hide_moon_piece)
 
 	if GameState.has_key:
 		$KeyIcon.visible = true
@@ -19,6 +21,10 @@ func _ready() -> void:
 	if GameState.zone_text != "":
 		show_zone_text(GameState.zone_text)
 		GameState.zone_text = ""
+		
+	for id in GameState.moon_pieces:
+		if GameState.moon_pieces[id]:
+			show_moon_piece(id)
 
 	_on_player_hp_changed(GameState.player_current_hp)
 
@@ -59,6 +65,19 @@ func show_text(text: String):
 	$TextLabel.text = text
 	await get_tree().create_timer(2.0).timeout
 	$TextLabel.visible = false
+	
+func show_moon_piece(id: String) -> void:
+	show_text("You found a moon piece!")
+	match id:
+		"piece1": $MoonIcon1.visible = true
+		"piece2": $MoonIcon2.visible = true
+		"piece3": $MoonIcon3.visible = true
+		
+func hide_moon_piece(id: String) -> void:
+	match id:
+		"piece1": $MoonIcon1.visible = false
+		"piece2": $MoonIcon2.visible = false
+		"piece3": $MoonIcon3.visible = false
 
 
 func _on_player_hp_changed(current_hp: int) -> void:

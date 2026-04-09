@@ -3,7 +3,6 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
-	GameState.game_paused.connect(show_pause_menu)
 
 func show_pause_menu():
 	visible = true
@@ -32,3 +31,12 @@ func _on_main_menu_button_pressed() -> void:
 func _on_resume_button_pressed() -> void:
 	visible = false
 	get_tree().paused = false
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("escape"):
+		if get_tree().paused:
+			visible = false
+			get_tree().paused = false
+		else:
+			show_pause_menu()
+		

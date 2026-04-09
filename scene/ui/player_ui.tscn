@@ -4,9 +4,12 @@
 [ext_resource type="Script" uid="uid://c1plvn7a3anby" path="res://src/ui/player_ui.gd" id="1_lpg6e"]
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="3_6n5fa"]
 [ext_resource type="Texture2D" uid="uid://kjrf4jo6by8d" path="res://asset/sprite/item/dj_pickup.png" id="3_wbjh4"]
+[ext_resource type="Texture2D" uid="uid://0iy5l42a23xp" path="res://asset/sprite/item/MOON 1.png" id="4_oga2w"]
 [ext_resource type="Texture2D" uid="uid://dicvenlxm7asa" path="res://asset/sprite/player/hp.png" id="4_u2m4h"]
 [ext_resource type="PackedScene" uid="uid://dcyjh6itrnvd8" path="res://scene/ui/death_menu.tscn" id="5_rsqfm"]
+[ext_resource type="Texture2D" uid="uid://cdu24852o2yf" path="res://asset/sprite/item/MOON 3.png" id="6_f3dx5"]
 [ext_resource type="PackedScene" uid="uid://ds3quoglcr2qx" path="res://scene/ui/pause_menu.tscn" id="7_r34vs"]
+[ext_resource type="Texture2D" uid="uid://n7m330fye8dj" path="res://asset/sprite/item/MOON 4.png" id="7_w4qes"]
 
 [node name="PlayerUi" type="Control" unique_id=1277935282]
 layout_mode = 3
@@ -37,6 +40,33 @@ offset_right = 157.0
 offset_bottom = 70.0
 texture = ExtResource("3_wbjh4")
 expand_mode = 2
+
+[node name="MoonIcon1" type="TextureRect" parent="." unique_id=289514959]
+visible = false
+layout_mode = 0
+offset_left = 175.0
+offset_top = 24.0
+offset_right = 215.0
+offset_bottom = 64.0
+texture = ExtResource("4_oga2w")
+
+[node name="MoonIcon2" type="TextureRect" parent="." unique_id=229895369]
+visible = false
+layout_mode = 0
+offset_left = 231.0
+offset_top = 24.0
+offset_right = 271.0
+offset_bottom = 64.0
+texture = ExtResource("6_f3dx5")
+
+[node name="MoonIcon3" type="TextureRect" parent="." unique_id=1854107610]
+visible = false
+layout_mode = 0
+offset_left = 287.0
+offset_top = 24.0
+offset_right = 327.0
+offset_bottom = 64.0
+texture = ExtResource("7_w4qes")
 
 [node name="TextLabel" type="Label" parent="." unique_id=89551727]
 visible = false
