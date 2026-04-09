@@ -827,9 +827,6 @@ target_scene = "uid://bpgymvprtqna6"
 position = Vector2(928, -1667)
 target_scene = "uid://vks0dehj2u1a"
 
-[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1760920793]
-position = Vector2(692, 414)
-
 [connection signal="body_entered" from="Lava" to="Lava" method="_on_body_entered"]
 [connection signal="body_exited" from="Lava" to="Lava" method="_on_body_exited"]
 [connection signal="timeout" from="Lava/Timer" to="Lava" method="_on_timer_timeout"]
