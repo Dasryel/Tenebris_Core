@@ -29,19 +29,19 @@ const ATTACK_DATA: Dictionary = {
 		"knockback_force": 200.0,
 		"target_group": "enemy_hurtbox",
 	},
-    "slash1_god_right": {
+	"slash1_god_right": {
 		"active_frames": [4],
 		"damage": 1,
 		"knockback_force": 200.0,
 		"target_group": "enemy_hurtbox",
 	},
-    "slash1_norm_left": {
+	"slash1_norm_left": {
 		"active_frames": [4],
 		"damage": 1,
 		"knockback_force": 200.0,
 		"target_group": "enemy_hurtbox",
 	},
-    "slash1_norm_right": {
+	"slash1_norm_right": {
 		"active_frames": [4],
 		"damage": 1,
 		"knockback_force": 200.0,
@@ -53,19 +53,19 @@ const ATTACK_DATA: Dictionary = {
 		"knockback_force": 350.0,
 		"target_group": "enemy_hurtbox",
 	},
-     "slash2_god_right": {
+	 "slash2_god_right": {
 		"active_frames": [4],
 		"damage": 1,
 		"knockback_force": 200.0,
 		"target_group": "enemy_hurtbox",
 	},
-    "slash2_norm_left": {
+	"slash2_norm_left": {
 		"active_frames": [4],
 		"damage": 1,
 		"knockback_force": 200.0,
 		"target_group": "enemy_hurtbox",
 	},
-    "slash2_norm_right": {
+	"slash2_norm_right": {
 		"active_frames": [4],
 		"damage": 1,
 		"knockback_force": 200.0,
@@ -183,9 +183,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func take_damage(amount: int, knockback_dir: Vector2) -> void:
 	hit_points -= amount
-	play_anim("hurt")
-	await sprite.animation_finished
-
 	SignalBus.player_hp_changed.emit(hit_points)
 
 	if hit_points <= 0:
@@ -196,3 +193,6 @@ func take_damage(amount: int, knockback_dir: Vector2) -> void:
 	# Set knockback — RecoveryState will drain this
 	var dir_x = sign(global_position.x - knockback_dir.x)
 	velocity = Vector2(dir_x * 50.0, -100.0)
+
+	var sm = get_state_machine(LOCOMOTION_LAYER)
+	sm.change_state(PlayerHurtState.new(), self )
