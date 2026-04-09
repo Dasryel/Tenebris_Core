@@ -110,7 +110,7 @@ func reset() -> void:
 	"piece2": false,
 	"piece3": false,
 }
-	teleporters = {}
+	#teleporters = {}
 
 func _on_key_picked_up(key_id: String):
 	has_key = true
