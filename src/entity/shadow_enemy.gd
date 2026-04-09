@@ -41,15 +41,18 @@ func _ready():
 # hopefully this really kills the monster
 func _on_entity_death():
     $CollisionShape2D.set_deferred("disabled", true)
-    sprite.play("idle")
-    sprite.process_mode = Node.PROCESS_MODE_DISABLED
     set_physics_process(false)
     set_process(false)
 
     for sm in _state_machines.values():
         sm.terminate()
 
-    play_death_effect()
+    sprite.play("die")
+    await sprite.animation_finished
+    self.queue_free()
+
+    #sprite.process_mode = Node.PROCESS_MODE_DISABLED
+    #play_death_effect()
 
 func get_attack_data() -> Dictionary:
     return ATTACK_DATA

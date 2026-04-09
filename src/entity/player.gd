@@ -40,6 +40,7 @@ func _ready() -> void:
 	instance = self
 	last_direction = Vector2.LEFT
 	# GameState.has_dj = true
+	# GameState.has_key = true
 
 	GameState.key_pickedup.connect(key_obtained)
 	SignalBus.extra_jump_pickup.connect(_on_extra_jump_pickup)
@@ -82,6 +83,19 @@ func is_loco_idling() -> bool:
 
 	return false
 
+func _get_anim_key(anim: String) -> String:
+	var mode_str := "god" if GameState.has_dj else "norm"
+	var dir_str := "right" if last_direction.x > 0 else "left"
+	return "%s_%s_%s" % [anim, mode_str, dir_str]
+
+
+func play_anim(anim: String) -> void:
+	var key := _get_anim_key(anim)
+	if sprite.sprite_frames.has_animation(key):
+		sprite.play(key)
+	else:
+		push_warning("[Player] Animation not found: %s" % key)
+
 func _process(delta: float) -> void:
 	for sm in _state_machines.values():
 		sm.update(self , delta)
@@ -112,6 +126,12 @@ func _on_damage_taken(_current_hp: int) -> void:
 	SignalBus.emit_signal("player_hp_changed", hit_points)
 
 func _on_entity_death():
+	set_process(false)
+	for sm in _state_machines.values():
+		sm.terminate()
+
+	play_anim("die")
+	await sprite.animation_finished
 	GameState.player_died.emit()
 
 
@@ -131,6 +151,8 @@ func key_obtained() -> void:
 
 func take_damage(amount: int, knockback_dir: Vector2) -> void:
 	hit_points -= amount
+	play_anim("hurt")
+	await sprite.animation_finished
 
 	SignalBus.player_hp_changed.emit(hit_points)
 

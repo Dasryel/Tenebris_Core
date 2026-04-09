@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://baosu7rs4xusn" path="res://src/entity/shadow_enemy.gd" id="1_tavkd"]
 [ext_resource type="Texture2D" uid="uid://dg04fwyg24gbn" path="res://asset/sprite/enemy/shadow_HURT-Sheet.png" id="2_tavkd"]
 [ext_resource type="Texture2D" uid="uid://b85c032iq4p0t" path="res://asset/sprite/enemy/shadow_IDLE-Sheet.png" id="3_a4c51"]
+[ext_resource type="Texture2D" uid="uid://ctuc5djrhg7m2" path="res://asset/sprite/enemy/shadow_DIE-Sheet.png" id="3_u08j2"]
 [ext_resource type="Texture2D" uid="uid://c83bedvcstd56" path="res://asset/sprite/enemy/shadow_WALK-Sheet.png" id="4_u08j2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u08j2"]
@@ -52,6 +53,38 @@ region = Rect2(196, 0, 28, 22)
 [sub_resource type="AtlasTexture" id="AtlasTexture_26mlj"]
 atlas = ExtResource("1_i5xn8")
 region = Rect2(224, 0, 28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg68a"]
+atlas = ExtResource("3_u08j2")
+region = Rect2(0, 0, 28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyyiu"]
+atlas = ExtResource("3_u08j2")
+region = Rect2(28, 0, 28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikwuk"]
+atlas = ExtResource("3_u08j2")
+region = Rect2(56, 0, 28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbg33"]
+atlas = ExtResource("3_u08j2")
+region = Rect2(84, 0, 28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g2ut"]
+atlas = ExtResource("3_u08j2")
+region = Rect2(112, 0, 28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pd7q"]
+atlas = ExtResource("3_u08j2")
+region = Rect2(140, 0, 28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsvpu"]
+atlas = ExtResource("3_u08j2")
+region = Rect2(168, 0, 28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnip6"]
+atlas = ExtResource("3_u08j2")
+region = Rect2(196, 0, 28, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xbo1g"]
 atlas = ExtResource("2_tavkd")
@@ -169,6 +202,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_wg68a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyyiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikwuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbg33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g2ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pd7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsvpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnip6")
+}],
+"loop": false,
+"name": &"die",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xbo1g")
 }, {
 "duration": 1.0,
@@ -276,9 +338,7 @@ material = SubResource("CanvasItemMaterial_tavkd")
 position = Vector2(0, -29.779999)
 scale = Vector2(7.2387123, 7.2387133)
 sprite_frames = SubResource("SpriteFrames_oyyiu")
-animation = &"attack"
-frame = 8
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="StateLabel" type="Label" parent="." unique_id=1546211880]
 visible = false

@@ -21,6 +21,7 @@ func update(entity: Entity, _delta: float) -> void:
 		GameInput.MOVE_UP,
 		GameInput.MOVE_DOWN,
 	)
+	_update_orientation(entity, direction.x)
 
 	if direction != Vector2.ZERO:
 		_go_to_loco(entity, PlayerMoveState)

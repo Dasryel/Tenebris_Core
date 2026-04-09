@@ -13,7 +13,6 @@ signal moon_piece_collected(id)
 signal moon_piece_used(id)
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	if event.is_action_pressed("debug_map"):
 		get_tree().change_scene_to_file("res://scene/rooms/zone3/room1.tscn")
 
@@ -46,6 +45,9 @@ var keys: Dictionary = {
 	"key3": false,
 }
 
+# K: string name, V: bool unlocked false, locked true
+var teleporters: Dictionary = {}
+
 var moon_pieces: Dictionary = {
 	"piece1": false,
 	"piece2": false,
@@ -68,12 +70,12 @@ func is_door_unlocked(id: String) -> bool:
 func unlock_door(id: String) -> void:
 	if not is_door_unlocked(id):
 		unlocked_doors.append(id)
-		
+
 func piece_pickedup(id: String):
 	print("id received", id)
 	moon_pieces[id] = true
 	moon_piece_collected.emit(id)
-	
+
 func moon_pieces_count() -> int:
 	var count = 0
 	for piece in moon_pieces.values():
@@ -105,3 +107,4 @@ func reset() -> void:
 	"piece2": false,
 	"piece3": false,
 }
+	teleporters = {}
