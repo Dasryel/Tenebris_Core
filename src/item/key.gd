@@ -1,5 +1,6 @@
 extends Area2D
 
+@warning_ignore("unused_signal")
 signal show_key
 @export var key_id: String
 
@@ -11,14 +12,16 @@ func _ready() -> void:
 		queue_free()
 		return
 
+	var is_key_picked_up = GameState.keys.get(key_id)
+	print("key status for key: ", key_id, " is: ", is_key_picked_up)
+	if is_key_picked_up == true:
+		print("Key already picked up")
+		queue_free()
+
 	if not GameState.keys.has(key_id):
 		print("WARNING: key_id '", key_id, "' not found in GameState.keys, update the singleton")
 		queue_free()
 		return
-
-	if GameState.keys[key_id]:
-		print("Key already picked up")
-		queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -37,6 +40,5 @@ func _on_body_entered(body: Node2D) -> void:
 			return
 
 		print("key picked up!")
-		GameState.keys[key_id] = true
-		GameState.key_pickedup.emit()
+		SignalBus.key_picked_up.emit(key_id)
 		queue_free()

@@ -76,10 +76,13 @@ func take_damage(_amount: int, _knockback_dir: Vector2) -> void:
 	pass
 
 func _on_animated_sprite_2d_frame_changed() -> void:
+	# FIXME really should implement a less terrible solution
 	# .get() should return null without default parameter
-	var data: Dictionary = get_attack_data().get(sprite.animation)
-	if data == null:
-		push_error("[Entity] missing attack damage dictionary for attack")
+	var data: Dictionary = get_attack_data().get(sprite.animation, {})
+	if data.is_empty():
+		# This generates too much spam, since this is always checked in all animations
+		# not just while player is attacking
+		# push_error("[Entity] missing attack damage dictionary for attack")
 		return
 
 	var active_frames: Array = data.get("active_frames", [])

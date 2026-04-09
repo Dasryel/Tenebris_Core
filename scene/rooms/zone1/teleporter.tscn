@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="5_vr1hl"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_p074w"]
 [ext_resource type="PackedScene" uid="uid://dcon3d1q1xlhy" path="res://scene/entity/door.tscn" id="7_uo4gg"]
+[ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="8_gmgws"]
 [ext_resource type="PackedScene" uid="uid://x643sqeumy44" path="res://scene/item/doublejump_pickup.tscn" id="8_kflcc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sdbf"]
@@ -632,3 +633,7 @@ needs_key = false
 
 [node name="DoublejumpPickup" parent="." unique_id=1907636125 instance=ExtResource("8_kflcc")]
 position = Vector2(-312, 485)
+
+[node name="Key" parent="." unique_id=1990007751 instance=ExtResource("8_gmgws")]
+position = Vector2(-158, 240)
+key_id = "key1"

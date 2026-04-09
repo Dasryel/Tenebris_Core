@@ -544,7 +544,7 @@ position = Vector2(4485, 129)
 [node name="Door" parent="." unique_id=1954722909 instance=ExtResource("14_4maks")]
 position = Vector2(2301, -405)
 scale = Vector2(4, 4)
-target_scene = "uid://6aix8efynile"
+target_scene = "uid://de6lanvnc6fnd"
 zone_name = "Second Zone"
 target_door_id = "Door"
 

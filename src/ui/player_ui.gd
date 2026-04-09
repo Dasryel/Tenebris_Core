@@ -5,10 +5,11 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameState.key_pickedup.connect(show_key)
-	GameState.dj_pickedup.connect(show_dj)
-	GameState.door_unlocked.connect(hide_key)
+	SignalBus.key_picked_up.connect(_on_key_picked_up)
+	SignalBus.key_used.connect(_on_key_used)
+	SignalBus.door_unlocked.connect(_on_key_used)
 	SignalBus.player_hp_changed.connect(_on_player_hp_changed)
+	GameState.dj_pickedup.connect(show_dj)
 	GameState.moon_piece_collected.connect(show_moon_piece)
 	GameState.moon_piece_used.connect(hide_moon_piece)
 
@@ -21,7 +22,7 @@ func _ready() -> void:
 	if GameState.zone_text != "":
 		show_zone_text(GameState.zone_text)
 		GameState.zone_text = ""
-		
+
 	for id in GameState.moon_pieces:
 		if GameState.moon_pieces[id]:
 			show_moon_piece(id)
@@ -45,11 +46,11 @@ func show_zone_text(text: String) -> void:
 
 	$ZoneLabel.visible = false
 
-func show_key():
+func _on_key_picked_up(_key_id: String):
 	$KeyIcon.visible = true
 	show_text("You picked up key!")
 
-func hide_key():
+func _on_key_used(_key_id: String):
 	$KeyIcon.visible = false
 
 func show_dj():
@@ -65,14 +66,14 @@ func show_text(text: String):
 	$TextLabel.text = text
 	await get_tree().create_timer(2.0).timeout
 	$TextLabel.visible = false
-	
+
 func show_moon_piece(id: String) -> void:
 	show_text("You found a moon piece!")
 	match id:
 		"piece1": $MoonIcon1.visible = true
 		"piece2": $MoonIcon2.visible = true
 		"piece3": $MoonIcon3.visible = true
-		
+
 func hide_moon_piece(id: String) -> void:
 	match id:
 		"piece1": $MoonIcon1.visible = false

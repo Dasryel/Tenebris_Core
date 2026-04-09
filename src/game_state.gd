@@ -5,11 +5,12 @@ signal key_pickedup
 @warning_ignore("unused_signal")
 signal player_died
 @warning_ignore("unused_signal")
-signal door_unlocked
-@warning_ignore("unused_signal")
 signal dj_pickedup
+@warning_ignore("unused_signal")
 signal game_paused
+@warning_ignore("unused_signal")
 signal moon_piece_collected(id)
+@warning_ignore("unused_signal")
 signal moon_piece_used(id)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -63,6 +64,8 @@ var moon_phase: int = 0
 # sets game bg to black instead of gray
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color(0, 0, 0))
+	SignalBus.key_picked_up.connect(_on_key_picked_up)
+	SignalBus.key_used.connect(_on_key_used)
 
 func is_door_unlocked(id: String) -> bool:
 	return id in unlocked_doors
@@ -108,3 +111,11 @@ func reset() -> void:
 	"piece3": false,
 }
 	teleporters = {}
+
+func _on_key_picked_up(key_id: String):
+	has_key = true
+	keys[key_id] = true
+
+func _on_key_used(key_id: String):
+	has_key = false
+	keys[key_id] = false

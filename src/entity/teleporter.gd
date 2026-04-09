@@ -31,6 +31,13 @@ func _ready() -> void:
 	apply_locked_visuals()
 
 
+func _teleport():
+	_is_teleporting = true
+	GameState.target_entry_point = self.name
+	set_deferred("monitoring", false)
+	get_tree().call_deferred("change_scene_to_file", target_scene)
+
+
 func _on_body_entered(body: Node2D) -> void:
 	_is_player_near = true
 
@@ -41,10 +48,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if _is_teleporting or not _is_active or not body is Player:
 		return
 
-	_is_teleporting = true
-	GameState.target_entry_point = self.name
-	set_deferred("monitoring", false)
-	get_tree().call_deferred("change_scene_to_file", target_scene)
+	_teleport()
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -60,15 +64,23 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _try_interact() -> void:
+	print("using tp")
 	if is_locked:
 		if GameState.has_key:
 			_unlock()
 		else:
 			SignalBus.thought_bubble_show.emit("You need a key to unlock this portal.")
+	else:
+		_teleport()
 
 func _unlock() -> void:
 	is_locked = false
 	GameState.teleporters[name] = false
+
+	# FIXME should really figure out what the key string is and use the correct key
+	# instead of this hardcoded "key1"
+	SignalBus.key_used.emit("key1")
 	SignalBus.thought_bubble_show.emit("Unlocked!")
+
 	apply_locked_visuals()
 	# GameState.teleporter_unlocked.emit(name)

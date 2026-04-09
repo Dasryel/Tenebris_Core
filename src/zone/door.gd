@@ -50,7 +50,8 @@ func _unlock() -> void:
 	is_locked = false
 
 	GameState.unlock_door(door_id)
-	GameState.has_key = false # Consume key
+    # FIXME which key was actually used?
+	SignalBus.key_used.emit("key1")
 
 	update_visuals()
 

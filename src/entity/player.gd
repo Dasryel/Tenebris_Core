@@ -71,7 +71,7 @@ const ATTACK_DATA: Dictionary = {
 		"knockback_force": 200.0,
 		"target_group": "enemy_hurtbox",
 	},
-    
+
 }
 
 func _ready() -> void:
@@ -80,7 +80,6 @@ func _ready() -> void:
 	# GameState.has_dj = true
 	# GameState.has_key = true
 
-	GameState.key_pickedup.connect(key_obtained)
 	SignalBus.extra_jump_pickup.connect(_on_extra_jump_pickup)
 	if GameState.has_dj: max_jumps = 2
 
@@ -180,11 +179,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("damage"):
 		take_damage(1, Vector2(0, 0))
 # end _unhandled_input
-
-
-func key_obtained() -> void:
-	GameState.has_key = true
-	print("player has key: ", GameState.has_key)
 
 
 func take_damage(amount: int, knockback_dir: Vector2) -> void:
