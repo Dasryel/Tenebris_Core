@@ -29,7 +29,7 @@ var _state_machines: Dictionary[StringName, StateMachine] = {}
 func get_state_machine(layer: StringName) -> StateMachine:
 	if not _state_machines.has(layer):
 		push_error(
-            "State machine layer '%s' not found. Available layers: %s"
+			"State machine layer '%s' not found. Available layers: %s"
 			% [layer, str(_state_machines.keys())]
 		)
 		return null
@@ -76,7 +76,12 @@ func take_damage(_amount: int, _knockback_dir: Vector2) -> void:
 	pass
 
 func _on_animated_sprite_2d_frame_changed() -> void:
-	var data: Dictionary = get_attack_data().get(sprite.animation, {})
+	# .get() should return null without default parameter
+	var data: Dictionary = get_attack_data().get(sprite.animation)
+	if data == null:
+		push_error("[Entity] missing attack damage dictionary for attack")
+		return
+
 	var active_frames: Array = data.get("active_frames", [])
 	var is_active_frame = sprite.frame in active_frames
 	var coll = get_attack_hitbox_collision()

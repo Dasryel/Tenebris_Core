@@ -720,6 +720,7 @@ position = Vector2(2530, 388)
 target_scene = "uid://d0wqwp6yb4h70"
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1388953683]
+z_index = -1
 
 [node name="background" type="TileMapLayer" parent="Tiles" unique_id=307432867]
 position = Vector2(-1, 0)

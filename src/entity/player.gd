@@ -21,19 +21,57 @@ const CombatIdle = preload("res://src/entity/state/player/player_combat_idle_sta
 
 static var instance: Player
 
+# FIXME this is really stupid now with so many different animations, oh well
 const ATTACK_DATA: Dictionary = {
-	"slash1": {
+	"slash1_god_left": {
 		"active_frames": [4],
 		"damage": 1,
 		"knockback_force": 200.0,
 		"target_group": "enemy_hurtbox",
 	},
-	"slash2": {
+    "slash1_god_right": {
+		"active_frames": [4],
+		"damage": 1,
+		"knockback_force": 200.0,
+		"target_group": "enemy_hurtbox",
+	},
+    "slash1_norm_left": {
+		"active_frames": [4],
+		"damage": 1,
+		"knockback_force": 200.0,
+		"target_group": "enemy_hurtbox",
+	},
+    "slash1_norm_right": {
+		"active_frames": [4],
+		"damage": 1,
+		"knockback_force": 200.0,
+		"target_group": "enemy_hurtbox",
+	},
+	"slash2_god_left": {
 		"active_frames": [1],
 		"damage": 2,
 		"knockback_force": 350.0,
 		"target_group": "enemy_hurtbox",
 	},
+     "slash2_god_right": {
+		"active_frames": [4],
+		"damage": 1,
+		"knockback_force": 200.0,
+		"target_group": "enemy_hurtbox",
+	},
+    "slash2_norm_left": {
+		"active_frames": [4],
+		"damage": 1,
+		"knockback_force": 200.0,
+		"target_group": "enemy_hurtbox",
+	},
+    "slash2_norm_right": {
+		"active_frames": [4],
+		"damage": 1,
+		"knockback_force": 200.0,
+		"target_group": "enemy_hurtbox",
+	},
+    
 }
 
 func _ready() -> void:
