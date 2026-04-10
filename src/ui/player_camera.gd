@@ -4,6 +4,7 @@ extends Camera2D
 
 func _ready() -> void:
 	SignalBus.camera_bounds_changed.connect(_on_camera_bounds_changed)
+	SignalBus.camera_zoom_changed.connect(_on_camera_zoom_changed)
 	# zoom = Vector2(3.5, 3.5)
 	# offset.y = -25.0
 
@@ -21,3 +22,6 @@ func _on_camera_bounds_changed(top_left: Vector2, bottom_right: Vector2):
 	limit_top = int(top_left.y)
 	limit_right = int(bottom_right.x)
 	limit_bottom = int(bottom_right.y)
+
+func _on_camera_zoom_changed(new_zoom: Vector2):
+	zoom = new_zoom

@@ -1,12 +1,15 @@
 extends Node2D
 
+const DEFAULT_CAMERA_ZOOM: Vector2 = Vector2(0.6, 0.6)
+
 @export var camera_bounds: Node2D
+@export var camera_zoom: Vector2 = DEFAULT_CAMERA_ZOOM
 
 func _ready() -> void:
 	var player = preload("res://scene/player.tscn").instantiate()
 	add_child(player)
 
-	_setup_camera_bounds()
+	_setup_player_camera()
 
 	# A really fraglile way to do this, but hopefully it is good enough
 	if not GameState.player_is_dead:
@@ -30,9 +33,12 @@ func _ready() -> void:
 # END _ready
 
 
-func _setup_camera_bounds():
+func _setup_player_camera():
 	var top_left = camera_bounds.get_node("TopLeft")
 	var bottom_right = camera_bounds.get_node("BottomRight")
+
+	if camera_zoom != DEFAULT_CAMERA_ZOOM:
+		SignalBus.camera_zoom_changed.emit(camera_zoom)
 
 	if top_left and bottom_right:
 		SignalBus.camera_bounds_changed.emit(

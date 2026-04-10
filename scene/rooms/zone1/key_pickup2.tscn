@@ -573,6 +573,7 @@ sources/1 = SubResource("TileSetAtlasSource_3n3r2")
 [node name="key_pickup2" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_4twy7")
 camera_bounds = NodePath("CameraBounds")
+camera_zoom = Vector2(0.8, 0.8)
 
 [node name="CameraBounds" type="Node2D" parent="." unique_id=387258893]
 position = Vector2(315, 127)

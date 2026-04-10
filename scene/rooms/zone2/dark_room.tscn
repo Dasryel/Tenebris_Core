@@ -579,6 +579,7 @@ sources/1 = SubResource("TileSetAtlasSource_apf85")
 [node name="dark_room" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_iwsor")
 camera_bounds = NodePath("CameraBounds")
+camera_zoom = Vector2(0.8, 0.8)
 
 [node name="CameraBounds" type="Node2D" parent="." unique_id=1050539392]
 position = Vector2(315, 127)

@@ -571,15 +571,16 @@ sources/1 = SubResource("TileSetAtlasSource_apf85")
 [node name="corridor" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_klcga")
 camera_bounds = NodePath("CameraBounds")
+camera_zoom = Vector2(0.8, 0.8)
 
 [node name="CameraBounds" type="Node2D" parent="." unique_id=1050539392]
 position = Vector2(315, 127)
 
 [node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=1562064568]
-position = Vector2(-849, -289)
+position = Vector2(-923, -287)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=1524301483]
-position = Vector2(693, 497)
+position = Vector2(709, 513)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1388953683]
 

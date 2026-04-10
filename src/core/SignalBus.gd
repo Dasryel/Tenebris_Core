@@ -25,6 +25,9 @@ signal extra_jump_pickup()
 signal camera_bounds_changed(top_left: Vector2, bottom_right: Vector2)
 
 @warning_ignore("unused_signal")
+signal camera_zoom_changed(new_zoom: Vector2)
+
+@warning_ignore("unused_signal")
 signal key_picked_up(key_id: String)
 
 @warning_ignore("unused_signal")
