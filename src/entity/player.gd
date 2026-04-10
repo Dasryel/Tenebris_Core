@@ -204,4 +204,4 @@ func take_damage(amount: int, knockback_dir: Vector2) -> void:
 	velocity = Vector2(dir_x * 50.0, -100.0)
 
 	var sm = get_state_machine(LOCOMOTION_LAYER)
-	sm.change_state(PlayerHurtState.new(), self )
+	sm.change_state(StateCache.get_state(PlayerHurtState), self )

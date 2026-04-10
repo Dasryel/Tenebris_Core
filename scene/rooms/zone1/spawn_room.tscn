@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_leuse"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="7_eyen4"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="7_qbfr7"]
+[ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="10_4mbp1"]
 [ext_resource type="PackedScene" uid="uid://nqtpn2lqe6ly" path="res://scene/entity/moon_portal.tscn" id="10_b78nj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sdbf"]
@@ -689,7 +690,7 @@ camera_zoom = Vector2(0.8, 0.8)
 [node name="AudioListener2D2" type="AudioListener2D" parent="." unique_id=672959620]
 
 [node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1429242992]
-position = Vector2(-237, 270)
+position = Vector2(-256, 432)
 
 [node name="CameraBounds" type="Node2D" parent="." unique_id=1050539392]
 position = Vector2(162, 96)
@@ -825,3 +826,6 @@ tile_set = SubResource("TileSet_apf85")
 [node name="MoonPortal" parent="." unique_id=1212824685 instance=ExtResource("10_b78nj")]
 position = Vector2(250.99998, 233.99998)
 scale = Vector2(4, 4)
+
+[node name="Shadow" parent="." unique_id=1692544944 instance=ExtResource("10_4mbp1")]
+position = Vector2(80, 448)

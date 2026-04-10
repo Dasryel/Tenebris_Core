@@ -341,7 +341,6 @@ sprite_frames = SubResource("SpriteFrames_oyyiu")
 animation = &"idle"
 
 [node name="StateLabel" type="Label" parent="." unique_id=1546211880]
-visible = false
 offset_left = -44.867706
 offset_top = 54.78079
 offset_right = 44.132294

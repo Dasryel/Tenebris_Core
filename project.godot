@@ -23,6 +23,7 @@ MusicManager="*uid://vjpi4j31tvyl"
 [debug]
 
 gdscript/warnings/unused_signal=0
+gdscript/warnings/shadowed_global_identifier=0
 
 [display]
 

@@ -4,17 +4,19 @@ extends EnemyBaseState
 # const BaseState = preload("res://src/entity/state/enemy/enemy_base_state.gd")
 
 func enter(entity: Entity) -> void:
+	if entity.is_dead:
+		return
+
 	entity.state_label.text = "ShadowAttackState"
 	entity.velocity = Vector2.ZERO
 
-	#var player = _get_player()
-	#if player:
-	#	_face_target(entity, player)
-
 	var tree = entity.get_tree()
 	await tree.create_timer(0.75).timeout
-	if entity == null:
+
+    # try to avoid race condition due to await timer
+	if entity == null or entity.is_dead:
 		return
+
 	entity.play_anim("attack")
 
 	# Listen for animation finish — connect once, auto-disconnect
@@ -24,10 +26,11 @@ func enter(entity: Entity) -> void:
 		entity.sprite.animation_finished.connect(callable, CONNECT_ONE_SHOT)
 
 
-func update(_entity: Entity, _delta: float) -> void:
+func update(entity: Entity, _delta: float) -> void:
 	# Hold position during attack — velocity already zeroed in enter()
 	# Damage is handled by hitbox Area2D, not here
-	pass
+	if entity.is_dead:
+		return
 
 
 func _on_animation_finished(entity: Entity) -> void:

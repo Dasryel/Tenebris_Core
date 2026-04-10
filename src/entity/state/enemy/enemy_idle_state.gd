@@ -11,7 +11,7 @@ func enter(entity: Enemy) -> void:
 func update(entity: Enemy, delta: float) -> void:
 	# Detection always takes priority
 	if _player_in_range(entity, entity.DETECTION_RANGE):
-		_go_to_enemy(entity, EnemyPursuitState)
+		_go_to_enemy(entity, ShadowPursuitState)
 		return
 
 	entity.idle_timer -= delta
