@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://guecbvu4mtfd"]
 
 [ext_resource type="Script" uid="uid://bn122ym4deeya" path="res://src/zone/base_room.gd" id="1_6xsbk"]
+[ext_resource type="PackedScene" uid="uid://jdj5ruk0ge4w" path="res://scene/player_spawn.tscn" id="2_adt1b"]
 [ext_resource type="Texture2D" uid="uid://c7hpu6of78vfw" path="res://asset/tileset/tileset-2.png" id="2_js57n"]
 [ext_resource type="Texture2D" uid="uid://df5eyxtbgcgcd" path="res://asset/tileset/tileset.png" id="3_xv4bc"]
 [ext_resource type="Texture2D" uid="uid://dmxat3ou88xd3" path="res://asset/tileset/back.png" id="4_adt1b"]
@@ -529,6 +530,10 @@ pattern_2 = SubResource("TileMapPattern_mw1n8")
 [node name="laval_hall" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_6xsbk")
 camera_bounds = NodePath("CameraBounds")
+camera_zoom = Vector2(0.7, 0.7)
+
+[node name="PlayerSpawn" parent="." unique_id=994104029 instance=ExtResource("2_adt1b")]
+position = Vector2(2302, -387)
 
 [node name="CameraBounds" type="Node2D" parent="." unique_id=1729749514]
 position = Vector2(315, 127)

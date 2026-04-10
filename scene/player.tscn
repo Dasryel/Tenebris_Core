@@ -1960,7 +1960,7 @@ material = SubResource("CanvasItemMaterial_g2vtq")
 position = Vector2(0, -50.000008)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_fvtld")
-animation = &"hurt_norm_right"
+animation = &"hurt_god_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220763521]
 position = Vector2(0, -14)
@@ -1981,6 +1981,8 @@ offset_bottom = 139.66666
 scale = Vector2(2, 2)
 
 [node name="ThoughtBubble" type="Panel" parent="." unique_id=228608794 node_paths=PackedStringArray("thought_bubble_text")]
+light_mask = 0
+visibility_layer = 16
 z_index = 1
 offset_left = 78.33333
 offset_top = -191.66666

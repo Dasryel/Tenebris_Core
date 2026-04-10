@@ -17,20 +17,27 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_map"):
 		get_tree().change_scene_to_file("res://scene/rooms/zone3/room1.tscn")
 
+# Really need to add more default rooms if we add more zones
+const ZONE_SPAWN_ROOMS: Dictionary = {
+	"zone1": "spawn_room.tscn",
+	"zone2": "lava_hall.tscn",
+}
 
 var spawn_position: Vector2 = Vector2.ZERO
-var has_key: bool = false
-var has_dj: bool = false
-var player_max_hp: int = 3
-var player_current_hp: int = 3
-var zone_text: String = ""
-
-var unlocked_doors: Array[String] = []
-# Player spawn Marker2D
 var target_entry_point: String = ""
-
+var zone_text: String = ""
 var current_player_zone: String = "undefined"
 var current_player_room: String = "undefined"
+
+var has_key: bool = false
+var has_dj: bool = false
+
+var player_max_hp: int = 3
+var player_current_hp: int = 3
+
+# K: string name, V: bool unlocked false, locked true
+var teleporters: Dictionary = {}
+var unlocked_doors: Array[String] = []
 var player_is_dead: bool = false
 
 var doors: Dictionary = {
@@ -45,9 +52,6 @@ var keys: Dictionary = {
 	"key2": false,
 	"key3": false,
 }
-
-# K: string name, V: bool unlocked false, locked true
-var teleporters: Dictionary = {}
 
 var moon_pieces: Dictionary = {
 	"piece1": false,
@@ -119,3 +123,10 @@ func _on_key_picked_up(key_id: String):
 func _on_key_used(key_id: String):
 	has_key = false
 	keys[key_id] = false
+
+func get_spawn_room_path() -> String:
+	var room = ZONE_SPAWN_ROOMS.get(current_player_zone)
+	return "res://scene/rooms/{z}/{r}".format({
+		"z": current_player_zone,
+		"r": room
+	})
