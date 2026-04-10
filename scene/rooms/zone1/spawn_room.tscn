@@ -824,3 +824,4 @@ tile_set = SubResource("TileSet_apf85")
 
 [node name="MoonPortal" parent="." unique_id=1212824685 instance=ExtResource("10_b78nj")]
 position = Vector2(250.99998, 233.99998)
+scale = Vector2(4, 4)

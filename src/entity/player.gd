@@ -120,6 +120,15 @@ func is_loco_idling() -> bool:
 
 	return false
 
+func is_taking_damage() -> bool:
+	var sm = get_state_machine(LOCOMOTION_LAYER)
+	var current_state = sm.current_state
+
+	if current_state is PlayerHurtState:
+		return true
+
+	return false
+
 func _get_anim_key(anim: String) -> String:
 	var mode_str := "god" if GameState.has_dj else "norm"
 	var dir_str := "right" if last_direction.x > 0 else "left"

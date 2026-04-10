@@ -5,6 +5,10 @@ extends PlayerBaseState
 const CombatSlashing = preload("res://src/entity/state/player/player_combat_slashing_state.gd")
 
 func enter(entity: Entity) -> void:
+	if entity.is_taking_damage():
+		print("player in hurt state")
+		return
+
 	entity.play_anim("idle")
 
 
