@@ -2,7 +2,11 @@
 
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="1_3er1b"]
 [ext_resource type="Script" uid="uid://bd6vyrvitmklc" path="res://src/ui/main_menu.gd" id="1_hxu56"]
+[ext_resource type="Texture2D" uid="uid://bd71on72q5fyd" path="res://asset/sprite/env/sky.png" id="4_8wb42"]
 [ext_resource type="Texture2D" uid="uid://di67ku6b50we5" path="res://asset/UI/on.png" id="4_sepwh"]
+
+[sub_resource type="Theme" id="Theme_k3dtv"]
+/colors/background_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4svf"]
 bg_color = Color(0.22536919, 0.6105468, 0.99999994, 1)
@@ -30,6 +34,9 @@ thickness = 6
 color = Color(0, 0, 0.9372549, 1)
 thickness = 6
 
+[sub_resource type="Theme" id="Theme_8wb42"]
+/colors/background_color = Color(0, 0, 0, 0)
+
 [node name="MainMenu" type="Control" unique_id=1086381032]
 layout_mode = 3
 anchors_preset = 15
@@ -40,7 +47,8 @@ grow_vertical = 2
 script = ExtResource("1_hxu56")
 spawn_scene = "uid://bpgymvprtqna6"
 
-[node name="OptionsPanel" type="Panel" parent="." unique_id=1681142039]
+[node name="OptionsPanel" type="Control" parent="." unique_id=930894824]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,6 +61,7 @@ offset_right = 263.5
 offset_bottom = 254.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_k3dtv")
 
 [node name="Label" type="Label" parent="OptionsPanel" unique_id=599200954]
 layout_mode = 1
@@ -133,6 +142,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Background" type="Sprite2D" parent="." unique_id=1406154846]
+z_index = -1
+position = Vector2(642, 375)
+scale = Vector2(4.7029405, 4.702942)
+texture = ExtResource("4_8wb42")
+
 [node name="GameLabel" type="Label" parent="." unique_id=536594564]
 layout_mode = 1
 anchors_preset = 8
@@ -153,7 +168,6 @@ theme_override_font_sizes/font_size = 65
 text = "Tenebris Core"
 
 [node name="MainMenuButtons" type="VBoxContainer" parent="." unique_id=2062646013]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -166,6 +180,7 @@ offset_right = 173.0
 offset_bottom = 211.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_8wb42")
 theme_override_constants/separation = 15
 
 [node name="StartButton" type="Button" parent="MainMenuButtons" unique_id=783879015]

@@ -1,7 +1,7 @@
 extends Control
 
 @onready var main_menu_buttons: VBoxContainer = $MainMenuButtons
-@onready var options_panel: Panel = $OptionsPanel
+@onready var options_panel: Control = $OptionsPanel
 @export_file("*.tscn") var spawn_scene: String
 
 
