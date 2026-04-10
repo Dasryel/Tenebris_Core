@@ -20,6 +20,10 @@ GameState="*uid://dugxflidcxwqk"
 SignalBus="*uid://brj7dd634kcq0"
 MusicManager="*uid://vjpi4j31tvyl"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=1280

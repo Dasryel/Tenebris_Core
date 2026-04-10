@@ -1,6 +1,5 @@
 extends Area2D
 
-@warning_ignore("unused_signal")
 signal show_key
 @export var key_id: String
 

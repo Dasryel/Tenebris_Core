@@ -1,16 +1,10 @@
 extends Node
 
-@warning_ignore("unused_signal")
 signal key_pickedup
-@warning_ignore("unused_signal")
 signal player_died
-@warning_ignore("unused_signal")
 signal dj_pickedup
-@warning_ignore("unused_signal")
 signal game_paused
-@warning_ignore("unused_signal")
 signal moon_piece_collected(id)
-@warning_ignore("unused_signal")
 signal moon_piece_used(id)
 
 func _unhandled_input(event: InputEvent) -> void:
