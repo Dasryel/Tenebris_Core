@@ -78,6 +78,10 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	print("[Key] picked up: ", key_id)
+
+	SignalBus.show_text_on_player_ui.emit(
+		"You picked up the %s key!" % key_id.capitalize()
+		)
 	SignalBus.key_picked_up.emit(key_id, key_type)
 	queue_free()
 
