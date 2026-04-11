@@ -32,9 +32,14 @@ func _ready() -> void:
 			show_moon_piece(id)
 
 	_on_player_hp_changed(GameState.player_current_hp)
+	_setup_ui_logger()
 
+func _setup_ui_logger() -> void:
 	log_messages.scroll_following = true
 	log_messages.scroll_active = true
+
+	if not OS.is_debug_build():
+		log_messages.visible = false
 
 func show_zone_text(text: String) -> void:
 	$ZoneLabel.text = text

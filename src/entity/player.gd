@@ -94,6 +94,12 @@ func _ready() -> void:
 	_add_state_machine(LOCOMOTION_LAYER, StateCache.get_state(PlayerFallingState))
 
 	$AnimatedSprite2D.animation_finished.connect(_on_player_sprite_finished)
+
+	if not OS.is_debug_build():
+		loco_state_label.visible = false
+		combat_state_label.visible = false
+
+
 # end _ready
 
 func get_attack_data() -> Dictionary:
