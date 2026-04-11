@@ -132,3 +132,10 @@ text = "ZONE"
 [node name="GameMenu" parent="." unique_id=93567257 instance=ExtResource("7_r34vs")]
 visible = false
 layout_mode = 1
+
+[node name="LogMessages" type="RichTextLabel" parent="." unique_id=555503966]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 576.0
+offset_right = 344.0
+offset_bottom = 704.0

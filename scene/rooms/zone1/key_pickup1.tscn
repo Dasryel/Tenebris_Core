@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="8_ha5o4"]
 [ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="9_8mfl0"]
 [ext_resource type="Script" uid="uid://bbse6a07sb1os" path="res://src/entity/moving_platform2.gd" id="10_x2hlm"]
-[ext_resource type="PackedScene" path="res://scene/entity/moving_platform_pillar.tscn" id="11_ihyuy"]
+[ext_resource type="PackedScene" uid="uid://cnhw6vvxapqk7" path="res://scene/entity/moving_platform_pillar.tscn" id="11_ihyuy"]
 [ext_resource type="PackedScene" uid="uid://cc7w2cwg1k5kg" path="res://scene/item/moon_piece.tscn" id="11_x2hlm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqutv"]

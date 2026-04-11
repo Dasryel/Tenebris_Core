@@ -17,3 +17,5 @@ signal camera_zoom_changed(new_zoom: Vector2)
 
 signal key_picked_up(key_id: String)
 signal key_used(key_id: String)
+
+signal log_entry_added(message: String)

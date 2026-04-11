@@ -2,6 +2,8 @@ extends Control
 
 @onready var hearts = [$HeartsContainer/HpIcon, $HeartsContainer/HpIcon2, $HeartsContainer/HpIcon3]
 
+@onready var log_messages = $LogMessages
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +11,8 @@ func _ready() -> void:
 	SignalBus.key_used.connect(_on_key_used)
 	SignalBus.door_unlocked.connect(_on_key_used)
 	SignalBus.player_hp_changed.connect(_on_player_hp_changed)
+	SignalBus.log_entry_added.connect(_on_log_entry_added)
+
 	GameState.dj_pickedup.connect(show_dj)
 	GameState.moon_piece_collected.connect(show_moon_piece)
 	GameState.moon_piece_used.connect(hide_moon_piece)
@@ -28,6 +32,9 @@ func _ready() -> void:
 			show_moon_piece(id)
 
 	_on_player_hp_changed(GameState.player_current_hp)
+
+	log_messages.scroll_following = true
+	log_messages.scroll_active = true
 
 func show_zone_text(text: String) -> void:
 	$ZoneLabel.text = text
@@ -94,3 +101,6 @@ func _on_player_hp_changed(current_hp: int) -> void:
 
 func _on_lava_body_exited(_body: Node2D) -> void:
 	pass # Replace with function body.
+
+func _on_log_entry_added(message: String) -> void:
+	log_messages.append_text(message)

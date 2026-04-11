@@ -8,7 +8,7 @@ func enter(entity: Entity) -> void:
 
 func update(entity: Player, delta: float) -> void:
 	if entity.is_in_combat():
-		print("move: cant move while attacking")
+        # Can't move while attacking
 		return
 
 	if not entity.is_on_floor():

@@ -59,11 +59,18 @@ var moon_pieces_used: Dictionary = {
 }
 var moon_phase: int = 0
 
+var game_logger = GameLogger.new()
+const GameLogger = preload("res://src/core/game_logger.gd")
+
 # sets game bg to black instead of gray
 func _ready() -> void:
+	OS.add_logger(game_logger)
 	RenderingServer.set_default_clear_color(Color(0, 0, 0))
 	SignalBus.key_picked_up.connect(_on_key_picked_up)
 	SignalBus.key_used.connect(_on_key_used)
+
+func _process(_delta: float) -> void:
+	game_logger.flush()
 
 func is_door_unlocked(id: String) -> bool:
 	return id in unlocked_doors
