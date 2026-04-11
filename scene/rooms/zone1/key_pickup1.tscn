@@ -666,8 +666,7 @@ scale = Vector2(0.20585419, 0.14978433)
 texture = ExtResource("7_t76oc")
 
 [node name="Key" parent="." unique_id=1990007751 instance=ExtResource("9_8mfl0")]
-position = Vector2(1302, -389)
-key_id = "key1"
+position = Vector2(1302, -368.9364)
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1721493953]
 position = Vector2(464.95422, -786.9384)

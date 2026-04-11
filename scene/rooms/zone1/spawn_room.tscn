@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_leuse"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="7_eyen4"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="7_qbfr7"]
-[ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="10_4mbp1"]
+[ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="10_4mbp1"]
 [ext_resource type="PackedScene" uid="uid://nqtpn2lqe6ly" path="res://scene/entity/moon_portal.tscn" id="10_b78nj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sdbf"]
@@ -801,12 +801,12 @@ texture = ExtResource("7_eyen4")
 position = Vector2(939, 395)
 target_scene = "uid://br4paskgcobl8"
 
-[node name="spawn_doublejump" parent="Teleporters" unique_id=1480681057 instance=ExtResource("6_leuse")]
-position = Vector2(-476, 383)
-rotation = -3.1415925
+[node name="spawn_doublejump" parent="Teleporters" unique_id=903027301 instance=ExtResource("6_leuse")]
+position = Vector2(-480, 384)
 target_scene = "uid://eobv5pygfo8v"
 is_locked = true
 needs_key = true
+key_type = 2
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1388953683]
 z_index = -1
@@ -827,5 +827,14 @@ tile_set = SubResource("TileSet_apf85")
 position = Vector2(250.99998, 233.99998)
 scale = Vector2(4, 4)
 
-[node name="Shadow" parent="." unique_id=1692544944 instance=ExtResource("10_4mbp1")]
-position = Vector2(80, 448)
+[node name="Key" parent="." unique_id=1990007751 instance=ExtResource("10_4mbp1")]
+position = Vector2(80, 448.1521)
+key_type = 2
+
+[node name="Key2" parent="." unique_id=1566111448 instance=ExtResource("10_4mbp1")]
+position = Vector2(352, 336.1521)
+key_type = 3
+
+[node name="Key3" parent="." unique_id=674816537 instance=ExtResource("10_4mbp1")]
+position = Vector2(672, 464.1521)
+key_type = 4

@@ -51,6 +51,7 @@ func _unlock() -> void:
 
 	GameState.unlock_door(door_id)
     # FIXME which key was actually used?
+	# needs to have similar setup to teleporter with key id and key type..
 	SignalBus.key_used.emit("key1")
 
 	update_visuals()

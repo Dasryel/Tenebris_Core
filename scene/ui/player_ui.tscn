@@ -18,17 +18,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lpg6e")
+key_texture = ExtResource("1_hpojl")
 
-[node name="KeyIcon" type="TextureRect" parent="." unique_id=1784554145]
-visible = false
+[node name="KeyList" type="HBoxContainer" parent="." unique_id=1385708338]
+layout_direction = 2
 layout_mode = 0
-offset_left = 15.0
-offset_top = 6.0
-offset_right = 89.0
-offset_bottom = 73.0
-size_flags_horizontal = 3
-texture = ExtResource("1_hpojl")
-expand_mode = 2
+offset_left = 24.0
+offset_right = 704.0
+offset_bottom = 48.0
 
 [node name="DjIcon" type="TextureRect" parent="." unique_id=73565375]
 visible = false

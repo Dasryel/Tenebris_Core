@@ -1,43 +1,61 @@
+@tool
 extends Area2D
 
 signal show_key
-@export var key_id: String
+var key_id: String
+
+@onready var editor_warning: Label = $EditorWarning
+@export var key_type: KeyType = KeyType.NONE:
+	set(value):
+		key_type = value
+		_update_editor_warning()
+		update_configuration_warnings()
+
+const KeyType = preload("res://src/item/key_type.gd").KeyType
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	if key_id == "":
-		print("WARNING: set key_id in Inspector!")
-		queue_free()
-		return
-
-	var is_key_picked_up = GameState.keys.get(key_id)
-	print("key status for key: ", key_id, " is: ", is_key_picked_up)
-	if is_key_picked_up == true:
-		print("Key already picked up")
-		queue_free()
-
-	if not GameState.keys.has(key_id):
-		print("WARNING: key_id '", key_id, "' not found in GameState.keys, update the singleton")
-		queue_free()
-		return
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	# Disable key movement ine ditor
+	if Engine.is_editor_hint():
+		return
+
 	position.y += sin(Time.get_ticks_msec() * 0.001) * 0.1
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		# Guard against invalid key_id in case _ready() returned early
-		if key_id == "":
-			print("WARNING: key pickup with invalid empty key_id")
-			return
+func _ready() -> void:
+	key_id = GameState.get_key_id(key_type)
+	if Engine.is_editor_hint():
+		_update_editor_warning()
+		return
 
-		if not GameState.keys.has(key_id):
-			print("WARNING: key pickup with unknown key_id '", key_id, "'")
-			return
+	$EditorWarning.visible = false
 
-		print("key picked up!")
-		SignalBus.key_picked_up.emit(key_id)
+	# Don't spawn if already picked up
+	if GameState.picked_up_keys.has(key_id) and GameState.picked_up_keys[key_id].picked_up:
 		queue_free()
+		return
+
+	# Register key if first time seen
+	if not GameState.picked_up_keys.has(key_id):
+		GameState.picked_up_keys[key_id] = GameState.KeyData.new()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+
+	print("[Key] picked up: ", key_id)
+	SignalBus.key_picked_up.emit(key_id, key_type)
+	queue_free()
+
+
+func _update_editor_warning() -> void:
+	if not is_node_ready():
+		return
+	if editor_warning == null:
+		return
+	if key_type == KeyType.NONE:
+		editor_warning.visible = true
+		editor_warning.text = "⚠ SET KEY TYPE ⚠"
+	else:
+		editor_warning.visible = false

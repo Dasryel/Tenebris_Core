@@ -4,6 +4,9 @@ extends Control
 
 @onready var log_messages = $LogMessages
 
+const KeyType = preload("res://src/item/key_type.gd").KeyType
+@export var key_texture: Texture2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,9 +19,6 @@ func _ready() -> void:
 	GameState.dj_pickedup.connect(show_dj)
 	GameState.moon_piece_collected.connect(show_moon_piece)
 	GameState.moon_piece_used.connect(hide_moon_piece)
-
-	if GameState.has_key:
-		$KeyIcon.visible = true
 
 	if GameState.has_dj:
 		$DjIcon.visible = true
@@ -33,6 +33,9 @@ func _ready() -> void:
 
 	_on_player_hp_changed(GameState.player_current_hp)
 	_setup_ui_logger()
+
+	for key in GameState.get_unused_keys():
+		_add_key_to_ui(key)
 
 func _setup_ui_logger() -> void:
 	log_messages.push_font_size(10)
@@ -59,12 +62,35 @@ func show_zone_text(text: String) -> void:
 
 	$ZoneLabel.visible = false
 
-func _on_key_picked_up(_key_id: String):
-	$KeyIcon.visible = true
-	show_text("You picked up key!")
+func _invalid_key_type() -> void:
+	push_error("[Player ui] Attempting to add a picked up key of type NONE")
 
-func _on_key_used(_key_id: String):
-	$KeyIcon.visible = false
+func _add_key_to_ui(key_id: String):
+	var texture_rect = TextureRect.new()
+	texture_rect.name = key_id
+	texture_rect.texture = key_texture
+	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	texture_rect.custom_minimum_size = Vector2(32, 32)
+
+	$KeyList.add_child(texture_rect)
+
+func _on_key_picked_up(key_id: String, key_type: KeyType) -> void:
+	if key_type == KeyType.NONE:
+		_invalid_key_type()
+		return
+
+	_add_key_to_ui(key_id)
+
+
+func _on_key_used(key_id: String, key_type) -> void:
+	if key_type == KeyType.NONE:
+		_invalid_key_type()
+		return
+
+	var node = $KeyList.find_child(key_id)
+	if node:
+		node.queue_free()
+
 
 func show_dj():
 	$DjIcon.visible = true

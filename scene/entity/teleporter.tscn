@@ -34,5 +34,11 @@ color = Color(0.2635372, 0.53437334, 1.0283732, 1)
 energy = 3.0
 texture = ExtResource("3_n1k3v")
 
+[node name="EditorWarning" type="Label" parent="." unique_id=1125867012]
+offset_left = -19.0
+offset_top = 36.0
+offset_right = 21.0
+offset_bottom = 59.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

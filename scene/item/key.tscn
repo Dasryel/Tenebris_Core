@@ -8,6 +8,7 @@
 size = Vector2(27, 9)
 
 [node name="Key" type="Area2D" unique_id=1990007751]
+position = Vector2(0, -15.847907)
 scale = Vector2(2, 2)
 collision_mask = 2
 script = ExtResource("1_0p3an")
@@ -25,5 +26,11 @@ shape = SubResource("RectangleShape2D_6s3tr")
 light_mask = 3
 scale = Vector2(0.19666667, 0.19666667)
 texture = ExtResource("3_3o0w0")
+
+[node name="EditorWarning" type="Label" parent="." unique_id=394090274]
+offset_left = -20.0
+offset_top = 0.35381675
+offset_right = 20.0
+offset_bottom = 23.353817
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

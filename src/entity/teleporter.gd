@@ -1,8 +1,24 @@
+@tool
 extends Area2D
+
+const KeyType = preload("res://src/item/key_type.gd").KeyType
 
 @export_file("*.tscn") var target_scene: String
 @export var is_locked: bool = true
-@export var needs_key: bool = true
+@export var needs_key: bool = true:
+	set(value):
+		needs_key = value
+		_update_editor_warning()
+		update_configuration_warnings()
+
+var key_id
+@export var key_type: KeyType = KeyType.NONE:
+	set(value):
+		key_type = value
+		_update_editor_warning()
+		update_configuration_warnings()
+
+@onready var editor_warning: Label = $EditorWarning
 
 var _is_active: bool = true
 var _is_teleporting: bool = false
@@ -16,6 +32,12 @@ func apply_locked_visuals() -> void:
 
 
 func _ready() -> void:
+	key_id = GameState.get_key_id(key_type)
+
+	if Engine.is_editor_hint():
+		_update_editor_warning()
+		return
+
 	# Set or read the teleporter's locked status
 	if not GameState.teleporters.has(name):
 		GameState.teleporters[name] = is_locked
@@ -36,6 +58,17 @@ func _teleport():
 	GameState.target_entry_point = self.name
 	set_deferred("monitoring", false)
 	get_tree().call_deferred("change_scene_to_file", target_scene)
+
+func _update_editor_warning() -> void:
+	if not is_node_ready():
+		return
+	if editor_warning == null:
+		return
+
+	# needs_key=false means warning is NEVER needed, regardless of key_type
+	var should_warn: bool = needs_key and key_type == KeyType.NONE
+	editor_warning.visible = should_warn
+	editor_warning.text = "⚠ SET KEY TYPE ⚠" if should_warn else ""
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -64,12 +97,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _try_interact() -> void:
-	print("using tp")
 	if is_locked:
-		if GameState.has_key:
+		if GameState.player_has_key(key_type):
 			_unlock()
 		else:
-			SignalBus.thought_bubble_show.emit("You need a key to unlock this portal.")
+			SignalBus.thought_bubble_show.emit("You need a correct key to unlock this portal.")
 	else:
 		_teleport()
 
@@ -79,7 +111,7 @@ func _unlock() -> void:
 
 	# FIXME should really figure out what the key string is and use the correct key
 	# instead of this hardcoded "key1"
-	SignalBus.key_used.emit("key1")
+	SignalBus.key_used.emit(key_id, key_type)
 	SignalBus.thought_bubble_show.emit("Unlocked!")
 
 	apply_locked_visuals()

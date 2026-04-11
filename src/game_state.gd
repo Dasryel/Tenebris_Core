@@ -17,13 +17,20 @@ const ZONE_SPAWN_ROOMS: Dictionary = {
 	"zone2": "lava_hall.tscn",
 }
 
+class KeyData:
+	var picked_up: bool = false
+	var used: bool = false
+
+	func _init(p: bool = false, u: bool = false):
+		picked_up = p
+		used = u
+
 var spawn_position: Vector2 = Vector2.ZERO
 var target_entry_point: String = ""
 var zone_text: String = ""
 var current_player_zone: String = "undefined"
 var current_player_room: String = "undefined"
 
-var has_key: bool = false
 var has_dj: bool = false
 
 var player_max_hp: int = 3
@@ -34,17 +41,13 @@ var teleporters: Dictionary = {}
 var unlocked_doors: Array[String] = []
 var player_is_dead: bool = false
 
+var picked_up_keys: Dictionary = {}
+
 var doors: Dictionary = {
 	"door1": false,
 	"door2": false,
 	"door3": false,
 	"door4": false,
-}
-
-var keys: Dictionary = {
-	"key1": false,
-	"key2": false,
-	"key3": false,
 }
 
 var moon_pieces: Dictionary = {
@@ -61,6 +64,7 @@ var moon_phase: int = 0
 
 var game_logger = GameLogger.new()
 const GameLogger = preload("res://src/core/game_logger.gd")
+const KeyType = preload("res://src/item/key_type.gd").KeyType
 
 # sets game bg to black instead of gray
 func _ready() -> void:
@@ -69,8 +73,24 @@ func _ready() -> void:
 	SignalBus.key_picked_up.connect(_on_key_picked_up)
 	SignalBus.key_used.connect(_on_key_used)
 
+func _on_key_picked_up(key_id: String, _key_type: KeyType) -> void:
+	picked_up_keys[key_id].picked_up = true
+
+func _on_key_used(key_id: String, _key_type: KeyType) -> void:
+	picked_up_keys[key_id].used = true
+
 func _process(_delta: float) -> void:
 	game_logger.flush()
+
+func get_unused_keys() -> Array:
+	return picked_up_keys.keys().filter(
+		func(key_id):
+			return picked_up_keys[key_id].picked_up and picked_up_keys[key_id].used == false
+	)
+
+func player_has_key(key_type: KeyType) -> bool:
+	var entry = picked_up_keys.get(get_key_id(key_type))
+	return entry != null and entry.picked_up
 
 func is_door_unlocked(id: String) -> bool:
 	return id in unlocked_doors
@@ -78,6 +98,12 @@ func is_door_unlocked(id: String) -> bool:
 func unlock_door(id: String) -> void:
 	if not is_door_unlocked(id):
 		unlocked_doors.append(id)
+
+func get_key_id(key_type: KeyType) -> String:
+	var key_name = KeyType.keys()[key_type].to_lower() + "_key"
+	return key_name
+	# KeyType.RED -> "red_key" automatically
+
 
 func piece_pickedup(id: String):
 	print("id received", id)
@@ -93,7 +119,6 @@ func moon_pieces_count() -> int:
 
 
 func reset() -> void:
-	has_key = false
 	#has_dj = false
 	spawn_position = Vector2.ZERO
 	player_current_hp = player_max_hp
@@ -105,25 +130,13 @@ func reset() -> void:
 		"door3": false,
 		"door4": false,
 	}
-	keys = {
-		"key1": false,
-		"key2": false,
-		"key3": false,
-	}
+
 	moon_pieces = {
 	"piece1": false,
 	"piece2": false,
 	"piece3": false,
 }
-	#teleporters = {}
 
-func _on_key_picked_up(key_id: String):
-	has_key = true
-	keys[key_id] = true
-
-func _on_key_used(key_id: String):
-	has_key = false
-	keys[key_id] = false
 
 func get_spawn_room_path() -> String:
 	var room = ZONE_SPAWN_ROOMS.get(current_player_zone)
