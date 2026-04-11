@@ -799,6 +799,7 @@ texture = ExtResource("7_eyen4")
 [node name="MoonPortal" parent="Teleporters" unique_id=1212824685 instance=ExtResource("10_b78nj")]
 position = Vector2(250.99998, 233.99998)
 scale = Vector2(4, 4)
+reveal_duration = 1.25
 
 [node name="corridor_spawn" parent="Teleporters" unique_id=1408589343 instance=ExtResource("6_leuse")]
 position = Vector2(939, 395)

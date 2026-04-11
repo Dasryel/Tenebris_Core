@@ -11,11 +11,15 @@
 radius = 32.0
 height = 64.0
 
-[node name="MoonPortal" type="Area2D" unique_id=1212824685]
+[node name="MoonPortal" type="Area2D" unique_id=1212824685 node_paths=PackedStringArray("moon_sprite")]
+light_mask = 0
+visibility_layer = 16
 scale = Vector2(2.5, 2.5)
 collision_mask = 2
 script = ExtResource("1_urbi0")
 sprites = Array[Texture2D]([ExtResource("1_h2cvm"), ExtResource("3_hs5ow"), ExtResource("4_7mnfs"), ExtResource("5_co5kn")])
+moon_sprite = NodePath("Sprite2D")
+reveal_duration = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1098888380]
 texture = ExtResource("1_h2cvm")
