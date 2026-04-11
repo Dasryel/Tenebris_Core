@@ -55,9 +55,7 @@ func update_sprite() -> void:
 
 
 func activate_portal() -> void:
-	print("portal activated!")
-	#get_tree().change_scene_to_file("res://scene/ui/end_screen.tscn")
-	SignalBus.thought_bubble_show.emit("portal activated!")
+	SignalBus.thought_bubble_show.emit("Portal activated!")
 
 	var tween = create_tween()
 	tween.set_loops(3) # pulse 3 times
@@ -69,6 +67,8 @@ func activate_portal() -> void:
 	var flash = create_tween()
 	flash.tween_property($PointLight2D, "energy", 6.0, 0.5)
 	await flash.finished
+
+	SceneTransition.change_scene("res://scene/ui/end_screen.tscn", 2.0)
 
 
 func update_thought_bubble() -> void:

@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 GameState="*uid://dugxflidcxwqk"
 SignalBus="*uid://brj7dd634kcq0"
 MusicManager="*uid://vjpi4j31tvyl"
+SceneTransition="*uid://dmx27xv4bsesk"
 
 [debug]
 

@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="1_l5jwr"]
 [ext_resource type="Script" uid="uid://c26ddqafqtv7t" path="res://src/ui/end_screen.gd" id="1_yhdaf"]
+[ext_resource type="Texture2D" uid="uid://desfyur3kkaio" path="res://asset/bg/beta-backdrop.jpg" id="3_2gxxf"]
 
 [node name="EndScreen" type="Control" unique_id=2083638555]
 layout_mode = 3
@@ -19,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.45882353)
 
 [node name="Label" type="Label" parent="." unique_id=65620439]
 layout_mode = 1
@@ -28,15 +29,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -631.0
-offset_top = -267.0
-offset_right = 629.0
-offset_bottom = 189.5
+offset_left = -614.0
+offset_top = 113.0
+offset_right = 614.25854
+offset_bottom = 343.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_l5jwr")
-theme_override_font_sizes/font_size = 60
-text = "That's it for the play test! thanks for playing!"
+theme_override_font_sizes/font_size = 24
+text = "With the  Moon  restored, its light opens a path to a new 
+realm. You pass through the portal into a sea of clouds, 
+where  silence  and  wonder mark the end  of your quest...
+
+Or is this just a new beginning?"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Background" type="Sprite2D" parent="." unique_id=989151113]
+z_index = -1
+scale = Vector2(1.0666667, 1.0666667)
+texture = ExtResource("3_2gxxf")
+centered = false
