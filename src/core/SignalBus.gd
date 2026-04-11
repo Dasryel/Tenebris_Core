@@ -5,6 +5,8 @@ const KeyType = preload("res://src/item/key_type.gd").KeyType
 signal thought_bubble_show(text: String)
 signal thought_bubble_hide()
 
+signal show_text_on_player_ui(text: String)
+
 signal moon_phase_changed(phase)
 
 signal player_sprite_anim_finished()

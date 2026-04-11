@@ -16,12 +16,13 @@ func _process(_delta: float) -> void:
 	position.y += sin(Time.get_ticks_msec() * 0.001) * 0.1
 
 
-
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		# Guard against invalid key_id in case _ready() returned early
 		if id == "":
 			print("WARNING: key pickup with invalid empty id")
 			return
+
+		SignalBus.show_text_on_player_ui.emit("You found a moon piece!")
 		GameState.piece_pickedup(id)
 		queue_free()

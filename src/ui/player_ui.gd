@@ -13,6 +13,7 @@ var shader: Shader = preload("res://resource/shader/sprite_tint.gdshader")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.show_text_on_player_ui.connect(show_text)
 	SignalBus.key_storage_key_added.connect(_on_key_storage_key_added)
 	SignalBus.key_storage_key_removed.connect(_on_key_storage_key_removed)
 	SignalBus.door_unlocked.connect(_on_key_storage_key_removed)
@@ -123,7 +124,6 @@ func show_text(text: String):
 	$TextLabel.visible = false
 
 func show_moon_piece(id: String) -> void:
-	show_text("You found a moon piece!")
 	match id:
 		"piece1": $MoonIcon1.visible = true
 		"piece2": $MoonIcon2.visible = true
