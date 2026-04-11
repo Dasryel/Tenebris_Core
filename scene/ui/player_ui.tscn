@@ -19,6 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lpg6e")
 key_texture = ExtResource("1_hpojl")
+key_icon_size = Vector2(64, 64)
 
 [node name="KeyList" type="HBoxContainer" parent="." unique_id=1385708338]
 layout_direction = 2

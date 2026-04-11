@@ -6,6 +6,8 @@ extends Control
 
 const KeyType = preload("res://src/item/key_type.gd").KeyType
 @export var key_texture: Texture2D
+@export var key_icon_size: Vector2 = Vector2(32, 32)
+var shader: Shader = preload("res://resource/shader/sprite_tint.gdshader")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -70,7 +72,12 @@ func _add_key_to_ui(key_id: String):
 	texture_rect.name = key_id
 	texture_rect.texture = key_texture
 	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	texture_rect.custom_minimum_size = Vector2(32, 32)
+	texture_rect.custom_minimum_size = key_icon_size
+
+	var mat := ShaderMaterial.new()
+	mat.shader = shader
+	mat.set_shader_parameter("tint_color", GameState.keys[key_id].tint)
+	texture_rect.material = mat
 
 	$KeyList.add_child(texture_rect)
 

@@ -675,7 +675,7 @@ position = Vector2(2486, -44)
 
 [node name="Key" parent="Pickups" unique_id=1990007751 instance=ExtResource("7_jjgad")]
 position = Vector2(-195, 3)
-key_id = "key1"
+key_type = 3
 
 [node name="Teleporters" type="Node2D" parent="." unique_id=1203132514]
 

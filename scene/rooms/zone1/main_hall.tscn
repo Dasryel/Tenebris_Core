@@ -724,6 +724,7 @@ rotation = 3.1415925
 target_scene = "uid://vks0dehj2u1a"
 is_locked = true
 needs_key = true
+key_type = 1
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1615932478]
 

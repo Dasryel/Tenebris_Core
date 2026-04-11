@@ -653,6 +653,7 @@ position = Vector2(4704, 64)
 target_scene = "uid://d0wqwp6yb4h70"
 is_locked = true
 needs_key = true
+key_type = 3
 
 [node name="lava_darkroom" parent="Teleporters" unique_id=825399634 instance=ExtResource("5_bwqi5")]
 position = Vector2(160, -1027)

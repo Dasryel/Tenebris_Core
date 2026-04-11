@@ -20,10 +20,16 @@ const ZONE_SPAWN_ROOMS: Dictionary = {
 class KeyData:
 	var picked_up: bool = false
 	var used: bool = false
+	var tint: Color = Color(1.0, 1.0, 1.0, 1.0)
 
-	func _init(p: bool = false, u: bool = false):
+	func _init(
+		p: bool = false,
+		u: bool = false,
+		t: Color = Color(1.0, 0.0, 0.0, 1.0)
+	):
 		picked_up = p
 		used = u
+		tint = t
 
 var spawn_position: Vector2 = Vector2.ZERO
 var target_entry_point: String = ""
@@ -31,7 +37,7 @@ var zone_text: String = ""
 var current_player_zone: String = "undefined"
 var current_player_room: String = "undefined"
 
-var has_dj: bool = false
+var has_dj: bool = true
 
 var player_max_hp: int = 3
 var player_current_hp: int = 3
@@ -41,7 +47,7 @@ var teleporters: Dictionary = {}
 var unlocked_doors: Array[String] = []
 var player_is_dead: bool = false
 
-var picked_up_keys: Dictionary = {}
+var keys: Dictionary = {}
 
 var doors: Dictionary = {
 	"door1": false,
@@ -74,22 +80,22 @@ func _ready() -> void:
 	SignalBus.key_used.connect(_on_key_used)
 
 func _on_key_picked_up(key_id: String, _key_type: KeyType) -> void:
-	picked_up_keys[key_id].picked_up = true
+	keys[key_id].picked_up = true
 
 func _on_key_used(key_id: String, _key_type: KeyType) -> void:
-	picked_up_keys[key_id].used = true
+	keys[key_id].used = true
 
 func _process(_delta: float) -> void:
 	game_logger.flush()
 
 func get_unused_keys() -> Array:
-	return picked_up_keys.keys().filter(
+	return keys.keys().filter(
 		func(key_id):
-			return picked_up_keys[key_id].picked_up and picked_up_keys[key_id].used == false
+			return keys[key_id].picked_up and keys[key_id].used == false
 	)
 
 func player_has_key(key_type: KeyType) -> bool:
-	var entry = picked_up_keys.get(get_key_id(key_type))
+	var entry = keys.get(get_key_id(key_type))
 	return entry != null and entry.picked_up
 
 func is_door_unlocked(id: String) -> bool:

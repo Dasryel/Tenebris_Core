@@ -2,19 +2,24 @@
 extends Area2D
 
 const KeyType = preload("res://src/item/key_type.gd").KeyType
+const KeyColors = preload("res://src/item/key_color.gd")
 
 @export_file("*.tscn") var target_scene: String
 @export var is_locked: bool = true
+var key_id: String
+
 @export var needs_key: bool = true:
 	set(value):
 		needs_key = value
+		_update_visuals()
 		_update_editor_warning()
 		update_configuration_warnings()
 
-var key_id
 @export var key_type: KeyType = KeyType.NONE:
 	set(value):
 		key_type = value
+		key_id = _get_key_id(key_type)
+		_update_visuals()
 		_update_editor_warning()
 		update_configuration_warnings()
 
@@ -25,50 +30,49 @@ var _is_teleporting: bool = false
 var _is_player_near: bool = false
 var shader_mat := ShaderMaterial.new()
 
-# Colors the sprite to orange or whatever the color is in shader file
-func apply_locked_visuals() -> void:
-	var mat := $Sprite2D.material as ShaderMaterial
-	mat.set_shader_parameter("is_locked", is_locked)
-
 
 func _ready() -> void:
-	key_id = GameState.get_key_id(key_type)
+	key_id = _get_key_id(key_type)
+	shader_mat.shader = load("res://resource/shader/sprite_tint.gdshader")
+	$Sprite2D.material = shader_mat
+	_update_visuals()
 
 	if Engine.is_editor_hint():
 		_update_editor_warning()
 		return
 
-	# Set or read the teleporter's locked status
+	# Runtime-only setup
 	if not GameState.teleporters.has(name):
 		GameState.teleporters[name] = is_locked
 	else:
 		is_locked = GameState.teleporters[name]
-
 	if GameState.target_entry_point == self.name:
 		_is_active = false
 		get_tree().create_timer(0.1).timeout.connect(func(): _is_active = true)
 
-	shader_mat.shader = load("res://resource/shader/teleporter_tint.gdshader")
-	$Sprite2D.material = shader_mat
-	apply_locked_visuals()
+
+func _update_visuals() -> void:
+	if not is_node_ready(): return
+
+	var sprite = get_node_or_null("Sprite2D")
+	if sprite == null: return
+
+	if shader_mat.shader == null:
+		shader_mat.shader = load("res://resource/shader/sprite_tint.gdshader")
+
+	sprite.material = shader_mat
+	shader_mat.set_shader_parameter("is_tinted", is_locked)
+
+	if is_locked and needs_key:
+		shader_mat.set_shader_parameter("tint_color", KeyColors.get_color(key_id))
+	if Engine.is_editor_hint():
+		sprite.queue_redraw()
 
 
-func _teleport():
-	_is_teleporting = true
-	GameState.target_entry_point = self.name
-	set_deferred("monitoring", false)
-	get_tree().call_deferred("change_scene_to_file", target_scene)
-
-func _update_editor_warning() -> void:
-	if not is_node_ready():
-		return
-	if editor_warning == null:
-		return
-
-	# needs_key=false means warning is NEVER needed, regardless of key_type
-	var should_warn: bool = needs_key and key_type == KeyType.NONE
-	editor_warning.visible = should_warn
-	editor_warning.text = "⚠ SET KEY TYPE ⚠" if should_warn else ""
+func _get_key_id(type: KeyType) -> String:
+	var key_name = KeyType.keys()[type].to_lower() + "_key"
+	return key_name
+	# KeyType.RED -> "red_key" automatically
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -96,6 +100,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		_try_interact()
 
 
+func _teleport():
+	_is_teleporting = true
+	GameState.target_entry_point = self.name
+	set_deferred("monitoring", false)
+	get_tree().call_deferred("change_scene_to_file", target_scene)
+
+
 func _try_interact() -> void:
 	if is_locked:
 		if GameState.player_has_key(key_type):
@@ -104,6 +115,7 @@ func _try_interact() -> void:
 			SignalBus.thought_bubble_show.emit("You need a correct key to unlock this portal.")
 	else:
 		_teleport()
+
 
 func _unlock() -> void:
 	is_locked = false
@@ -114,5 +126,17 @@ func _unlock() -> void:
 	SignalBus.key_used.emit(key_id, key_type)
 	SignalBus.thought_bubble_show.emit("Unlocked!")
 
-	apply_locked_visuals()
+	_update_visuals()
 	# GameState.teleporter_unlocked.emit(name)
+
+
+func _update_editor_warning() -> void:
+	if not is_node_ready():
+		return
+	if editor_warning == null:
+		return
+
+	# needs_key=false means warning is NEVER needed, regardless of key_type
+	var should_warn: bool = needs_key and key_type == KeyType.NONE
+	editor_warning.visible = should_warn
+	editor_warning.text = "⚠ SET KEY TYPE ⚠" if should_warn else ""
