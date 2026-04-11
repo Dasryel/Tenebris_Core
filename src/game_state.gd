@@ -43,7 +43,7 @@ var zone_text: String = ""
 var current_player_zone: String = "undefined"
 var current_player_room: String = "undefined"
 
-var has_dj: bool = true
+var has_dj: bool = false
 
 var player_max_hp: int = 3
 var player_current_hp: int = 3
@@ -85,11 +85,13 @@ func _ready() -> void:
 	SignalBus.key_picked_up.connect(_on_key_picked_up)
 	SignalBus.key_used.connect(_on_key_used)
 
-func _on_key_picked_up(key_id: String, _key_type: KeyType) -> void:
+func _on_key_picked_up(key_id: String, key_type: KeyType) -> void:
 	keys[key_id].picked_up = true
+	SignalBus.key_storage_key_added.emit(key_id, key_type)
 
-func _on_key_used(key_id: String, _key_type: KeyType) -> void:
+func _on_key_used(key_id: String, key_type: KeyType) -> void:
 	keys[key_id].used = true
+	SignalBus.key_storage_key_removed.emit(key_id, key_type)
 
 func _process(_delta: float) -> void:
 	game_logger.flush()

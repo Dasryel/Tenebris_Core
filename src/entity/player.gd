@@ -77,8 +77,6 @@ const ATTACK_DATA: Dictionary = {
 func _ready() -> void:
 	instance = self
 	last_direction = Vector2.LEFT
-	# GameState.has_dj = true
-	# GameState.has_key = true
 
 	SignalBus.debug_mode_toggled.connect(_on_debug_mode_toggled)
 	_on_debug_mode_toggled()

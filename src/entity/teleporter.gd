@@ -121,8 +121,6 @@ func _unlock() -> void:
 	is_locked = false
 	GameState.teleporters[name] = false
 
-	# FIXME should really figure out what the key string is and use the correct key
-	# instead of this hardcoded "key1"
 	SignalBus.key_used.emit(key_id, key_type)
 	SignalBus.thought_bubble_show.emit("Unlocked!")
 

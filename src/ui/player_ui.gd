@@ -2,6 +2,7 @@ extends Control
 
 @onready var hearts = [$HeartsContainer/HpIcon, $HeartsContainer/HpIcon2, $HeartsContainer/HpIcon3]
 
+@export var key_list: HBoxContainer
 @onready var log_messages = $LogMessages
 
 const KeyType = preload("res://src/item/key_type.gd").KeyType
@@ -12,9 +13,9 @@ var shader: Shader = preload("res://resource/shader/sprite_tint.gdshader")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.key_picked_up.connect(_on_key_picked_up)
-	SignalBus.key_used.connect(_on_key_used)
-	SignalBus.door_unlocked.connect(_on_key_used)
+	SignalBus.key_storage_key_added.connect(_on_key_storage_key_added)
+	SignalBus.key_storage_key_removed.connect(_on_key_storage_key_removed)
+	SignalBus.door_unlocked.connect(_on_key_storage_key_removed)
 	SignalBus.player_hp_changed.connect(_on_player_hp_changed)
 	SignalBus.log_entry_added.connect(_on_log_entry_added)
 	SignalBus.debug_mode_toggled.connect(_on_debug_mode_toggled)
@@ -41,6 +42,7 @@ func _ready() -> void:
 	for key in GameState.get_unused_keys():
 		_add_key_to_ui(key)
 
+
 func _setup_ui_logger() -> void:
 	log_messages.push_font_size(10)
 	log_messages.scroll_following = true
@@ -66,8 +68,10 @@ func show_zone_text(text: String) -> void:
 
 	$ZoneLabel.visible = false
 
+
 func _invalid_key_type() -> void:
 	push_error("[Player ui] Attempting to add a picked up key of type NONE")
+
 
 func _add_key_to_ui(key_id: String):
 	var texture_rect = TextureRect.new()
@@ -83,7 +87,8 @@ func _add_key_to_ui(key_id: String):
 
 	$KeyList.add_child(texture_rect)
 
-func _on_key_picked_up(key_id: String, key_type: KeyType) -> void:
+
+func _on_key_storage_key_added(key_id: String, key_type: KeyType) -> void:
 	if key_type == KeyType.NONE:
 		_invalid_key_type()
 		return
@@ -91,12 +96,14 @@ func _on_key_picked_up(key_id: String, key_type: KeyType) -> void:
 	_add_key_to_ui(key_id)
 
 
-func _on_key_used(key_id: String, key_type) -> void:
+func _on_key_storage_key_removed(key_id: String, key_type) -> void:
 	if key_type == KeyType.NONE:
 		_invalid_key_type()
 		return
 
-	var node = $KeyList.find_child(key_id)
+	print("removing key: ", key_id)
+
+	var node = key_list.get_node_or_null(key_id)
 	if node:
 		node.queue_free()
 
