@@ -35,6 +35,7 @@ func _ready() -> void:
 	_setup_ui_logger()
 
 func _setup_ui_logger() -> void:
+	log_messages.push_font_size(10)
 	log_messages.scroll_following = true
 	log_messages.scroll_active = true
 
