@@ -35,12 +35,19 @@ const ATTACK_DATA: Dictionary = {
 }
 
 func _ready():
+	SignalBus.debug_mode_toggled.connect(_on_debug_mode_toggled)
+	_on_debug_mode_toggled()
 	last_direction = Vector2.RIGHT
 	_add_state_machine(ENEMY_LAYER, StateCache.get_state(ShadowIdleState))
 
 	var sm = get_state_machine(ENEMY_LAYER)
 	var current_state = sm.current_state
 	current_state.enter(self )
+
+
+func _on_debug_mode_toggled():
+	print("toggling enemy state label")
+	state_label.visible = GameState.debug_mode
 
 # hopefully this really kills the monster
 func _on_entity_death():

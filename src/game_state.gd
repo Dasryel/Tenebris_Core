@@ -11,6 +11,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_map"):
 		get_tree().change_scene_to_file("res://scene/rooms/zone3/room1.tscn")
 
+	if event.is_action_pressed("toggle_debug"):
+		print("debug mode toggled")
+		debug_mode = !debug_mode
+		SignalBus.debug_mode_toggled.emit()
+
 # Really need to add more default rooms if we add more zones
 const ZONE_SPAWN_ROOMS: Dictionary = {
 	"zone1": "spawn_room.tscn",
@@ -31,6 +36,7 @@ class KeyData:
 		used = u
 		tint = t
 
+var debug_mode: bool = false
 var spawn_position: Vector2 = Vector2.ZERO
 var target_entry_point: String = ""
 var zone_text: String = ""

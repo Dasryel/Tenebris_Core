@@ -17,6 +17,8 @@ func _ready() -> void:
 	SignalBus.door_unlocked.connect(_on_key_used)
 	SignalBus.player_hp_changed.connect(_on_player_hp_changed)
 	SignalBus.log_entry_added.connect(_on_log_entry_added)
+	SignalBus.debug_mode_toggled.connect(_on_debug_mode_toggled)
+	log_messages.visible = GameState.debug_mode
 
 	GameState.dj_pickedup.connect(show_dj)
 	GameState.moon_piece_collected.connect(show_moon_piece)
@@ -126,6 +128,8 @@ func hide_moon_piece(id: String) -> void:
 		"piece2": $MoonIcon2.visible = false
 		"piece3": $MoonIcon3.visible = false
 
+func _on_debug_mode_toggled():
+	log_messages.visible = GameState.debug_mode
 
 func _on_player_hp_changed(current_hp: int) -> void:
 	GameState.player_current_hp = current_hp

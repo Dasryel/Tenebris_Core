@@ -20,3 +20,4 @@ signal key_picked_up(key_id: String, key_type: KeyType)
 signal key_used(key_id: String, key_type: KeyType)
 
 signal log_entry_added(message: String)
+signal debug_mode_toggled()

@@ -14,8 +14,7 @@ func _process(delta: float) -> void:
 
 # Could use push_error("play_death_effect() not implemented in: " + get_class()) in these instead
 func _ready() -> void:
-	if not OS.is_debug_build():
-		state_label.visible = false
+	pass
 
 # hopefully this really kills the monster
 func _on_entity_death():

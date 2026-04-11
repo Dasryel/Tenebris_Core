@@ -80,6 +80,9 @@ func _ready() -> void:
 	# GameState.has_dj = true
 	# GameState.has_key = true
 
+	SignalBus.debug_mode_toggled.connect(_on_debug_mode_toggled)
+	_on_debug_mode_toggled()
+
 	SignalBus.extra_jump_pickup.connect(_on_extra_jump_pickup)
 	if GameState.has_dj: max_jumps = 2
 
@@ -166,6 +169,10 @@ func _update_state_label(layer_name: StringName, label: Label) -> void:
 		return
 
 	label.text = "State: %s" % current_state.get_script().get_global_name()
+
+func _on_debug_mode_toggled():
+	loco_state_label.visible = GameState.debug_mode
+	combat_state_label.visible = GameState.debug_mode
 
 func _on_extra_jump_pickup():
 	max_jumps += 1
