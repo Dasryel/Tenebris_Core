@@ -15,8 +15,20 @@ func _ready() -> void:
 	if not GameState.player_is_dead:
 		var scene = get_tree().current_scene.scene_file_path
 		var parts = scene.split('/')
-		GameState.current_player_zone = parts.get(4)
-		GameState.current_player_room = parts.get(5)
+		var zone = parts.get(4)
+		var room = parts.get(5)
+
+		if zone != GameState.current_player_zone:
+			match zone:
+				"zone1":
+					SignalBus.play_game_music.emit("zone1")
+				"zone2":
+					SignalBus.play_game_music.emit("zone2")
+				_:
+					push_error("[BaseRoom] unknown zone when selecting music", zone)
+
+		GameState.current_player_zone = zone
+		GameState.current_player_room = room
 	else:
 		GameState.target_entry_point = ""
 		GameState.player_is_dead = false

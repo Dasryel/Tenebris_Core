@@ -30,3 +30,5 @@ signal key_storage_key_removed(key_id: String, key_type: KeyType)
 
 signal log_entry_added(message: String)
 signal debug_mode_toggled()
+
+signal play_game_music(track: String)

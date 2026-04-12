@@ -7,13 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cb2qlk08uh5q8" path="res://asset/sprite/enemy/super_shadow/IDLE_super-shadow-Sheet.png" id="5_5acl3"]
 [ext_resource type="Texture2D" uid="uid://dtekrj5bhc1y4" path="res://asset/sprite/enemy/super_shadow/WALK_super-shadow-Sheet.png" id="6_f0ug1"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u08j2"]
-radius = 40.33423
-height = 80.66846
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wg68a"]
-radius = 57.550766
-height = 115.10153
+radius = 56.225037
+height = 136.01572
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tavkd"]
 light_mode = 1
@@ -355,6 +351,10 @@ height = 102.39589
 radius = 60.11685
 height = 120.2337
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u08j2"]
+radius = 40.33423
+height = 80.66846
+
 [node name="Shadow" type="CharacterBody2D" unique_id=1692544944 node_paths=PackedStringArray("attack_hitbox", "attack_hitbox_collision", "state_label", "sprite")]
 light_mask = 2
 collision_layer = 4
@@ -369,16 +369,8 @@ state_label = NodePath("StateLabel")
 sprite = NodePath("AnimatedSprite2D")
 hit_points = 4
 
-[node name="PlayerDamageArea2D" type="Area2D" parent="." unique_id=1270332134]
-position = Vector2(0, -20)
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDamageArea2D" unique_id=1879915959]
-position = Vector2(0, -34)
-shape = SubResource("CapsuleShape2D_u08j2")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1959473466]
-position = Vector2(-7, -20)
+position = Vector2(-7, -14)
 shape = SubResource("CapsuleShape2D_wg68a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=93121721]
@@ -386,9 +378,9 @@ material = SubResource("CanvasItemMaterial_tavkd")
 position = Vector2(0, -29.779999)
 scale = Vector2(7.2387123, 7.2387133)
 sprite_frames = SubResource("SpriteFrames_oyyiu")
-animation = &"idle"
-frame = 2
-frame_progress = 0.7881977
+animation = &"run"
+frame = 3
+frame_progress = 0.44591287
 
 [node name="StateLabel" type="Label" parent="." unique_id=1546211880]
 visible = false
@@ -419,6 +411,14 @@ collision_mask = 0
 position = Vector2(-4.153549, -22.616478)
 shape = SubResource("CapsuleShape2D_a4c51")
 
-[connection signal="body_entered" from="PlayerDamageArea2D" to="." method="_on_player_damage_area_2d_body_entered"]
+[node name="PlayerDamageArea2D" type="Area2D" parent="." unique_id=1270332134]
+position = Vector2(0, -20)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDamageArea2D" unique_id=1879915959]
+position = Vector2(0, -34)
+shape = SubResource("CapsuleShape2D_u08j2")
+
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
+[connection signal="body_entered" from="PlayerDamageArea2D" to="." method="_on_player_damage_area_2d_body_entered"]

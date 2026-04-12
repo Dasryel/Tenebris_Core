@@ -11,10 +11,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_map"):
 		get_tree().change_scene_to_file("res://scene/rooms/zone3/room1.tscn")
 
-	if event.is_action_pressed("toggle_debug"):
+	elif event.is_action_pressed("toggle_debug"):
 		print("debug mode toggled")
 		debug_mode = !debug_mode
 		SignalBus.debug_mode_toggled.emit()
+
+	elif event.is_action_pressed("take_screenshot"):
+		_take_screenshot()
 
 # Really need to add more default rooms if we add more zones
 const ZONE_SPAWN_ROOMS: Dictionary = {
@@ -158,3 +161,37 @@ func get_spawn_room_path() -> String:
 		"z": current_player_zone,
 		"r": room
 	})
+
+func _take_screenshot() -> void:
+	# Saves screenshot to user://
+	# Windows: %APPDATA%\Godot\app_userdata\[project_name]
+	# macOS: ~/Library/Application Support/Godot/app_userdata/[project_name]
+	# Linux: ~/.local/share/godot/app_userdata/[project_name]
+	var user_path: String = "user://screenshots/"
+
+	# Ensure the screenshots directory exists
+	if not DirAccess.dir_exists_absolute(user_path):
+		var err: Error = DirAccess.make_dir_recursive_absolute(user_path)
+		if err != OK:
+			push_error("Failed to create screenshots directory: ", error_string(err))
+			return
+
+	var moment: Dictionary = Time.get_datetime_dict_from_system()
+	var time: String = "%s-%s-%s_%s_%s-%s" % [
+		moment.get("year"),
+		moment.get("month"),
+		moment.get("day"),
+		moment.get("hour"),
+		moment.get("minute"),
+		moment.get("second")
+		]
+	var path: String = user_path + "tenebriscore_" + time + ".png"
+	var captured_image: Image = get_viewport().get_texture().get_image()
+
+	captured_image.save_png(path)
+
+	var err2 = captured_image.save_png(path)
+	if err2 != OK:
+		push_error("Failed to save screenshot: ", error_string(err2))
+	else:
+		print("Saved screenshot to: ", path)

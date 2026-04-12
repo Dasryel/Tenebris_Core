@@ -10,10 +10,11 @@ func _ready() -> void:
 	main_menu_buttons.visible = true
 	options_panel.visible = false
 
+	SignalBus.play_game_music.emit("menu")
+
 
 func _on_start_button_pressed() -> void:
 	GameState.reset()
-	MusicManager.play_game_music()
 	get_tree().change_scene_to_file(spawn_scene)
 
 
