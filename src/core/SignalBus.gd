@@ -32,3 +32,4 @@ signal log_entry_added(message: String)
 signal debug_mode_toggled()
 
 signal play_game_music(track: String)
+signal music_volume_changed(new_volume: float)

@@ -36,3 +36,8 @@ func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+func _on_audio_h_slider_value_changed(new_volume: float) -> void:
+	print("volume changed")
+	SignalBus.music_volume_changed.emit(new_volume)

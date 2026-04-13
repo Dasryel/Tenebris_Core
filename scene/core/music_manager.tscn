@@ -8,6 +8,6 @@
 script = ExtResource("1_dxhmn")
 menu_music = ExtResource("2_b3228")
 zone1_music = ExtResource("3_b63qx")
-volume = 0.25
+volume = 0.5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1343281723]

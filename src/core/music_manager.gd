@@ -11,6 +11,7 @@ func _ready():
 	add_child(music_player)
 
 	SignalBus.play_game_music.connect(_on_play_game_music)
+	SignalBus.music_volume_changed.connect(_on_music_volume_changed)
 
 func _on_play_game_music(track: String):
 	match track:
@@ -22,6 +23,9 @@ func _on_play_game_music(track: String):
 			play_new_track(zone1_music)
 		_:
 			push_error("[MusicPlayer] unknown music track", track)
+
+func _on_music_volume_changed(new_volume: float):
+	music_player.volume_linear = clamp(new_volume, 0.0, 1.0)
 
 func play_new_track(stream: AudioStream):
 	music_player.stream = stream
