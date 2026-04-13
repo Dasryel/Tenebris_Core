@@ -682,7 +682,7 @@ sources/1 = SubResource("TileSetAtlasSource_apf85")
 [node name="spawn_room" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_qbfr7")
 camera_bounds = NodePath("CameraBounds")
-camera_zoom = Vector2(0.7, 0.7)
+camera_zoom = Vector2(0.9, 0.9)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1919393156]
 
@@ -695,10 +695,11 @@ position = Vector2(-256, 432)
 position = Vector2(162, 96)
 
 [node name="TopLeft" type="Marker2D" parent="CameraBounds" unique_id=1562064568]
-position = Vector2(-764, -310)
+position = Vector2(-738, -352)
 
 [node name="BottomRight" type="Marker2D" parent="CameraBounds" unique_id=1524301483]
-position = Vector2(894, 544)
+position = Vector2(862, 544)
+metadata/_edit_group_ = true
 
 [node name="Lights" type="Node2D" parent="." unique_id=1102104822]
 scale = Vector2(4, 4)

@@ -3,6 +3,7 @@ extends Area2D
 @export var sprites: Array[Texture2D]
 @export var moon_sprite: Sprite2D
 @export var reveal_duration: float = 2.5
+@export var max_moon_phases: int = 3
 
 var shader_mat := ShaderMaterial.new()
 var _near_player: bool = false
@@ -15,7 +16,7 @@ func _ready() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("use") and _near_player:
-		if GameState.moon_phase >= 3:
+		if GameState.moon_phase >= max_moon_phases:
 			activate_portal()
 		elif GameState.moon_pieces_count() > 0:
 			consume_piece()
@@ -58,7 +59,7 @@ func activate_portal() -> void:
 	SignalBus.thought_bubble_show.emit("Portal activated!")
 
 	var tween = create_tween()
-	tween.set_loops(3) # pulse 3 times
+	tween.set_loops(max_moon_phases) # pulse n times
 	tween.tween_property($PointLight2D, "energy", 3.0, 0.3)
 	tween.tween_property($PointLight2D, "energy", 0.5, 0.3)
 	await tween.finished
@@ -72,10 +73,10 @@ func activate_portal() -> void:
 
 
 func update_thought_bubble() -> void:
-	if GameState.moon_phase >= 3:
+	if GameState.moon_phase >= max_moon_phases:
 		SignalBus.thought_bubble_show.emit("Press E to teleport")
 	elif GameState.moon_pieces_count() > 0:
-		SignalBus.thought_bubble_show.emit("Press E to insert piece (%s/3)" % GameState.moon_phase)
+		SignalBus.thought_bubble_show.emit("Press E to insert piece (%s/%s})" % [GameState.moon_phase, max_moon_phases])
 	else:
 		SignalBus.thought_bubble_show.emit("Seems like a portal... I need to find the pieces")
 
