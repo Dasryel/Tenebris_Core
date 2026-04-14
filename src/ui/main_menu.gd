@@ -32,7 +32,7 @@ func _on_back_button_pressed() -> void:
 	options_panel.visible = false
 
 
-func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
+func _on_fullscreen_check_button_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:

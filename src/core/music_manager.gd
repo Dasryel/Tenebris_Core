@@ -8,6 +8,7 @@ var music_player: AudioStreamPlayer
 
 func _ready():
 	music_player = AudioStreamPlayer.new()
+	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(music_player)
 
 	SignalBus.play_game_music.connect(_on_play_game_music)
