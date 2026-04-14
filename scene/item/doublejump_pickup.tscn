@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://x643sqeumy44"]
 
-[ext_resource type="Texture2D" uid="uid://kjrf4jo6by8d" path="res://asset/sprite/item/dj_pickup.png" id="1_6qsmi"]
 [ext_resource type="Script" uid="uid://cwive0nd6ie6j" path="res://src/item/doublejump_pickup.gd" id="1_axcnj"]
+[ext_resource type="Texture2D" uid="uid://jnhkx0twd6j4" path="res://asset/sprite/item/spring-double-jump.png" id="2_urrik"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="3_urrik"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hiwt7"]
 radius = 20.0
 
 [node name="DoublejumpPickup" type="Area2D" unique_id=1907636125]
+scale = Vector2(2.5, 2.5)
 collision_mask = 2
 script = ExtResource("1_axcnj")
 
@@ -17,7 +18,7 @@ shape = SubResource("CircleShape2D_hiwt7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1342214767]
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_6qsmi")
+texture = ExtResource("2_urrik")
 
 [node name="PointLight2D2" type="PointLight2D" parent="." unique_id=771076764]
 light_mask = 3
