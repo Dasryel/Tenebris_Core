@@ -42,5 +42,5 @@ func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
 func _on_audio_h_slider_value_changed(new_volume: float) -> void:
 	if not options_panel.visible:
 		return
-	print("volume changed")
+
 	SignalBus.music_volume_changed.emit(new_volume)

@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="1_3er1b"]
 [ext_resource type="Script" uid="uid://bd6vyrvitmklc" path="res://src/ui/main_menu.gd" id="1_hxu56"]
 [ext_resource type="Texture2D" uid="uid://bd71on72q5fyd" path="res://asset/sprite/env/sky.png" id="4_8wb42"]
+[ext_resource type="Texture2D" uid="uid://cltsf6c44ov3a" path="res://asset/UI/off.png" id="4_k3dtv"]
 [ext_resource type="Texture2D" uid="uid://di67ku6b50we5" path="res://asset/UI/on.png" id="4_sepwh"]
 
 [sub_resource type="Theme" id="Theme_k3dtv"]
@@ -48,7 +49,6 @@ script = ExtResource("1_hxu56")
 spawn_scene = "uid://bpgymvprtqna6"
 
 [node name="OptionsPanel" type="Control" parent="." unique_id=930894824]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -127,12 +127,12 @@ step = 0.01
 value = 0.5
 tick_count = 1
 
-[node name="FullscreenCheckBox" type="CheckButton" parent="OptionsPanel/OptionVBoxContainer" unique_id=1025746632]
+[node name="FullscreenCheckButton" type="CheckButton" parent="OptionsPanel/OptionVBoxContainer" unique_id=1025746632]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3er1b")
 theme_override_font_sizes/font_size = 22
 theme_override_icons/checked = ExtResource("4_sepwh")
-theme_override_icons/unchecked = ExtResource("4_sepwh")
+theme_override_icons/unchecked = ExtResource("4_k3dtv")
 text = "Fullscreen"
 
 [node name="BackgroundPanel" type="Panel" parent="." unique_id=1615834624]
@@ -170,6 +170,7 @@ theme_override_font_sizes/font_size = 65
 text = "Tenebris Core"
 
 [node name="MainMenuButtons" type="VBoxContainer" parent="." unique_id=2062646013]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -220,7 +221,7 @@ text = "Quit"
 
 [connection signal="pressed" from="OptionsPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="value_changed" from="OptionsPanel/OptionVBoxContainer/AudioHBoxContainer/AudioHSlider" to="." method="_on_audio_h_slider_value_changed"]
-[connection signal="toggled" from="OptionsPanel/OptionVBoxContainer/FullscreenCheckBox" to="." method="_on_fullscreen_check_box_toggled"]
+[connection signal="toggled" from="OptionsPanel/OptionVBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_box_toggled"]
 [connection signal="pressed" from="MainMenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MainMenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
