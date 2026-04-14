@@ -3,9 +3,11 @@ extends Node
 signal key_pickedup
 signal player_died
 signal dj_pickedup
+signal lavaboots_pickedup
 signal game_paused
 signal moon_piece_collected(id)
 signal moon_piece_used(id)
+signal enable_lavacover
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_map"):
@@ -47,6 +49,7 @@ var current_player_zone: String = "undefined"
 var current_player_room: String = "undefined"
 
 var has_dj: bool = false
+var has_lava_boots: bool = false
 
 var player_max_hp: int = 3
 var player_current_hp: int = 3

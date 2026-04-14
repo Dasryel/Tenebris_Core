@@ -23,11 +23,15 @@ func _ready() -> void:
 	log_messages.visible = GameState.debug_mode
 
 	GameState.dj_pickedup.connect(show_dj)
+	GameState.lavaboots_pickedup.connect(show_lavaboots)
 	GameState.moon_piece_collected.connect(show_moon_piece)
 	GameState.moon_piece_used.connect(hide_moon_piece)
 
 	if GameState.has_dj:
 		$DjIcon.visible = true
+	
+	if GameState.has_lava_boots:
+		$LavabootsIcon.visible = true
 
 	if GameState.zone_text != "":
 		show_zone_text(GameState.zone_text)
@@ -114,6 +118,15 @@ func show_dj():
 	show_text("You can now double jump!")
 	GameState.has_dj = true
 
+func show_lavaboots():
+	$LavabootsIcon.visible = true
+	show_text("You can now walk on top of lava!")
+	GameState.has_lava_boots = true
+	
+func hide_lavaboots():
+	$LavabootsIcon.visible = false
+
+	
 func hide_dj():
 	$DjIcon.visible = false
 
