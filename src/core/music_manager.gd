@@ -40,7 +40,7 @@ func _on_play_game_music(track: String):
 		"zone1":
 			play_new_track(zone1_music)
 		"zone2":
-			play_new_track(zone1_music)
+			play_new_track(zone2_music)
 		_:
 			push_error("[MusicPlayer] unknown music track", track)
 

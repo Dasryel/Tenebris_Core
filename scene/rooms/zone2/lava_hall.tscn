@@ -8,7 +8,7 @@
 [ext_resource type="TileSet" uid="uid://bj5b8cletcj1e" path="res://resource/tileset/tileset01.tres" id="4_le7k7"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_bwqi5"]
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_1pjpt"]
-[ext_resource type="Script" path="res://scene/rooms/zone2/lava_boots_static_body_2d.gd" id="8_mw1n8"]
+[ext_resource type="Script" uid="uid://7jxmgr7jap1n" path="res://scene/rooms/zone2/lava_boots_static_body_2d.gd" id="8_mw1n8"]
 [ext_resource type="Script" uid="uid://bak7n5yhyw2t" path="res://src/zone/lava.gd" id="11_y8quq"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="12_2tn4q"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="13_8lb7o"]
@@ -552,7 +552,7 @@ position = Vector2(4485, 129)
 position = Vector2(2301, -405)
 scale = Vector2(4, 4)
 target_scene = "uid://de6lanvnc6fnd"
-zone_name = "Second Zone"
+zone_name = "First Zone"
 target_door_id = "Door"
 is_locked = false
 needs_key = false
