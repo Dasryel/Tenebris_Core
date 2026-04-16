@@ -69,14 +69,14 @@ func activate_portal() -> void:
 	flash.tween_property($PointLight2D, "energy", 6.0, 0.5)
 	await flash.finished
 
-	SceneTransition.change_scene("res://scene/ui/result_screen.tscn", 2.0)
+	SceneTransition.change_scene("res://scene/ui/end_screen.tscn", 2.0)
 
 
 func update_thought_bubble() -> void:
 	if GameState.moon_phase >= max_moon_phases:
 		SignalBus.thought_bubble_show.emit("Press E to teleport")
 	elif GameState.moon_pieces_count() > 0:
-		SignalBus.thought_bubble_show.emit("Press E to insert piece (%s/%s})" % [GameState.moon_phase, max_moon_phases])
+		SignalBus.thought_bubble_show.emit("Press E to insert piece (%s/%s)" % [GameState.moon_phase, max_moon_phases])
 	else:
 		SignalBus.thought_bubble_show.emit("Seems like a portal... I need to find the pieces")
 
