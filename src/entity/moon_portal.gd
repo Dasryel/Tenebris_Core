@@ -69,7 +69,7 @@ func activate_portal() -> void:
 	flash.tween_property($PointLight2D, "energy", 6.0, 0.5)
 	await flash.finished
 
-	SceneTransition.change_scene("res://scene/ui/end_screen.tscn", 2.0)
+	SceneTransition.change_scene("res://scene/ui/result_screen.tscn", 2.0)
 
 
 func update_thought_bubble() -> void:

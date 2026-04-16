@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cc7w2cwg1k5kg"]
 
-[ext_resource type="Script" path="res://src/item/moon_piece.gd" id="1_jero7"]
+[ext_resource type="Script" uid="uid://dodgf837qadfa" path="res://src/item/moon_piece.gd" id="1_jero7"]
 [ext_resource type="Texture2D" uid="uid://0iy5l42a23xp" path="res://asset/sprite/item/MOON 1.png" id="1_nof8p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jero7"]
