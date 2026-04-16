@@ -3,12 +3,12 @@ extends Entity
 
 @warning_ignore("unused_private_class_variable")
 var _combat_anim_callable: Callable = Callable()
+var _thougt_bubble_default_local_position: Vector2
 
 @export_group("Labels")
 @export var loco_state_label: Label
-@export var combat_state_label: Label
 # visible player tooltip/info bubble
-@export var thought_bubble: Label
+@export var thought_bubble_panel: Panel
 
 @export_group("Attack hitboxes")
 @export var attack_hitbox: Area2D
@@ -81,6 +81,7 @@ const ATTACK_DATA: Dictionary = {
 func _ready() -> void:
 	instance = self
 	last_direction = Vector2.LEFT
+	_thougt_bubble_default_local_position = thought_bubble_panel.position
 
 	SignalBus.debug_mode_toggled.connect(_on_debug_mode_toggled)
 	_on_debug_mode_toggled()
@@ -101,7 +102,6 @@ func _ready() -> void:
 
 	if not OS.is_debug_build():
 		loco_state_label.visible = false
-		combat_state_label.visible = false
 
 
 # end _ready
@@ -148,7 +148,38 @@ func _process(delta: float) -> void:
 		sm.update(self , delta)
 
 	_update_state_label(LOCOMOTION_LAYER, loco_state_label)
+	_update_thought_bubble_screen_position()
 # end _process
+
+func _update_thought_bubble_screen_position() -> void:
+	if not thought_bubble_panel.visible:
+		return
+
+	var cam: Camera2D = get_viewport().get_camera_2d()
+	if not cam:
+		return
+
+	var zoom: Vector2 = cam.zoom
+
+	var viewport_size: Vector2 = get_viewport_rect().size
+	var cam_center: Vector2 = cam.get_screen_center_position()
+
+	var half_w: float = (viewport_size.x / zoom.x) / 2.0
+	var half_h: float = (viewport_size.y / zoom.y) / 2.0
+	var world_left: float = cam_center.x - half_w
+	var world_right: float = cam_center.x + half_w
+	var world_top: float = cam_center.y - half_h
+	var world_bottom: float = cam_center.y + half_h
+
+	var desired_world: Vector2 = to_global(_thougt_bubble_default_local_position)
+	var panel_size_world: Vector2 = thought_bubble_panel.size / zoom
+
+	var clamped_world: Vector2 = Vector2(
+		clamp(desired_world.x, world_left, world_right - panel_size_world.x),
+		clamp(desired_world.y, world_top, world_bottom - panel_size_world.y)
+	)
+
+	thought_bubble_panel.position = to_local(clamped_world)
 
 func _update_state_label(layer_name: StringName, label: Label) -> void:
 	var sm = get_state_machine(layer_name)

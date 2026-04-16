@@ -1936,26 +1936,31 @@ height = 120.0
 radius = 46.666664
 height = 150.00002
 
-[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "combat_state_label", "thought_bubble", "attack_hitbox", "attack_hitbox_collision", "sprite") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "thought_bubble_panel", "attack_hitbox", "attack_hitbox_collision", "sprite") groups=["player"]]
 light_mask = 3
 z_index = 1
 scale = Vector2(0.6, 0.6)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_hp4bs")
+loco_state_label = NodePath("LocoStateLabel")
+thought_bubble_panel = NodePath("ThoughtBubble")
+attack_hitbox = NodePath("AttackHitbox")
+attack_hitbox_offset = null
+attack_hitbox_collision = NodePath("AttackHitbox/CollisionShape2D")
 jump_sound = ExtResource("2_8rkx0")
 pickup_sound = ExtResource("3_wyue1")
 slash1_sound = ExtResource("4_oyaf6")
+sprite = NodePath("AnimatedSprite2D")
 speed = 400.0
 jump_velocity = -600.0
+recovery_jump_velocity = null
 gravity = 1400.0
+knockback_force = null
 air_acceleration = 0.0
-loco_state_label = NodePath("LocoStateLabel")
-combat_state_label = NodePath("")
-thought_bubble = NodePath("ThoughtBubble/Label")
-attack_hitbox = NodePath("AttackHitbox")
-attack_hitbox_collision = NodePath("AttackHitbox/CollisionShape2D")
-sprite = NodePath("AnimatedSprite2D")
+max_jumps = null
+hit_points = null
+max_hit_points = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=260074782]
 
@@ -1993,11 +1998,12 @@ script = ExtResource("3_fvtld")
 thought_bubble_text = NodePath("Label")
 
 [node name="Label" type="Label" parent="ThoughtBubble" unique_id=62861165]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 3.0
-offset_right = 297.0
-offset_bottom = 85.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_ct4mp")
 theme_override_font_sizes/font_size = 16
 text = "The door is locked I should be looking for a key..."
