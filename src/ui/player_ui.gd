@@ -26,12 +26,16 @@ func _ready() -> void:
 	GameState.lavaboots_pickedup.connect(show_lavaboots)
 	GameState.moon_piece_collected.connect(show_moon_piece)
 	GameState.moon_piece_used.connect(hide_moon_piece)
+	GameState.mystery_piece_collected.connect(show_mystery_ui)
 
 	if GameState.has_dj:
 		$DjIcon.visible = true
 	
 	if GameState.has_lava_boots:
 		$LavabootsIcon.visible = true
+	
+	if GameState.mystery_pieces_count() > 0:
+		show_mystery_ui()
 
 	if GameState.zone_text != "":
 		show_zone_text(GameState.zone_text)
@@ -123,10 +127,16 @@ func show_lavaboots():
 	show_text("You can now walk on top of lava!")
 	GameState.has_lava_boots = true
 	
+func show_mystery_ui() -> void:
+	var count = GameState.mystery_pieces_count()
+	$MysteryIcon.visible = count > 0
+	$MysteryLabel.visible = count > 0
+	$MysteryLabel.text = str(count) + "x"
+	show_text("Mystery piece found " + str(count) + "/4")
+	
 func hide_lavaboots():
 	$LavabootsIcon.visible = false
 
-	
 func hide_dj():
 	$DjIcon.visible = false
 
@@ -141,12 +151,14 @@ func show_moon_piece(id: String) -> void:
 		"piece1": $MoonIcon1.visible = true
 		"piece2": $MoonIcon2.visible = true
 		"piece3": $MoonIcon3.visible = true
+		"piece4": $MoonIcon4.visible = true
 
 func hide_moon_piece(id: String) -> void:
 	match id:
 		"piece1": $MoonIcon1.visible = false
 		"piece2": $MoonIcon2.visible = false
 		"piece3": $MoonIcon3.visible = false
+		"piece4": $MoonIcon4.visible = false
 
 func _on_debug_mode_toggled():
 	log_messages.visible = GameState.debug_mode

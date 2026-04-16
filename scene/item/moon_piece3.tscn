@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cx35ggg35gn3y"]
 
 [ext_resource type="Texture2D" uid="uid://n7m330fye8dj" path="res://asset/sprite/item/MOON 4.png" id="1_7urqb"]
-[ext_resource type="Script" uid="uid://dodgf837qadfa" path="res://src/item/moon_piece.gd" id="1_wwag5"]
+[ext_resource type="Script" uid="uid://dodgf837qadfa" uid="uid://dodgf837qadfa" path="res://src/item/moon_piece.gd" id="1_wwag5"]
 [ext_resource type="AudioStream" uid="uid://egylyhsbl24s" path="res://asset/SFX/player/item_pickup_gold-4.wav" id="2_uu3iu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jero7"]
 radius = 41.677334
 
-[node name="MoonPiece" type="Area2D" unique_id=1977875406]
+[node name="MoonPiece3" type="Area2D" unique_id=1977875406]
 z_index = 2
 collision_mask = 2
 script = ExtResource("1_wwag5")

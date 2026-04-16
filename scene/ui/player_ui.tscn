@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cdu24852o2yf" path="res://asset/sprite/item/MOON 3.png" id="6_f3dx5"]
 [ext_resource type="PackedScene" uid="uid://ds3quoglcr2qx" path="res://scene/ui/game_menu.tscn" id="7_r34vs"]
 [ext_resource type="Texture2D" uid="uid://n7m330fye8dj" path="res://asset/sprite/item/MOON 4.png" id="7_w4qes"]
+[ext_resource type="Texture2D" uid="uid://pmsqxg0pu87v" path="res://asset/sprite/item/MOON 2.png" id="8_b423b"]
+[ext_resource type="Texture2D" uid="uid://8an8d17e100l" path="res://asset/sprite/item/mystery_pickup.png" id="8_oga2w"]
 
 [node name="PlayerUi" type="Control" unique_id=1277935282 node_paths=PackedStringArray("key_list")]
 layout_mode = 3
@@ -76,6 +78,34 @@ offset_top = 24.0
 offset_right = 393.0
 offset_bottom = 64.0
 texture = ExtResource("7_w4qes")
+
+[node name="MoonIcon4" type="TextureRect" parent="." unique_id=884339496]
+visible = false
+layout_mode = 0
+offset_left = 394.0
+offset_top = 24.0
+offset_right = 434.0
+offset_bottom = 64.0
+texture = ExtResource("8_b423b")
+
+[node name="MysteryIcon" type="TextureRect" parent="." unique_id=37217055]
+visible = false
+layout_mode = 0
+offset_left = 446.0
+offset_top = 24.0
+offset_right = 486.0
+offset_bottom = 64.0
+texture = ExtResource("8_oga2w")
+
+[node name="MysteryLabel" type="Label" parent="." unique_id=31696363]
+visible = false
+layout_mode = 0
+offset_left = 480.0
+offset_top = 29.0
+offset_right = 538.1579
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("3_6n5fa")
+theme_override_font_sizes/font_size = 25
 
 [node name="TextLabel" type="Label" parent="." unique_id=89551727]
 visible = false

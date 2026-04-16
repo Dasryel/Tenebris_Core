@@ -8,6 +8,9 @@ signal game_paused
 signal moon_piece_collected(id)
 signal moon_piece_used(id)
 signal enable_lavacover
+signal mystery_piece_collected
+
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_map"):
@@ -68,15 +71,24 @@ var doors: Dictionary = {
 	"door4": false,
 }
 
+var mystery_pieces: Dictionary = {
+	"m1": false,
+	"m2": false,
+	"m3": false,
+	"m4": false,
+}
+
 var moon_pieces: Dictionary = {
 	"piece1": false,
 	"piece2": false,
 	"piece3": false,
+	"piece4": false,
 }
 var moon_pieces_used: Dictionary = {
 	"piece1": false,
 	"piece2": false,
 	"piece3": false,
+	"piece4": false,
 }
 var moon_phase: int = 0
 
@@ -136,6 +148,13 @@ func moon_pieces_count() -> int:
 		if piece:
 			count += 1
 	return count
+	
+func mystery_pieces_count() -> int:
+	var count = 0
+	for piece in mystery_pieces.values():
+		if piece:
+			count += 1
+	return count
 
 
 func reset() -> void:
@@ -155,6 +174,7 @@ func reset() -> void:
 	"piece1": false,
 	"piece2": false,
 	"piece3": false,
+	"piece4": false,
 }
 
 
