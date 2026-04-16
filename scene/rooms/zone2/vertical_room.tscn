@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c70stpgngykxq" path="res://asset/tileset/plant.png" id="7_k5vi5"]
 [ext_resource type="Script" uid="uid://bak7n5yhyw2t" path="res://src/zone/lava.gd" id="7_nt3v4"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="8_jjfrt"]
-[ext_resource type="PackedScene" uid="uid://x643sqeumy44" path="res://scene/item/doublejump_pickup.tscn" id="12_odjij"]
 [ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="13_kci3v"]
 [ext_resource type="PackedScene" uid="uid://w285k1670ynb" path="res://scene/item/health.tscn" id="14_nfhen"]
 
@@ -776,10 +775,37 @@ texture = ExtResource("6_qbm11")
 visible = false
 occluder = SubResource("OccluderPolygon2D_qbm11")
 
-[node name="Pickups" type="Node2D" parent="." unique_id=1272121662]
+[node name="TileLight1" type="PointLight2D" parent="Lights" unique_id=596214774]
+position = Vector2(-16.125, -44.625)
+scale = Vector2(0.116210945, 0.028320318)
+texture = ExtResource("8_jjfrt")
 
-[node name="DoublejumpPickup" parent="Pickups" unique_id=1907636125 instance=ExtResource("12_odjij")]
-position = Vector2(202, 160)
+[node name="TileLight2" type="PointLight2D" parent="Lights" unique_id=139044300]
+position = Vector2(-80, 4)
+scale = Vector2(0.116210945, 0.028320318)
+texture = ExtResource("8_jjfrt")
+
+[node name="TileLight3" type="PointLight2D" parent="Lights" unique_id=407271203]
+position = Vector2(-96.25, -60.5)
+scale = Vector2(0.116210945, 0.028320318)
+texture = ExtResource("8_jjfrt")
+
+[node name="TileLight4" type="PointLight2D" parent="Lights" unique_id=848441603]
+position = Vector2(208.25, 83.75)
+scale = Vector2(0.116210945, 0.028320318)
+texture = ExtResource("8_jjfrt")
+
+[node name="TileLight5" type="PointLight2D" parent="Lights" unique_id=1098907561]
+position = Vector2(152.25, -28.4375)
+scale = Vector2(0.5585938, 0.026855472)
+texture = ExtResource("8_jjfrt")
+
+[node name="TileLight6" type="PointLight2D" parent="Lights" unique_id=397251065]
+position = Vector2(168.12502, -92.40625)
+scale = Vector2(0.4326173, 0.028076168)
+texture = ExtResource("8_jjfrt")
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1272121662]
 
 [node name="Health" parent="Pickups" unique_id=1327337286 instance=ExtResource("14_nfhen")]
 position = Vector2(-414, -292)

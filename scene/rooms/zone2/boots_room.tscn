@@ -647,6 +647,7 @@ sources/4 = SubResource("TileSetAtlasSource_344n7")
 [node name="boots_room" type="Node2D" unique_id=2093421483 node_paths=PackedStringArray("camera_bounds")]
 script = ExtResource("1_fn66k")
 camera_bounds = NodePath("CameraBounds")
+camera_zoom = Vector2(0.765, 0.765)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1919393156]
 

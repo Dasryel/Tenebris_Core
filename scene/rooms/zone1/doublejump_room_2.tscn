@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://x643sqeumy44" path="res://scene/item/doublejump_pickup.tscn" id="7_qi1m0"]
 [ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="8_4eu8f"]
 [ext_resource type="PackedScene" uid="uid://w285k1670ynb" path="res://scene/item/health.tscn" id="9_wvhmp"]
+[ext_resource type="PackedScene" uid="uid://cker5sgiuj1nn" path="res://scene/item/mystery_pickup.tscn" id="11_ra044"]
 [ext_resource type="Texture2D" uid="uid://c70stpgngykxq" path="res://asset/tileset/plant.png" id="15_0ykih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ykih"]
@@ -891,6 +892,10 @@ position = Vector2(-403, 333)
 
 [node name="Health" parent="Pickups" unique_id=1327337286 instance=ExtResource("9_wvhmp")]
 position = Vector2(-446, -959)
+
+[node name="MysteryPickup" parent="Pickups" unique_id=1182943062 instance=ExtResource("11_ra044")]
+position = Vector2(-466, -1465)
+id = "m1"
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1388953683]
 

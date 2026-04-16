@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_ibkwp"]
 [ext_resource type="PackedScene" uid="uid://5345vfwp0bka" path="res://scene/entity/enemy/shadow.tscn" id="6_c8vw2"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="7_bc6nx"]
+[ext_resource type="PackedScene" uid="uid://cker5sgiuj1nn" path="res://scene/item/mystery_pickup.tscn" id="8_c8vw2"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="8_e7tn1"]
 [ext_resource type="PackedScene" uid="uid://k0fsiyodxcoj" path="res://scene/item/key.tscn" id="9_cklk5"]
 [ext_resource type="Texture2D" uid="uid://c70stpgngykxq" path="res://asset/tileset/plant.png" id="11_yc8w8"]
@@ -689,11 +690,15 @@ texture = ExtResource("7_bc6nx")
 [node name="Pickups" type="Node2D" parent="." unique_id=1101730524]
 
 [node name="Health" parent="Pickups" unique_id=1327337286 instance=ExtResource("12_2mm8u")]
-position = Vector2(184, 235)
+position = Vector2(1114, 262)
 
 [node name="Key" parent="Pickups" unique_id=1990007751 instance=ExtResource("9_cklk5")]
 position = Vector2(1377, -60)
 key_type = 1
+
+[node name="MysteryPickup2" parent="Pickups" unique_id=1907636125 instance=ExtResource("8_c8vw2")]
+position = Vector2(167, 262.00003)
+id = "m2"
 
 [node name="Teleporters" type="Node2D" parent="." unique_id=256053128]
 

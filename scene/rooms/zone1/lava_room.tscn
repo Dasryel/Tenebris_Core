@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_go53t"]
 [ext_resource type="Script" uid="uid://bak7n5yhyw2t" path="res://src/zone/lava.gd" id="9_jus1d"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="10_r7508"]
+[ext_resource type="PackedScene" uid="uid://cker5sgiuj1nn" path="res://scene/item/mystery_pickup.tscn" id="10_s3gwn"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="11_fshen"]
 [ext_resource type="PackedScene" uid="uid://w285k1670ynb" path="res://scene/item/health.tscn" id="11_gqkyf"]
 [ext_resource type="PackedScene" uid="uid://cpcv1gx16edhe" path="res://scene/item/moon_piece2.tscn" id="12_guv4s"]
@@ -603,6 +604,7 @@ scale = Vector2(16, 16)
 color = Color(0.99, 0.96624005, 0.9306, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="Lights" unique_id=878809884]
+visible = false
 position = Vector2(62.875004, -3.6875)
 scale = Vector2(0.15906249, 0.13489583)
 texture = ExtResource("10_r7508")
@@ -610,7 +612,7 @@ texture = ExtResource("10_r7508")
 [node name="PointLight2D2" type="PointLight2D" parent="Lights" unique_id=1423586856]
 position = Vector2(11.84375, -32.78125)
 scale = Vector2(0.077708334, 0.06979167)
-energy = 2.0
+energy = 1.5
 texture = ExtResource("10_r7508")
 
 [node name="LavaLight" type="PointLight2D" parent="Lights" unique_id=148000929]
@@ -773,6 +775,7 @@ scale = Vector2(0.060791027, 0.00756836)
 texture = ExtResource("11_fshen")
 
 [node name="TileLight19" type="PointLight2D" parent="Lights" unique_id=2031657366]
+visible = false
 position = Vector2(64.81249, -63.562504)
 scale = Vector2(0.025833363, 0.028124988)
 color = Color(0.54, 0.1512, 0.51408005, 1)
@@ -812,11 +815,12 @@ texture = ExtResource("10_r7508")
 [node name="Health" parent="Pickups" unique_id=1327337286 instance=ExtResource("11_gqkyf")]
 position = Vector2(1345, -689)
 
-[node name="Health2" parent="Pickups" unique_id=1201031140 instance=ExtResource("11_gqkyf")]
-position = Vector2(2236, -1087)
-
 [node name="MoonPiece" parent="Pickups" unique_id=1977875406 instance=ExtResource("12_guv4s")]
 position = Vector2(191, -513)
+
+[node name="MysteryPickup3" parent="Pickups" unique_id=1907636125 instance=ExtResource("10_s3gwn")]
+position = Vector2(2240.0002, -1076)
+id = "m3"
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1031914611]
 

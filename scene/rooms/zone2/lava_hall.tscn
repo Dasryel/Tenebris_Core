@@ -8,7 +8,8 @@
 [ext_resource type="TileSet" uid="uid://bj5b8cletcj1e" path="res://resource/tileset/tileset01.tres" id="4_le7k7"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="5_bwqi5"]
 [ext_resource type="PackedScene" uid="uid://emvxcybenuud" path="res://scene/entity/enemy/lava.tscn" id="6_1pjpt"]
-[ext_resource type="Script" uid="uid://7jxmgr7jap1n" path="res://scene/rooms/zone2/lava_boots_static_body_2d.gd" id="8_mw1n8"]
+[ext_resource type="PackedScene" uid="uid://cker5sgiuj1nn" path="res://scene/item/mystery_pickup.tscn" id="6_6foc2"]
+[ext_resource type="Script" path="res://scene/rooms/zone2/lava_boots_static_body_2d.gd" id="8_mw1n8"]
 [ext_resource type="Script" uid="uid://bak7n5yhyw2t" path="res://src/zone/lava.gd" id="11_y8quq"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="12_2tn4q"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="13_8lb7o"]
@@ -611,6 +612,10 @@ position = Vector2(1868, -783)
 
 [node name="Health2" parent="Pickups" unique_id=1524197392 instance=ExtResource("14_mw1n8")]
 position = Vector2(1602, 60)
+
+[node name="MysteryPickup4" parent="Pickups" unique_id=1907636125 instance=ExtResource("6_6foc2")]
+position = Vector2(57.000004, -821)
+id = "m4"
 
 [node name="Lava" type="Area2D" parent="." unique_id=928239099]
 collision_mask = 3
