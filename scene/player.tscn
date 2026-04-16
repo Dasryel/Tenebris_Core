@@ -1,14 +1,17 @@
 [gd_scene format=3 uid="uid://d2k1dl6nsykj3"]
 
 [ext_resource type="Script" uid="uid://c6s6r6btrxo0x" path="res://src/entity/player.gd" id="1_hp4bs"]
+[ext_resource type="AudioStream" uid="uid://y6rycrbch3dq" path="res://asset/SFX/player/jump_353542__maxmakessounds__hup.wav" id="2_8rkx0"]
 [ext_resource type="Texture2D" uid="uid://hq2kiryt7uxf" path="res://asset/sprite/player/L_idle-Sheet.png" id="2_hp4bs"]
 [ext_resource type="PackedScene" uid="uid://bh63ymqtxib1i" path="res://scene/ui/player_ui.tscn" id="2_ml7e8"]
 [ext_resource type="Script" uid="uid://dond5xhb46tss" path="res://src/ui/thought_bubble.gd" id="3_fvtld"]
 [ext_resource type="Texture2D" uid="uid://dajdq2wy53mqj" path="res://asset/sprite/player/R_running-sword-v2-Sheet.png" id="3_g2vtq"]
 [ext_resource type="Texture2D" uid="uid://b5i4wbubvt30p" path="res://asset/sprite/player/dj/L_die-Sheet.png" id="3_ihjo1"]
+[ext_resource type="AudioStream" uid="uid://egylyhsbl24s" path="res://asset/SFX/player/item_pickup_gold-4.wav" id="3_wyue1"]
 [ext_resource type="Texture2D" uid="uid://l5geij7vljig" path="res://asset/sprite/player/R_slash-Sheet.png" id="4_2fvbb"]
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="4_ct4mp"]
 [ext_resource type="Texture2D" uid="uid://sddahd3kiu2s" path="res://asset/sprite/player/dj/R_die-Sheet.png" id="4_dk1vr"]
+[ext_resource type="AudioStream" uid="uid://cps5t0pcuxcm1" path="res://asset/SFX/player/slash1_woosh-1.ogg" id="4_oyaf6"]
 [ext_resource type="Texture2D" uid="uid://c55r5bskdrp5p" path="res://asset/sprite/player/norm/L_die-Sheet.png" id="5_34jf3"]
 [ext_resource type="Texture2D" uid="uid://cn47jcyco8e8x" path="res://asset/sprite/player/R_slash_2-Sheet.png" id="5_ml7e8"]
 [ext_resource type="Texture2D" uid="uid://dpefvpbspc2ms" path="res://asset/sprite/player/norm/R_die-Sheet.png" id="6_u7b46"]
@@ -1933,7 +1936,7 @@ height = 120.0
 radius = 46.666664
 height = 150.00002
 
-[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "combat_state_label", "attack_hitbox", "attack_hitbox_collision", "thought_bubble", "sprite") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1782142987 node_paths=PackedStringArray("loco_state_label", "combat_state_label", "thought_bubble", "attack_hitbox", "attack_hitbox_collision", "sprite") groups=["player"]]
 light_mask = 3
 z_index = 1
 scale = Vector2(0.6, 0.6)
@@ -1942,9 +1945,12 @@ collision_mask = 7
 script = ExtResource("1_hp4bs")
 loco_state_label = NodePath("LocoStateLabel")
 combat_state_label = NodePath("CombatStateLabel")
+thought_bubble = NodePath("ThoughtBubble/Label")
 attack_hitbox = NodePath("AttackHitbox")
 attack_hitbox_collision = NodePath("AttackHitbox/CollisionShape2D")
-thought_bubble = NodePath("ThoughtBubble/Label")
+jump_sound = ExtResource("2_8rkx0")
+pickup_sound = ExtResource("3_wyue1")
+slash1_sound = ExtResource("4_oyaf6")
 sprite = NodePath("AnimatedSprite2D")
 speed = 400.0
 jump_velocity = -600.0

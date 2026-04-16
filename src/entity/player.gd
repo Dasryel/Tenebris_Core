@@ -1,16 +1,24 @@
 class_name Player
 extends Entity
 
-# debug labels
+@warning_ignore("unused_private_class_variable")
+var _combat_anim_callable: Callable = Callable()
+
+@export_group("Labels")
 @export var loco_state_label: Label
 @export var combat_state_label: Label
+# visible player tooltip/info bubble
+@export var thought_bubble: Label
 
+@export_group("Attack hitboxes")
 @export var attack_hitbox: Area2D
 @export var attack_hitbox_offset: float = 80.0
 @export var attack_hitbox_collision: CollisionShape2D
 
-# visible player tooltip/info bubble
-@export var thought_bubble: Label
+@export_group("Sound effects")
+@export var jump_sound: AudioStream
+@export var pickup_sound: AudioStream
+@export var slash1_sound: AudioStream
 
 
 const LOCOMOTION_LAYER: StringName = &"Locomotion"
@@ -152,6 +160,7 @@ func play_anim(anim: String) -> void:
 func _process(delta: float) -> void:
 	for sm in _state_machines.values():
 		sm.update(self , delta)
+
 	_update_state_label(LOCOMOTION_LAYER, loco_state_label)
 	_update_state_label(COMBAT_LAYER, combat_state_label)
 # end _process

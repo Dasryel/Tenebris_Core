@@ -2,7 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cfjbevimp1xpq" path="res://src/item/key.gd" id="1_0p3an"]
 [ext_resource type="Texture2D" uid="uid://usyrsnyawk0q" path="res://asset/sprite/item/key.png" id="1_6s3tr"]
+[ext_resource type="AudioStream" uid="uid://egylyhsbl24s" path="res://asset/SFX/player/item_pickup_gold-4.wav" id="2_t7id6"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="3_3o0w0"]
+[ext_resource type="Shader" uid="uid://6yhyf31bjv0i" path="res://resource/shader/sprite_tint.gdshader" id="3_qupsj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qc3j"]
+shader = ExtResource("3_qupsj")
+shader_parameter/is_tinted = true
+shader_parameter/tint_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s3tr"]
 size = Vector2(27, 9)
@@ -11,9 +18,11 @@ size = Vector2(27, 9)
 scale = Vector2(2, 2)
 collision_mask = 2
 script = ExtResource("1_0p3an")
+pickup_sound = ExtResource("2_t7id6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=379892091]
 z_index = 2
+material = SubResource("ShaderMaterial_0qc3j")
 texture = ExtResource("1_6s3tr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=611242858]
@@ -31,5 +40,6 @@ offset_left = -20.0
 offset_top = 0.35381675
 offset_right = 20.0
 offset_bottom = 23.353817
+text = "⚠ SET KEY TYPE ⚠"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

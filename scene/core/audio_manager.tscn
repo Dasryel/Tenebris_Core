@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://vjpi4j31tvyl"]
+
+[ext_resource type="Script" uid="uid://ctymlhn2gfngn" path="res://src/core/audio_manager.gd" id="1_wdel1"]
+[ext_resource type="AudioStream" uid="uid://bdp5yp57r64f7" path="res://asset/music/menu_music.ogg" id="2_ex8sg"]
+[ext_resource type="AudioStream" uid="uid://bpqi0rrdwho8g" path="res://asset/music/level_music.ogg" id="3_dow6x"]
+[ext_resource type="AudioStream" uid="uid://bxax6jm8hrxw7" path="res://asset/music/zone02 - 01 HoliznaCC0 - Sky Fish.ogg" id="4_rn8pq"]
+
+[node name="MusicManager" type="Node" unique_id=1887908677]
+script = ExtResource("1_wdel1")
+menu_music = ExtResource("2_ex8sg")
+zone1_music = ExtResource("3_dow6x")
+zone2_music = ExtResource("4_rn8pq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1343281723]

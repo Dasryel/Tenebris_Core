@@ -1,6 +1,9 @@
 @tool
 extends Area2D
 
+@export_group("Sound effects")
+@export var pickup_sound: AudioStream
+
 signal show_key
 @onready var sprite = $Sprite2D
 var shader_mat := ShaderMaterial.new()
@@ -82,6 +85,8 @@ func _on_body_entered(body: Node2D) -> void:
 	SignalBus.show_text_on_player_ui.emit(
 		"You picked up the %s key!" % key_id.capitalize()
 		)
+
+	AudioManager.play_sfx(pickup_sound)
 	SignalBus.key_picked_up.emit(key_id, key_type)
 	queue_free()
 

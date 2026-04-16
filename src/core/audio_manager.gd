@@ -33,6 +33,17 @@ func _setup_save_timer():
 	add_child(_save_timer)
 
 
+func play_sfx(stream: AudioStream) -> void:
+	if not stream: return
+
+	var sfx_player := AudioStreamPlayer.new()
+	add_child(sfx_player)
+
+	sfx_player.stream = stream
+	sfx_player.play()
+	sfx_player.finished.connect(sfx_player.queue_free)
+
+
 func _on_play_game_music(track: String):
 	match track:
 		"menu":

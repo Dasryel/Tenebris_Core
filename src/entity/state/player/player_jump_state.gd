@@ -5,6 +5,7 @@ extends PlayerBaseState
 func enter(entity: Player) -> void:
 	entity.jump_start_dir = sign(entity.velocity.x)
 	entity.play_anim("jump")
+	AudioManager.play_sfx(entity.jump_sound)
 	_perform_jump(entity)
 
 func update(entity: Player, delta: float) -> void:
@@ -50,5 +51,3 @@ func _perform_jump(entity: Player) -> void:
 	else:
 		entity.velocity.y = entity.jump_velocity
 		entity.jump_count += 1
-
-	# TODO: trigger jump animation

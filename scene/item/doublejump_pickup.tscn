@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://x643sqeumy44"]
 
 [ext_resource type="Script" uid="uid://cwive0nd6ie6j" path="res://src/item/doublejump_pickup.gd" id="1_axcnj"]
+[ext_resource type="AudioStream" uid="uid://egylyhsbl24s" path="res://asset/SFX/player/item_pickup_gold-4.wav" id="2_to250"]
 [ext_resource type="Texture2D" uid="uid://jnhkx0twd6j4" path="res://asset/sprite/item/spring-double-jump.png" id="2_urrik"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="3_urrik"]
 
@@ -11,6 +12,7 @@ radius = 20.0
 scale = Vector2(2.5, 2.5)
 collision_mask = 2
 script = ExtResource("1_axcnj")
+pickup_sound = ExtResource("2_to250")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1725096644]
 visible = false
