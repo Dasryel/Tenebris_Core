@@ -39,6 +39,7 @@ energy = 0.36
 texture = ExtResource("6_7mnfs")
 
 [node name="Holder" type="Sprite2D" parent="." unique_id=1928210421]
+visible = false
 position = Vector2(3.4570694e-06, 3.6096571e-06)
 scale = Vector2(0.96000004, 0.9599999)
 texture = ExtResource("8_s7r8n")

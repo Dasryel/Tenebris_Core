@@ -6,14 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://bx0jxuonl7cq5" path="res://asset/tileset/middle.png" id="5_qbfr7"]
 [ext_resource type="Texture2D" uid="uid://jktbv0khinin" path="res://asset/light/god_ray_pixels.png" id="6_iottn"]
 [ext_resource type="PackedScene" uid="uid://c6cwrhrtxjukl" path="res://scene/entity/teleporter.tscn" id="6_leuse"]
+[ext_resource type="Texture2D" uid="uid://dhegtdl6ckwh7" path="res://asset/sprite/env/BG moon phase 2.png" id="6_m86a2"]
 [ext_resource type="Texture2D" uid="uid://dfd5dcvqqgwou" path="res://asset/light/circular_gradient.png" id="7_eyen4"]
+[ext_resource type="Texture2D" uid="uid://b65wbhd5w2xb4" path="res://asset/sprite/env/BG moon phase 3.png" id="7_muf87"]
 [ext_resource type="Texture2D" uid="uid://blpufck81tluc" path="res://asset/light/linear_gradient.png" id="7_qbfr7"]
+[ext_resource type="Texture2D" uid="uid://cnyjdin8wnyf" path="res://asset/sprite/env/BG full moon.png" id="8_xgf08"]
 [ext_resource type="PackedScene" uid="uid://cker5sgiuj1nn" path="res://scene/item/mystery_pickup.tscn" id="10_4mbp1"]
 [ext_resource type="PackedScene" uid="uid://nqtpn2lqe6ly" path="res://scene/entity/moon_portal.tscn" id="10_b78nj"]
 [ext_resource type="PackedScene" uid="uid://cc7w2cwg1k5kg" path="res://scene/item/moon_piece.tscn" id="11_5wy8t"]
 [ext_resource type="PackedScene" uid="uid://cpcv1gx16edhe" path="res://scene/item/moon_piece2.tscn" id="12_leuse"]
 [ext_resource type="PackedScene" uid="uid://cx35ggg35gn3y" path="res://scene/item/moon_piece3.tscn" id="13_leuse"]
 [ext_resource type="PackedScene" uid="uid://b6mnfxy6200s0" path="res://scene/item/moon_piece_4.tscn" id="14_eyen4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s7r8n"]
+load_path = "res://.godot/imported/BG moon phase 1.png-77b6b1b3c982d5caad1c01c3a9e6b115.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2sdbf"]
 texture = ExtResource("4_4mbp1")
@@ -812,7 +818,9 @@ texture = ExtResource("7_eyen4")
 [node name="MoonPortal" parent="Teleporters" unique_id=1212824685 instance=ExtResource("10_b78nj")]
 position = Vector2(250.99998, 233.99998)
 scale = Vector2(4, 4)
+sprites = Array[Texture2D]([SubResource("CompressedTexture2D_s7r8n"), ExtResource("6_m86a2"), ExtResource("7_muf87"), ExtResource("8_xgf08")])
 reveal_duration = 1.25
+max_moon_phases = 3
 
 [node name="corridor_spawn" parent="Teleporters" unique_id=1408589343 instance=ExtResource("6_leuse")]
 position = Vector2(930, 392)
@@ -870,4 +878,3 @@ position = Vector2(592, 312)
 
 [node name="MoonPiece4" parent="TEST" unique_id=1305190855 instance=ExtResource("14_eyen4")]
 position = Vector2(456, 320)
-id = "piece4"

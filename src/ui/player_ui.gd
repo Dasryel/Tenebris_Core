@@ -35,7 +35,7 @@ func _ready() -> void:
 		$LavabootsIcon.visible = true
 	
 	if GameState.mystery_pieces_count() > 0:
-		show_mystery_ui()
+		update_mystery_ui()
 
 	if GameState.zone_text != "":
 		show_zone_text(GameState.zone_text)
@@ -127,12 +127,17 @@ func show_lavaboots():
 	show_text("You can now walk on top of lava!")
 	GameState.has_lava_boots = true
 	
+
 func show_mystery_ui() -> void:
+	update_mystery_ui()
+	var count = GameState.mystery_pieces_count()
+	show_text("Mystery piece found " + str(count) + "/4")
+
+func update_mystery_ui() -> void:
 	var count = GameState.mystery_pieces_count()
 	$MysteryIcon.visible = count > 0
 	$MysteryLabel.visible = count > 0
 	$MysteryLabel.text = str(count) + "x"
-	show_text("Mystery piece found " + str(count) + "/4")
 	
 func hide_lavaboots():
 	$LavabootsIcon.visible = false

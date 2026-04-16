@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _on_start_button_pressed() -> void:
 	GameState.reset()
-	get_tree().change_scene_to_file(spawn_scene)
+	get_tree().change_scene_to_file("res://scene/ui/Tutorial Screen.tscn")
 
 
 func _on_options_button_pressed() -> void:
