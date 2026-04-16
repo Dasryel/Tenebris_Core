@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://dvtdd3grh5tjd"]
+
+[ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="1_hhwvx"]
+[ext_resource type="Texture2D" uid="uid://eqbg3ashs7lu" path="res://asset/UI/Keys Tutorial.png" id="2_4m5i0"]
+[ext_resource type="Texture2D" uid="uid://buugtc3i4gq5m" path="res://asset/sprite/Monkey.png" id="3_tvyta"]
+
+[node name="Control" type="Control" unique_id=728497484]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=987981848]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="What to do?" type="Label" parent="." unique_id=225725629]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 103.0
+offset_top = -65.0
+offset_right = 503.0
+offset_bottom = 335.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_hhwvx")
+theme_override_font_sizes/font_size = 34
+text = "What to do:
+
+
+"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1180532648]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -116.0
+offset_right = 601.0
+offset_bottom = 325.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_hhwvx")
+theme_override_font_sizes/font_size = 33
+text = "
+
+
+
+
+- Collect all moon pieces
+
+- For the true ending, try
+to collect all the \"?\"
+
+
+"
+horizontal_alignment = 1
+
+[node name="How to do?" type="Label" parent="." unique_id=1487127560]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 833.0
+offset_top = -65.0
+offset_right = 1233.0
+offset_bottom = 335.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_hhwvx")
+theme_override_font_sizes/font_size = 35
+text = "How to do it:"
+horizontal_alignment = 1
+
+[node name="Keys" type="Sprite2D" parent="." unique_id=884694986]
+position = Vector2(1022.00006, 527)
+scale = Vector2(0.395, 0.395)
+texture = ExtResource("2_4m5i0")
+
+[node name="SoldierMonkey" type="Sprite2D" parent="." unique_id=1497115017]
+position = Vector2(664, 204)
+scale = Vector2(0.4574882, 0.4574882)
+texture = ExtResource("3_tvyta")
+
+[node name="Label" type="Label" parent="." unique_id=754034999]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 137.0
+offset_right = 377.0
+offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("1_hhwvx")
+text = "srgtsrgftsft"

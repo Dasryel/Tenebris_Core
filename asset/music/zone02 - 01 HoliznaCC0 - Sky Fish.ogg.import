@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bxax6jm8hrxw7"
+path="res://.godot/imported/zone02 - 01 HoliznaCC0 - Sky Fish.ogg-60955304a1232646999b3c3a18320833.oggvorbisstr"
+
+[deps]
+
+source_file="res://asset/music/zone02 - 01 HoliznaCC0 - Sky Fish.ogg"
+dest_files=["res://.godot/imported/zone02 - 01 HoliznaCC0 - Sky Fish.ogg-60955304a1232646999b3c3a18320833.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
