@@ -22,10 +22,6 @@ var _combat_anim_callable: Callable = Callable()
 
 
 const LOCOMOTION_LAYER: StringName = &"Locomotion"
-const COMBAT_LAYER: StringName = &"Combat"
-
-# A ridiculous hack to make gdscript PARSE THIS FILE
-const CombatIdle = preload("res://src/entity/state/player/player_combat_idle_state.gd")
 
 static var instance: Player
 
@@ -99,7 +95,6 @@ func _ready() -> void:
 	# Add the upper-body combat layer alongside the inherited locomotion layer.
 	# We assume 'CombatLayer', 'StateCache', and 'CombatIdleState' are
 	# accessible (e.g., as constants, members, or Autoloads).
-	_add_state_machine(COMBAT_LAYER, StateCache.get_state(PlayerCombatIdleState))
 	_add_state_machine(LOCOMOTION_LAYER, StateCache.get_state(PlayerFallingState))
 
 	$AnimatedSprite2D.animation_finished.connect(_on_player_sprite_finished)
@@ -116,15 +111,6 @@ func get_attack_data() -> Dictionary:
 
 func get_attack_hitbox_collision() -> CollisionShape2D:
 	return attack_hitbox_collision
-
-func is_in_combat() -> bool:
-	var sm = get_state_machine(COMBAT_LAYER)
-	var current_state = sm.current_state
-
-	if current_state is PlayerCombatSlashingState:
-		return true
-
-	return false
 
 func is_loco_idling() -> bool:
 	var sm = get_state_machine(LOCOMOTION_LAYER)
@@ -162,7 +148,6 @@ func _process(delta: float) -> void:
 		sm.update(self , delta)
 
 	_update_state_label(LOCOMOTION_LAYER, loco_state_label)
-	_update_state_label(COMBAT_LAYER, combat_state_label)
 # end _process
 
 func _update_state_label(layer_name: StringName, label: Label) -> void:
@@ -179,7 +164,6 @@ func _update_state_label(layer_name: StringName, label: Label) -> void:
 
 func _on_debug_mode_toggled():
 	loco_state_label.visible = GameState.debug_mode
-	combat_state_label.visible = GameState.debug_mode
 
 func _on_extra_jump_pickup():
 	max_jumps += 1

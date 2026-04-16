@@ -9,7 +9,7 @@ func _ready() -> void:
 	if GameState.mystery_pieces[id]:
 		queue_free()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	#position.y += sin(Time.get_ticks_msec() * 0.001) * 1.0
 

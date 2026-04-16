@@ -1,4 +1,4 @@
-class_name PlayerCombatSlashingState
+class_name PlayerSlashingState
 extends PlayerBaseState
 
 
@@ -14,13 +14,11 @@ func enter(entity: Player) -> void:
 	SignalBus.player_sprite_anim_finished.connect(_on_anim_finished.bind(entity))
 
 func _on_anim_finished(entity: Player) -> void:
-	_go_to_combat(entity, PlayerCombatIdleState)
+	_go_to_loco(entity, PlayerIdleState)
 
-func update(entity: Entity, _delta: float) -> void:
-	# Cancel attack on movement
-	if not entity.is_loco_idling():
-		_go_to_combat(entity, PlayerCombatIdleState)
-		return
+func update(_entity: Entity, _delta: float) -> void:
+	# Player must finish an initiated attack
+	pass
 
 
 func exit(_entity: Player) -> void:

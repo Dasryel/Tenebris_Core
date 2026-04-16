@@ -2,6 +2,8 @@ class_name PlayerIdleState
 extends PlayerBaseState
 
 
+const PlayerSlashingState = preload("res://src/entity/state/player/player_slashing_state.gd")
+
 func enter(entity: Entity) -> void:
 	if not entity.is_on_floor():
 		_go_to_loco(entity, PlayerFallingState)
@@ -11,6 +13,10 @@ func enter(entity: Entity) -> void:
 
 
 func update(entity: Entity, _delta: float) -> void:
+	if Input.is_action_just_pressed(GameInput.ATTACK1):
+		_go_to_loco(entity, PlayerSlashingState)
+		return
+
 	if Input.is_action_just_pressed(GameInput.JUMP):
 		_go_to_loco(entity, PlayerJumpState)
 		return

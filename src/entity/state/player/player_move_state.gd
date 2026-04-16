@@ -7,12 +7,12 @@ func enter(entity: Entity) -> void:
 
 
 func update(entity: Player, delta: float) -> void:
-	if entity.is_in_combat():
-		# Can't move while attacking
-		return
-
 	if not entity.is_on_floor():
 		_go_to_loco(entity, PlayerFallingState)
+		return
+
+	if Input.is_action_just_pressed(GameInput.ATTACK1):
+		_go_to_loco(entity, PlayerSlashingState)
 		return
 
 	if Input.is_action_just_pressed(GameInput.JUMP):
