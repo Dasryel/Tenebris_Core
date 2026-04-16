@@ -10,8 +10,8 @@ func enter(entity: Player) -> void:
 	entity.play_anim("slash1")
 	AudioManager.play_sfx(entity.slash1_sound)
 
-	# Connect to the signal bus
-	SignalBus.player_sprite_anim_finished.connect(_on_anim_finished.bind(entity))
+	entity.anim_callback = _on_anim_finished.bind(entity)
+	SignalBus.player_sprite_anim_finished.connect(entity.anim_callback, CONNECT_ONE_SHOT)
 
 func _on_anim_finished(entity: Player) -> void:
 	_go_to_loco(entity, PlayerIdleState)
@@ -21,6 +21,7 @@ func update(_entity: Entity, _delta: float) -> void:
 	pass
 
 
-func exit(_entity: Player) -> void:
-	if SignalBus.player_sprite_anim_finished.is_connected(_on_anim_finished):
-		SignalBus.player_sprite_anim_finished.disconnect(_on_anim_finished)
+func exit(entity: Player) -> void:
+	if entity.anim_callback and SignalBus.player_sprite_anim_finished.is_connected(entity.anim_callback):
+		SignalBus.player_sprite_anim_finished.disconnect(entity.anim_callback)
+	entity.anim_callback = Callable()
