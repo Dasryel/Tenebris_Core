@@ -39,14 +39,14 @@ func fade_in_sequence() -> void:
 
 	# show relic count
 	relic_label.text = str(GameState.mystery_pieces_count()) + " / 4 relics found"
-		
+
 	var rt = create_tween()
 	rt.tween_property(relic_label, "modulate:a", 1.0, 0.6)
 	await rt.finished
 
 	await get_tree().create_timer(0.5).timeout
-	
-	
+
+
 	var st = create_tween()
 	if GameState.mystery_pieces_count() == 4:
 		status_label.text = "Monke is proud! :]"
@@ -61,11 +61,10 @@ func fade_in_sequence() -> void:
 	var ct = create_tween()
 	ct.tween_property(continue_label, "modulate:a", 1.0, 0.6)
 	await ct.finished
-	
-	
+
 
 	can_continue = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if can_continue and Input.is_action_just_pressed("use"):
 		get_tree().change_scene_to_file("res://scene/ui/credits.tscn")

@@ -2,7 +2,7 @@ class_name Player
 extends Entity
 
 @warning_ignore("unused_private_class_variable")
-var _combat_anim_callable: Callable = Callable()
+var anim_callback: Callable = Callable()
 var _thougt_bubble_default_local_position: Vector2
 
 @export_group("Labels")
