@@ -1946,21 +1946,17 @@ script = ExtResource("1_hp4bs")
 loco_state_label = NodePath("LocoStateLabel")
 thought_bubble_panel = NodePath("ThoughtBubble")
 attack_hitbox = NodePath("AttackHitbox")
-attack_hitbox_offset = null
 attack_hitbox_collision = NodePath("AttackHitbox/CollisionShape2D")
 jump_sound = ExtResource("2_8rkx0")
 pickup_sound = ExtResource("3_wyue1")
 slash1_sound = ExtResource("4_oyaf6")
+default_normal_animation = "idle_norm_left"
+default_god_animation = "idle_god_left"
 sprite = NodePath("AnimatedSprite2D")
 speed = 400.0
 jump_velocity = -600.0
-recovery_jump_velocity = null
 gravity = 1400.0
-knockback_force = null
 air_acceleration = 0.0
-max_jumps = null
-hit_points = null
-max_hit_points = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=260074782]
 
@@ -1971,7 +1967,8 @@ material = SubResource("CanvasItemMaterial_g2vtq")
 position = Vector2(0, -50.000008)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_fvtld")
-animation = &"idle"
+animation = &"idle_norm_left"
+frame_progress = 0.59934753
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220763521]
 position = Vector2(0, -14)

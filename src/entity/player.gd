@@ -20,6 +20,10 @@ var _thougt_bubble_default_local_position: Vector2
 @export var pickup_sound: AudioStream
 @export var slash1_sound: AudioStream
 
+@export_group("Default animations")
+@export var default_normal_animation: String
+@export var default_god_animation: String
+
 
 const LOCOMOTION_LAYER: StringName = &"Locomotion"
 
@@ -78,15 +82,20 @@ const ATTACK_DATA: Dictionary = {
 
 }
 
+
 func _ready() -> void:
 	instance = self
-	last_direction = Vector2.LEFT
+	# Used when clamping thought bubble to viewport in room edges
 	_thougt_bubble_default_local_position = thought_bubble_panel.position
 
+	_setup_default_animations()
+
+	# Setup signals
 	SignalBus.debug_mode_toggled.connect(_on_debug_mode_toggled)
 	_on_debug_mode_toggled()
-
 	SignalBus.extra_jump_pickup.connect(_on_extra_jump_pickup)
+	$AnimatedSprite2D.animation_finished.connect(_on_player_sprite_finished)
+
 	if GameState.has_dj: max_jumps = 2
 
 	if GameState.spawn_position != Vector2.ZERO:
@@ -97,8 +106,6 @@ func _ready() -> void:
 	# We assume 'CombatLayer', 'StateCache', and 'CombatIdleState' are
 	# accessible (e.g., as constants, members, or Autoloads).
 	_add_state_machine(LOCOMOTION_LAYER, StateCache.get_state(PlayerFallingState))
-
-	$AnimatedSprite2D.animation_finished.connect(_on_player_sprite_finished)
 
 	if not OS.is_debug_build():
 		loco_state_label.visible = false
@@ -129,6 +136,20 @@ func is_taking_damage() -> bool:
 		return true
 
 	return false
+
+# Avoids displaying wrong hair color for 1 frame
+func _setup_default_animations():
+	print("setting up anims")
+	last_direction = Vector2.LEFT
+
+	if GameState.has_dj:
+		print("set up god")
+		sprite.animation = default_god_animation
+
+	else:
+		print("set up norm")
+		sprite.animation = default_normal_animation
+
 
 func _get_anim_key(anim: String) -> String:
 	var mode_str := "god" if GameState.has_dj else "norm"
