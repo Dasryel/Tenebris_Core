@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://nykvfkbqsbkr" path="res://asset/sprite/endscreen/monke 3.png" id="4_wpd7e"]
 [ext_resource type="Texture2D" uid="uid://bs41jsvd23lbc" path="res://asset/sprite/endscreen/monke 4.png" id="5_n1y11"]
 [ext_resource type="FontFile" uid="uid://duj14pxar5711" path="res://asset/fonts/scifibit.ttf" id="6_mc8fj"]
+[ext_resource type="Texture2D" uid="uid://cntai3j0tvhjb" path="res://asset/sprite/endscreen/laser_eyes.png" id="7_n1y11"]
 
 [node name="ResultScreen" type="Control" unique_id=1048150404]
 layout_mode = 3
@@ -120,7 +121,23 @@ text = "Press E to countinue"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LaserTexture" type="TextureRect" parent="CanvasLayer" unique_id=223596963]
+anchors_preset = -1
+anchor_left = 0.4453125
+anchor_top = 0.25833333
+anchor_right = 0.6070312
+anchor_bottom = 0.5164299
+offset_left = -15.0
+offset_top = -6.0
+offset_right = -15.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_n1y11")
+metadata/_edit_use_anchors_ = true
+
 [node name="DarkOverlay" type="ColorRect" parent="CanvasLayer" unique_id=450650036]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

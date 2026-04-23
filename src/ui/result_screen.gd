@@ -10,10 +10,12 @@ extends Control
 @onready var continue_label = $CanvasLayer/VBoxContainer/ContinueLabel
 @onready var status_label = $CanvasLayer/VBoxContainer/StatusLabel
 @onready var overlay = $CanvasLayer/DarkOverlay
+@onready var laser_eyes = $CanvasLayer/LaserTexture
 
 var can_continue: bool = false
 
 func _ready() -> void:
+	laser_eyes.visible = false
 	overlay.color = Color(0, 0, 0, 1)
 	for piece in pieces:
 		piece.modulate.a = 0.0
@@ -51,6 +53,7 @@ func fade_in_sequence() -> void:
 	if GameState.mystery_pieces_count() == 4:
 		status_label.text = "Monke is proud! :]"
 		st.tween_property(status_label, "modulate:a", 1.0, 0.6)
+		laser_eyes.visible = true
 	else:
 		status_label.text = "Monke is disapointed! >:["
 		st.tween_property(status_label, "modulate:a", 1.0, 0.6)

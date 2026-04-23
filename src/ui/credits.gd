@@ -4,6 +4,8 @@ extends Control
 
 var scroll_speed := 40
 
+func _ready() -> void:
+	SignalBus.play_game_music.emit("credits")
 
 func _process(delta):
 	credits.position.y -= scroll_speed * delta
