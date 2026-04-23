@@ -86,29 +86,58 @@ text = "How to do:"
 horizontal_alignment = 1
 
 [node name="Keys" type="Sprite2D" parent="." unique_id=884694986]
-position = Vector2(928.00006, 514)
+position = Vector2(287, 515.99994)
 scale = Vector2(0.44640538, 0.4464054)
 texture = ExtResource("3_csolh")
 
 [node name="SoldierMonkey" type="Sprite2D" parent="." unique_id=1497115017]
-position = Vector2(89, 102.00001)
-scale = Vector2(0.27013487, 0.27013487)
+position = Vector2(183, 171.00002)
+scale = Vector2(0.41818002, 0.41818002)
 texture = ExtResource("3_tvyta")
 
 [node name="Label" type="Label" parent="." unique_id=754034999]
 layout_mode = 0
-offset_left = 181.0
-offset_top = 24.0
-offset_right = 1263.0
-offset_bottom = 384.0
+offset_left = 587.0
+offset_top = 87.0
+offset_right = 1669.0
+offset_bottom = 717.0
 theme_override_colors/font_color = Color(0.2509804, 0.47843137, 0.78039217, 0.9764706)
 theme_override_fonts/font = ExtResource("1_hhwvx")
 theme_override_font_sizes/font_size = 30
-text = "By the King’s command, we have seized the Moon itself.
-Now you stand upon an Earth stripped of its light,
-drowned in shadow, where darkness lingers and watches.
+text = "By the King’s command, 
+we have seized the Moon itself.
+
+Now you stand upon an Earth 
+stripped of its light,
+
+drowned in shadow, where darkness
+lingers and watches.
 
 Yet there is still a way out.
-If you have the courage, you may find it.
 
-Find it… before the darkness finds you."
+If you have the courage, 
+you may find it.
+
+before the darkness finds you."
+
+[node name="Label3" type="Label" parent="." unique_id=1429920703]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 40.0
+offset_right = 1351.0
+offset_bottom = 670.0
+theme_override_colors/font_color = Color(0.34117648, 0.9019608, 0.9019608, 1)
+theme_override_fonts/font = ExtResource("1_hhwvx")
+theme_override_font_sizes/font_size = 30
+text = "Soldier Monkey:"
+
+[node name="Label4" type="Label" parent="." unique_id=26233778]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 646.0
+offset_right = 1914.0
+offset_bottom = 1276.0
+theme_override_colors/font_color = Color(0.8235294, 0.8117647, 0.21176471, 1)
+theme_override_fonts/font = ExtResource("1_hhwvx")
+theme_override_font_sizes/font_size = 30
+text = "Press E to continue..."
