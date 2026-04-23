@@ -681,7 +681,7 @@ rotation = 3.1415927
 target_scene = "uid://bpgymvprtqna6"
 
 [node name="Shadow" parent="." unique_id=1692544944 instance=ExtResource("6_klcga")]
-position = Vector2(282, 405)
+position = Vector2(276, 456)
 
 [node name="Pickups" type="Node2D" parent="." unique_id=1209316242]
 

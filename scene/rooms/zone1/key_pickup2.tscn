@@ -690,7 +690,7 @@ texture = ExtResource("7_bc6nx")
 [node name="Pickups" type="Node2D" parent="." unique_id=1101730524]
 
 [node name="Health" parent="Pickups" unique_id=1327337286 instance=ExtResource("12_2mm8u")]
-position = Vector2(1114, 262)
+position = Vector2(193, -244)
 
 [node name="Key" parent="Pickups" unique_id=1990007751 instance=ExtResource("9_cklk5")]
 position = Vector2(1377, -60)

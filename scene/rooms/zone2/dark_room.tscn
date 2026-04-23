@@ -594,13 +594,16 @@ position = Vector2(2373, 513)
 position = Vector2(154, 334)
 
 [node name="Shadow" parent="Enemies" unique_id=1692544944 instance=ExtResource("7_yu0rw")]
-position = Vector2(1554, -133)
+position = Vector2(1632, -146)
 
 [node name="Shadow3" parent="Enemies" unique_id=96559049 instance=ExtResource("3_qcgql")]
-position = Vector2(606, -129)
+position = Vector2(1243, -135)
 
 [node name="Shadow4" parent="Enemies" unique_id=607381381 instance=ExtResource("3_qcgql")]
-position = Vector2(-117, -126)
+position = Vector2(517, -136)
+
+[node name="Shadow2" parent="Enemies" unique_id=1241210307 instance=ExtResource("7_yu0rw")]
+position = Vector2(-127, -135)
 
 [node name="Lights" type="Node2D" parent="." unique_id=1102104822]
 scale = Vector2(4, 4)

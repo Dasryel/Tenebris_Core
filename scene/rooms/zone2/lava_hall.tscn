@@ -641,7 +641,7 @@ script = ExtResource("8_mw1n8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lava/LavaBootsStaticBody2D" unique_id=504393669]
 process_mode = 3
-position = Vector2(2464, 136)
+position = Vector2(2463, 140)
 shape = SubResource("RectangleShape2D_adt1b")
 disabled = true
 
