@@ -4,6 +4,32 @@ TUNI 2026 Game Project course group work.
 
 ---
 
+Tenebris Core is a 2D Metroidvania action-platformer set in a mysterious atmospheric world. Players explore  2 completely different zones, battle enemies, master movement abilities like the double jump, and collect scattered moon pieces to restore the portal at the heart of the game. With moody visuals and music, hidden secrets, and an alternate ending, Tenebris Core offers a compact but immersive adventure.
+
+The game was created by Team SANDA as part of the Game Project 2026 course at Tampere University, Finland.
+
+## Credits
+
+FONT
+- Scifibit font - Andreas Nylin - https://www.dafont.com/sci-fied-bitmap.font
+
+MUSIC
+- Dark Horse 2 - Centurion_of_war - https://opengameart.org/users/centurionofwar
+- Robotic City V2 - section31 - https://opengameart.org/content/robotic-city-v2
+- Sky Fish - Holizna - https://holiznaroyaltyfree.bandcamp.com/track/sky-fish
+
+GAME SOUNDS
+- hup - maxmakessounds - https://freesound.org/people/maxmakessounds/sounds/353542/
+
+SPRITES
+- Super Grotto Escape - ansimuz - https://ansimuz.itch.io/super-grotto-escape-pack
+
+Special thanks to:
+- Brackeys
+- Coco Code
+- ChatGPT, Claude
+---
+
 ## Table of Contents
 
 1. [Prerequisites](#prerequisites)
