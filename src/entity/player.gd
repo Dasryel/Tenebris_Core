@@ -247,10 +247,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func take_damage(amount: int, knockback_dir: Vector2) -> void:
-	hit_points -= amount
+	GameState.player_current_hp -= amount
 	SignalBus.player_hp_changed.emit(hit_points)
 
-	if hit_points <= 0:
+	if GameState.player_current_hp <= 0:
 		print("player dies")
 		_on_entity_death()
 		return

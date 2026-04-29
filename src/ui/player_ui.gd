@@ -30,10 +30,10 @@ func _ready() -> void:
 
 	if GameState.has_dj:
 		$DjIcon.visible = true
-	
+
 	if GameState.has_lava_boots:
 		$LavabootsIcon.visible = true
-	
+
 	if GameState.mystery_pieces_count() > 0:
 		update_mystery_ui()
 
@@ -126,7 +126,7 @@ func show_lavaboots():
 	$LavabootsIcon.visible = true
 	show_text("You can now walk on top of lava!")
 	GameState.has_lava_boots = true
-	
+
 
 func show_mystery_ui() -> void:
 	update_mystery_ui()
@@ -138,7 +138,7 @@ func update_mystery_ui() -> void:
 	$MysteryIcon.visible = count > 0
 	$MysteryLabel.visible = count > 0
 	$MysteryLabel.text = str(count) + "x"
-	
+
 func hide_lavaboots():
 	$LavabootsIcon.visible = false
 
@@ -168,12 +168,11 @@ func hide_moon_piece(id: String) -> void:
 func _on_debug_mode_toggled():
 	log_messages.visible = GameState.debug_mode
 
-func _on_player_hp_changed(current_hp: int) -> void:
-	GameState.player_current_hp = current_hp
+func _on_player_hp_changed(_current_hp: int) -> void:
 	print("current hp: ", GameState.player_current_hp)
 
 	for i in range(hearts.size()):
-		if i < current_hp:
+		if i < GameState.player_current_hp:
 			hearts[i].texture = preload("res://asset/sprite/player/hp.png")
 		else:
 			hearts[i].texture = preload("res://asset/sprite/player/hp_empty.png")
