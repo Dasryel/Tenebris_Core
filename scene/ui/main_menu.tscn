@@ -208,6 +208,17 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_m4svf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3er1b")
 text = "Options"
 
+[node name="CreditsButton" type="Button" parent="MainMenuButtons" unique_id=1835573739]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9654575, 0.9544205, 0.98708004, 1)
+theme_override_fonts/font = ExtResource("1_3er1b")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m4svf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3er1b")
+text = "Credits"
+
 [node name="QuitButton" type="Button" parent="MainMenuButtons" unique_id=656603786]
 layout_mode = 2
 size_flags_vertical = 3
@@ -224,4 +235,6 @@ text = "Quit"
 [connection signal="toggled" from="OptionsPanel/OptionVBoxContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_button_toggled"]
 [connection signal="pressed" from="MainMenuButtons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenuButtons/CreditsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MainMenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]

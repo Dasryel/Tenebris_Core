@@ -44,3 +44,7 @@ func _on_audio_h_slider_value_changed(new_volume: float) -> void:
 		return
 
 	SignalBus.music_volume_changed.emit(new_volume)
+
+
+func _on_credits_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scene/ui/credits.tscn")
