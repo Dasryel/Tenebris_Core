@@ -170,12 +170,12 @@ func _on_debug_mode_toggled():
 
 func _on_player_hp_changed(_current_hp: int) -> void:
 	print("current hp: ", GameState.player_current_hp)
-
 	for i in range(hearts.size()):
 		if i < GameState.player_current_hp:
 			hearts[i].texture = preload("res://asset/sprite/player/hp.png")
 		else:
 			hearts[i].texture = preload("res://asset/sprite/player/hp_empty.png")
+			
 
 
 func _on_lava_body_exited(_body: Node2D) -> void:

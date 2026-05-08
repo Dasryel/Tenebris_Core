@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="VIM.MT.310"
+config/name="Tenebris Core"
 run/main_scene="uid://qim5su5xohvx"
 config/features=PackedStringArray("4.6", "Forward Plus")
 

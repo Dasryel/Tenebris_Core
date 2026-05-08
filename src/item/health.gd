@@ -10,6 +10,16 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		AudioManager.play_sfx(pickup_sound)
-		SignalBus.player_hp_changed.emit(GameState.player_current_hp + 1)
-		self.queue_free()
+		if GameState.player_current_hp == 3:
+			print("full hp")
+			SignalBus.thought_bubble_show.emit("Full hp")
+			await get_tree().create_timer(0.7).timeout
+			SignalBus.thought_bubble_hide.emit()
+			return
+		else:
+			AudioManager.play_sfx(pickup_sound)
+			var new_hp = GameState.player_current_hp + 1
+			print("old", GameState.player_current_hp, " new:", new_hp)
+			GameState.player_current_hp += 1
+			SignalBus.player_hp_changed.emit(new_hp)
+			self.queue_free()
